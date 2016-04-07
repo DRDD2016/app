@@ -1,0 +1,9 @@
+dependencies:
+  pre:
+    - npm install -g npm
+machine:
+  node:
+    version: 5.0.0
+general:
+  artifacts:
+    - "coverage"
