@@ -17,6 +17,12 @@
   "bugs": {
     "url": "https://github.com/DRDD2016/app/issues"
   },
+  "config": {
+    "ghooks": {
+      "pre-push": "npm run test",
+      "post-merge": "npm install"
+    }
+  },
   "homepage": "https://github.com/DRDD2016/app#readme",
   "devDependencies": {
     "babel-cli": "^6.6.5",
@@ -29,6 +35,7 @@
     "css-loader": "^0.23.1",
     "eslint": "^2.7.0",
     "eslint-plugin-react": "^4.3.0",
+    "ghooks": "^1.2.0",
     "istanbul": "^0.4.3",
     "jsdom": "^8.3.0",
     "node-sass": "^3.4.2",
