@@ -16,6 +16,6 @@ test.only('AppContainer contains an `h1`', (t) => {
     const node = TestUtils.renderIntoDocument(<AppContainer />);
     const found = TestUtils.findRenderedDOMComponentWithTag(node, 'h1');
 
-    t.equal(found.textContent, "This is the ap container");
+    t.equal(found.textContent, "This is the app container");
     t.end();
 });
