@@ -1,15 +1,15 @@
 import React from 'react';
 
-class AppContainer extends React.Component {
+class Login extends React.Component {
 
     render () {
 
         return (
             <div>
-                {this.props.children}
+                <h1>This is the Feed Container</h1>
             </div>
         );
     }
 }
 
-export default AppContainer;
+export default Login;
