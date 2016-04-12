@@ -7,7 +7,7 @@ import AppContainer from '../../src/js/components/app-container.jsx';
 
 import shallowRenderer from '../utils/shallow-renderer.js';
 
-test.only('AppContainer contains an `h1`', (t) => {
+test.skip('AppContainer contains an `h1`', (t) => {
 
     const rendered = shallowRenderer(<AppContainer />);
 

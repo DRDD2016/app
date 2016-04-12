@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, hashHistory, IndexRoute} from 'react-router';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import Store from './create-store.js';
 
 require('../scss/main.scss');
 
@@ -17,19 +18,19 @@ import EventWhere from './components/event-where.jsx';
 
 const routes = (
     <Route path='/' component={ AppContainer }>
-        <IndexRoute component={Login} />
-        <Route path='/feed' component={Feed} />
+        
+        <IndexRoute component={ Login } />
+        <Route path='/feed' component={ Feed } />
 
-    <Route path='/create-event' component={CreateEventContainer} >
-        <IndexRoute component={EventDetails} />
-        <Route path='what' component={EventWhat} />
-        <Route path='where' component={EventWhere} />
-        <Route path='when' component={EventWhen} />
+        <Route path='/create-event' component={ CreateEventContainer } >
+            <IndexRoute component={ EventDetails } />
+            <Route path='what' component={ EventWhat } />
+            <Route path='where' component={ EventWhere } />
+            <Route path='when' component={ EventWhen } />
+        </Route>
+
     </Route>
-
-
-    </Route>
-)
+);
 
 
 ReactDOM.render(
