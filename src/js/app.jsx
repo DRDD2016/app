@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRoute } from 'react-router';
-import Store from './create-store.js';
+import initStore from './init-store.js';
 
 require('../scss/main.scss');
 
@@ -18,7 +18,7 @@ import EventWhere from './components/event-where.jsx';
 
 const routes = (
     <Route path='/' component={ AppContainer }>
-        
+
         <IndexRoute component={ Login } />
         <Route path='/feed' component={ Feed } />
 
