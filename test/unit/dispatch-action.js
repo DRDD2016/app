@@ -3,23 +3,35 @@ import initStore from '../../src/js/init-store.js';
 
 const store = initStore();
 
-test('SET_EVENT_DETAILS dispatches correctly', (t) => {
+test('SET_EVENT_DETAILS action works', (t) => {
 
     store.dispatch({
         type: "SET_EVENT_DETAILS",
-        data: {
-            eventName: "Jenny's birthday",
-            eventDescription: "I'm getting older!"
-        }
+        data: "Jenny's birthday",
+        inputType: "eventName"
     });
 
-    const expected = {
+    const expected1 = {
         eventDetails: {
             eventName: "Jenny's birthday",
-            eventDescription: "I'm getting older!"
         }
     };
 
-    t.deepEqual(store.getState(), expected, "Reducer handles SET_EVENT_DETAILS correctly");
+    t.deepEqual(store.getState(), expected1, "Reducer sets `eventDetails.eventName` correctly");
+
+    store.dispatch({
+        type: "SET_EVENT_DETAILS",
+        data: "Jenny's getting older!",
+        inputType: "eventDescription"
+    });
+
+    const expected2 = {
+        eventDetails: {
+            eventName: "Jenny's birthday",
+            eventDescription: "Jenny's getting older!"
+        }
+    };
+
+    t.deepEqual(store.getState(), expected2, "Reducer sets `eventDetails.eventDescription` correctly");
     t.end();
 });

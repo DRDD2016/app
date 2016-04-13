@@ -2,33 +2,35 @@ import test from 'tape';
 import reducer from '../../../src/js/reducers/create-event.js';
 
 
-test('SET_EVENT_DETAILS behaves as expected', (t) => {
-    const initialState = {};
+test('Reducer handles SET_EVENT_DETAILS as expected', (t) => {
+    const initialState = {
+        eventDetails: {
+            eventName: "Sohil Bowling"
+        }
+    };
     const action = {
         type: 'SET_EVENT_DETAILS',
-        data: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
-        }
+        data: "We're going bowling!!!",
+        inputType: "eventDescription"
     };
     const nextState = reducer(initialState, action);
     const expected = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
-         }
+            eventName: "Sohil Bowling",
+            eventDescription: "We're going bowling!!!"
+        }
     };
 
-    t.deepEqual(nextState, expected, 'SET_EVENT_DETAILS RETURNS CORRECT DATA FROM REDUCER');
+    t.deepEqual(nextState, expected, 'eventDetails.eventDescription set correctly');
     t.end();
 });
 
-test('SET_EVENT_WHAT behaves as expected', (t) => {
+test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
 
     const initialState = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
         }
     };
 
@@ -40,13 +42,12 @@ test('SET_EVENT_WHAT behaves as expected', (t) => {
         ]
     };
 
-
     const nextState = reducer(initialState, action);
 
     const expected = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
         },
         eventWhat: [
             "Bowling",
@@ -54,7 +55,7 @@ test('SET_EVENT_WHAT behaves as expected', (t) => {
         ]
     };
 
-    t.deepEqual(nextState, expected, "SET_EVENT_WHAT returns correct state from reducer");
+    t.deepEqual(nextState, expected, "eventWhat set correctly");
     t.end();
 });
 
@@ -62,8 +63,8 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
 
     const initialState = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
         },
         eventWhat: [
             "Bowling",
@@ -83,8 +84,8 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
 
     const expected = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
         },
         eventWhat: [
             "Bowling",
@@ -96,7 +97,7 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
         ]
     };
 
-    t.deepEqual(nextState, expected, "SET_EVENT_WHERE returns correct state from reducer");
+    t.deepEqual(nextState, expected, "eventWhere set correctly");
     t.end();
 });
 
@@ -104,8 +105,8 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
 
     const initialState = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
         },
         eventWhat: [
             "Bowling",
@@ -128,8 +129,8 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
 
     const expected = {
         eventDetails: {
-             eventName:"Sohil Bowling",
-             eventDescription:"Bowling"
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
         },
         eventWhat: [
             "Bowling",
@@ -144,6 +145,6 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
         ]
     };
 
-    t.deepEqual(nextState, expected, "SET_EVENT_WHEN returns correct state from reducer");
+    t.deepEqual(nextState, expected, "eventWhen set correctly");
     t.end();
 });
