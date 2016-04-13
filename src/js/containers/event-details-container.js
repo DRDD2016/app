@@ -13,8 +13,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleChange: (inputType, event) => {
 
-
-
             dispatch({
                 type: "SET_EVENT_DETAILS",
                 data: event.target.value,
