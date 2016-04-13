@@ -9,12 +9,16 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
+
     return {
-        onChange: (data) => {
+        handleChange: (inputType, event) => {
+
+
 
             dispatch({
                 type: "SET_EVENT_DETAILS",
-                data: data
+                data: event.target.value,
+                inputType: inputType
             });
         }
     };

@@ -1,13 +1,19 @@
 import React from 'react';
 
-const CreateEvent = ({ value, onChange }) => (
+const CreateEvent = ({ value, handleChange }) => (
 
     <div>
         <input
-            onChange={ event => onChange(event.target.value) }
+            onChange={ handleChange.bind(this, 'eventName') }
             value={ value }
             type="text"
             placeholder="Event name" />
+
+        <input
+            onChange={ handleChange.bind(this, 'eventDescription') }
+            value={ value }
+            type="text"
+            placeholder="Event description" />
     </div>
 );
 

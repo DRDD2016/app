@@ -5,7 +5,7 @@ export default function (state = {}, action) {
 
     case 'SET_EVENT_DETAILS':
         key = "eventDetails";
-        return setEvent(state, action, key);
+        return setEventDetails(state, action, key);
 
     case 'SET_EVENT_WHAT':
         key = "eventWhat";
@@ -22,6 +22,17 @@ export default function (state = {}, action) {
     default:
         return state;
     }
+}
+
+function setEventDetails (state, action, key) {
+
+    return {
+        ...state,
+        [key]: {
+            ...state.eventDetails,
+            [action.inputType]: action.data
+        }
+    };
 }
 
 function setEvent (state, action, key) {
