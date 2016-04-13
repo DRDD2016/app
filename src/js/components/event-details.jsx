@@ -1,15 +1,14 @@
 import React from 'react';
 
-class CreateEventContainer extends React.Component {
+const CreateEvent = ({ value, onChange }) => (
 
-    render () {
+    <div>
+        <input
+            onChange={ event => onChange(event.target.value) }
+            value={ value }
+            type="text"
+            placeholder="Event name" />
+    </div>
+);
 
-        return (
-            <div>
-                <h1>This is the event details section</h1>
-            </div>
-        );
-    }
-}
-
-export default CreateEventContainer;
+export default CreateEvent;
