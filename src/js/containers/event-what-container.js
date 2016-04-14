@@ -3,20 +3,32 @@ import { connect } from 'react-redux';
 import EventWhat from '../components/event-what.jsx';
 
 const mapStateToProps = (state) => {
+    let data = state.eventWhat || {0:''};
     return {
-        eventWhatNumber: state.eventWhat.id,
-        eventWhatArray: state.eventWhat.data
+        eventWhatData: data
     };
 };
 
-
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleEventWhat: (count, event) => {
+        handleEventWhat: (inputKey, event) => {
             dispatch({
                 type: "SET_EVENT_WHAT",
                 data: event.target.value,
-                count: whatCount++
+                inputKey: inputKey
+            });
+        },
+
+        addInput: (nextInputKey) => {
+            dispatch({
+                type: "ADD_INPUT",
+                nextInputKey: nextInputKey
+            });
+        },
+
+        removeInput: () => {
+            dispatch({
+                type: "REMOVE_INPUT"
             });
         }
     };
