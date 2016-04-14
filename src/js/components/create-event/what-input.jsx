@@ -1,7 +1,6 @@
 import React from 'react';
 
 const WhatInput = ({ onChange, value }) => {
-    console.log(value,'value');
     return (
         <div>
             <input
@@ -10,7 +9,7 @@ const WhatInput = ({ onChange, value }) => {
                 type="text"
                 placeholder="What would you like to do?" />
         </div>
-    )
+    );
 };
 
 export default WhatInput;
