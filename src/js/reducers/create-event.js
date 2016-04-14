@@ -9,7 +9,7 @@ export default function (state = {}, action) {
 
     case 'SET_EVENT_WHAT':
         key = "eventWhat";
-        return setEvent(state, action, key);
+        return setEventWhat(state, action, key);
 
     case 'SET_EVENT_WHERE':
         key = "eventWhere";
@@ -31,6 +31,18 @@ function setEventDetails (state, action, key) {
         [key]: {
             ...state.eventDetails,
             [action.inputType]: action.data
+        }
+    };
+}
+
+function setEventWhat (state, action, key) {
+
+    return {
+        ...state,
+        [key]: {
+            ...state.eventWhat,
+            count: action.count,
+            data: [...state.eventWhat.data, action.data]
         }
     };
 }
