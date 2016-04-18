@@ -3,8 +3,8 @@ import WhatInput from './create-event/what-input.jsx';
 
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
-    let indices = Object.keys(eventWhatData);
-    let inputs = indices.map( (value,i) => {
+    let inputCount = Object.keys(eventWhatData);
+    let inputs = inputCount.map( (value,i) => {
         return (
             <WhatInput
                 onChange={ handleEventWhat.bind(this, i) }
@@ -17,7 +17,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     return (
             <div>
                 { inputs }
-                <button onClick={ addInput.bind(this, indices.length) }>
+                <button onClick={ addInput.bind(this, inputCount.length) }>
                     Add input
                 </button>
                 <button onClick={ removeInput }>

@@ -7,3 +7,6 @@ machine:
 general:
   artifacts:
     - "coverage"
+test:
+    post:
+        - pip install codecov && codecov
