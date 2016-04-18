@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 const CreateEvent = ({ eventDetails, handleChange }) => (
     <div>
-        <h2>Event details</h2>
         <input
             onChange={ handleChange.bind(this, 'eventName') }
             value={ eventDetails ? eventDetails.eventName : '' }
