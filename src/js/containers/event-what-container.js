@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import EventWhat from '../components/event-what.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhat || {0:''};
+    let data = state.eventWhat; 
     return {
         eventWhatData: data
     };

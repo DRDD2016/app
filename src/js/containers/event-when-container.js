@@ -4,14 +4,7 @@ import EventWhen from '../components/event-when.jsx';
 
 const mapStateToProps = (state) => {
 
-    const initialState = {
-        0: {
-            date: '',
-            time: ''
-        }
-    };
-
-    let data = state.eventWhen || initialState;
+    let data = state.eventWhen;
 
     return {
         eventWhenData: data

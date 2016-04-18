@@ -115,14 +115,18 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
         eventWhere: {
             0:"sohil",
             1:"Shoreditch"
+        },
+        eventWhen: {
+            0: {}
         }
     };
 
     const action = {
         type: "SET_EVENT_WHEN",
-        data: 1460479400956,
+        data: "1460479400956",
         eventType: "eventWhen",
-        inputKey: 0
+        inputKey: 0,
+        format: "time"
     };
 
     const nextState = reducer(initialState, action);
@@ -141,7 +145,9 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
             1:"Shoreditch"
         },
         eventWhen: {
-            0: 1460479400956
+            0: {
+                time: '1460479400956'
+            }
         }
     };
 

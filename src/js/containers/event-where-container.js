@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import EventWhere from '../components/event-where.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhere || {0:''};
+    let data = state.eventWhere;
     return {
         eventWhereData: data
     };

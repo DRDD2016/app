@@ -19,7 +19,7 @@ import EventWhereContainer from './containers/event-where-container.js';
 import EventWhenContainer from './containers/event-when-container.js';
 
 
-const store = initStore({});
+const store = initStore();
 
 const routes = (
     <Route path='/' component={ AppContainer }>
