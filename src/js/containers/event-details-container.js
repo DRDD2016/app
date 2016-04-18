@@ -16,8 +16,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: "SET_EVENT_DETAILS",
                 data: event.target.value,
-                inputType: inputType,
-                eventType: "eventDetails"
+                inputType: inputType
             });
         }
     };

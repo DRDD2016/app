@@ -1,34 +1,15 @@
 import React from 'react';
-import DateTimeInput from './create-event/date-time-input.jsx';
 
-const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTime }) => {
+class CreateEventContainer extends React.Component {
 
-    let inputCount = Object.keys(eventWhenData);
+    render () {
 
-    let inputs = inputCount.map( (value, i) => {
         return (
-            <DateTimeInput
-                value={ eventWhenData[value] }
-                key={ i }
-                inputKey={ i }
-                handleTime={ handleTime }
-                handleDate={ handleDate }
-            />);
-    });
-
-
-    return (
             <div>
-                <h2>When?</h2>
-                { inputs }
-                <button onClick={ addInput.bind(this, inputCount.length) }>
-                    Add input
-                </button>
-                <button onClick={ removeInput }>
-                    Remove input
-                </button>
+                <h1>This is the event when section</h1>
             </div>
         );
-};
+    }
+}
 
-export default EventWhen;
+export default CreateEventContainer;
