@@ -1,17 +1,17 @@
 import React from 'react';
 
-const DateTimeInput = () => {
+const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
+
     return (
         <div>
             <input
                 type="date"
-                ref="date"
-                placeholder="Date" />
+                placeholder="Date"
+                onChange={ handleDate.bind(this, inputKey) } />
             <input
-                ref="time"
                 type="time"
-                placeholder="Time" />
-
+                placeholder="Time"
+                onChange={ handleTime.bind(this, inputKey) } />
         </div>
     );
 };

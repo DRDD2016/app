@@ -3,7 +3,16 @@ import { connect } from 'react-redux';
 import EventWhen from '../components/event-when.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhen || {0:''};
+
+    const initialState = {
+        0: {
+            date: '',
+            time: ''
+        }
+    };
+
+    let data = state.eventWhen || initialState;
+
     return {
         eventWhenData: data
     };
@@ -11,29 +20,27 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleDateTime: (inputKey) => {
 
-            //calculate the timestamp here§
-            let timeStamp = 12335;
-            dispatch({
-                type: "ADD_INPUT",
-                nextInputKey: inputKey++,
-                eventType: "eventWhen"
-            });
-            dispatch({
-                type: "SET_EVENT_WHEN",
-                data: timeStamp,
-                inputKey: inputKey,
-                eventType: "eventWhen"
-            });
-        },
-        handleEventWhen: (inputKey, event) => {
+        handleDate: (inputKey, event) => {
+            console.log("handleDate", event.target.value);
+
             dispatch({
                 type: "SET_EVENT_WHEN",
                 data: event.target.value,
                 inputKey: inputKey,
-                eventType: "eventWhen"
+                eventType: "eventWhen",
+                format: "date"
+            });
+        },
 
+        handleTime: (inputKey, event) => {
+            console.log("handleTime", event.target.value);
+            dispatch({
+                type: "SET_EVENT_WHEN",
+                data: event.target.value,
+                inputKey: inputKey,
+                eventType: "eventWhen",
+                format: "time"
             });
         },
 

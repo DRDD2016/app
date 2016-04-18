@@ -1,3 +1,5 @@
+import mergeObjects from '../helpers/merge-objects.js';
+
 export default function (state = {}, action) {
 
     switch (action.type) {
@@ -12,6 +14,9 @@ export default function (state = {}, action) {
         return setEvent(state, action);
 
     case 'SET_EVENT_WHEN':
+        return setEventWhen(state, action);
+
+    case 'SET_EVENT_WHEN_TIME':
         return setEvent(state, action);
 
     case 'ADD_INPUT':
@@ -43,6 +48,30 @@ function setEvent (state, action) {
         [action.eventType]: {
             ...state[action.eventType],
             [action.inputKey]: action.data
+        }
+    };
+}
+
+function setEventWhen (state, action) {
+
+    // let newState = {
+    //     eventWhen: {
+    //         [action.inputKey]: {
+    //             [action.format]: action.data
+    //         }
+    //     }
+    // };
+    //
+    // return mergeObjects(state, newState);
+
+    return {
+        ...state,
+        [action.eventType]: {
+            ...state[action.eventType],
+            [action.inputKey]: {
+                
+                [action.format]: action.data
+            }
         }
     };
 }

@@ -1,13 +1,18 @@
 import React from 'react';
 import DateTimeInput from './create-event/date-time-input.jsx';
 
-const EventWhen = ({ eventWhenData, addInput, removeInput, handleEventWhen }) => {
+const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTime }) => {
 
     let inputCount = Object.keys(eventWhenData);
-    let inputs = inputCount.map( (value,i) => {
+
+    let inputs = inputCount.map( (value, i) => {
         return (
             <DateTimeInput
                 value={ eventWhenData[value] }
+                key={ i }
+                inputKey={ i }
+                handleTime={ handleTime }
+                handleDate={ handleDate }
             />);
     });
 
