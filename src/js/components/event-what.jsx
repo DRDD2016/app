@@ -1,15 +1,34 @@
 import React from 'react';
+import WhatInput from './create-event/what-input.jsx';
 
-class CreateEventContainer extends React.Component {
+const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
-    render () {
-
+    let inputCount = Object.keys(eventWhatData);
+    let inputs = inputCount.map( (value,i) => {
         return (
+            <WhatInput
+                onChange={ handleEventWhat.bind(this, i) }
+                key={ i }
+                value={ eventWhatData[value] }
+            />);
+    });
+
+
+    return (
             <div>
-                <h1>This is the event what section</h1>
+                { inputs }
+                <button onClick={ addInput.bind(this, inputCount.length) }>
+                    Add input
+                </button>
+                <button onClick={ removeInput }>
+                    Remove input
+                </button>
             </div>
         );
-    }
-}
+};
 
-export default CreateEventContainer;
+    // take the number of what items
+    // map that number onto the what input to return that number of input fields
+
+
+export default EventWhat;

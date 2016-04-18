@@ -36,10 +36,8 @@ test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
 
     const action = {
         type: 'SET_EVENT_WHAT',
-        data: [
-            "Bowling",
-            "Swimming"
-        ]
+        data: 'sohil',
+        inputKey: 0
     };
 
     const nextState = reducer(initialState, action);
@@ -49,10 +47,7 @@ test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
             eventName:"Sohil Bowling",
             eventDescription:"Bowling"
         },
-        eventWhat: [
-            "Bowling",
-            "Swimming"
-        ]
+        eventWhat: {0:'sohil'}
     };
 
     t.deepEqual(nextState, expected, "eventWhat set correctly");

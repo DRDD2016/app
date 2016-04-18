@@ -10,10 +10,11 @@ import AppContainer from './components/app-container.jsx';
 import Login from './components/login.jsx';
 import Feed from './components/feed.jsx';
 import CreateEventContainer from './components/create-event-container.jsx';
-import EventDetailsContainer from './containers/event-details-container.js';
-import EventWhat from './components/event-what.jsx';
 import EventWhen from './components/event-when.jsx';
 import EventWhere from './components/event-where.jsx';
+
+import EventDetailsContainer from './containers/event-details-container.js';
+import EventWhatContainer from './containers/event-what-container.js';
 
 const store = initStore({});
 
@@ -25,7 +26,7 @@ const routes = (
 
         <Route path='/create-event' component={ CreateEventContainer } >
             <IndexRoute component={ EventDetailsContainer } />
-            <Route path='what' component={ EventWhat } />
+            <Route path='what' component={ EventWhatContainer } />
             <Route path='where' component={ EventWhere } />
             <Route path='when' component={ EventWhen } />
         </Route>
