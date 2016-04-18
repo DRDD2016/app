@@ -15,6 +15,9 @@ import EventWhere from './components/event-where.jsx';
 
 import EventDetailsContainer from './containers/event-details-container.js';
 import EventWhatContainer from './containers/event-what-container.js';
+import EventWhereContainer from './containers/event-where-container.js';
+import EventWhenContainer from './containers/event-when-container.js';
+
 
 const store = initStore({});
 
@@ -27,8 +30,8 @@ const routes = (
         <Route path='/create-event' component={ CreateEventContainer } >
             <IndexRoute component={ EventDetailsContainer } />
             <Route path='what' component={ EventWhatContainer } />
-            <Route path='where' component={ EventWhere } />
-            <Route path='when' component={ EventWhen } />
+            <Route path='where' component={ EventWhereContainer } />
+            <Route path='when' component={ EventWhenContainer } />
         </Route>
 
     </Route>

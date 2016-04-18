@@ -8,7 +8,8 @@ test('SET_EVENT_DETAILS action works', (t) => {
     store.dispatch({
         type: "SET_EVENT_DETAILS",
         data: "Jenny's birthday",
-        inputType: "eventName"
+        inputType: "eventName",
+        eventType: "eventDetails"
     });
 
     const expected1 = {
@@ -22,7 +23,9 @@ test('SET_EVENT_DETAILS action works', (t) => {
     store.dispatch({
         type: "SET_EVENT_DETAILS",
         data: "Jenny's getting older!",
-        inputType: "eventDescription"
+        inputType: "eventDescription",
+        eventType: "eventDetails"
+
     });
 
     const expected2 = {

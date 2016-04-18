@@ -1,15 +1,36 @@
 import React from 'react';
+import { Link } from 'react-router';
+import Input from './create-event/input.jsx';
 
-class CreateEventContainer extends React.Component {
+const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere }) => {
 
-    render () {
-
+    let inputCount = Object.keys(eventWhereData);
+    let inputs = inputCount.map( (value,i) => {
         return (
+            <Input
+                onChange={ handleEventWhere.bind(this, i) }
+                key={ i }
+                value={ eventWhereData[value] }
+                placeholder= "Where?"
+            />);
+    });
+
+
+    return (
             <div>
-                <h1>This is the event where section</h1>
+                <h2>Where?</h2>
+                { inputs }
+                <button onClick={ addInput.bind(this, inputCount.length) }>
+                    Add input
+                </button>
+                <button onClick={ removeInput }>
+                    Remove input
+                </button>
+                <button>
+                    <Link to='/create-event/when'>Next</Link>
+                </button>
             </div>
         );
-    }
-}
+};
 
-export default CreateEventContainer;
+export default EventWhere;

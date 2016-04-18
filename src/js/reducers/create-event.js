@@ -1,23 +1,18 @@
 export default function (state = {}, action) {
 
-    let key;
     switch (action.type) {
 
     case 'SET_EVENT_DETAILS':
-        key = "eventDetails";
-        return setEventDetails(state, action, key);
+        return setEventDetails(state, action);
 
     case 'SET_EVENT_WHAT':
-        key = "eventWhat";
-        return setEventWhat(state, action, key);
+        return setEvent(state, action);
 
     case 'SET_EVENT_WHERE':
-        key = "eventWhere";
-        return setEvent(state, action, key);
+        return setEvent(state, action);
 
     case 'SET_EVENT_WHEN':
-        key = "eventWhen";
-        return setEvent(state, action, key);
+        return setEvent(state, action);
 
     case 'ADD_INPUT':
         return addInput(state, action);
@@ -34,29 +29,21 @@ function setEventDetails (state, action, key) {
 
     return {
         ...state,
-        [key]: {
+        [action.eventType]: {
             ...state.eventDetails,
             [action.inputType]: action.data
         }
     };
 }
 
-function setEventWhat (state, action, key) {
+function setEvent (state, action) {
 
     return {
         ...state,
-        [key]: {
-            ...state.eventWhat,
+        [action.eventType]: {
+            ...state[action.eventType],
             [action.inputKey]: action.data
         }
-    };
-}
-
-function setEvent (state, action, key) {
-
-    return {
-        ...state,
-        [key]: action.data
     };
 }
 
@@ -64,8 +51,8 @@ function addInput (state, action) {
 
     return {
         ...state,
-        eventWhat: {
-            ...state.eventWhat,
+        [action.eventType]: {
+            ...state[action.eventType],
             [action.nextInputKey]: ''
         }
     };
@@ -73,14 +60,14 @@ function addInput (state, action) {
 
 function removeInput (state, action) {
 
-    const keys = Object.keys(state.eventWhat);
+    const keys = Object.keys(state[action.eventType]);
     let newState = {};
     for (let i = 0; i < keys.length - 1; i++) {
 
-        newState[i] = state.eventWhat[i];
+        newState[i] = state[action.eventType][i];
     }
     return {
         ...state,
-        eventWhat: newState
+        [action.eventType]: newState
     };
 }

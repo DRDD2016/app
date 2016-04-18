@@ -1,22 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import EventWhat from '../components/event-what.jsx';
+import EventWhere from '../components/event-where.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhat || {0:''};
+    let data = state.eventWhere || {0:''};
     return {
-        eventWhatData: data
+        eventWhereData: data
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleEventWhat: (inputKey, event) => {
+        handleEventWhere: (inputKey, event) => {
             dispatch({
-                type: "SET_EVENT_WHAT",
+                type: "SET_EVENT_WHERE",
                 data: event.target.value,
                 inputKey: inputKey,
-                eventType: "eventWhat"
+                eventType: "eventWhere"
+
             });
         },
 
@@ -24,22 +25,22 @@ const mapDispatchToProps = (dispatch) => {
             dispatch({
                 type: "ADD_INPUT",
                 nextInputKey: nextInputKey,
-                eventType: "eventWhat"
+                eventType: "eventWhere"
             });
         },
 
         removeInput: () => {
             dispatch({
                 type: "REMOVE_INPUT",
-                eventType: "eventWhat"
+                eventType: "eventWhere"
             });
         }
     };
 };
 
-const EventWhatContainer = connect(
+const EventWhereContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(EventWhat);
+)(EventWhere);
 
-export default EventWhatContainer;
+export default EventWhereContainer;
