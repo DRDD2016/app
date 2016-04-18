@@ -1,10 +1,9 @@
 import { createStore } from 'redux';
 import reducer from './reducers/create-event.js';
 
-export default function initStore (initialState) {
+export default function initStore () {
     return createStore(
         reducer,
-        initialState,
         window.devToolsExtension ? window.devToolsExtension() : undefined
     );
 }

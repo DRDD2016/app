@@ -1,15 +1,15 @@
 import React from 'react';
 
-const WhatInput = ({ onChange, value }) => {
+const Input = ({ onChange, value, placeholder }) => {
     return (
         <div>
             <input
                 defaultValue={ value }
                 onChange={ onChange }
                 type="text"
-                placeholder="What would you like to do?" />
+                placeholder={ placeholder } />
         </div>
     );
 };
 
-export default WhatInput;
+export default Input;
