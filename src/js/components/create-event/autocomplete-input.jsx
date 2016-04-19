@@ -17,11 +17,8 @@ class AutocompleteInput extends React.Component {
         autocomplete.addListener('place_changed', () => {
 
             let result = autocomplete.getPlace();
-            let address = {
-                name: result.name,
-                address: result.formatted_address
-            };
-            this.props.handleInput(address);
+            
+            this.props.handleInput(result.name, result.formatted_address);
         });
     }
     render () {

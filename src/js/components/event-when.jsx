@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import classnames from 'classnames';
 import DateTimeInput from './create-event/date-time-input.jsx';
 

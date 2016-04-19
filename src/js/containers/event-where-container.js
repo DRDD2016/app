@@ -11,7 +11,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleEventWhere: (inputKey, address) => {
+        handleEventWhere: (inputKey, placeName, placeAddress) => {
+
+            let address = {
+                placeName: placeName,
+                placeAddress: placeAddress
+            };
             dispatch({
                 type: "SET_EVENT_WHERE",
                 data: address,

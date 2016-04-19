@@ -10,8 +10,8 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
     let inputs = inputCount.map( (value, i) => {
 
-        let template = `${eventWhereData[value].name} ${eventWhereData[value].address}`;
-        let fullAddress = (eventWhereData[value].name ? template : "");
+        let template = `${eventWhereData[value].placeName} ${eventWhereData[value].placeAddress}`;
+        let fullAddress = (eventWhereData[value].placeName ? template : "");
 
         let autocompleteID = 'autocomplete-' + i;
         return (
@@ -34,7 +34,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
     });
 
     let nextButtonClasses = classnames({
-        "hide": eventWhereData[0].name === ""
+        "hide": eventWhereData[0].placeName === ""
     });
 
     return (
