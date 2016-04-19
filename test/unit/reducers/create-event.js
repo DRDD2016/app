@@ -49,7 +49,7 @@ test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
             eventName:"Sohil Bowling",
             eventDescription:"Bowling"
         },
-        eventWhat: {0:'sohil'}
+        eventWhat: { 0: 'sohil' }
     };
 
     t.deepEqual(nextState, expected, "eventWhat set correctly");
@@ -68,32 +68,39 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
             1:"Swimming"
         },
         eventWhere: {
-            0:"sohil"
+            0: {
+                placeName: "",
+                placeAddress: ""
+            }
         }
     };
 
     const action = {
         type: 'SET_EVENT_WHERE',
-        data: "Shoreditch",
+        data: {
+            "placeName": "Founders & Coders",
+            "placeAddress": "123 Fake Street, London"
+        },
         eventType: "eventWhere",
-        inputKey: 1
-
+        inputKey: 0
     };
 
     const nextState = reducer(initialState, action);
 
     const expected = {
         eventDetails: {
-            eventName:"Sohil Bowling",
-            eventDescription:"Bowling"
+            eventName: "Sohil Bowling",
+            eventDescription: "Bowling"
         },
         eventWhat: {
-            0:"Bowling",
-            1:"Swimming"
+            0: "Bowling",
+            1: "Swimming"
         },
         eventWhere: {
-            0:"sohil",
-            1:"Shoreditch"
+            0: {
+                "placeName": "Founders & Coders",
+                "placeAddress": "123 Fake Street, London"
+            }
         }
     };
 

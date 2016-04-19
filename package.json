@@ -8,7 +8,8 @@
     "dev": "node ./src/utils/dev-server.js",
     "build": "webpack --config ./webpack.production.config.js --colors --progress",
     "lint": "node_modules/eslint/bin/eslint.js 'src/**/*.@(js|jsx)'",
-    "test": "babel-node ./node_modules/babel-istanbul/lib/cli.js cover tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)' | tap-spec"
+    "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js cover tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
+    "test": "tape -r babel-register --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)' | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "babel-register": "^6.7.2",
+    "classnames": "^2.2.3",
     "css-loader": "^0.23.1",
     "eslint": "^2.7.0",
     "eslint-plugin-react": "^4.3.0",

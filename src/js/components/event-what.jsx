@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { Link } from 'react-router';
 import Input from './create-event/input.jsx';
 
@@ -15,26 +16,33 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             />);
     });
 
+    let addInputClasses = classnames({
+        "hide": inputCount.length >= 3
+    });
+
+    let removeInputClasses = classnames({
+        "hide": inputCount.length === 1
+    });
+
+    let nextButtonClasses = classnames({
+        "hide": eventWhatData[0].name === ""
+    });
 
     return (
-            <div>
-                <h2>What?</h2>
-                { inputs }
-                <button onClick={ addInput.bind(this, inputCount.length) }>
-                    Add input
-                </button>
-                <button onClick={ removeInput }>
-                    Remove input
-                </button>
-                <button>
-                    <Link to='/create-event/where'>Next</Link>
-                </button>
-            </div>
-        );
+        <div>
+            <h2>What?</h2>
+            { inputs }
+            <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
+                Add input
+            </button>
+            <button className={ removeInputClasses } onClick={ removeInput }>
+                Remove input
+            </button>
+            <button>
+                <Link to='/create-event/where'>Next</Link>
+            </button>
+        </div>
+    );
 };
-
-    // take the number of what items
-    // map that number onto the what input to return that number of input fields
-
 
 export default EventWhat;

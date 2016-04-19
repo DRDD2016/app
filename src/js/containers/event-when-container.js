@@ -15,7 +15,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
 
         handleDate: (inputKey, event) => {
-            console.log("handleDate", event.target.value);
 
             dispatch({
                 type: "SET_EVENT_WHEN",
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         handleTime: (inputKey, event) => {
-            console.log("handleTime", event.target.value);
+            
             dispatch({
                 type: "SET_EVENT_WHEN",
                 data: event.target.value,

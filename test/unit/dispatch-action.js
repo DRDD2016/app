@@ -15,7 +15,20 @@ test('SET_EVENT_DETAILS action works', (t) => {
     const expected1 = {
         eventDetails: {
             eventName: "Jenny's birthday",
-        }, eventWhat: { 0: '' }, eventWhen: { 0: { date: '', time: '' } }, eventWhere: { 0: '' }
+        },
+        eventWhat: { 0: '' },
+        eventWhen: {
+            0: {
+                date: '',
+                time: ''
+            }
+        },
+        eventWhere: {
+            0: {
+                placeName: '',
+                placeAddress: ''
+            }
+        }
     };
 
     t.deepEqual(store.getState(), expected1, "Reducer sets `eventDetails.eventName` correctly");
@@ -32,7 +45,20 @@ test('SET_EVENT_DETAILS action works', (t) => {
         eventDetails: {
             eventName: "Jenny's birthday",
             eventDescription: "Jenny's getting older!"
-        }, eventWhat: { 0: '' }, eventWhen: { 0: { date: '', time: '' } }, eventWhere: { 0: '' }
+        },
+        eventWhat: { 0: '' },
+        eventWhen: {
+            0: {
+                date: '',
+                time: ''
+            }
+        },
+        eventWhere: {
+            0: {
+                placeName: '',
+                placeAddress: ''
+            }
+        }
     };
 
     t.deepEqual(store.getState(), expected2, "Reducer sets `eventDetails.eventDescription` correctly");
