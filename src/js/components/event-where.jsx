@@ -1,18 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Input from './create-event/input.jsx';
+import ACInput from './create-event/autocomplete-input.jsx';
+import Geosuggest from 'react-geosuggest';
 
 const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere }) => {
 
     let inputCount = Object.keys(eventWhereData);
     let inputs = inputCount.map( (value,i) => {
+        let autocompleteID = 'autocomplete-'+i;
         return (
-            <Input
-                onChange={ handleEventWhere.bind(this, i) }
-                key={ i }
-                value={ eventWhereData[value] }
-                placeholder= "Where?"
-            />);
+                <ACInput
+                    handleInput={ handleEventWhere.bind(this, i) }
+                    key={ i }
+                    value={ eventWhereData[value] }
+                    placeholder= "Where?"
+                    id = { autocompleteID }
+                    />
+            );
     });
 
 
