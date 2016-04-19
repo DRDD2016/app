@@ -1,26 +1,47 @@
-export default function (state = {}, action) {
+import mergeObjects from '../helpers/merge-objects.js';
+const initialState = {
+    eventDetails: {
 
-    let key;
+    },
+    eventWhat: {
+        0:''
+    },
+    eventWhere: {
+        0:''
+    },
+    eventWhen: {
+        0:{
+            date: '',
+            time: ''
+        }
+    }
+};
+export default function (state = initialState, action) {
+
     switch (action.type) {
 
     case 'SET_EVENT_DETAILS':
-        key = "eventDetails";
-        return setEventDetails(state, action, key);
+        return setEventDetails(state, action);
 
     case 'SET_EVENT_WHAT':
-        key = "eventWhat";
-        return setEventWhat(state, action, key);
+        return setEvent(state, action);
 
     case 'SET_EVENT_WHERE':
-        key = "eventWhere";
-        return setEvent(state, action, key);
+        return setEvent(state, action);
 
     case 'SET_EVENT_WHEN':
-        key = "eventWhen";
-        return setEvent(state, action, key);
+        return setEventWhen(state, action);
+
+    case 'SET_EVENT_WHEN_TIME':
+        return setEvent(state, action);
 
     case 'ADD_INPUT':
-        return addInput(state, action);
+        if(action.eventType === 'eventWhen') {
+            return addInputDateTime(state,action);
+        } else {
+            return addInput(state,action);
+        }
+
 
     case 'REMOVE_INPUT':
         return removeInput(state, action);
@@ -34,53 +55,61 @@ function setEventDetails (state, action, key) {
 
     return {
         ...state,
-        [key]: {
+        [action.eventType]: {
             ...state.eventDetails,
             [action.inputType]: action.data
         }
     };
 }
 
-function setEventWhat (state, action, key) {
+function setEvent (state, action) {
 
     return {
         ...state,
-        [key]: {
-            ...state.eventWhat,
+        [action.eventType]: {
+            ...state[action.eventType],
             [action.inputKey]: action.data
         }
     };
 }
 
-function setEvent (state, action, key) {
-
-    return {
-        ...state,
-        [key]: action.data
-    };
+function setEventWhen (state, action) {
+    var copy = Object.assign({}, state);
+    copy.eventWhen[action.inputKey][action.format] = action.data;
+    return copy;
 }
 
 function addInput (state, action) {
 
     return {
         ...state,
-        eventWhat: {
-            ...state.eventWhat,
+        [action.eventType]: {
+            ...state[action.eventType],
             [action.nextInputKey]: ''
+        }
+    };
+}
+function addInputDateTime (state, action) {
+
+    return {
+        ...state,
+        [action.eventType]: {
+            ...state[action.eventType],
+            [action.nextInputKey]: {}
         }
     };
 }
 
 function removeInput (state, action) {
 
-    const keys = Object.keys(state.eventWhat);
+    const keys = Object.keys(state[action.eventType]);
     let newState = {};
     for (let i = 0; i < keys.length - 1; i++) {
 
-        newState[i] = state.eventWhat[i];
+        newState[i] = state[action.eventType][i];
     }
     return {
         ...state,
-        eventWhat: newState
+        [action.eventType]: newState
     };
 }
