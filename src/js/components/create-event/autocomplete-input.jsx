@@ -2,13 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class AutocompleteInput extends React.Component {
-    componentDidMount () {
-        const inputDOMElement = document.getElementById(this.props.id);
-        const options = { componentRestrictions: {
-            country: 'uk'
-        }};
-        new google.maps.places.Autocomplete(inputDOMElement,options);
 
+    componentDidMount () {
+
+        const inputDOMElement = document.getElementById(this.props.id);
+
+        const options = {
+            componentRestrictions: {
+                country: 'uk'
+            }
+        };
+        let autocomplete = new google.maps.places.Autocomplete(inputDOMElement,options);
+
+        autocomplete.addListener('place_changed', () => {
+
+            let result = autocomplete.getPlace();
+            let address = {
+                name: result.name,
+                address: result.formatted_address
+            };
+            this.props.handleInput(address);
+        });
     }
     render () {
         const { handleInput, value, placeholder, id } = this.props;
@@ -19,7 +33,6 @@ class AutocompleteInput extends React.Component {
                     ref="searchField"
                     id={ id }
                     defaultValue={ value }
-                    onChange={ handleInput }
                     type="text"
                     placeholder={ placeholder } />
             </div>

@@ -1,25 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Input from './create-event/input.jsx';
-import ACInput from './create-event/autocomplete-input.jsx';
-import Geosuggest from 'react-geosuggest';
+import AutocompleteInput from './create-event/autocomplete-input.jsx';
 
 const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere }) => {
 
     let inputCount = Object.keys(eventWhereData);
-    let inputs = inputCount.map( (value,i) => {
-        let autocompleteID = 'autocomplete-'+i;
+
+    let inputs = inputCount.map( (value, i) => {
+
+        let autocompleteID = 'autocomplete-' + i;
         return (
-                <ACInput
+                <AutocompleteInput
                     handleInput={ handleEventWhere.bind(this, i) }
                     key={ i }
                     value={ eventWhereData[value] }
                     placeholder= "Where?"
                     id = { autocompleteID }
-                    />
-            );
+                />
+        );
     });
-
 
     return (
             <div>
@@ -35,7 +35,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
                     <Link to='/create-event/when'>Next</Link>
                 </button>
             </div>
-        );
+    );
 };
 
 export default EventWhere;
