@@ -74,26 +74,31 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
 
     const action = {
         type: 'SET_EVENT_WHERE',
-        data: "Shoreditch",
+        data: {
+            "name": "Founders & Coders",
+            "address": "123 Fake Street, London"
+        },
         eventType: "eventWhere",
         inputKey: 1
-
     };
 
     const nextState = reducer(initialState, action);
 
     const expected = {
         eventDetails: {
-            eventName:"Sohil Bowling",
-            eventDescription:"Bowling"
+            eventName: "Sohil Bowling",
+            eventDescription: "Bowling"
         },
         eventWhat: {
-            0:"Bowling",
-            1:"Swimming"
+            0: "Bowling",
+            1: "Swimming"
         },
         eventWhere: {
-            0:"sohil",
-            1:"Shoreditch"
+            0: "sohil",
+            1: {
+                "name": "Founders & Coders",
+                "address": "123 Fake Street, London"
+            }
         }
     };
 

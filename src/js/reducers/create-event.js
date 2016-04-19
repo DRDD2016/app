@@ -7,7 +7,10 @@ const initialState = {
         0:''
     },
     eventWhere: {
-        0:''
+        0: {
+            name: '',
+            address: ''
+        }
     },
     eventWhen: {
         0:{
