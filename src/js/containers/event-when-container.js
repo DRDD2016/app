@@ -5,7 +5,7 @@ import EventWhen from '../components/event-when.jsx';
 
 const mapStateToProps = (state) => {
 
-    let data = state.eventWhen;
+    let data = state.createEvent.eventWhen;
     console.log(data, '------ top level ======');
     return {
         eventWhenData: data

@@ -1,9 +1,11 @@
-import { createStore } from 'redux';
-import reducer from './reducers/create-event.js';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import rootReducer from './reducers/index.js';
 
 export default function initStore () {
+
     return createStore(
-        reducer,
+        rootReducer,
         window.devToolsExtension ? window.devToolsExtension() : undefined
     );
 }

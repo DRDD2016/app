@@ -4,7 +4,7 @@ import { setEventWhat } from '../actions/create-event.js';
 import EventWhat from '../components/event-what.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhat;
+    let data = state.createEvent.eventWhat;
     return {
         eventWhatData: data
     };
