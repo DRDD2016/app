@@ -20,7 +20,8 @@ const initialState = {
             date: '',
             time: ''
         }
-    }
+    },
+    isSaving: false
 };
 export default function createEvent(state = initialState, action) {
 
@@ -71,21 +72,20 @@ function setEventDetails (state, action, key) {
 
 function setEvent (state, action) {
 
-    let newState = Object.assign(
-        {},
-        state,
-        { [action.eventType]: [action.inputKey] }
-    );
-    newState[action.eventType][action.inputKey] = action.data;
-
-    return newState;
+    return {
+        ...state,
+        [action.eventType]: {
+            ...state[action.eventType],
+            [action.inputKey]: action.data
+        }
+    };
 }
 
 function setEventWhen (state, action) {
 
     let newState = Object.assign({}, state);
     newState.eventWhen[action.inputKey][action.format] = action.data;
-    
+
     return newState;
 }
 
@@ -93,10 +93,13 @@ function addInput (state, action) {
 
     let initialValue = (action.eventType === "eventWhen") ? {} : '';
 
-    let newState = Object.assign({}, state);
-    newState[action.eventType][action.nextInputKey] = initialValue;
-
-    return newState;
+    return {
+        ...state,
+        [action.eventType]: {
+            ...state[action.eventType],
+            [action.nextInputKey]: initialValue
+        }
+    };
 }
 
 function removeInput (state, action) {

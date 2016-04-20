@@ -7,7 +7,7 @@
 **Problem**: permission denied with Python `pip install`
 **Solution**: prepend with `sudo`
 
-
+### Setting up Redux Thunk
 **Problem**: Redux state shows up as undefined once middleware with redux thunk has been applied
 
 There were several problems afoot here:
@@ -71,6 +71,8 @@ Use `compose` to string together the thunk middleware and the DevTools.
 
 Rather embarrassingly, this was clearly demonstrated in the docs for [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension) and [Redux itself](http://redux.js.org/docs/api/compose.html)
 
+### Error running tests after resolving Thunk problem
+
 **Problem**
 * TypeError thrown when running tests - no tests were able to run.
 * Error originated from the `compose` function inside `createStore`
@@ -98,3 +100,12 @@ return createStore(
     )
 );
 ```
+### Could not add new inputs
+**Problem**
+* Updated state did not cascade down from smart component to lower levels.
+* Originally only affecting `eventWhen`, then after some tidying up started to affect all other create-event views...
+
+**Solution**
+Something to do with the way state was being updated.
+
+Relates to [issue #40](https://github.com/DRDD2016/app/issues/40)
