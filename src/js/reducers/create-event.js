@@ -1,4 +1,5 @@
-import mergeObjects from '../helpers/merge-objects.js';
+import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN, ADD_INPUT, REMOVE_INPUT } from '../actions/create-event.js';
+
 const initialState = {
     eventDetails: {
 
