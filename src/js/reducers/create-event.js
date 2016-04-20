@@ -8,12 +8,12 @@ const initialState = {
     },
     eventWhere: {
         0: {
-            placeName: '',
-            placeAddress: ''
+            name: '',
+            address: ''
         }
     },
     eventWhen: {
-        0: {
+        0:{
             date: '',
             time: ''
         }
