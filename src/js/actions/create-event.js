@@ -45,10 +45,10 @@ export function newEventRequest (eventData) {
 
         return axios.get('/new-event')
             .then((response) => {
-                dispatch(newEventSuccess)
+                dispatch(newEventSuccess);
             })
             .catch((error) => {
-                dispatch(newEventFailure(error))
+                dispatch(newEventFailure(error));
             });
     };
 }
