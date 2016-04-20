@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/DRDD2016/app#readme",
   "devDependencies": {
+    "axios": "^0.9.1",
     "babel-cli": "^6.6.5",
     "babel-eslint": "^6.0.2",
     "babel-istanbul": "^0.7.0",

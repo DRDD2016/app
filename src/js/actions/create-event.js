@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 // create event
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
 export const SET_EVENT_WHAT = "SET_EVENT_WHAT";
@@ -5,7 +7,51 @@ export const SET_EVENT_WHERE = "SET_EVENT_WHERE";
 export const SET_EVENT_WHEN = "SET_EVENT_WHEN";
 export const ADD_INPUT = "ADD_INPUT";
 export const REMOVE_INPUT = "REMOVE_INPUT";
+export const NEW_EVENT = "NEW_EVENT";
+export const NEW_EVENT_REQUEST = "NEW_EVENT_REQUEST";
+export const NEW_EVENT_SUCCESS = "NEW_EVENT_SUCCESS";
+export const NEW_EVENT_FAILURE = "NEW_EVENT_FAILURE";
 
+export function newEvent () {
+
+    return {
+        type: NEW_EVENT,
+        isSaving: true
+    };
+}
+
+export function newEventSuccess () {
+
+    return {
+        type: NEW_EVENT_SUCCESS,
+        isSaving: false
+    };
+}
+
+export function newEventFailure (error) {
+
+    return {
+        type: NEW_EVENT_FAILURE,
+        isSaving: false,
+        payload: error
+    };
+}
+
+export function newEventRequest (eventData) {
+
+    return function (dispatch) {
+
+        dispatch(newEvent());
+
+        return axios.get('/new-event')
+            .then((response) => {
+                dispatch(newEventSuccess)
+            })
+            .catch((error) => {
+                dispatch(newEventFailure(error))
+            });
+    };
+}
 
 export function setEventDetails (data, inputType) {
 

@@ -1,8 +1,10 @@
-import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN, ADD_INPUT, REMOVE_INPUT } from '../actions/create-event.js';
+import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
+         ADD_INPUT, REMOVE_INPUT,
+         NEW_EVENT, NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE } from '../actions/create-event.js';
 
 const initialState = {
     eventDetails: {
-
+        
     },
     eventWhat: {
         0:''
@@ -20,39 +22,47 @@ const initialState = {
         }
     }
 };
-export default function (state = initialState, action) {
+export default function createEvent(state = initialState, action) {
 
     switch (action.type) {
 
-    case 'SET_EVENT_DETAILS':
+    case SET_EVENT_DETAILS:
         return setEventDetails(state, action);
 
-    case 'SET_EVENT_WHAT':
+    case SET_EVENT_WHAT:
+        return setEvent(state, action);
+    case SET_EVENT_WHERE:
         return setEvent(state, action);
 
-    case 'SET_EVENT_WHERE':
-        return setEvent(state, action);
-
-    case 'SET_EVENT_WHEN':
+    case SET_EVENT_WHEN:
         return setEventWhen(state, action);
 
-    case 'SET_EVENT_WHEN_TIME':
-        return setEvent(state, action);
+    case ADD_INPUT:
 
-    case 'ADD_INPUT':
-        if(action.eventType === 'eventWhen') {
+        if (action.eventType === 'eventWhen') {
             return addInputDateTime(state,action);
         } else {
             return addInput(state,action);
         }
 
-
-    case 'REMOVE_INPUT':
+    case REMOVE_INPUT:
         return removeInput(state, action);
+
+    case NEW_EVENT:
+        return doSomething(state);
+    case NEW_EVENT_SUCCESS:
+        return doSomething(state);
+    case NEW_EVENT_FAILURE:
+        return doSomething(state);
 
     default:
         return state;
     }
+}
+
+function doSomething (state) {
+    console.log("something is happening!");
+    return state;
 }
 
 function setEventDetails (state, action, key) {
