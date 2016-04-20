@@ -25,7 +25,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     });
 
     let nextButtonClasses = classnames({
-        "hide": eventWhatData[0].name === ""
+        "hide": eventWhatData[0] === ""
     });
 
     return (
@@ -38,7 +38,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             <button className={ removeInputClasses } onClick={ removeInput }>
                 Remove input
             </button>
-            <button>
+            <button className={ nextButtonClasses }>
                 <Link to='/create-event/where'>Next</Link>
             </button>
         </div>

@@ -6,7 +6,8 @@ import DateTimeInput from './create-event/date-time-input.jsx';
 const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTime }) => {
 
     let inputCount = Object.keys(eventWhenData);
-
+    console.log(eventWhenData,'mid level ===-===');
+    
     let inputs = inputCount.map( (value, i) => {
         return (
             <DateTimeInput
@@ -27,22 +28,25 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
     });
 
     let nextButtonClasses = classnames({
-        "hide": eventWhenData[0].name === ""
+        "hide": eventWhenData[0].date === "" || eventWhenData[0].time === ""
     });
-
+    console.log(eventWhenData[0].date === "" , eventWhenData[0].time === "" , '-----');
     return (
         <div>
             <h2>When?</h2>
             { inputs }
-            <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
-                Add input
-            </button>
-            <button className={ removeInputClasses } onClick={ removeInput }>
-                Remove input
-            </button>
-            <button className={ nextButtonClasses }>
-                <Link to='/create-event/confirm'>Next</Link>
-            </button>
+                <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
+                    Add input
+                </button>
+
+                <button className={ removeInputClasses } onClick={ removeInput }>
+                    Remove input
+                </button>
+
+                <button className={ nextButtonClasses }>
+                    <Link to='/create-event/confirm'>Next</Link>
+                </button>
+
         </div>
     );
 };
