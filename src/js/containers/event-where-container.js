@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setEventWhere } from '../actions/create-event.js';
 import EventWhere from '../components/event-where.jsx';
 
 const mapStateToProps = (state) => {
@@ -17,12 +18,7 @@ const mapDispatchToProps = (dispatch) => {
                 placeName: placeName,
                 placeAddress: placeAddress
             };
-            dispatch({
-                type: "SET_EVENT_WHERE",
-                data: address,
-                inputKey: inputKey,
-                eventType: "eventWhere"
-            });
+            dispatch(setEventWhere(address, inputKey));
         },
 
         addInput: (nextInputKey) => {
