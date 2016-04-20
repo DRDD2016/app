@@ -70,3 +70,31 @@ By passing the Redux DevTools configuration as a third argument, `createStore` a
 Use `compose` to string together the thunk middleware and the DevTools.
 
 Rather embarrassingly, this was clearly demonstrated in the docs for [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension) and [Redux itself](http://redux.js.org/docs/api/compose.html)
+
+**Problem**
+* TypeError thrown when running tests - no tests were able to run.
+* Error originated from the `compose` function inside `createStore`
+```bash
+TypeError: Cannot read property 'apply' of undefined
+```
+**Solution**
+The `undefined` in the test error was coming from the DevTools configuration:
+```js
+return createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(thunkMiddleware),
+        window.devToolsExtension ? window.devToolsExtension() : undefined
+    )
+);
+```
+This changes to:
+```js
+return createStore(
+    rootReducer,
+    compose(
+        applyMiddleware(thunkMiddleware),
+        window.devToolsExtension ? window.devToolsExtension() : f => f
+    )
+);
+```

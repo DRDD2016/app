@@ -6,9 +6,9 @@ export default function initStore () {
 
     return createStore(
         rootReducer,
-        compose(        
+        compose(
             applyMiddleware(thunkMiddleware),
-            window.devToolsExtension ? window.devToolsExtension() : undefined
+            window.devToolsExtension ? window.devToolsExtension() : f => f
         )
     );
 }
