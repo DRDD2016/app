@@ -28,7 +28,7 @@ test('SET_EVENT_DETAILS action works', (t) => {
         }
     };
 
-    t.deepEqual(store.getState(), expected1, "Action sets data correctly");
+    t.deepEqual(store.getState().createEvent, expected1, "Action sets data correctly");
 
     const data2 = "Jenny's getting older!";
     const inputType2 = "eventDescription";
@@ -54,7 +54,7 @@ test('SET_EVENT_DETAILS action works', (t) => {
         }
     };
 
-    t.deepEqual(store.getState(), expected2, "Action sets data correctly");
+    t.deepEqual(store.getState().createEvent, expected2, "Action sets data correctly");
     t.end();
 });
 
@@ -85,7 +85,7 @@ test('SET_EVENT_WHAT action works', (t) => {
         }
     };
 
-    t.deepEqual(store.getState(), expected, "Action sets data correctly");
+    t.deepEqual(store.getState().createEvent, expected, "Action sets data correctly");
     t.end();
 });
 
@@ -120,7 +120,7 @@ test('SET_EVENT_WHERE action works', (t) => {
         }
     };
 
-    t.deepEqual(store.getState(), expected, "Action sets data correctly");
+    t.deepEqual(store.getState().createEvent, expected, "Action sets data correctly");
     t.end();
 });
 
@@ -152,7 +152,7 @@ test('SET_EVENT_WHEN action works', (t) => {
         }
     };
 
-    t.deepEqual(store.getState(), expected1, "Reducer sets `eventDetails.eventName` correctly");
+    t.deepEqual(store.getState().createEvent, expected1, "Reducer sets `eventDetails.eventName` correctly");
 
     let data2 = "12:00";
     let inputKey2 = 0;
@@ -180,6 +180,6 @@ test('SET_EVENT_WHEN action works', (t) => {
         }
     };
 
-    t.deepEqual(store.getState(), expected2, "Action for SetEventWhen being dispatched correctly");
+    t.deepEqual(store.getState().createEvent, expected2, "Action for SetEventWhen being dispatched correctly");
     t.end();
 });
