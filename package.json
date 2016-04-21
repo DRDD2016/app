@@ -43,6 +43,7 @@
     "eslint-plugin-react": "^4.3.0",
     "ghooks": "^1.2.0",
     "jsdom": "^8.3.0",
+    "nock": "^8.0.0",
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.8.2",
     "react": "^0.14.8",
@@ -53,6 +54,7 @@
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.1",
     "redux": "^3.3.1",
+    "redux-mock-store": "^1.0.2",
     "redux-thunk": "^2.0.1",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
@@ -62,8 +64,10 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "bell": "^7.5.1",
     "boom": "^3.1.2",
     "hapi": "^13.3.0",
+    "hapi-auth-cookie": "^6.1.1",
     "hoek": "^3.0.4",
     "inert": "^3.2.0"
   }

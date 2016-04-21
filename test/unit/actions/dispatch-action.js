@@ -1,6 +1,6 @@
 import test from 'tape';
-import initStore from '../../src/js/init-store.js';
-import { setEventDetails, setEventWhat, setEventWhere, setEventWhen } from '../../src/js/actions/create-event.js';
+import initStore from '../../../src/js/init-store.js';
+import { setEventDetails, setEventWhat, setEventWhere, setEventWhen } from '../../../src/js/actions/create-event.js';
 const store = initStore();
 
 test('SET_EVENT_DETAILS action works', (t) => {
