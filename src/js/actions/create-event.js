@@ -16,7 +16,7 @@ export function newEvent () {
 
     return {
         type: NEW_EVENT,
-        isSaving: true
+        isFetching: true
     };
 }
 
@@ -24,7 +24,8 @@ export function newEventSuccess () {
 
     return {
         type: NEW_EVENT_SUCCESS,
-        isSaving: false
+        isFetching: false,
+        didSave: true
     };
 }
 
@@ -32,8 +33,9 @@ export function newEventFailure (error) {
 
     return {
         type: NEW_EVENT_FAILURE,
-        isSaving: false,
-        payload: error
+        isFetching: false,
+        payload: error,
+        didSave: false
     };
 }
 
@@ -42,15 +44,14 @@ export function newEventRequest (eventData) {
     return function (dispatch) {
 
         dispatch(newEvent());
-        console.log(eventData,'eventData in new event request ------');
         return axios.post('/new-event', eventData )
             .then((response) => {
                 console.log(response,'res');
-                // dispatch(newEventSuccess);
+                dispatch(newEventSuccess());
             })
             .catch((error) => {
                 console.log(error,'errorr');
-                // dispatch(newEventFailure(error));
+                dispatch(newEventFailure(error));
             });
     };
 }

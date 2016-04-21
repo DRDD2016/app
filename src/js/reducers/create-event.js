@@ -21,7 +21,8 @@ const initialState = {
             time: ''
         }
     },
-    isSaving: false
+    isFetching: false,
+    didSave: undefined
 };
 export default function createEvent(state = initialState, action) {
 
@@ -47,16 +48,19 @@ export default function createEvent(state = initialState, action) {
     case NEW_EVENT:
     case NEW_EVENT_SUCCESS:
     case NEW_EVENT_FAILURE:
-        return doSomething(state);
-
+        return handleNewEventRequest(state, action);
     default:
         return state;
     }
 }
 
-function doSomething (state) {
-    console.log("something is happening!");
-    return state;
+function handleNewEventRequest (state, action) {
+    return {
+        ...state,
+        isFetching: action.isFetching,
+        didSave: action.didSave,
+        payload: action.payload
+    };
 }
 
 function setEventDetails (state, action, key) {

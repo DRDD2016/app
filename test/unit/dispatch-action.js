@@ -26,7 +26,9 @@ test('SET_EVENT_DETAILS action works', (t) => {
                 placeAddress: ''
             }
         },
-        isSaving: false
+        isFetching: false,
+        didSave: undefined
+
     };
 
     t.deepEqual(store.getState().createEvent, expected1, "Action sets data correctly");
@@ -53,7 +55,9 @@ test('SET_EVENT_DETAILS action works', (t) => {
                 placeAddress: ''
             }
         },
-        isSaving: false
+        isFetching: false,
+        didSave: undefined
+
     };
 
     t.deepEqual(store.getState().createEvent, expected2, "Action sets data correctly");
@@ -85,7 +89,9 @@ test('SET_EVENT_WHAT action works', (t) => {
                 placeAddress: ''
             }
         },
-        isSaving: false
+        isFetching: false,
+        didSave: undefined
+
     };
 
     t.deepEqual(store.getState().createEvent, expected, "Action sets data correctly");
@@ -121,7 +127,9 @@ test('SET_EVENT_WHERE action works', (t) => {
                 placeAddress: '14 Palmers Road'
             }
         },
-        isSaving: false
+        isFetching: false,
+        didSave: undefined
+
     };
 
     t.deepEqual(store.getState().createEvent, expected, "Action sets data correctly");
@@ -154,7 +162,9 @@ test('SET_EVENT_WHEN action works', (t) => {
                 placeAddress: '14 Palmers Road'
             }
         },
-        isSaving: false
+        isFetching: false,
+        didSave: undefined
+
     };
 
     t.deepEqual(store.getState().createEvent, expected1, "Reducer sets `eventDetails.eventName` correctly");
@@ -183,7 +193,9 @@ test('SET_EVENT_WHEN action works', (t) => {
                 placeAddress: '14 Palmers Road'
             }
         },
-        isSaving: false
+        isFetching: false,
+        didSave: undefined
+
     };
 
     t.deepEqual(store.getState().createEvent, expected2, "Action for SetEventWhen being dispatched correctly");

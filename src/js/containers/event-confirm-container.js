@@ -17,7 +17,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         saveEvent: (data) => {
             // DO SOMETHING PRETTY TO DATA
-            console.log(data);
             dispatch(newEventRequest(data));
         },
 
