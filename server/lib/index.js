@@ -9,7 +9,11 @@ var NewEvent = require('./new-event.js');
 exports.init = function(port, next) {
 
     var server = new Hapi.Server();
-    server.connection({port: port});
+    server.connection({
+        port: port,
+        routes: {cors: true}
+
+    });
 
 
     // Declare an authentication strategy using the bell scheme
@@ -27,7 +31,9 @@ exports.init = function(port, next) {
             password: 'cookie_encryption_password_secure',
             clientId: '612765462219386',
             clientSecret: '2880756f863270ac97a9500ef80f64a3',
-            isSecure: false     // Terrible idea but required if not using HTTPS especially if developing locally
+            isSecure: false,
+            scope: ['user_friends', 'user_about_me', 'publish_actions']
+              // Terrible idea but required if not using HTTPS especially if developing locally
         });
     });
 
@@ -51,7 +57,8 @@ exports.init = function(port, next) {
                     else{
 
                         console.log(request.auth.credentials,'----creds-----');
-                        reply.redirect('/#/create-event');
+
+                        reply.redirect('/#/create-event').state('token', request.auth.credentials.token );
                     }
 
                 }
