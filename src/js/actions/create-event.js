@@ -42,13 +42,15 @@ export function newEventRequest (eventData) {
     return function (dispatch) {
 
         dispatch(newEvent());
-
-        return axios.get('/new-event')
+        console.log(eventData,'eventData in new event request ------');
+        return axios.post('/new-event', eventData )
             .then((response) => {
-                dispatch(newEventSuccess);
+                console.log(response,'res');
+                // dispatch(newEventSuccess);
             })
             .catch((error) => {
-                dispatch(newEventFailure(error));
+                console.log(error,'errorr');
+                // dispatch(newEventFailure(error));
             });
     };
 }

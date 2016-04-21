@@ -1,10 +1,10 @@
 exports.register = function(server, options, next) {
 
     server.route([{
-        method: 'GET',
+        method: 'POST',
         path: '/new-event',
         config: {
-            description: 'return the home page',
+            description: 'saves newly created events.',
 
             handler: (request,reply) => {
                 console.log(request.payload);

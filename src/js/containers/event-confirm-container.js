@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => {
         saveEvent: (data) => {
             // DO SOMETHING PRETTY TO DATA
             console.log(data);
-            // dispatch(newEventRequest("THIS IS THE EVENT DATA"));
+            dispatch(newEventRequest(data));
         },
 
         discardEvent: () => {
