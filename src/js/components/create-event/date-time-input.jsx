@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
-
+    console.log(value,'-----bottom level====');
     return (
         <div>
             <input
@@ -11,7 +11,7 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
             <input
                 type="time"
                 placeholder="Time"
-                onChange={ handleTime.bind(this, inputKey) } />
+                onChange={ (e) => handleTime(inputKey,e) } />
         </div>
     );
 };

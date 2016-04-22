@@ -4,7 +4,7 @@ import { setEventWhere } from '../actions/create-event.js';
 import EventWhere from '../components/event-where.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhere;
+    let data = state.createEvent.eventWhere;
     return {
         eventWhereData: data
     };

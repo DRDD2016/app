@@ -1,4 +1,6 @@
-import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN, ADD_INPUT, REMOVE_INPUT } from '../actions/create-event.js';
+import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
+         ADD_INPUT, REMOVE_INPUT,
+         NEW_EVENT, NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE } from '../actions/create-event.js';
 
 const initialState = {
     eventDetails: {
@@ -18,41 +20,47 @@ const initialState = {
             date: '',
             time: ''
         }
-    }
+    },
+    isFetching: false,
+    didSave: undefined
 };
-export default function (state = initialState, action) {
+export default function createEvent(state = initialState, action) {
 
     switch (action.type) {
 
-    case 'SET_EVENT_DETAILS':
+    case SET_EVENT_DETAILS:
         return setEventDetails(state, action);
 
-    case 'SET_EVENT_WHAT':
+    case SET_EVENT_WHAT:
+    case SET_EVENT_WHERE:
         return setEvent(state, action);
 
-    case 'SET_EVENT_WHERE':
-        return setEvent(state, action);
-
-    case 'SET_EVENT_WHEN':
+    case SET_EVENT_WHEN:
         return setEventWhen(state, action);
 
-    case 'SET_EVENT_WHEN_TIME':
-        return setEvent(state, action);
+    case ADD_INPUT:
 
-    case 'ADD_INPUT':
-        if(action.eventType === 'eventWhen') {
-            return addInputDateTime(state,action);
-        } else {
-            return addInput(state,action);
-        }
+        return addInput(state, action);
 
-
-    case 'REMOVE_INPUT':
+    case REMOVE_INPUT:
         return removeInput(state, action);
 
+    case NEW_EVENT:
+    case NEW_EVENT_SUCCESS:
+    case NEW_EVENT_FAILURE:
+        return handleNewEventRequest(state, action);
     default:
         return state;
     }
+}
+
+function handleNewEventRequest (state, action) {
+    return {
+        ...state,
+        isFetching: action.isFetching,
+        didSave: action.didSave,
+        payload: action.payload
+    };
 }
 
 function setEventDetails (state, action, key) {
@@ -78,28 +86,22 @@ function setEvent (state, action) {
 }
 
 function setEventWhen (state, action) {
-    var copy = Object.assign({}, state);
-    copy.eventWhen[action.inputKey][action.format] = action.data;
-    return copy;
+
+    let newState = Object.assign({}, state);
+    newState.eventWhen[action.inputKey][action.format] = action.data;
+
+    return newState;
 }
 
 function addInput (state, action) {
 
-    return {
-        ...state,
-        [action.eventType]: {
-            ...state[action.eventType],
-            [action.nextInputKey]: ''
-        }
-    };
-}
-function addInputDateTime (state, action) {
+    let initialValue = (action.eventType === "eventWhen") ? {} : '';
 
     return {
         ...state,
         [action.eventType]: {
             ...state[action.eventType],
-            [action.nextInputKey]: {}
+            [action.nextInputKey]: initialValue
         }
     };
 }
@@ -108,6 +110,7 @@ function removeInput (state, action) {
 
     const keys = Object.keys(state[action.eventType]);
     let newState = {};
+
     for (let i = 0; i < keys.length - 1; i++) {
 
         newState[i] = state[action.eventType][i];

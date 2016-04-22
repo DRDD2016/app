@@ -5,7 +5,7 @@ import EventDetails from '../components/event-details.jsx';
 
 const mapStateToProps = (state) => {
     return {
-        eventDetails: state.eventDetails
+        eventDetails: state.createEvent.eventDetails
     };
 };
 
