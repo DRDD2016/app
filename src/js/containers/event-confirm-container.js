@@ -8,27 +8,26 @@ const mapStateToProps = (state) => {
     let data = state.createEvent;
 
     return {
-        data: data
+        data: data,
     };
-};
 
 const mapDispatchToProps = (dispatch) => {
 
     return {
         saveEvent: (data) => {
             // DO SOMETHING PRETTY TO DATA
-            console.log(data);
-            // dispatch(newEventRequest("THIS IS THE EVENT DATA"));
+            dispatch(newEventRequest(data));
         },
 
         discardEvent: () => {
 
             // CREATE A DISPATCH TO RESET STATE
-        }
+        },
     };
+
 };
 
-const EventConfirmContainer = connect(
+EventConfirmContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(EventConfirm);
