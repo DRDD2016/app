@@ -109,3 +109,37 @@ return createStore(
 Something to do with the way state was being updated.
 
 Relates to [issue #40](https://github.com/DRDD2016/app/issues/40)
+
+### Could not make request to Facebook
+**Problem**
+```bash
+XMLHttpRequest cannot load https://www.facebook.com/v2.3/dialog/oauth?client_id=612765462219386&respon…EwB2ibLlwghFkdtedcVxS&scope=user_friends%2Cuser_about_me%2Cpublish_actions. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:8080' is therefore not allowed access.
+```
+
+**Solution**
+* Decided to do facebook authentication outside of app.
+* Login button has a direct link to server endpoint, rather than making a `GET` request with axios.
+
+
+### Conditionally rendering the correct view after authenticated
+**Problem**
+* When using `window.location = '/feed'`, the login page was visible for a split second
+
+**Solution**
+* Can use react-router to handle redirecting, which does it much more smoothly.
+```js
+
+if (document.cookie.indexOf("sparkToken") !== -1) {
+
+    this.context.router.push('/feed');
+    return false;
+}
+...
+...
+/* Outside of the component class*/
+Login.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
+
+export default Login;
+```

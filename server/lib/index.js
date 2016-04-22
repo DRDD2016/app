@@ -10,9 +10,9 @@ exports.init = function(port, next) {
 
     var server = new Hapi.Server();
     server.connection({
+        host: "0.0.0.0",
         port: port,
-        routes: {cors: true}
-
+        routes: { cors: true }
     });
 
 
@@ -49,21 +49,19 @@ exports.init = function(port, next) {
                 auth: {
                     strategies: ['sparkCookie','facebook']
                 },
-                handler: (request,reply) => {
+                handler: (request, reply) => {
 
-                    if(!request.auth.isAuthenticated) {
+                    if (!request.auth.isAuthenticated) {
                         return reply('Auth Failed due to: ' + request.auth.error.message).code(401);
-                    }
-                    else{
+                    } else {
 
                         console.log(request.auth.credentials,'----creds-----');
 
-                        reply.redirect('/#/create-event').state('token', request.auth.credentials.token );
+                        reply.redirect('/#/feed')
+                             .state('sparkToken', request.auth.credentials.token, { path: "/" });
                     }
-
                 }
             }
-
         },
         {
             method: "GET",

@@ -12,15 +12,7 @@ export function userLogin () {
         console.log('sohil running');
         dispatch(userLoginRequest());
 
-        return axios.get('/bell/door')
-            .then((response) => {
-                console.log("success");
-                //dispatch(userLoginSuccess())
-            })
-            .catch((error) => {
-                console.log(error);
-                //dispatch(userLoginFailure())
-            });
+        return window.location = '/bell/door';
     };
 
 }
