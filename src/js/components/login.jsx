@@ -9,7 +9,7 @@ class Login extends React.Component {
 
     componentWillMount () {
 
-        if (document.cookie.indexOf("sparkToken") !== -1) {
+        if (document.cookie.indexOf("sparkID") !== -1) {
 
             this.context.router.push('/feed');
             return false;

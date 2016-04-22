@@ -8,6 +8,7 @@ var getFBPhoto = require('./utils/getFBPhoto.js');
 
 var FBAuth = require('./fbauth.js');
 var Home  = require('./home.js');
+var GetUser = require('./GetUser.js');
 var NewEvent = require('./new-event.js');
 exports.init = function(port, next) {
 
@@ -40,7 +41,7 @@ exports.init = function(port, next) {
         });
     });
 
-    server.register([Inert , Home, NewEvent], function(err) {
+    server.register([Inert , Home, NewEvent, GetUser], function(err) {
         if(err) {
             return next(err);
         }
@@ -62,7 +63,7 @@ exports.init = function(port, next) {
                             addUser(request.auth.credentials, url);
                         });
                         reply.redirect('/#/feed')
-                             .state('sparkToken', request.auth.credentials.token, { path: "/" });
+                             .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
                     }
                 }
             }
