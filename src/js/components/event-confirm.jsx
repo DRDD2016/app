@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 
-const EventConfirm = ({ data, saveEvent, login }) => {
+const EventConfirm = ({ data, saveEvent }) => {
 
     return (
         <div>
