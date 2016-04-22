@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setEventWhen, addInput, removeInput } from '../actions/create-event.js';
 import EventWhen from '../components/event-when.jsx';
 
 const mapStateToProps = (state) => {
 
-    let data = state.eventWhen;
-
+    let data = state.createEvent.eventWhen;
+    console.log(data, '------ top level ======');
     return {
         eventWhenData: data
     };
@@ -16,39 +17,22 @@ const mapDispatchToProps = (dispatch) => {
 
         handleDate: (inputKey, event) => {
 
-            dispatch({
-                type: "SET_EVENT_WHEN",
-                data: event.target.value,
-                inputKey: inputKey,
-                eventType: "eventWhen",
-                format: "date"
-            });
+            dispatch(setEventWhen(event.target.value, inputKey, "date"));
         },
 
         handleTime: (inputKey, event) => {
-            
-            dispatch({
-                type: "SET_EVENT_WHEN",
-                data: event.target.value,
-                inputKey: inputKey,
-                eventType: "eventWhen",
-                format: "time"
-            });
+
+            dispatch(setEventWhen(event.target.value, inputKey, "time"));
         },
 
         addInput: (nextInputKey) => {
-            dispatch({
-                type: "ADD_INPUT",
-                nextInputKey: nextInputKey,
-                eventType: "eventWhen"
-            });
+            dispatch(addInput(nextInputKey));
         },
 
+
+
         removeInput: () => {
-            dispatch({
-                type: "REMOVE_INPUT",
-                eventType: "eventWhen"
-            });
+            dispatch(removeInput(nextInputKey));
         }
     };
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Login extends React.Component {
+class Feed extends React.Component {
 
     render () {
 
@@ -12,4 +12,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Feed;

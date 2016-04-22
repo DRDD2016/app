@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setEventWhat } from '../actions/create-event.js';
 import EventWhat from '../components/event-what.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.eventWhat; 
+    let data = state.createEvent.eventWhat;
     return {
         eventWhatData: data
     };
@@ -12,12 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleEventWhat: (inputKey, event) => {
-            dispatch({
-                type: "SET_EVENT_WHAT",
-                data: event.target.value,
-                inputKey: inputKey,
-                eventType: "eventWhat"
-            });
+            dispatch(setEventWhat(event.target.value, inputKey));
         },
 
         addInput: (nextInputKey) => {
