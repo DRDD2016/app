@@ -127,6 +127,8 @@ XMLHttpRequest cannot load https://www.facebook.com/v2.3/dialog/oauth?client_id=
 
 **Solution**
 * Can use react-router to handle redirecting, which does it much more smoothly.
+* Created a higher-order component to conditionally render a given component, depending on auth state.
+* Was inspired by [react-redux-jwt-auth-example](https://github.com/joshgeller/react-redux-jwt-auth-example)
 ```js
 
 if (document.cookie.indexOf("sparkToken") !== -1) {

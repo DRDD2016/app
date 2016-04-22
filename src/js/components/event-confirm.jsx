@@ -10,11 +10,6 @@ const EventConfirm = ({ data, saveEvent, login }) => {
             <button onClick={ (e) => saveEvent(data) }>
                 Save event
             </button>
-
-            <button onClick={ (e) => login() }>
-                LOGIN
-            </button>
-            <a href="/bell/door" >Sohil  </a>
         </div>
     );
 };
