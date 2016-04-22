@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     return {
         data: data,
     };
+};
 
 const mapDispatchToProps = (dispatch) => {
 
@@ -23,11 +24,11 @@ const mapDispatchToProps = (dispatch) => {
 
             // CREATE A DISPATCH TO RESET STATE
         },
-    };
 
+    };
 };
 
-EventConfirmContainer = connect(
+const EventConfirmContainer = connect(
     mapStateToProps,
     mapDispatchToProps
 )(EventConfirm);
