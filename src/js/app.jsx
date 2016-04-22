@@ -18,7 +18,7 @@ import EventWhenContainer from './containers/event-when-container.js';
 import EventConfirmContainer from './containers/event-confirm-container.js';
 
 
-const store = initStore();
+export const store = initStore();
 
 const routes = (
     <Route path='/' component={ AppContainer }>
