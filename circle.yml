@@ -10,3 +10,5 @@ general:
 test:
     post:
         - sudo pip install codecov && codecov
+environment:
+    REDISCLOUD_URL: redis://rediscloud:1e6OJhYbvshUm6Mr@pub-redis-13907.eu-west-1-1.2.ec2.garantiadata.com:13907

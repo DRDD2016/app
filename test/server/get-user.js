@@ -2,16 +2,23 @@ import test from 'tape';
 var testServer = require('../../server/index.js');
 var server = testServer.init(9001);
 
-test('`get-user` request fetches user information from database', (t) => {
+test('`get-user` request fetches user information from database EXCLUDING token', (t) => {
 
     const options = {
         method: 'GET',
-        url: '/get-user?sparkID=10153623802657825'
+        url: '/get-user?sparkID=12345678'
+    };
+
+    const expected = {
+        firstName: "Harry",
+        lastName: "Potter",
+        id: "87654321",
+        photoURL: "http://blog.mugglenet.com/wp-content/uploads/2014/03/harry-potter-and-the-goblet-of-fire-20050330083044751-e1394684064435.jpg"
     };
 
     server.inject(options, (response) => {
 
-        t.equal(response.result.id, "10153623802657825", "User information retrieved");
+        t.deepEqual(response.result, expected, "Correct user information retrieved");
     });
     server.stop(t.end);
 });
