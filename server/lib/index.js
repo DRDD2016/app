@@ -3,8 +3,12 @@ var Inert = require('inert');
 var Bell = require('bell');
 var AuthCookie = require('hapi-auth-cookie');
 
+var addUser = require('./db/addUser.js');
+var getFBPhoto = require('./utils/getFBPhoto.js');
+
 var FBAuth = require('./fbauth.js');
 var Home  = require('./home.js');
+var GetUser = require('./GetUser.js');
 var NewEvent = require('./new-event.js');
 exports.init = function(port, next) {
 
@@ -37,7 +41,7 @@ exports.init = function(port, next) {
         });
     });
 
-    server.register([Inert , Home, NewEvent], function(err) {
+    server.register([Inert , Home, NewEvent, GetUser], function(err) {
         if(err) {
             return next(err);
         }
@@ -55,19 +59,13 @@ exports.init = function(port, next) {
                         return reply('Auth Failed due to: ' + request.auth.error.message).code(401);
                     } else {
 
-                        console.log(request.auth.credentials,'----creds-----');
-
+                        getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function(url) {
+                            addUser(request.auth.credentials, url);
+                        });
                         reply.redirect('/#/feed')
-                             .state('sparkToken', request.auth.credentials.token, { path: "/" });
+                             .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
                     }
                 }
-            }
-        },
-        {
-            method: "GET",
-            path: '/sohil',
-            handler: (request,reply) => {
-                reply('hello sohil');
             }
         }]);
 

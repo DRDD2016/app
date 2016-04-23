@@ -14,7 +14,7 @@ export function requireAuthentication(Component) {
         }
 
         checkAuth () {
-            if (document.cookie.indexOf("sparkToken") === -1) {
+            if (document.cookie.indexOf("sparkID") === -1) {
 
                 this.context.router.push('/');
             }

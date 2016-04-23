@@ -9,7 +9,7 @@ require('../scss/main.scss');
 
 import AppContainer from './components/app-container.jsx';
 import LoginContainer from './containers/login-container.js';
-import Feed from './components/feed.jsx';
+import FeedContainer from './containers/feed-container.js';
 import CreateEventContainer from './components/create-event-container.jsx';
 import EventDetailsContainer from './containers/event-details-container.js';
 import EventWhatContainer from './containers/event-what-container.js';
@@ -24,7 +24,7 @@ const routes = (
     <Route path='/' component={ AppContainer }>
 
         <IndexRoute component={ LoginContainer } />
-        <Route path='/feed' component={ requireAuthentication(Feed) } />
+        <Route path='/feed' component={ requireAuthentication(FeedContainer) } />
 
         <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />

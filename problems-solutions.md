@@ -131,7 +131,7 @@ XMLHttpRequest cannot load https://www.facebook.com/v2.3/dialog/oauth?client_id=
 * Was inspired by [react-redux-jwt-auth-example](https://github.com/joshgeller/react-redux-jwt-auth-example)
 ```js
 
-if (document.cookie.indexOf("sparkToken") !== -1) {
+if (document.cookie.indexOf("sparkID") !== -1) {
 
     this.context.router.push('/feed');
     return false;
