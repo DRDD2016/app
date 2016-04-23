@@ -1,4 +1,4 @@
-var getUser = require('./db/getUser.js');
+var getUser = require('../db/getUser.js');
 
 exports.register = function(server, options, next) {
 

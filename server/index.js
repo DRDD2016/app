@@ -3,13 +3,15 @@ var Inert = require('inert');
 var Bell = require('bell');
 var AuthCookie = require('hapi-auth-cookie');
 
-var addUser = require('./db/addUser.js');
-var getFBPhoto = require('./utils/getFBPhoto.js');
+var FBAuth = require('./routes/fbauth.js');
+var Home  = require('./routes/home.js');
+var GetUser = require('./routes/GetUser.js');
+var NewEvent = require('./routes/new-event.js');
 
-var FBAuth = require('./fbauth.js');
-var Home  = require('./home.js');
-var GetUser = require('./GetUser.js');
-var NewEvent = require('./new-event.js');
+var addUser = require('./db/addUser.js');
+var getFBPhoto = require('./lib/getFBPhoto.js');
+
+
 exports.init = function(port, next) {
 
     var server = new Hapi.Server();
@@ -18,11 +20,6 @@ exports.init = function(port, next) {
         port: port,
         routes: { cors: true }
     });
-
-
-    // Declare an authentication strategy using the bell scheme
-    // with the name of the provider, cookie encryption password,
-    // and the OAuth client credentials.
 
     server.register([Bell, AuthCookie], () => {
         server.auth.strategy('sparkCookie', 'cookie', {
@@ -37,11 +34,10 @@ exports.init = function(port, next) {
             clientSecret: '2880756f863270ac97a9500ef80f64a3',
             isSecure: false,
             scope: ['user_friends', 'user_about_me', 'publish_actions']
-              // Terrible idea but required if not using HTTPS especially if developing locally
         });
     });
 
-    server.register([Inert , Home, NewEvent, GetUser], function(err) {
+    server.register([Inert, Home, NewEvent, GetUser], function(err) {
         if(err) {
             return next(err);
         }
@@ -69,9 +65,8 @@ exports.init = function(port, next) {
             }
         }]);
 
-
         server.start(function(err) {
-            if(err) console.log('error starting server: ', err);
+            if (err) console.log('error starting server: ', err);
             return next(err, server);
         });
     });
