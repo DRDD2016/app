@@ -23,7 +23,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-push": "npm run test && npm run check-coverage && npm run lint",
+      "pre-push": "npm run test && npm run lint",
       "post-merge": "npm install"
     }
   },
