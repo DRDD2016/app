@@ -155,3 +155,24 @@ Getting an `[SyntaxError] Unexpected token`
 **Solution**
 * Facebook api will redirect you to the image by default.
 * Add `?redirect=false` to the end of the url to prevent this.
+
+## Testing
+### Mounting components using `renderIntoDocument`
+
+**Problem**
+Code snippet from test:
+```js
+const store = initStore(initialState);
+const renderedApp = TestUtils.renderIntoDocument(<AppContainer />);
+```
+```bash
+Invariant Violation: Could not find "store" in either the context or props of "Connect(App)". Either wrap the root component in a <Provider>, or explicitly pass "store" as a prop to "Connect(App)".
+```
+
+**Solution**
+* By rendering AppContainer like this, the normal props that get pass down when the app runs are not all there.
+* In this case, the Redux `store` was missing.  Passing it down manually works.
+```js
+const store = initStore(initialState);
+const renderedApp = TestUtils.renderIntoDocument(<AppContainer store={store} />);
+```
