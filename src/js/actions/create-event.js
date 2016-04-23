@@ -44,13 +44,12 @@ export function newEventRequest (eventData) {
     return function (dispatch) {
 
         dispatch(newEvent());
-        return axios.post('/new-event', eventData )
+
+        return axios.post('/new-event', eventData)
             .then((response) => {
-                console.log(response,'res');
                 dispatch(newEventSuccess());
             })
             .catch((error) => {
-                console.log(error,'errorr');
                 dispatch(newEventFailure(error));
             });
     };

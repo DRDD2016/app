@@ -12,11 +12,11 @@ export function getUser() {
         dispatch(getUserRequest());
         axios.get('/get-user?'+id)
         .then((response) => {
-            console.log(response.data,'---------');
+
             dispatch(getUserSuccess(response.data));
         })
         .catch((error) => {
-            console.log(error);
+            
             dispatch(getUserFailure(error));
         });
     };
