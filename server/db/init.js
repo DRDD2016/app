@@ -4,7 +4,7 @@ var bluebird = require('bluebird');
 
 bluebird.promisifyAll(redis);
 
-var dbURL = process.env.REDISCLOUD_URL || "redis://localhost:6379";
+var dbURL = process.env.REDISCLOUD_URL || process.env.REDIS_URL || "redis://localhost:6379";
 
 var parsedURL = url.parse(dbURL);
 var client = redis.createClient(parsedURL.port, parsedURL.hostname, { no_ready_check: true });

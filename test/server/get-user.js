@@ -4,6 +4,10 @@ var server = testServer.init(9001);
 
 test('`get-user` request fetches user information from database EXCLUDING token', (t) => {
 
+    if (!process.env.REDISCLOUD_URL) {
+        throw new Error("Please set the test db url");
+    }
+
     const options = {
         method: 'GET',
         url: '/get-user?sparkID=12345678'
