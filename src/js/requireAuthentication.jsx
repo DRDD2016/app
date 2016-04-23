@@ -1,5 +1,5 @@
 import React from 'react';
-import store from './app.jsx';
+import store from './index.jsx';
 
 export function requireAuthentication(Component) {
 

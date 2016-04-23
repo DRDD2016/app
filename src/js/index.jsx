@@ -7,7 +7,7 @@ import { requireAuthentication } from './requireAuthentication.jsx';
 
 require('../scss/main.scss');
 
-import AppContainer from './components/app-container.jsx';
+import AppContainer from './containers/app-container.js';
 import LoginContainer from './containers/login-container.js';
 import FeedContainer from './containers/feed-container.js';
 import CreateEventContainer from './components/create-event-container.jsx';
