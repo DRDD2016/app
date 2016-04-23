@@ -1,6 +1,6 @@
 var getUser = require('../db/getUser.js');
 
-exports.register = function(server, options, next) {
+exports.register = (server, options, next) => {
 
     server.route([{
         method: 'GET',
@@ -11,7 +11,7 @@ exports.register = function(server, options, next) {
             handler: (request,reply) => {
                 var id = request.query.sparkID;
 
-                getUser(id, function(userData) {
+                getUser(id, (userData) => {
                     reply(userData);
                 });
             }

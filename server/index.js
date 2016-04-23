@@ -12,7 +12,7 @@ var addUser = require('./db/addUser.js');
 var getFBPhoto = require('./lib/getFBPhoto.js');
 
 
-exports.init = function(port, next) {
+exports.init = (port, next) => {
 
     var server = new Hapi.Server();
     server.connection({
@@ -37,7 +37,7 @@ exports.init = function(port, next) {
         });
     });
 
-    server.register([Inert, Home, NewEvent, GetUser], function(err) {
+    server.register([Inert, Home, NewEvent, GetUser], (err) => {
         if(err) {
             return next(err);
         }
@@ -52,7 +52,7 @@ exports.init = function(port, next) {
                 handler: (request, reply) => {
 
                     if (!request.auth.isAuthenticated) {
-                        return reply('Auth Failed due to: ' + request.auth.error.message).code(401);
+                        return reply('Auth failed due to: ' + request.auth.error.message).code(401);
                     } else {
 
                         getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function(url) {
@@ -65,7 +65,7 @@ exports.init = function(port, next) {
             }
         }]);
 
-        server.start(function(err) {
+        server.start((err) => {
             if (err) console.log('error starting server: ', err);
             return next(err, server);
         });

@@ -1,4 +1,4 @@
-exports.register = function(server, options, next) {
+exports.register = (server, options, next) => {
 
     server.route([{
         method: '*',
@@ -9,7 +9,7 @@ exports.register = function(server, options, next) {
             },
             handler: (request,reply) => {
 
-                if(!request.auth.isAuthenticated) {
+                if (!request.auth.isAuthenticated) {
                     return reply('Auth Failed due to: ' + request.auth.error.message).code(401);
                 }
 

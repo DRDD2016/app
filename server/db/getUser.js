@@ -1,7 +1,9 @@
 var client = require('./init.js');
 
-function getUser(id, callback) {
+function getUser (id, callback) {
+
     var hashKey = 'user:' + id;
+    console.log("hashKey", hashKey);
     client.hgetallAsync(hashKey)
         .then((response) => {
 
@@ -14,7 +16,7 @@ function getUser(id, callback) {
         })
         .catch((error) => {
             console.log("ERRORRRR:", error);
-            throw error;
+            callback(error);
         });
 }
 

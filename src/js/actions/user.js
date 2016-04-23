@@ -16,7 +16,7 @@ export function getUser() {
             dispatch(getUserSuccess(response.data));
         })
         .catch((error) => {
-            
+            console.log(error);
             dispatch(getUserFailure(error));
         });
     };
