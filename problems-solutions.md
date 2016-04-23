@@ -145,3 +145,13 @@ Login.contextTypes = {
 
 export default Login;
 ```
+
+### Getting Facebook photo
+
+**Problem**
+
+Getting an `[SyntaxError] Unexpected token`
+
+**Solution**
+* Facebook api will redirect you to the image by default.
+* Add `?redirect=false` to the end of the url to prevent this.
