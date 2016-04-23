@@ -5,12 +5,13 @@ export const GET_USER_REQUEST = "GET_USER_REQUEST";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAILURE = "GET_USER_FAILURE";
 
-export function getUser() {
+export function getUser () {
+
     var id = document.cookie.split(';')[0];
     return (dispatch) => {
 
         dispatch(getUserRequest());
-        axios.get('/get-user?'+id)
+        axios.get('/get-user?'+ id)
         .then((response) => {
 
             dispatch(getUserSuccess(response.data));

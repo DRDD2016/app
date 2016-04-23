@@ -9,7 +9,10 @@ function addUser (data,url) {
                      'lastName', data.profile.name.last,
                      'id', data.profile.id,
                      'token', data.token,
-                     'photoURL', url);
+                     'photoURL', url)
+        .then(() => {
+            client.quit();
+        });
 }
 
 module.exports = addUser;

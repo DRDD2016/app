@@ -176,3 +176,13 @@ Invariant Violation: Could not find "store" in either the context or props of "C
 const store = initStore(initialState);
 const renderedApp = TestUtils.renderIntoDocument(<AppContainer store={store} />);
 ```
+
+### Hanging tests
+**Problem**
+Tests that would involve database work would hang.
+
+**Solution**
+Remember to quit Redis client in **all** redis functions with:
+```js
+client.quit();
+```

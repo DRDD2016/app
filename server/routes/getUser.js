@@ -9,16 +9,16 @@ exports.register = (server, options, next) => {
             description: 'get user details and pass it down in the response',
 
             handler: (request,reply) => {
+
                 var id = request.query.sparkID;
 
                 getUser(id, (userData) => {
+                    
                     reply(userData);
                 });
             }
         }
-
     }]);
-
     return next();
 };
 

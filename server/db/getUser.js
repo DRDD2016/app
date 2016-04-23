@@ -3,19 +3,25 @@ var client = require('./init.js');
 function getUser (id, callback) {
 
     var hashKey = 'user:' + id;
-    console.log("hashKey", hashKey);
+
     client.hgetallAsync(hashKey)
         .then((response) => {
 
             if (!response)
                 throw new Error;
-            // delete response.token;
+            delete response.token;
+            return response;
         })
         .then((userInfo) => {
-            return callback(userInfo);
+            if (!userInfo.token) {
+                callback(userInfo);
+            }
+        })
+        .then(() => {
+            client.quit();
         })
         .catch((error) => {
-            console.log("ERRORRRR:", error);
+            console.error("Error getting user info from database:", error);
             callback(error);
         });
 }

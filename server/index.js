@@ -1,7 +1,6 @@
 var Hapi  = require('hapi');
 var Inert = require('inert');
 var Bell = require('bell');
-var AuthCookie = require('hapi-auth-cookie');
 
 var FBAuth = require('./routes/fbauth.js');
 var Home  = require('./routes/home.js');
@@ -12,7 +11,7 @@ var addUser = require('./db/addUser.js');
 var getFBPhoto = require('./lib/getFBPhoto.js');
 
 
-exports.init = (port, next) => {
+exports.init = (port) => {
 
     var server = new Hapi.Server();
     server.connection({
@@ -21,12 +20,13 @@ exports.init = (port, next) => {
         routes: { cors: true }
     });
 
-    server.register([Bell, AuthCookie], () => {
-        server.auth.strategy('sparkCookie', 'cookie', {
-            password: 'cookie_encryption_password_secure',
-            cookie: 'user',
-            isSecure: false
-        });
+    server.register([Bell], (err) => {
+
+        if (err) {
+            throw new Error(err);
+            // return next(err);
+        }
+
         server.auth.strategy('facebook', 'bell', {
             provider: 'facebook',
             password: 'cookie_encryption_password_secure',
@@ -38,16 +38,17 @@ exports.init = (port, next) => {
     });
 
     server.register([Inert, Home, NewEvent, GetUser], (err) => {
-        if(err) {
-            return next(err);
-        }
 
+        if (err) {
+            throw new Error(err);
+            // return next(err);
+        }
         server.route([{
             method: ['GET','POST'],
             path: '/bell/door',
             config: {
                 auth: {
-                    strategies: ['sparkCookie','facebook']
+                    strategies: ['facebook']
                 },
                 handler: (request, reply) => {
 
@@ -64,11 +65,6 @@ exports.init = (port, next) => {
                 }
             }
         }]);
-
-        server.start((err) => {
-            if (err) console.log('error starting server: ', err);
-            return next(err, server);
-        });
     });
-    module.exports = server;
+    return server;
 };
