@@ -16,7 +16,7 @@ const initialState = {
         }
     },
     eventWhen: {
-        0: {
+        0:{
             date: '',
             time: ''
         }

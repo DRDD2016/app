@@ -9,9 +9,8 @@ export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 export function userLogin () {
 
     return function (dispatch) {
-        console.log('sohil running');
-        dispatch(userLoginRequest());
 
+        dispatch(userLoginRequest());
         return window.location = '/bell/door';
     };
 

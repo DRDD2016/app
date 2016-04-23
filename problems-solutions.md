@@ -131,7 +131,7 @@ XMLHttpRequest cannot load https://www.facebook.com/v2.3/dialog/oauth?client_id=
 * Was inspired by [react-redux-jwt-auth-example](https://github.com/joshgeller/react-redux-jwt-auth-example)
 ```js
 
-if (document.cookie.indexOf("sparkToken") !== -1) {
+if (document.cookie.indexOf("sparkID") !== -1) {
 
     this.context.router.push('/feed');
     return false;
@@ -145,3 +145,13 @@ Login.contextTypes = {
 
 export default Login;
 ```
+
+### Getting Facebook photo
+
+**Problem**
+
+Getting an `[SyntaxError] Unexpected token`
+
+**Solution**
+* Facebook api will redirect you to the image by default.
+* Add `?redirect=false` to the end of the url to prevent this.
