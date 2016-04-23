@@ -4,7 +4,7 @@ var Bell = require('bell');
 
 var FBAuth = require('./routes/fbauth.js');
 var Home  = require('./routes/home.js');
-var GetUser = require('./routes/GetUser.js');
+var GetUser = require('./routes/getUser.js');
 var NewEvent = require('./routes/new-event.js');
 
 var addUser = require('./db/addUser.js');
