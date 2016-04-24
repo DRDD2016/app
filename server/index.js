@@ -2,7 +2,6 @@ var Hapi  = require('hapi');
 var Inert = require('inert');
 var Bell = require('bell');
 
-var FBAuth = require('./routes/fbauth.js');
 var Home  = require('./routes/home.js');
 var GetUser = require('./routes/getUser.js');
 var NewEvent = require('./routes/new-event.js');
