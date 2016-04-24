@@ -7,6 +7,7 @@ class Feed extends React.Component {
     }
 
     componentWillMount() {
+        console.log("hydrateState");
         this.props.hydrateState();
     }
 

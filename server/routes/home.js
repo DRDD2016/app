@@ -14,7 +14,6 @@ exports.register = (server, options, next) => {
                     }
                 }
             }
-
         }
     ]);
 

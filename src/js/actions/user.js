@@ -10,7 +10,7 @@ export function getUser () {
 
     var id = document.cookie.split(';')[0];
     return (dispatch) => {
-
+        console.log("getUser");
         dispatch(getUserRequest());
         axios.get('/get-user?'+ id)
         .then((response) => {

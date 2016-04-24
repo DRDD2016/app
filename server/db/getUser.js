@@ -18,10 +18,10 @@ function getUser (id, callback) {
                 callback(userInfo);
             }
         })
-        .then(() => {
-            console.log(3);
-            client.quit();
-        })
+        // .then(() => {
+        //     console.log(3);
+        //     client.quit();
+        // })
         .catch((error) => {
             console.log(4);
             console.error("Error getting user info from database:", error.cause);

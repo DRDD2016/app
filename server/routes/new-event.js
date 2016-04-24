@@ -11,7 +11,6 @@ exports.register = (server, options, next) => {
                 reply('done');
             }
         }
-
     }]);
 
     return next();

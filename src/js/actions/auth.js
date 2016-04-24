@@ -9,7 +9,7 @@ export const USER_LOGIN_FAILURE = "USER_LOGIN_FAILURE";
 export function userLogin () {
 
     return function (dispatch) {
-
+        console.log("userLogin");
         dispatch(userLoginRequest());
         return window.location = '/bell/door';
     };

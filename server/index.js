@@ -23,7 +23,6 @@ exports.init = (port, callback) => {
 
         if (err) {
             throw new Error(err);
-            // return next(err);
         }
 
         server.auth.strategy('facebook', 'bell', {
@@ -40,7 +39,6 @@ exports.init = (port, callback) => {
 
         if (err) {
             throw new Error(err);
-            // return next(err);
         }
         server.route([{
             method: ['GET','POST'],
