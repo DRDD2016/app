@@ -12,6 +12,9 @@ function addUser (data,url) {
                      'photoURL', url)
         .then(() => {
             client.quit();
+        })
+        .catch((error) => {
+            console.error('Error adding user to db:', error.cause);
         });
 }
 
