@@ -13,7 +13,6 @@ export function userLogin () {
         dispatch(userLoginRequest());
         return window.location = '/bell/door';
     };
-
 }
 
 export function userLoginRequest () {
