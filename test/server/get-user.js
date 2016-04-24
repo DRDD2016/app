@@ -1,6 +1,5 @@
 import test from 'tape';
 var testServer = require('../../server/index.js');
-var server = testServer.init(9001);
 
 test('`get-user` request fetches user information from database EXCLUDING token', (t) => {
 
@@ -20,9 +19,12 @@ test('`get-user` request fetches user information from database EXCLUDING token'
         photoURL: "http://blog.mugglenet.com/wp-content/uploads/2014/03/harry-potter-and-the-goblet-of-fire-20050330083044751-e1394684064435.jpg"
     };
 
-    server.inject(options, (response) => {
+    testServer.init(9001, (error, server) => {
 
-        t.deepEqual(response.result, expected, "Correct user information retrieved");
+        server.inject(options, (response) => {
+
+            t.deepEqual(response.result, expected, "Correct user information retrieved");
+        });
+        server.stop(t.end);
     });
-    server.stop(t.end);
 });

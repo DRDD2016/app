@@ -11,7 +11,7 @@ var addUser = require('./db/addUser.js');
 var getFBPhoto = require('./lib/getFBPhoto.js');
 
 
-exports.init = (port) => {
+exports.init = (port, callback) => {
 
     var server = new Hapi.Server();
     server.connection({
@@ -66,5 +66,5 @@ exports.init = (port) => {
             }
         }]);
     });
-    return server;
+    callback(null, server);
 };
