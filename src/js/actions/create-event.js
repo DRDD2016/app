@@ -21,7 +21,7 @@ export function getFBFriends () {
     var id = document.cookie.split(';')[0];
     return (dispatch) => {
         dispatch(getFBFriendsRequest());
-        axios.get('/create-events/invitees?' + id)
+        axios.get('/new-event/invitees?' + id)
         .then((response) => {
             console.log(response, 'got the correct response');
             dispatch(getFBFriendsSuccess(response.data));
@@ -40,7 +40,7 @@ function getFBFriendsRequest () {
     };
 }
 
-function getFBFriendsSuccess () {
+function getFBFriendsSuccess (data) {
     return {
         type: GET_FB_FRIENDS_SUCCESS,
         isFetching: false,
@@ -48,7 +48,7 @@ function getFBFriendsSuccess () {
     };
 }
 
-function getFBFriendsFailure () {
+function getFBFriendsFailure (error) {
     return {
         type: GET_FB_FRIENDS_FAILURE,
         isFetching: false,
