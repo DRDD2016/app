@@ -4,7 +4,7 @@ import { getFBFriends } from '../actions/create-event.js';
 import Invitees from '../components/invitees.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.createEvent.eventWhat;
+    let data = state.createEvent.invitees;
     return {
         invitees: data
     };

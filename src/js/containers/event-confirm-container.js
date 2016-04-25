@@ -8,7 +8,11 @@ const mapStateToProps = (state) => {
     let data = state.createEvent;
 
     return {
-        data: data,
+        eventDetails: data.eventDetails,
+        eventWhat: data.eventWhat,
+        eventWhere: data.eventWhere,
+        eventWhen: data.eventWhen,
+        invitees: data.invitees
     };
 };
 
