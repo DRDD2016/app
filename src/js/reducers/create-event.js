@@ -1,7 +1,8 @@
 import update from 'react-addons-update';
 import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
          ADD_INPUT, REMOVE_INPUT,
-         NEW_EVENT, NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE } from '../actions/create-event.js';
+         NEW_EVENT, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE,
+         GET_FB_FRIENDS_REQUEST, GET_FB_FRIENDS_SUCCESS, GET_FB_FRIENDS_FAILURE } from '../actions/create-event.js';
 
 const initialState = {
     eventDetails: {
@@ -22,7 +23,9 @@ const initialState = {
             time: ''
         }
     },
+    invitees: [],
     isFetching: false,
+    error: undefined,
     didSave: undefined
 };
 export default function createEvent(state = initialState, action) {
@@ -50,9 +53,25 @@ export default function createEvent(state = initialState, action) {
     case NEW_EVENT_SUCCESS:
     case NEW_EVENT_FAILURE:
         return handleNewEventRequest(state, action);
+
+    case GET_FB_FRIENDS_REQUEST:
+    case GET_FB_FRIENDS_SUCCESS:
+    case GET_FB_FRIENDS_FAILURE:
+        return handleFBFriends(state, action);
+
     default:
         return state;
     }
+}
+
+
+function handleFBFriends (state, action) {
+    return {
+        ...state,
+        isFetching: action.isFetching,
+        invitees: action.data,
+        error: action.error
+    };
 }
 
 function handleNewEventRequest (state, action) {

@@ -13,7 +13,7 @@ exports.register = (server, options, next) => {
                 var id = request.query.sparkID;
 
                 getUser(id, (userData) => {
-                    
+
                     reply(userData);
                 });
             }

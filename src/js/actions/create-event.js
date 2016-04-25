@@ -11,6 +11,50 @@ export const NEW_EVENT = "NEW_EVENT";
 export const NEW_EVENT_REQUEST = "NEW_EVENT_REQUEST";
 export const NEW_EVENT_SUCCESS = "NEW_EVENT_SUCCESS";
 export const NEW_EVENT_FAILURE = "NEW_EVENT_FAILURE";
+export const GET_FB_FRIENDS = "GET_FB_FRIENDS";
+export const GET_FB_FRIENDS_REQUEST = "GET_FB_FRIENDS_REQUEST";
+export const GET_FB_FRIENDS_SUCCESS = "GET_FB_FRIENDS_SUCCESS";
+export const GET_FB_FRIENDS_FAILURE = "GET_FB_FRIENDS_FAILURE";
+
+export function getFBFriends () {
+
+    var id = document.cookie.split(';')[0];
+    return (dispatch) => {
+        dispatch(getFBFriendsRequest());
+        axios.get('/new-event/invitees?' + id)
+        .then((response) => {
+            console.log(response, 'got the correct response');
+            dispatch(getFBFriendsSuccess(response.data));
+        })
+        .catch((error) => {
+            console.log(error,'got an error invitees');
+            dispatch(getFBFriendsFailure(error));
+        });
+    };
+}
+
+function getFBFriendsRequest () {
+    return {
+        type: GET_FB_FRIENDS_REQUEST,
+        isFetching: true
+    };
+}
+
+function getFBFriendsSuccess (data) {
+    return {
+        type: GET_FB_FRIENDS_SUCCESS,
+        isFetching: false,
+        data: data
+    };
+}
+
+function getFBFriendsFailure (error) {
+    return {
+        type: GET_FB_FRIENDS_FAILURE,
+        isFetching: false,
+        error: error
+    };
+}
 
 export function newEvent () {
 
