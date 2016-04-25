@@ -9,14 +9,24 @@ class Invitees extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.props);
         //dispatch action here.
         this.props.getFBFriends();
     }
     render () {
+        var friends = this.props.invitees.map((object) => {
+            return (
+                <li key={object.firstName}>
+                    {object.firstName} {object.lastName}
+                    <img className="profile-photo" src={object.photoURL} />
+                </li>
+            );
+        });
         return (
             <div>
                 <h3> Invite your Friends! </h3>
+                <ul>
+                    {friends}
+                </ul>
 
 
                 <button>
