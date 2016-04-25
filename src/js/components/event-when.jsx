@@ -7,7 +7,7 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
 
     let inputCount = Object.keys(eventWhenData);
     console.log(eventWhenData,'mid level ===-===');
-    
+
     let inputs = inputCount.map( (value, i) => {
         return (
             <DateTimeInput
@@ -44,7 +44,7 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
                 </button>
 
                 <button className={ nextButtonClasses }>
-                    <Link to='/create-event/confirm'>Next</Link>
+                    <Link to='/create-event/invitees'>Next</Link>
                 </button>
 
         </div>

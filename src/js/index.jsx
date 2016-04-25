@@ -16,6 +16,7 @@ import EventWhatContainer from './containers/event-what-container.js';
 import EventWhereContainer from './containers/event-where-container.js';
 import EventWhenContainer from './containers/event-when-container.js';
 import EventConfirmContainer from './containers/event-confirm-container.js';
+import InviteesContainer from './containers/invitees-container.js';
 
 
 export const store = initStore();
@@ -31,6 +32,7 @@ const routes = (
             <Route path='what' component={ requireAuthentication(EventWhatContainer) } />
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />
             <Route path='when' component={ requireAuthentication(EventWhenContainer) } />
+            <Route path='invitees' component={ requireAuthentication(InviteesContainer) } />
             <Route path='confirm' component={ requireAuthentication(EventConfirmContainer) } />
         </Route>
 

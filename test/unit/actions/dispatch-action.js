@@ -26,7 +26,9 @@ test('SET_EVENT_DETAILS action works', (t) => {
                 placeAddress: ''
             }
         },
+        invitees: [],
         isFetching: false,
+        error: undefined,
         didSave: undefined
 
     };
@@ -55,7 +57,9 @@ test('SET_EVENT_DETAILS action works', (t) => {
                 placeAddress: ''
             }
         },
+        invitees: [],
         isFetching: false,
+        error: undefined,
         didSave: undefined
 
     };
@@ -89,7 +93,9 @@ test('SET_EVENT_WHAT action works', (t) => {
                 placeAddress: ''
             }
         },
+        invitees: [],
         isFetching: false,
+        error: undefined,
         didSave: undefined
 
     };
@@ -127,7 +133,9 @@ test('SET_EVENT_WHERE action works', (t) => {
                 placeAddress: '14 Palmers Road'
             }
         },
+        invitees: [],
         isFetching: false,
+        error: undefined,
         didSave: undefined
 
     };
@@ -162,7 +170,9 @@ test('SET_EVENT_WHEN action works', (t) => {
                 placeAddress: '14 Palmers Road'
             }
         },
+        invitees: [],
         isFetching: false,
+        error: undefined,
         didSave: undefined
 
     };
@@ -193,7 +203,9 @@ test('SET_EVENT_WHEN action works', (t) => {
                 placeAddress: '14 Palmers Road'
             }
         },
+        invitees: [],
         isFetching: false,
+        error: undefined,
         didSave: undefined
 
     };
