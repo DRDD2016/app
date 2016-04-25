@@ -17,6 +17,11 @@ class Invitees extends React.Component {
         return (
             <div>
                 <h3> Invite your Friends! </h3>
+
+
+                <button>
+                    <Link to='/create-event/confirm'>Next</Link>
+                </button>
             </div>
         );
     }
