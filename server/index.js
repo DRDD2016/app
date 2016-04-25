@@ -1,16 +1,16 @@
 var Hapi  = require('hapi');
 var Inert = require('inert');
 var Bell = require('bell');
-var AuthCookie = require('hapi-auth-cookie');
+
+var Home  = require('./routes/home.js');
+var GetUser = require('./routes/getUser.js');
+var NewEvent = require('./routes/new-event.js');
 
 var addUser = require('./db/addUser.js');
-var getFBPhoto = require('./utils/getFBPhoto.js');
+var getFBPhoto = require('./lib/getFBPhoto.js');
 
-var FBAuth = require('./fbauth.js');
-var Home  = require('./home.js');
-var GetUser = require('./GetUser.js');
-var NewEvent = require('./new-event.js');
-exports.init = function(port, next) {
+
+exports.init = (port, callback) => {
 
     var server = new Hapi.Server();
     server.connection({
@@ -19,17 +19,12 @@ exports.init = function(port, next) {
         routes: { cors: true }
     });
 
+    server.register([Bell], (err) => {
 
-    // Declare an authentication strategy using the bell scheme
-    // with the name of the provider, cookie encryption password,
-    // and the OAuth client credentials.
+        if (err) {
+            throw new Error(err);
+        }
 
-    server.register([Bell, AuthCookie], () => {
-        server.auth.strategy('sparkCookie', 'cookie', {
-            password: 'cookie_encryption_password_secure',
-            cookie: 'user',
-            isSecure: false
-        });
         server.auth.strategy('facebook', 'bell', {
             provider: 'facebook',
             password: 'cookie_encryption_password_secure',
@@ -37,26 +32,25 @@ exports.init = function(port, next) {
             clientSecret: '2880756f863270ac97a9500ef80f64a3',
             isSecure: false,
             scope: ['user_friends', 'user_about_me', 'publish_actions']
-              // Terrible idea but required if not using HTTPS especially if developing locally
         });
     });
 
-    server.register([Inert , Home, NewEvent, GetUser], function(err) {
-        if(err) {
-            return next(err);
-        }
+    server.register([Inert, Home, NewEvent, GetUser], (err) => {
 
+        if (err) {
+            throw new Error(err);
+        }
         server.route([{
             method: ['GET','POST'],
             path: '/bell/door',
             config: {
                 auth: {
-                    strategies: ['sparkCookie','facebook']
+                    strategies: ['facebook']
                 },
                 handler: (request, reply) => {
 
                     if (!request.auth.isAuthenticated) {
-                        return reply('Auth Failed due to: ' + request.auth.error.message).code(401);
+                        return reply('Auth failed due to: ' + request.auth.error.message).code(401);
                     } else {
 
                         getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function(url) {
@@ -68,12 +62,6 @@ exports.init = function(port, next) {
                 }
             }
         }]);
-
-
-        server.start(function(err) {
-            if(err) console.log('error starting server: ', err);
-            return next(err, server);
-        });
     });
-    module.exports = server;
+    callback(null, server);
 };

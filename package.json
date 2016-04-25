@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/lib/start.js",
+    "start": "nodemon server/start.js",
     "dev": "node ./src/utils/dev-server.js",
     "build": "webpack --config ./webpack.production.config.js --colors --progress",
     "lint": "node_modules/eslint/bin/eslint.js 'src/**/*.@(js|jsx)'",
     "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js cover tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
+    "check-coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js check-coverage tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
     "test": "tape -r babel-register --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)' | tap-spec"
   },
   "repository": {

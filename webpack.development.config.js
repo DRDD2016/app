@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: [
-        "./src/js/app.jsx",
+        "./src/js/index.jsx",
         "webpack/hot/dev-server",
         "webpack-dev-server/client?http://localhost:8080/"
     ],
@@ -19,7 +19,7 @@ module.exports = {
                 loader: "react-hot-loader!babel-loader"
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 exclude: /node_modules/,
                 loader: "style-loader!css-loader!postcss-loader!sass-loader"
             }

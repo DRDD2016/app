@@ -1,4 +1,4 @@
-exports.register = function(server, options, next) {
+exports.register = (server, options, next) => {
 
     server.route([{
         method: 'POST',
@@ -11,7 +11,6 @@ exports.register = function(server, options, next) {
                 reply('done');
             }
         }
-
     }]);
 
     return next();

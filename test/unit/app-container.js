@@ -3,7 +3,7 @@
 import test from 'tape';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import AppContainer from '../../src/js/components/app-container.jsx';
+import AppContainer from '../../src/js/containers/app-container.js';
 
 import shallowRenderer from '../utils/shallow-renderer.js';
 

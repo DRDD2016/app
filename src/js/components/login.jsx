@@ -24,7 +24,6 @@ class Login extends React.Component {
                 <button onClick={ (e) => this.props.login() }>
                     LOGIN
                 </button>
-                <a href="/bell/door" >Sohil  </a>
             </div>
         );
     }

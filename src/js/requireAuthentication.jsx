@@ -1,5 +1,4 @@
 import React from 'react';
-import store from './app.jsx';
 
 export function requireAuthentication(Component) {
 
