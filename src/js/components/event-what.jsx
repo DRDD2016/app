@@ -16,6 +16,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             />);
     });
 
+
     let addInputClasses = classnames({
         "hide": inputCount.length >= 3
     });
