@@ -9,7 +9,7 @@ const App = ({ children, error }) => {
                 <h3>Error {error.status} {error.data.error}: {error.data.message}</h3>
             }
             { children }
-            <div className="navbar">
+            <div className="navbar hide">
                 This will be the menu
             </div>
         </div>
