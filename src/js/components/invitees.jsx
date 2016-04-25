@@ -9,7 +9,6 @@ class Invitees extends React.Component {
     }
 
     componentWillMount() {
-        console.log(this.props,'mount------');
         //dispatch action here.
         this.props.getFBFriends();
     }
@@ -20,9 +19,8 @@ class Invitees extends React.Component {
                     {object.firstName} {object.lastName}
                     <img className="profile-photo" src={object.photoURL} />
                 </li>
-            )
-        })
-        console.log(this.props.invitees,'-------');
+            );
+        });
         return (
             <div>
                 <h3> Invite your Friends! </h3>
