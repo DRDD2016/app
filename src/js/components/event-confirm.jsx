@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import ConfirmEventWhat from './create-event/ConfirmEventWhat.jsx';
 import ConfirmEventWhereorWhen from './create-event/ConfirmEventWhereorWhen.jsx';
 
-const EventConfirm = ({ eventDetails, eventWhat, eventWhere, eventWhen, invitees, saveEvent }) => {
+const EventConfirm = ({ data, eventDetails, eventWhat, eventWhere, eventWhen, invitees, saveEvent }) => {
 
     return (
         <div>

@@ -16,7 +16,7 @@ class Invitees extends React.Component {
         var friends = this.props.invitees.map((object) => {
             return (
                 <li key={object.firstName}>
-                    {object.firstName} {object.lastName}
+                    {object.firstName} {object.lastName} <br/>
                     <img className="profile-photo" src={object.photoURL} />
                 </li>
             );
