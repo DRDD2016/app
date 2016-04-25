@@ -38,19 +38,33 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
     });
 
     return (
-            <div>
-                <h2>Where?</h2>
-                { inputs }
-                <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
-                    Add input
-                </button>
-                <button className={ removeInputClasses } onClick={ removeInput }>
-                    Remove input
-                </button>
-                <button className={ nextButtonClasses }>
-                    <Link to='/create-event/when'>Next</Link>
-                </button>
+        <div className="container">
+            <div className="row">
+                <div className="twelve columns">
+                    <h2>Where?</h2>
+                </div>
             </div>
+
+            { inputs }
+            <div className="row">
+                <div className="three columns">
+                    <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
+                        Add input
+                    </button>
+                </div>
+
+                <div className="three columns">
+                    <button className={ removeInputClasses } onClick={ removeInput }>
+                        Remove input
+                    </button>
+                </div>
+                <div className="three columns">
+                    <button className={ nextButtonClasses }>
+                        <Link to='/create-event/when'>Next</Link>
+                    </button>
+                </div>
+            </div>
+        </div>
     );
 };
 

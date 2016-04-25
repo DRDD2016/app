@@ -32,21 +32,33 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
     });
     console.log(eventWhenData[0].date === "" , eventWhenData[0].time === "" , '-----');
     return (
-        <div>
-            <h2>When?</h2>
+        <div className="container">
+            <div className="row">
+                <div className="twelve columns">
+                    <h2>When?</h2>
+                </div>
+            </div>
+
             { inputs }
-                <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
-                    Add input
-                </button>
+            <div className="row">
+                <div className="three columns">
+                    <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
+                        Add input
+                    </button>
+                </div>
 
-                <button className={ removeInputClasses } onClick={ removeInput }>
-                    Remove input
-                </button>
+                <div className="three columns">
+                    <button className={ removeInputClasses } onClick={ removeInput }>
+                        Remove input
+                    </button>
+                </div>
 
-                <button className={ nextButtonClasses }>
-                    <Link to='/create-event/invitees'>Next</Link>
-                </button>
-
+                <div className="three columns">
+                    <button className={ nextButtonClasses }>
+                        <Link to='/create-event/invitees'>Next</Link>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
