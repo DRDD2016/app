@@ -9,6 +9,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     let inputs = inputCount.map( (value,i) => {
         return (
             <Input
+                className="twelve columns"
                 onChange={ handleEventWhat.bind(this, i) }
                 key={ i }
                 value={ eventWhatData[value] }
@@ -30,18 +31,33 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     });
 
     return (
-        <div>
-            <h2>What?</h2>
+        <div className="container">
+            <div className="row">
+                <div className="twelve columns">
+                    <h2>What?</h2>
+                </div>
+            </div>
+
             { inputs }
-            <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
-                Add input
-            </button>
-            <button className={ removeInputClasses } onClick={ removeInput }>
-                Remove input
-            </button>
-            <button className={ nextButtonClasses }>
-                <Link to='/create-event/where'>Next</Link>
-            </button>
+            <div className="row">
+                <div className="three columns">
+                    <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
+                        Add input
+                    </button>
+                </div>
+
+                <div className="three columns">
+                    <button className={ removeInputClasses } onClick={ removeInput }>
+                        Remove input
+                    </button>
+                </div>
+
+                <div className="three columns">
+                    <button className={ nextButtonClasses }>
+                        <Link to='/create-event/where'>Next</Link>
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

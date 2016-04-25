@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Feed extends React.Component {
 
@@ -15,7 +16,12 @@ class Feed extends React.Component {
 
         return (
             <div>
-                <h1>This is the Feed Container</h1>
+                <h4>Feed</h4>
+                <button>
+                    <Link to="/create-event">
+                        Create new event
+                    </Link>
+                </button>
             </div>
         );
     }

@@ -6,9 +6,12 @@ class CreateEventContainer extends React.Component {
 
         return (
             <div>
-                <h1>
-                    This is Create Event Container
-                </h1>
+                <div>
+
+                    <h4>
+                        Create an event
+                    </h4>
+                </div>
                 {this.props.children}
             </div>
         );
