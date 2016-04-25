@@ -1,3 +1,4 @@
+import update from 'react-addons-update';
 import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
          ADD_INPUT, REMOVE_INPUT,
          NEW_EVENT, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE,
@@ -106,9 +107,9 @@ function setEvent (state, action) {
 
 function setEventWhen (state, action) {
 
-    let newState = Object.assign({}, state);
-    newState.eventWhen[action.inputKey][action.format] = action.data;
-
+    let newState = update(state, {
+        eventWhen: {[action.inputKey]: {[action.format]: {$set: action.data}}}
+    });
     return newState;
 }
 
