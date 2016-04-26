@@ -56,10 +56,10 @@ function getFBFriendsFailure (error) {
     };
 }
 
-export function newEvent () {
+export function newEventRequest () {
 
     return {
-        type: NEW_EVENT,
+        type: NEW_EVENT_REQUEST,
         isFetching: true
     };
 }
@@ -83,11 +83,11 @@ export function newEventFailure (error) {
     };
 }
 
-export function newEventRequest (eventData) {
+export function newEvent (eventData) {
 
     return function (dispatch) {
 
-        dispatch(newEvent());
+        dispatch(newEventRequest());
 
         return axios.post('/new-event', eventData)
             .then((response) => {
@@ -140,18 +140,18 @@ export function setEventWhen (data, inputKey, format) {
     };
 }
 
-export function addInput (nextInputKey) {
+export function addInput (nextInputKey, eventType) {
     return {
         type: ADD_INPUT,
         nextInputKey,
-        eventType: "eventWhen"
+        eventType
     };
 }
 
-export function removeInput (nextInputKey) {
+export function removeInput (nextInputKey, eventType) {
     return {
         type: REMOVE_INPUT,
         nextInputKey,
-        eventType: "eventWhen"
+        eventType
     };
 }

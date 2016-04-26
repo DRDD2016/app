@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setEventWhere } from '../actions/create-event.js';
+import { setEventWhere, addInput, removeInput } from '../actions/create-event.js';
 import EventWhere from '../components/event-where.jsx';
 
 const mapStateToProps = (state) => {
@@ -22,18 +22,11 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         addInput: (nextInputKey) => {
-            dispatch({
-                type: "ADD_INPUT",
-                nextInputKey: nextInputKey,
-                eventType: "eventWhere"
-            });
+            dispatch(addInput(nextInputKey, "eventWhere"));
         },
 
         removeInput: () => {
-            dispatch({
-                type: "REMOVE_INPUT",
-                eventType: "eventWhere"
-            });
+            dispatch(removeInput(nextInputKey, "eventWhere"));
         }
     };
 };

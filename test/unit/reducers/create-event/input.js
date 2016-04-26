@@ -94,7 +94,7 @@ test('Reducer handles REMOVE_INPUT as expected', (t) => {
         }
     };
 
-    t.deepEqual(nextState, expected, "eventWhen removes last key.");
+    t.deepEqual(nextState, expected, "eventWhen removes last key");
     /*-----*/
     const action2 = {
         type: "REMOVE_INPUT",
@@ -123,6 +123,6 @@ test('Reducer handles REMOVE_INPUT as expected', (t) => {
         }
     };
 
-    t.deepEqual(nextState2, expected2, "eventWhere removes last key/");
+    t.deepEqual(nextState2, expected2, "eventWhere removes last key");
     t.end();
 })
