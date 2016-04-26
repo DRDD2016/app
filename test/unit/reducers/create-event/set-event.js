@@ -1,5 +1,5 @@
 import test from 'tape';
-import reducer from '../../../src/js/reducers/create-event.js';
+import reducer from '../../../../src/js/reducers/create-event.js';
 
 
 test('Reducer handles SET_EVENT_DETAILS as expected', (t) => {
