@@ -29211,6 +29211,9 @@
 	                'div',
 	                null,
 	                _react2.default.createElement('input', {
+	                    onChange: function onChange(e) {
+	                        return handleInput(e.target.value, "");
+	                    },
 	                    ref: 'searchField',
 	                    id: id,
 	                    defaultValue: value,
@@ -29429,10 +29432,12 @@
 	        null,
 	        _react2.default.createElement('input', {
 	            type: 'date',
+	            value: value.date,
 	            placeholder: 'Date',
 	            onChange: handleDate.bind(undefined, inputKey) }),
 	        _react2.default.createElement('input', {
 	            type: 'time',
+	            value: value.time,
 	            placeholder: 'Time',
 	            onChange: function onChange(e) {
 	                return handleTime(inputKey, e);

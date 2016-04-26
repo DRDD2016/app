@@ -79,7 +79,7 @@ function handleNewEventRequest (state, action) {
         ...state,
         isFetching: action.isFetching,
         didSave: action.didSave,
-        payload: action.payload
+        error: action.payload
     };
 }
 

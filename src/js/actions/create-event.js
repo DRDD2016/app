@@ -78,7 +78,7 @@ export function newEventFailure (error) {
     return {
         type: NEW_EVENT_FAILURE,
         isFetching: false,
-        payload: error,
+        error: error,
         didSave: false
     };
 }
