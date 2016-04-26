@@ -29,8 +29,8 @@ exports.init = (port, callback) => {
         server.auth.strategy('facebook', 'bell', {
             provider: 'facebook',
             password: 'cookie_encryption_password_secure',
-            clientId: '612765462219386',
-            clientSecret: '2880756f863270ac97a9500ef80f64a3',
+            clientId: process.env.CLIENT_ID,
+            clientSecret: process.env.CLIENT_SECRET,
             isSecure: false,
             scope: ['user_friends', 'user_about_me', 'publish_actions']
         });
