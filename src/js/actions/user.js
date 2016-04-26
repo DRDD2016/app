@@ -9,8 +9,9 @@ export const GET_USER_FAILURE = "GET_USER_FAILURE";
 export function getUser () {
 
     var id = document.cookie.split(';')[0];
+
     return (dispatch) => {
-        console.log("getUser");
+
         dispatch(getUserRequest());
         axios.get('/get-user?'+ id)
         .then((response) => {
@@ -18,20 +19,20 @@ export function getUser () {
             dispatch(getUserSuccess(response.data));
         })
         .catch((error) => {
-            console.log(error);
+            
             dispatch(getUserFailure(error));
         });
     };
 }
 
-function getUserRequest () {
+export function getUserRequest () {
     return {
         type: GET_USER_REQUEST,
         isFetching: true
     };
 }
 
-function getUserSuccess (data) {
+export function getUserSuccess (data) {
     return {
         type: GET_USER_SUCCESS,
         isFetching: false,
@@ -39,7 +40,7 @@ function getUserSuccess (data) {
     };
 }
 
-function getUserFailure (error) {
+export function getUserFailure (error) {
     return {
         type: GET_USER_FAILURE,
         isFetching: false,
