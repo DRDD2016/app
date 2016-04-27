@@ -3,6 +3,7 @@ var client = require('./init.js');
 function getUser (id, callback) {
 
     var hashKey = 'user:' + id;
+    console.log(hashKey, '----hashkey');
     client.hgetallAsync(hashKey)
         .then((response) => {
             console.log(response,'---response');
