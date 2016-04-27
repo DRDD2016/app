@@ -5,9 +5,11 @@ function getUser (id, callback) {
     var hashKey = 'user:' + id;
     client.hgetallAsync(hashKey)
         .then((response) => {
+            console.log(response,'---response');
 
-            if (!response)
-                throw new Error;
+            if (!response) {
+                throw new Error("problem getting user");
+            }
             delete response.token;
             return response;
         })
@@ -18,7 +20,6 @@ function getUser (id, callback) {
             }
         })
         .catch((error) => {
-            console.log(4);
             console.error("Error getting user info from database:", error.cause);
             callback(error);
         });
