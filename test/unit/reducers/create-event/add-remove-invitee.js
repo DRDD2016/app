@@ -36,3 +36,33 @@ test('Reducer handles ADD_INVITEE as expected', (t) => {
     t.deepEqual(nextState, expected, "ADD_INVITEE sets state correctly");
     t.end();
 });
+
+test('Reducer handles REMOVE_INVITEE as expected', (t) => {
+    const initialState = {
+        invitees: [{
+            name:"sohil"
+        }],
+        friends: []
+    };
+
+    const data = {
+        name: "sohil",
+    };
+
+    const action = {
+        type: "REMOVE_INVITEE",
+        data: data,
+        index: 0
+    };
+
+    const nextState = reducer(initialState, action);
+    const expected = {
+        invitees: [],
+        friends: [{
+            name:"sohil"
+        }]
+    };
+
+    t.deepEqual(nextState, expected, "REMOVE_INVITEE sets state correctly");
+    t.end();
+});

@@ -3,7 +3,7 @@ import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
          ADD_INPUT, REMOVE_INPUT,
          NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE,
          GET_FB_FRIENDS_REQUEST, GET_FB_FRIENDS_SUCCESS, GET_FB_FRIENDS_FAILURE,
-         ADD_INVITEE } from '../actions/create-event.js';
+         ADD_INVITEE, REMOVE_INVITEE } from '../actions/create-event.js';
 
 const initialState = {
     eventDetails: {
@@ -62,6 +62,9 @@ export default function createEvent(state = initialState, action) {
 
     case ADD_INVITEE:
         return addInvitee(state, action);
+
+    case REMOVE_INVITEE:
+        return removeInvitee(state, action);
 
     default:
         return state;
@@ -150,6 +153,15 @@ function addInvitee (state, action) {
     let newState = update(state, {
         invitees: {$push: [action.data]},
         friends: {$splice: [[action.index, 1]]}
+    });
+    return newState;
+}
+
+function removeInvitee (state, action) {
+
+    let newState = update(state, {
+        friends: {$push: [action.data]},
+        invitees: {$splice: [[action.index, 1]]}
     });
     return newState;
 }

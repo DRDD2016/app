@@ -16,12 +16,21 @@ export const GET_FB_FRIENDS_REQUEST = "GET_FB_FRIENDS_REQUEST";
 export const GET_FB_FRIENDS_SUCCESS = "GET_FB_FRIENDS_SUCCESS";
 export const GET_FB_FRIENDS_FAILURE = "GET_FB_FRIENDS_FAILURE";
 export const ADD_INVITEE = "ADD_INVITEE";
+export const REMOVE_INVITEE = "REMOVE_INVITEE";
 
 
 export function addInvitee(friend, index) {
     return {
         type: ADD_INVITEE,
         data: friend,
+        index
+    };
+}
+
+export function removeInvitee(invitee, index) {
+    return {
+        type: REMOVE_INVITEE,
+        data: invitee,
         index
     };
 }
