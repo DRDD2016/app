@@ -1,11 +1,28 @@
 import test from 'tape';
-import { newEventRequest } from '../../../src/js/actions/create-event.js';
 import configureMockStore from 'redux-mock-store';
 import nock from 'nock';
 import thunk from 'redux-thunk';
+import { NEW_EVENT_REQUEST, newEvent } from '../../../../src/js/actions/create-event.js';
+import createThunk from '../../../utils/mock-thunk.js';
+
+test('newEvent async action creator returns expected action', (t) => {
+    let actual;
+    const { dispatch, queue } = createThunk();
+    dispatch(newEvent());
+
+    [{...actual}] = queue;
+
+    const expected = {
+        type: NEW_EVENT_REQUEST,
+        isFetching: true
+    };
+    t.deepEqual(actual, expected, "newEvent return the NEW_EVENT_SUCCESS action");
+    t.end();
+});
 
 
 const mockStore = configureMockStore([thunk]);
+
 
 
 test.skip('testing the NEW_EVENT_REQUEST works as expected', (t) => {
