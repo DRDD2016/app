@@ -15,6 +15,25 @@ export const GET_FB_FRIENDS = "GET_FB_FRIENDS";
 export const GET_FB_FRIENDS_REQUEST = "GET_FB_FRIENDS_REQUEST";
 export const GET_FB_FRIENDS_SUCCESS = "GET_FB_FRIENDS_SUCCESS";
 export const GET_FB_FRIENDS_FAILURE = "GET_FB_FRIENDS_FAILURE";
+export const ADD_INVITEE = "ADD_INVITEE";
+export const REMOVE_INVITEE = "REMOVE_INVITEE";
+
+
+export function addInvitee(friend, index) {
+    return {
+        type: ADD_INVITEE,
+        data: friend,
+        index
+    };
+}
+
+export function removeInvitee(invitee, index) {
+    return {
+        type: REMOVE_INVITEE,
+        data: invitee,
+        index
+    };
+}
 
 export function getFBFriends () {
 
@@ -27,20 +46,20 @@ export function getFBFriends () {
             dispatch(getFBFriendsSuccess(response.data));
         })
         .catch((error) => {
-            console.log(error,'got an error invitees');
             dispatch(getFBFriendsFailure(error));
         });
     };
 }
 
-function getFBFriendsRequest () {
+export function getFBFriendsRequest () {
     return {
         type: GET_FB_FRIENDS_REQUEST,
-        isFetching: true
+        isFetching: true,
+        data: []
     };
 }
 
-function getFBFriendsSuccess (data) {
+export function getFBFriendsSuccess (data) {
     return {
         type: GET_FB_FRIENDS_SUCCESS,
         isFetching: false,
@@ -48,7 +67,7 @@ function getFBFriendsSuccess (data) {
     };
 }
 
-function getFBFriendsFailure (error) {
+export function getFBFriendsFailure (error) {
     return {
         type: GET_FB_FRIENDS_FAILURE,
         isFetching: false,

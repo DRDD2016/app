@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setEventDetails } from '../actions/create-event.js';
+import { getFBFriends, setEventDetails } from '../actions/create-event.js';
 import EventDetails from '../components/event-details.jsx';
 
 const mapStateToProps = (state) => {
+    let shouldGetFBFriends = state.createEvent.invitees.length === 0 && state.createEvent.friends.length === 0;
     return {
-        eventDetails: state.createEvent.eventDetails
+        eventDetails: state.createEvent.eventDetails,
+        shouldGetFBFriends
     };
 };
 
@@ -15,6 +17,9 @@ const mapDispatchToProps = (dispatch) => {
         handleChange: (inputType, event) => {
 
             dispatch(setEventDetails(event.target.value, inputType));
+        },
+        getFBFriends: () => {
+            dispatch(getFBFriends());
         }
     };
 };

@@ -14,7 +14,7 @@ test('Reducer handles GET_FB_FRIENDS_REQUEST as expected', (t) => {
     const nextState = reducer(initialState, action);
     const expected = {
         isFetching: true,
-        invitees: undefined,
+        friends: undefined,
         error: undefined
     };
 
@@ -37,7 +37,7 @@ test('Reducer handles GET_FB_FRIENDS_SUCCESS as expected', (t) => {
     const nextState = reducer(initialState, action);
     const expected = {
         isFetching: false,
-        invitees: undefined,
+        friends: undefined,
         error: undefined
     };
 
@@ -60,7 +60,7 @@ test('Reducer handles GET_FB_FRIENDS_FAILURE as expected', (t) => {
     const nextState = reducer(initialState, action);
     const expected = {
         isFetching: false,
-        invitees: undefined,
+        friends: undefined,
         error: undefined
     };
 
