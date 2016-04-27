@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getFBFriends, addInvitee, removeInvitee } from '../actions/create-event.js';
+import { addInvitee, removeInvitee } from '../actions/create-event.js';
 import InviteFriends from '../components/invite-friends.jsx';
 
 const mapStateToProps = (state) => {
@@ -15,10 +15,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        //some functions
-        getFBFriends: () => {
-            dispatch(getFBFriends());
-        },
 
         handleSelected: (id, index) => {
             dispatch(addInvitee(id, index));

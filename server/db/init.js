@@ -17,7 +17,7 @@ if (parsedURL.auth) {
 }
 
 client.on('error', (err) => {
-    throw new Error(err);
+    console.error(err);
 });
 
 module.exports = client;

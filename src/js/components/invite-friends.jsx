@@ -8,14 +8,10 @@ class InviteFriends extends React.Component {
         super(props);
     }
 
-    componentWillMount() {
-        //dispatch action here.
-        this.props.getFBFriends();
-    }
     render () {
         var friends = this.props.friends.map((friendData, index) => {
             return (
-                  <div key={ friendData.id } className="item">
+                  <div key={ index } className="item">
                         <div className="right floated content">
                             <div onClick={ (e) => this.props.handleSelected(friendData, index) } className="ui button">Invite</div>
                         </div>

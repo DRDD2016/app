@@ -55,7 +55,8 @@ export function getFBFriends () {
 function getFBFriendsRequest () {
     return {
         type: GET_FB_FRIENDS_REQUEST,
-        isFetching: true
+        isFetching: true,
+        data: []
     };
 }
 
