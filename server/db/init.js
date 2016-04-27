@@ -4,8 +4,8 @@ var bluebird = require('bluebird');
 
 bluebird.promisifyAll(redis);
 
-// var dbURL = process.env.REDIS_URL;
-var dbURL = process.env.DEVELOPMENT || process.env.REDIS_URL;
+var dbURL = process.env.REDIS_URL;
+// var dbURL = process.env.DEVELOPMENT || process.env.REDIS_URL;
 
 
 var parsedURL = url.parse(dbURL);
