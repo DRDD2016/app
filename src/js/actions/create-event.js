@@ -46,13 +46,12 @@ export function getFBFriends () {
             dispatch(getFBFriendsSuccess(response.data));
         })
         .catch((error) => {
-            console.log(error,'got an error invitees');
             dispatch(getFBFriendsFailure(error));
         });
     };
 }
 
-function getFBFriendsRequest () {
+export function getFBFriendsRequest () {
     return {
         type: GET_FB_FRIENDS_REQUEST,
         isFetching: true,
@@ -60,7 +59,7 @@ function getFBFriendsRequest () {
     };
 }
 
-function getFBFriendsSuccess (data) {
+export function getFBFriendsSuccess (data) {
     return {
         type: GET_FB_FRIENDS_SUCCESS,
         isFetching: false,
@@ -68,7 +67,7 @@ function getFBFriendsSuccess (data) {
     };
 }
 
-function getFBFriendsFailure (error) {
+export function getFBFriendsFailure (error) {
     return {
         type: GET_FB_FRIENDS_FAILURE,
         isFetching: false,

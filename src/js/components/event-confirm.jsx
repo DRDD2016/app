@@ -31,7 +31,7 @@ const EventConfirm = ({ data, eventDetails, eventWhat, eventWhere, eventWhen, in
                 <div className="item">
                     <i className="sidebar icon"></i>
                     <div className="content">
-                        {eventDetails.description}
+                        {eventDetails.eventDescription}
                     </div>
                 </div>
             </div>
