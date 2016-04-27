@@ -1,6 +1,6 @@
 import test from 'tape';
-import { ADD_INVITEE } from '../../../../src/js/actions/add-invitee.js';
-import { addInvitee } from '../../../../src/js/actions/add-invitee.js';
+import { ADD_INVITEE } from '../../../../src/js/actions/create-event.js';
+import { addInvitee } from '../../../../src/js/actions/create-event.js';
 
 test('addInvitee creates the correct action', (t) => {
 
@@ -17,9 +17,10 @@ test('addInvitee creates the correct action', (t) => {
             lastName: "potter",
             photoURL: "http",
             id: 12345678
-        }
+        },
+        index: 0
     };
-    const actual = addInvitee(data);
+    const actual = addInvitee(data, 0);
 
     t.deepEqual(actual, expected);
     t.end();

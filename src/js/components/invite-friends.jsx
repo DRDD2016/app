@@ -13,20 +13,49 @@ class InviteFriends extends React.Component {
         this.props.getFBFriends();
     }
     render () {
-        var friends = this.props.friends.map((object) => {
+        var friends = this.props.friends.map((friendData, index) => {
             return (
-                <li onClick={(e) => this.props.handleSelected(object.id)} key={object.firstName}>
-                    {object.firstName} {object.lastName} <br/>
-                    <img className="profile-photo" src={object.photoURL} />
-                </li>
+                  <div key={ friendData.id } className="item">
+                        <div className="right floated content">
+                            <div onClick={ (e) => this.props.handleSelected(friendData, index) } className="ui button">Invite</div>
+                        </div>
+                        <img className="ui avatar image" src={ friendData.photoURL } />
+                        <div className="content">
+                            { friendData.firstName } { friendData.lastName }
+                        </div>
+                  </div>
             );
+        });
+
+        var invitees = this.props.invitees.map((inviteeData, index) => {
+            if (!inviteeData) {
+                return (
+                    <div>
+                        <p> Add your Friends to see them here </p>
+                    </div>
+                );
+            } else {
+                return (
+                    <div onClick={ (e) => this.props.removeSelected(inviteeData, index) } key={inviteeData.id} className=" blue ui image label">
+                          <img src={ inviteeData.photoURL} />
+                          { inviteeData.firstName }
+                          <i className="delete icon"></i>
+                    </div>
+
+                );
+            }
         });
         return (
             <div>
                 <h3> Invite your Friends! </h3>
-                <ul>
+                <div>
+                    {invitees}
+                </div>
+
+                <div className="ui middle aligned divided list">
                     {friends}
-                </ul>
+                </div>
+
 
 
                 <button>

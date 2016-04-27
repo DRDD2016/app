@@ -148,7 +148,8 @@ function removeInput (state, action) {
 function addInvitee (state, action) {
 
     let newState = update(state, {
-        invitees: {$push: [action.data]}
+        invitees: {$push: [action.data]},
+        friends: {$splice: [[action.index, 1]]}
     });
     return newState;
 }

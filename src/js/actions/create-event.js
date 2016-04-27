@@ -18,10 +18,11 @@ export const GET_FB_FRIENDS_FAILURE = "GET_FB_FRIENDS_FAILURE";
 export const ADD_INVITEE = "ADD_INVITEE";
 
 
-export function addInvitee(friend) {
+export function addInvitee(friend, index) {
     return {
         type: ADD_INVITEE,
-        data: friend
+        data: friend,
+        index
     };
 }
 
