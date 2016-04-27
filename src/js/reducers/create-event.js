@@ -23,6 +23,7 @@ const initialState = {
             time: ''
         }
     },
+    friends: [],
     invitees: [],
     isFetching: false,
     error: undefined,
@@ -69,7 +70,7 @@ function handleFBFriends (state, action) {
     return {
         ...state,
         isFetching: action.isFetching,
-        invitees: action.data,
+        friends: action.data,
         error: action.error
     };
 }

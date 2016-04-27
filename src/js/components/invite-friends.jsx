@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router';
 import axios from 'axios';
 
-class Invitees extends React.Component {
+class InviteFriends extends React.Component {
     constructor(props){
         super(props);
     }
@@ -13,9 +13,9 @@ class Invitees extends React.Component {
         this.props.getFBFriends();
     }
     render () {
-        var friends = this.props.invitees.map((object) => {
+        var friends = this.props.friends.map((object) => {
             return (
-                <li key={object.firstName}>
+                <li onClick={(e) => this.props.invite(object.id)} key={object.firstName}>
                     {object.firstName} {object.lastName} <br/>
                     <img className="profile-photo" src={object.photoURL} />
                 </li>
@@ -38,4 +38,4 @@ class Invitees extends React.Component {
 }
 
 
-export default Invitees;
+export default InviteFriends;

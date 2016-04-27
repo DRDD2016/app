@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getFBFriends } from '../actions/create-event.js';
-import Invitees from '../components/invitees.jsx';
+import InviteFriends from '../components/invite-friends.jsx';
 
 const mapStateToProps = (state) => {
-    let data = state.createEvent.invitees;
+    let friends = state.createEvent.friends;
+    let invitees = state.createEvent.invitees;
+
     return {
-        invitees: data
+        friends: friends,
+        invitees: invitees
     };
 };
 
@@ -15,14 +18,18 @@ const mapDispatchToProps = (dispatch) => {
         //some functions
         getFBFriends: () => {
             dispatch(getFBFriends());
+        },
+
+        invite: (id) => {
+            dispatch(addInvitee(id));
         }
     };
 };
 
 
-const InviteesContainer = connect(
+const InviteFriendsContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Invitees);
+)(InviteFriends);
 
-export default InviteesContainer;
+export default InviteFriendsContainer;
