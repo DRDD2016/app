@@ -15,6 +15,15 @@ export const GET_FB_FRIENDS = "GET_FB_FRIENDS";
 export const GET_FB_FRIENDS_REQUEST = "GET_FB_FRIENDS_REQUEST";
 export const GET_FB_FRIENDS_SUCCESS = "GET_FB_FRIENDS_SUCCESS";
 export const GET_FB_FRIENDS_FAILURE = "GET_FB_FRIENDS_FAILURE";
+export const ADD_INVITEE = "ADD_INVITEE";
+
+
+export function addInvitee(friend) {
+    return {
+        type: ADD_INVITEE,
+        data: friend
+    };
+}
 
 export function getFBFriends () {
 

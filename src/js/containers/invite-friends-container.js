@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(getFBFriends());
         },
 
-        invite: (id) => {
+        handleSelected: (id) => {
             dispatch(addInvitee(id));
         }
     };

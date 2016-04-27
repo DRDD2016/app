@@ -15,7 +15,7 @@ class InviteFriends extends React.Component {
     render () {
         var friends = this.props.friends.map((object) => {
             return (
-                <li onClick={(e) => this.props.invite(object.id)} key={object.firstName}>
+                <li onClick={(e) => this.props.handleSelected(object.id)} key={object.firstName}>
                     {object.firstName} {object.lastName} <br/>
                     <img className="profile-photo" src={object.photoURL} />
                 </li>
