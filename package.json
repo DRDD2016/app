@@ -63,11 +63,10 @@
     "style-loader": "^0.13.1",
     "tap-spec": "^4.1.1",
     "tape": "^4.5.1",
-    "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
-     "axios": "^0.9.1",
+    "axios": "^0.9.1",
     "bell": "^7.5.1",
     "bluebird": "^3.3.5",
     "boom": "^3.1.2",
@@ -76,6 +75,7 @@
     "hapi-auth-cookie": "^6.1.1",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
-    "redis": "^2.6.0-1"
+    "redis": "^2.6.0-1",
+    "webpack": "^1.12.14"
   }
 }
