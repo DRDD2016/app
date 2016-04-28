@@ -55,10 +55,17 @@ exports.init = (port, callback) => {
                     } else {
 
                         getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function(url) {
-                            addUser(request.auth.credentials, url);
+                            addUser(request.auth.credentials, url, (error, result) => {
+
+                                if (error) {
+                                    reply(new Error("Could not register user"));
+                                } else {                            
+                                    reply.redirect('/#/feed')
+                                         .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
+                                }
+                            });
                         });
-                        reply.redirect('/#/feed')
-                             .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
+
                     }
                 }
             }

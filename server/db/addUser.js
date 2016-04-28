@@ -1,6 +1,6 @@
 var client = require('./init.js');
 
-function addUser (data, url) {
+function addUser (data, url, callback) {
 
     var userKey = 'user:' + data.profile.id;
 
@@ -10,8 +10,12 @@ function addUser (data, url) {
                      'id', data.profile.id,
                      'token', data.token,
                      'photoURL', url)
+        .then(() => {
+            callback(null, true);
+        })
         .catch((error) => {
             console.error('Error adding user to db:', error.cause);
+            callback(error);
         });
 }
 
