@@ -4,7 +4,7 @@ import test from 'tape';
 import React from 'react';
 import TestUtils, { renderIntoDocument, findRenderedDOMComponentWithTag } from 'react-addons-test-utils';
 import AppContainer from '../../src/js/containers/app-container.js';
-import initStore from '../../src/js/init-store.js';
+import { initStore } from '../../src/js/init-store.js';
 
 test('App displays any errors in state', (t) => {
 
