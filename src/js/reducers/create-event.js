@@ -7,7 +7,8 @@ import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
 
 const initialState = {
     eventDetails: {
-
+        eventName: '',
+        eventDescription: ''
     },
     eventWhat: {
         0:''

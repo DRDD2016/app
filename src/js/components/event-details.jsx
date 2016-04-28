@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-class CreateEvent extends React.Component {
+class EventDetails extends React.Component {
     constructor(props){
         super(props);
     }
@@ -48,4 +48,4 @@ class CreateEvent extends React.Component {
     }
 }
 
-export default CreateEvent;
+export default EventDetails;
