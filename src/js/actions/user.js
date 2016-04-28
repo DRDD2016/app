@@ -8,7 +8,8 @@ export const GET_USER_FAILURE = "GET_USER_FAILURE";
 
 export function getUser () {
 
-    var id = document.cookie.split(';')[0];
+    var matchCookie = document.cookie.match(/sparkID=\d+/);
+    var id = matchCookie[0];
 
     return (dispatch) => {
 
@@ -19,7 +20,7 @@ export function getUser () {
             dispatch(getUserSuccess(response.data));
         })
         .catch((error) => {
-            
+
             dispatch(getUserFailure(error));
         });
     };
