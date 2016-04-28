@@ -186,3 +186,25 @@ Remember to quit Redis client in **all** redis functions with:
 ```js
 client.quit();
 ```
+
+### Tests and cookies
+**Problem**
+* After using regex to obtain cookie, got error
+```bash
+Cannot get property [0] of null
+```
+* This is because there was no cookie in the test envirionment.  
+* Previously, the cookie would have been `undefined` and slipped through unnoticed.
+
+**Solution**
+* Configure jsdom to hold a fake cookie.
+```js
+import jsdom from 'jsdom';
+
+const options = {
+    cookie: "sparkID=12345678; path=/"
+};
+
+const doc = jsdom.jsdom('<!doctype html><html><body></body></html>', options);
+/* ... rest of code */
+```
