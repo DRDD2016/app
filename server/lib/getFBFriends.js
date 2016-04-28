@@ -12,7 +12,8 @@ function getFBFriends (token, callback) {
         (response) => {
             if (response && !response.error) {
                 mapData(response.data, 0, [], function (result) {
-                    callback(result)
+
+                    callback(null, result);
                 });
 
             } else {
@@ -33,7 +34,7 @@ function mapData (array, index, acc, cb) {
         return;
     } else {
 
-        getUser(array[index].id, (userData) => {
+        getUser(array[index].id, (error, userData) => {
             acc.push(userData);
             return mapData(array, ++index, acc, cb);
         });
