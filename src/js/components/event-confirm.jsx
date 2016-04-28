@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 import ConfirmEventWhat from './create-event/confirm-event-what.jsx';
 import ConfirmEventWhereorWhen from './create-event/confirm-event-where-or-when.jsx';
 
-const EventConfirm = ({ data, eventDetails, eventWhat, eventWhere, eventWhen, invitees, saveEvent }) => {
+const EventConfirm = ({ data, saveEvent }) => {
 
-    const invitedFriends = invitees.map((inviteeObject) => {
+    const invitedFriends = data.invitees.map((inviteeObject) => {
         return (
-            <div key={ inviteeObject.id }className="item">
+            <div key={ inviteeObject.id } className="item">
                 <img className="ui avatar image" src={inviteeObject.photoURL} />
                 <div className="content">
                     <a className="header">{inviteeObject.firstName}</a>
@@ -25,27 +25,27 @@ const EventConfirm = ({ data, eventDetails, eventWhat, eventWhere, eventWhen, in
                 <div className="item">
                     <i className="remove bookmark icon"></i>
                     <div className="content">
-                        {eventDetails.eventName}
+                        { data.eventName }
                     </div>
                 </div>
                 <div className="item">
                     <i className="sidebar icon"></i>
                     <div className="content">
-                        {eventDetails.eventDescription}
+                        { data.eventDescription }
                     </div>
                 </div>
             </div>
 
             <ConfirmEventWhat
-                eventWhat = {eventWhat}
+                eventWhat = { data.eventWhat }
             />
 
             <ConfirmEventWhereorWhen
-                eventWhereorWhen = {eventWhere}
+                eventWhereorWhen = { data.eventWhere }
             />
 
             <ConfirmEventWhereorWhen
-                    eventWhereorWhen = {eventWhen}
+                    eventWhereorWhen = { data.eventWhen }
                 />
 
             <div className="ui very relaxed horizontal list">

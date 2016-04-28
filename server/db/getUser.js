@@ -17,7 +17,7 @@ function getUser (id, callback) {
         .then((userInfo) => {
 
             if (!userInfo.token) {
-                callback(userInfo);
+                callback(null, userInfo);
             }
         })
         .catch((error) => {

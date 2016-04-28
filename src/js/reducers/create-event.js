@@ -11,7 +11,7 @@ const initialState = {
         eventDescription: ''
     },
     eventWhat: {
-        0:''
+        0: ''
     },
     eventWhere: {
         0: {
@@ -29,7 +29,8 @@ const initialState = {
     invitees: [],
     isFetching: false,
     error: undefined,
-    didSave: undefined
+    didSave: undefined,
+    isPoll: undefined
 };
 export default function createEvent(state = initialState, action) {
 

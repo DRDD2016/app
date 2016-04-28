@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addInput(nextInputKey, "eventWhere"));
         },
 
-        removeInput: () => {
-            dispatch(removeInput(nextInputKey, "eventWhere"));
+        removeInput: (lastInputKey) => {
+            dispatch(removeInput(lastInputKey, "eventWhere"));
         }
     };
 };

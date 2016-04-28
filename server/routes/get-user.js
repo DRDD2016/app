@@ -12,9 +12,11 @@ exports.register = (server, options, next) => {
 
                 var id = request.query.sparkID;
 
-                getUser(id, (userData) => {
+                getUser(id, (error, userData) => {
 
-                    reply(userData);
+                    var response = error || userData;
+
+                    reply(response);
                 });
             }
         }
