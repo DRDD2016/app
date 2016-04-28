@@ -37,12 +37,13 @@ export function removeInvitee(invitee, index) {
 
 export function getFBFriends () {
 
-    var id = document.cookie.split(';')[0];
+    var matchCookie = document.cookie.match(/sparkID=\d+/);
+    var id = matchCookie[0];
+
     return (dispatch) => {
         dispatch(getFBFriendsRequest());
         axios.get('/new-event/invitees?' + id)
         .then((response) => {
-            console.log(response, 'got the correct response');
             dispatch(getFBFriendsSuccess(response.data));
         })
         .catch((error) => {
