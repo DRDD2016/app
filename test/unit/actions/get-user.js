@@ -3,7 +3,7 @@ import { GET_USER, GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE } from '
 import { getUser, getUserRequest, getUserSuccess, getUserFailure } from '../../../src/js/actions/user.js';
 import createThunk from '../../utils/mock-thunk.js';
 
-test.skip('getUser async action creator returns expected action', (t) => {
+test('getUser async action creator returns expected action', (t) => {
     let actual;
     const { dispatch, queue } = createThunk();
     dispatch(getUser());

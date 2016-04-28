@@ -4,7 +4,7 @@ import { getFBFriends, getFBFriendsRequest, getFBFriendsSuccess, getFBFriendsFai
 import createThunk from '../../../utils/mock-thunk.js';
 
 
-test.skip('getFBFriends async action creator returns expected action', (t) => {
+test('getFBFriends async action creator returns expected action', (t) => {
     let actual;
     const { dispatch, queue } = createThunk();
     dispatch(getFBFriends());
