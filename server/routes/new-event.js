@@ -1,3 +1,5 @@
+var saveNewEvent = require('../db/saveNewEvent.js');
+
 exports.register = (server, options, next) => {
 
     server.route([{
@@ -6,9 +8,15 @@ exports.register = (server, options, next) => {
         config: {
             description: 'saves newly created events.',
 
-            handler: (request,reply) => {
-                console.log(request.payload);
-                reply('done');
+            handler: (request, reply) => {
+
+                var stringifiedData = stringifyObjectValues(request.payload);
+
+                saveNewEvent(stringifiedData, (error, result) => {
+
+                    var verdict = error || result;
+                    reply(verdict);
+                });
             }
         }
     }]);
@@ -19,3 +27,14 @@ exports.register = (server, options, next) => {
 exports.register.attributes = {
     name: 'NewEvent'
 };
+
+function stringifyObjectValues (object) {
+
+    for (var value in object) {
+
+        if (typeof object[value] === 'object') {
+            object[value] = JSON.stringify(object[value]);
+        }
+    }
+    return object;
+}

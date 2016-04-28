@@ -1,19 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { newEventRequest } from '../actions/create-event.js';
+import { newEvent } from '../actions/create-event.js';
 import EventConfirm from '../components/event-confirm.jsx';
+import { store } from '../index.jsx';
+
+function isPoll (data) {
+
+    return !!data.eventWhat[1] || !!data.eventWhere[1] || !!data.eventWhen[1];
+}
 
 const mapStateToProps = (state) => {
 
-    let data = state.createEvent;
+    const data = {
+        eventName: state.createEvent.eventDetails.eventName,
+        eventDescription: state.createEvent.eventDetails.eventDescription,
+        eventDetails: state.createEvent.eventDetails,
+        eventWhat: state.createEvent.eventWhat,
+        eventWhere: state.createEvent.eventWhere,
+        eventWhen: state.createEvent.eventWhen,
+        invitees: state.createEvent.invitees
+    };
 
     return {
-        data: data,
-        eventDetails: data.eventDetails,
-        eventWhat: data.eventWhat,
-        eventWhere: data.eventWhere,
-        eventWhen: data.eventWhen,
-        invitees: data.invitees
+        data: data
     };
 };
 
@@ -22,7 +31,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
         saveEvent: (data) => {
             // DO SOMETHING PRETTY TO DATA
-            dispatch(newEventRequest(data));
+            const state = store.getState();
+            data.isPoll = isPoll(data);
+            data.hostID = state.user.id;
+            console.log("data", data);
+            dispatch(newEvent(data));
         },
 
         discardEvent: () => {
