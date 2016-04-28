@@ -22,7 +22,8 @@ exports.register = (server, options, next) => {
                             // get id from fb itself
                             // get user info from db
                         getFBFriends(token, function (error, friends) {
-                            
+                            console.log(error, 'error');
+                            console.log(friends, 'friends....');
                             if (error) {
                                 reply(error);
                             } else {
