@@ -44,7 +44,6 @@ export function getFBFriends () {
         dispatch(getFBFriendsRequest());
         axios.get('/new-event/invitees?' + id)
         .then((response) => {
-            console.log(response, 'got the correct response');
             dispatch(getFBFriendsSuccess(response.data));
         })
         .catch((error) => {
