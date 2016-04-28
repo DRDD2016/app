@@ -18,7 +18,7 @@ import EventWhenContainer from './containers/event-when-container.js';
 import EventConfirmContainer from './containers/event-confirm-container.js';
 import InviteFriendsContainer from './containers/invite-friends-container.js';
 
-import store from './init-store.js';
+import { store } from './init-store.js';
 
 const routes = (
     <Route path='/' component={ AppContainer }>
