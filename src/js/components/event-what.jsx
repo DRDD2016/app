@@ -41,13 +41,13 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             { inputs }
             <div className="row">
                 <div className="three columns">
-                    <button className={ addInputClasses } onClick={ addInput.bind(this, inputCount.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput(inputCount.length) }>
                         Add input
                     </button>
                 </div>
 
                 <div className="three columns">
-                    <button className={ removeInputClasses } onClick={ removeInput }>
+                    <button className={ removeInputClasses } onClick={ (e) => removeInput(inputCount.length) }>
                         Remove input
                     </button>
                 </div>
