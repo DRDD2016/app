@@ -34,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
             const state = store.getState();
             data.isPoll = isPoll(data);
             data.hostID = state.user.id;
-            console.log("data", data);
             dispatch(newEvent(data));
         },
 

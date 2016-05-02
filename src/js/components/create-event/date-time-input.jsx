@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
-    console.log(value,'-----bottom level====');
+    
     return (
         <div>
             <input
