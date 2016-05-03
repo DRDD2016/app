@@ -8,14 +8,12 @@ exports.register = (server, options, next) => {
         config: {
             description: 'get user details and pass it down in the response',
 
-            handler: (request,reply) => {
+            handler: (request, reply) => {
 
-                var id = request.query.sparkID;
-
-                getUser(id, (error, userData) => {
+                getUser(request.query.sparkID, (error, userData) => {
 
                     var response = error || userData;
-
+                    console.log(response, "REPSONSE FROM GETUSER");
                     reply(response);
                 });
             }

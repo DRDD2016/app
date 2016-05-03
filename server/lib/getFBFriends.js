@@ -11,9 +11,9 @@ function getFBFriends (token, callback) {
         {},
         (response) => {
             if (response && !response.error) {
-                mapData(response.data, 0, [], function (result) {
+                mapData(response.data, 0, [], (error, result) => {
 
-                    callback(null, result);
+                    callback(error, result);
                 });
 
             } else {
@@ -25,24 +25,21 @@ function getFBFriends (token, callback) {
 
 module.exports = getFBFriends;
 
-function mapData (array, index, acc, cb) {
-
-
+function mapData (array, index, previous, callback) {
 
     if (index === array.length) {
-        cb(acc);
+        callback(null, previous);
         return;
     } else {
 
         getUser(array[index].id, (error, userData) => {
-            acc.push(userData);
-            return mapData(array, ++index, acc, cb);
+
+            if (error) {
+                return callback(error);
+            }
+
+            previous.push(userData);
+            return mapData(array, ++index, previous, callback);
         });
     }
-}
-
-function getInviteeDetails (id) {
-
-
-
 }

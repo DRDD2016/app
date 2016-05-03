@@ -1,4 +1,5 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
+var createNotification = require('../lib/createNotification.js');
 
 exports.register = (server, options, next) => {
 
@@ -14,8 +15,17 @@ exports.register = (server, options, next) => {
 
                 saveNewEvent(stringifiedData, (error, result) => {
 
-                    var verdict = error || result;
-                    reply(verdict);
+
+                    if (error) {
+                        reply(error);
+                    }
+                    createNotification(_, (error, result) => {
+                        
+                    })
+                    // create notification object
+                    // go to invitees list
+                    // for each invitee, push new notification object
+
                 });
             }
         }

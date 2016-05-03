@@ -11,24 +11,23 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                getUserToken(request.query.sparkID, (error, token) => {
+                /*
+                - get current user's token
+                - get the user's facebook friends
+                    - for each friend, get details from database
+                */
 
-                    // if error, reply error
+                getUserToken(request.query.sparkID, (error, token) => {
+ 
                     if (error) {
                         reply(error);
                     } else {
 
-                        // get fb friend user information
-                            // get id from fb itself
-                            // get user info from db
                         getFBFriends(token, function (error, friends) {
-                            console.log(error, 'error');
+
                             console.log(friends, 'friends....');
-                            if (error) {
-                                reply(error);
-                            } else {
-                                reply(friends);
-                            }
+                            var verdict = error || friends;
+                            reply(verdict);
                         });
                     }
                 });
