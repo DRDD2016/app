@@ -31,28 +31,28 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
     });
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="twelve columns">
-                    <h2>When?</h2>
+        <div className="">
+            <div className="">
+                <div className="row">
+                    <h2 className="twelve columns title">When?</h2>
                 </div>
             </div>
 
             { inputs }
-            <div className="row">
-                <div className="three columns">
+            <div className="">
+                <div className="">
                     <button className={ addInputClasses } onClick={ (e) => addInput(inputCount.length) }>
                         Add input
                     </button>
                 </div>
 
-                <div className="three columns">
+                <div className="">
                     <button className={ removeInputClasses } onClick={ (e) => removeInput(inputCount.length) }>
                         Remove input
                     </button>
                 </div>
 
-                <div className="three columns">
+                <div className="">
                     <button className={ nextButtonClasses }>
                         <Link to='/create-event/invitees'>Next</Link>
                     </button>

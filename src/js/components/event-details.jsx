@@ -14,14 +14,14 @@ class EventDetails extends React.Component {
 
     render () {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="twelve columns">
-                        <h2>Event details</h2>
+            <div className="">
+                <div className="">
+                    <div className="row">
+                        <h2 className="twelve columns title">Event details</h2>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="twelve columns">
+                <div className="">
+                    <div className="">
                         <input
                             onChange={ this.props.handleChange.bind(this, 'eventName') }
                             value={ this.props.eventDetails ? this.props.eventDetails.eventName : '' }
@@ -29,8 +29,8 @@ class EventDetails extends React.Component {
                             placeholder="Event name" />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="twelve columns">
+                <div className="">
+                    <div className="">
                         <input
                             onChange={ this.props.handleChange.bind(this, 'eventDescription') }
                             value={ this.props.eventDetails ? this.props.eventDetails.eventDescription: '' }
@@ -38,9 +38,13 @@ class EventDetails extends React.Component {
                             placeholder="Event description" />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="twelve columns">
-                        <button><Link to='/create-event/what'>Next</Link></button>
+                <div className="">
+                    <div className="">
+                        <Link to='/create-event/what'>
+                            <button>
+                                Next
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

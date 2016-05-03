@@ -2,7 +2,7 @@ import React from 'react';
 
 const Input = ({ onChange, value, placeholder }) => {
     return (
-        <div className="row">
+        <div className="">
             <input
                 defaultValue={ value }
                 onChange={ onChange }
