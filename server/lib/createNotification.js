@@ -2,25 +2,27 @@ var getUser = require('../db/getUser.js');
 
 function createNotification (eventID, eventInfo, callback) {
 
-    if (eventInfo.isPoll) {
+    getUser(eventInfo.hostID, (error, hostInfo) => {
 
-        getUser(eventInfo.hostID, (error, hostInfo) => {
+        var fullName = hostInfo.firstName + " " + hostInfo.lastName;
+        var notification = {
+            eventID: eventID,
+            timestamp: Date.now(),
+            hostName: fullName,
+            hostPhotoURL: hostInfo.photoURL
+        };
+        if (eventInfo.isPoll) {
 
-            var fullName = hostInfo.firstName + " " + hostInfo.lastName;
-
-            var notification = {
-                isPoll: true,
-                eventID: eventID,
-                timestamp: Date.now(),
-                hostName: fullName,
-                hostPhotoURL: hostInfo.photoURL
-            };
-            return callback (error, notification);
-        });
-
-    } else {
-
-    }
+            notification.isPoll = true;
+        } else {
+            
+            notification.isPoll = false;
+            notification.eventWhat = eventInfo.eventWhat;
+            notification.eventWhere = eventInfo.eventWhere;
+            notification.eventWhen = eventInfo.eventWhen;
+        }
+        return callback (error, notification);
+    });
 }
 
 module.exports = createNotification;

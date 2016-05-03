@@ -1,6 +1,5 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var createNotification = require('../lib/createNotification.js');
-var stringifyObjectValues = require('../lib/stringifyObjectValues');
 
 exports.register = (server, options, next) => {
 
@@ -12,9 +11,7 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                var stringifiedData = stringifyObjectValues(request.payload);
-
-                saveNewEvent(stringifiedData, (error, eventID) => {
+                saveNewEvent(request.payload, (error, eventID) => {
 
 
                     if (error) {

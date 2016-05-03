@@ -1,6 +1,9 @@
 var client = require('./init.js');
+var stringifyObjectValues = require('../lib/stringifyObjectValues.js');
 
 function saveNewEvent (event, callback) {
+
+    event = stringifyObjectValues(event);
 
     client.incr("eventKeys", (error, reply) => {
         var eventID = "event:" + reply;
