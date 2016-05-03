@@ -1,6 +1,7 @@
 'use strict';
 
 import test from 'tape';
+import client from '../server/db/init.js';
 
 test('a test', (t) => {
 

@@ -1,6 +1,6 @@
 var FB = require('fb');
 var client = require('../db/init.js');
-var getUser = require('../db/getUser.js');
+var mapFriendsToUsers = require('./mapFriendsToUsers.js');
 
 function getFBFriends (token, callback) {
 
@@ -11,9 +11,9 @@ function getFBFriends (token, callback) {
         {},
         (response) => {
             if (response && !response.error) {
-                mapData(response.data, 0, [], function (result) {
+                mapFriendsToUsers(response.data, (error, result) => {
 
-                    callback(null, result);
+                    callback(error, result);
                 });
 
             } else {
@@ -24,25 +24,3 @@ function getFBFriends (token, callback) {
 }
 
 module.exports = getFBFriends;
-
-function mapData (array, index, acc, cb) {
-
-
-
-    if (index === array.length) {
-        cb(acc);
-        return;
-    } else {
-
-        getUser(array[index].id, (error, userData) => {
-            acc.push(userData);
-            return mapData(array, ++index, acc, cb);
-        });
-    }
-}
-
-function getInviteeDetails (id) {
-
-
-
-}

@@ -1,4 +1,5 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
+var createNotification = require('../lib/createNotification.js');
 
 exports.register = (server, options, next) => {
 
@@ -10,12 +11,19 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                var stringifiedData = stringifyObjectValues(request.payload);
+                saveNewEvent(request.payload, (error, eventID) => {
 
-                saveNewEvent(stringifiedData, (error, result) => {
 
-                    var verdict = error || result;
-                    reply(verdict);
+                    if (error) {
+                        reply(error);
+                    }
+                    // create notification object
+                    createNotification(eventID, request.payload, (error, result) => {
+
+                    });
+                    // go to invitees list
+                    // for each invitee, push new notification object
+
                 });
             }
         }
@@ -27,14 +35,3 @@ exports.register = (server, options, next) => {
 exports.register.attributes = {
     name: 'NewEvent'
 };
-
-function stringifyObjectValues (object) {
-
-    for (var value in object) {
-
-        if (typeof object[value] === 'object') {
-            object[value] = JSON.stringify(object[value]);
-        }
-    }
-    return object;
-}
