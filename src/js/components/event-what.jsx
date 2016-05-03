@@ -9,7 +9,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     let inputs = inputCount.map( (value,i) => {
         return (
             <Input
-                className="twelve columns"
+                className=""
                 onChange={ handleEventWhat.bind(this, i) }
                 key={ i }
                 value={ eventWhatData[value] }
@@ -18,11 +18,11 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     });
 
 
-    let addInputClasses = classnames({
+    let addInputClasses = classnames("one column", "round-button", {
         "hide": inputCount.length >= 3
     });
 
-    let removeInputClasses = classnames({
+    let removeInputClasses = classnames("one column", "round-button", {
         "hide": inputCount.length === 1
     });
 
@@ -31,28 +31,28 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     });
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="twelve columns">
-                    <h2>What?</h2>
+        <div className="">
+            <div className="">
+                <div className="row">
+                    <h2 className="twelve columns title">What?</h2>
                 </div>
             </div>
 
             { inputs }
-            <div className="row">
-                <div className="three columns">
+            <div className="">
+                <div className="row">
                     <button className={ addInputClasses } onClick={ (e) => addInput(inputCount.length) }>
-                        Add input
+                        +
                     </button>
                 </div>
 
-                <div className="three columns">
+                <div className="row">
                     <button className={ removeInputClasses } onClick={ (e) => removeInput(inputCount.length) }>
-                        Remove input
+                        -
                     </button>
                 </div>
 
-                <div className="three columns">
+                <div className="row">
                     <button className={ nextButtonClasses }>
                         <Link to='/create-event/where'>Next</Link>
                     </button>

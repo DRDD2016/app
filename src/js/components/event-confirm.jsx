@@ -10,7 +10,7 @@ const EventConfirm = ({ data, saveEvent }) => {
         return (
             <div key={ inviteeObject.id } className="item">
                 <img className="ui avatar image" src={inviteeObject.photoURL} />
-                <div className="content">
+                <div className="">
                     <a className="header">{inviteeObject.firstName}</a>
                 </div>
             </div>

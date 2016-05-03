@@ -3,7 +3,7 @@ import React from 'react';
 const App = ({ children, error }) => {
 
     return (
-        <div>
+        <div className="container">
             {
                 error &&
                 <h3>Error {error.status} {error.data.error}: {error.data.message}</h3>

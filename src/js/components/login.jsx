@@ -19,14 +19,14 @@ class Login extends React.Component {
     render () {
 
         return (
-            <div className="u-full-width">
-                <div className="row">
+            <div className="">
+                <div className="">
 
-                    <h1 className="twelve rows">Welcome to Spark</h1>
+                    <h1 className="">Welcome to Spark</h1>
                 </div>
-                <div className="row">
+                <div className="">
 
-                    <button className="twelve rows" onClick={ (e) => this.props.login() }>
+                    <button className="" onClick={ (e) => this.props.login() }>
                         Login with Facebook
                     </button>
                 </div>
