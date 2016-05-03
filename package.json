@@ -11,6 +11,7 @@
     "lint": "node_modules/eslint/bin/eslint.js 'src/**/*.@(js|jsx)'",
     "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js cover tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
     "check-coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js check-coverage tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
+    "pre-test": "node ./test/utils/initDB.js",
     "test": "tape -r babel-register --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)' | tap-spec",
     "postinstall": "webpack --config ./webpack.production.config.js --progress --colors"
   },
