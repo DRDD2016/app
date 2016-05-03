@@ -13,14 +13,14 @@ exports.register = (server, options, next) => {
 
                 var stringifiedData = stringifyObjectValues(request.payload);
 
-                saveNewEvent(stringifiedData, (error, result) => {
+                saveNewEvent(stringifiedData, (error, eventID) => {
 
 
                     if (error) {
                         reply(error);
                     }
-                    createNotification(_, (error, result) => {
-                        
+                    createNotification(eventID, request.payload, (error, result) => {
+
                     })
                     // create notification object
                     // go to invitees list

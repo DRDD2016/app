@@ -10,7 +10,7 @@ function saveNewEvent (event, callback) {
                                     "eventWhat", event.eventWhat, "eventWhere", event.eventWhere, "eventWhen", event.eventWhen,
                                     "invitees", event.invitees, "hostID", event.hostID, "isPoll", event.isPoll)
                              .then(() => {
-                                 callback(null, true);
+                                 callback(null, eventID);
                              })
                              .catch((error) => {
                                  callback(error);
