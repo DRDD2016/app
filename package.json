@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/start.js",
-    "start:dev": "npm run env & nodemon server/start.js",
+    "start:dev": "nodemon server/start.js",
     "dev": "node ./src/utils/dev-server.js",
     "build": "webpack --config ./webpack.production.config.js --colors --progress",
-    "env": "source ./env.sh",
     "lint": "node_modules/eslint/bin/eslint.js 'src/**/*.@(js|jsx)'",
     "coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js cover tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
     "check-coverage": "babel-node ./node_modules/babel-istanbul/lib/cli.js check-coverage tape --require ./test/utils/jsdom.js 'test/**/*.@(js|jsx)'",
