@@ -15,10 +15,11 @@ export function getNotifications () {
         dispatch(getNotificationsRequest());
         axios.get('/get-notifications?' + id)
         .then((response) => {
-
+            console.log("is this running");
             dispatch(getNotificationsSuccess(response.data));
         })
         .catch((error) => {
+            console.log("error", error);
             dispatch(getNotificationsFailure(error));
         });
     };

@@ -1,7 +1,9 @@
 var client = require('./init.js');
 
 function getNotifications(id, callback) {
+
     var notificationID = "notifications:" + id;
+
     client.smembersAsync(notificationID)
         .then((response) => {
             console.log(typeof response);
@@ -12,12 +14,12 @@ function getNotifications(id, callback) {
             });
         })
         .then((parsedArray) => {
-            console.log(parsedArray[0]);
-            callback(null, parsedArray);
+        
+            return callback(null, parsedArray);
         })
         .catch((error) => {
             console.log(error);
-            callback(error);
+            return callback(error);
         });
 }
 

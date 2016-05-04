@@ -1,7 +1,8 @@
 var getUser = require('../db/getUser.js');
 
 function createNotification (eventID, eventInfo, callback) {
-    
+
+    console.log(eventInfo, "THIS IS THE EVENT INFO");
     getUser(eventInfo.hostID, (error, hostInfo) => {
         var fullName = hostInfo.firstName + " " + hostInfo.lastName;
 

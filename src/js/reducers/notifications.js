@@ -16,6 +16,7 @@ export default function notifications (state = initialState, action) {
 
     case GET_NOTIFICATIONS_SUCCESS:
         return handleGetNotificationsSuccess(state, action);
+        
     case GET_NOTIFICATIONS_FAILURE:
         return handleGetNotificationsFailure(state, action);
     default:
@@ -33,7 +34,6 @@ function handleGetNotificationsRequest (state, action) {
 
 function handleGetNotificationsSuccess (state, action) {
 
-    console.log(typeof action.data);
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
         data: { $set: action.data }
