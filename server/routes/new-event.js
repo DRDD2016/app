@@ -1,5 +1,6 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var createNotification = require('../lib/createNotification.js');
+var setNotificationsForInvitees = require('../db/setNotificationsForInvitees.js');
 
 exports.register = (server, options, next) => {
 
@@ -10,15 +11,23 @@ exports.register = (server, options, next) => {
             description: 'saves newly created events.',
 
             handler: (request, reply) => {
-
-                saveNewEvent(request.payload, (error, eventID) => {
-
+                var data = request.payload;
+                saveNewEvent(data, (error, eventID) => {
 
                     if (error) {
-                        reply(error);
+                        return reply(error);
                     }
                     // create notification object
-                    createNotification(eventID, request.payload, (error, result) => {
+                    createNotification(eventID, data, (error, notification) => {
+
+                        if (error) {
+                            return reply(error);
+                        }
+
+                        setNotificationsForInvitees(data.invitees, notification, (error, response) => {
+                            var verdict = error || response;
+                            return reply(verdict);
+                        });
 
                     });
                     // go to invitees list

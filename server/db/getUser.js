@@ -5,7 +5,6 @@ function getUser (id, callback) {
     var hashKey = 'user:' + id;
     client.hgetallAsync(hashKey)
         .then((response) => {
-            console.log(response,'---response');
 
             if (response === null) {
                 throw new Error("User does not exist.");
