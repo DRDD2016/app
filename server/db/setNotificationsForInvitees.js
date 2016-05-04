@@ -3,7 +3,7 @@ var client = require('./init.js');
 function setNotificationsForInvitees(invitees, notification, callback) {
     invitees.forEach((elem,index) => {
 
-        var setName = "notification:"+elem.id;
+        var setName = "notifications:" + elem.id;
         client.saddAsync(setName, JSON.stringify(notification))
 
         .then((response) => {

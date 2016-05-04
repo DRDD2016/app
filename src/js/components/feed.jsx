@@ -9,6 +9,7 @@ class Feed extends React.Component {
 
     componentWillMount() {
         this.props.hydrateState();
+        this.props.hydrateFeed();
     }
 
     render () {

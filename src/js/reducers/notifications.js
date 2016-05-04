@@ -2,7 +2,7 @@ import update from 'react-addons-update';
 import { GET_NOTIFICATIONS_REQUEST, GET_NOTIFICATIONS_SUCCESS, GET_NOTIFICATIONS_FAILURE } from '../actions/notifications.js';
 
 const initialState = {
-    notifications: [],
+    data: [],
     isFetching: false,
     error: undefined
 };
@@ -33,9 +33,10 @@ function handleGetNotificationsRequest (state, action) {
 
 function handleGetNotificationsSuccess (state, action) {
 
+    console.log(typeof action.data);
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
-        notifications: { $push: [action.data] }
+        data: { $set: action.data }
     });
     return newState;
 }

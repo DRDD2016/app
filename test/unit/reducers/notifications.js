@@ -4,7 +4,7 @@ import reducer from '../../../src/js/reducers/notifications.js';
 test('Reducer handles GET_NOTIFICATIONS_REQUEST as expected', (t) => {
 
     const initialState = {
-        notifications: [],
+        data: [],
         isFetching: false,
         error: undefined
     };
@@ -14,7 +14,7 @@ test('Reducer handles GET_NOTIFICATIONS_REQUEST as expected', (t) => {
     };
     const actual = reducer(initialState, action);
     const expected = {
-        notifications: [],
+        data: [],
         isFetching: true,
         error: undefined
     };
@@ -25,11 +25,11 @@ test('Reducer handles GET_NOTIFICATIONS_REQUEST as expected', (t) => {
 test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
 
     const initialState = {
-        notifications: [],
+        data: [],
         isFetching: true,
         error: undefined
     };
-    const data = {
+    const data = [{
         isPoll: true,
         timestamp: 87676554462,
         eventID: 'event:101',
@@ -38,7 +38,7 @@ test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
         eventWhat: "Sohil's bowling",
         eventWhere: undefined,
         eventWhen: undefined
-    };
+    }];
     const action = {
         type: "GET_NOTIFICATIONS_SUCCESS",
         isFetching: false,
@@ -46,7 +46,7 @@ test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
     };
     const actual = reducer(initialState, action);
     const expected = {
-        notifications: [
+        data: [
             {
                 isPoll: true,
                 timestamp: 87676554462,
@@ -62,7 +62,8 @@ test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
         error: undefined
     };
 
-    t.deepEqual(actual, expected);
+    t.deepEqual(actual, expected, "Notification is fetched successfully");
+    t.equal(Array.isArray(actual.data), true, "Notifications are inside an array");
     t.end();
 });
 
@@ -70,7 +71,7 @@ test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
 test('Reducer handles GET_NOTIFICATIONS_FAILURE as expected', (t) => {
 
     const initialState = {
-        notifications: [],
+        data: [],
         isFetching: true,
         error: undefined
     };
@@ -84,7 +85,7 @@ test('Reducer handles GET_NOTIFICATIONS_FAILURE as expected', (t) => {
     };
     const actual = reducer(initialState, action);
     const expected = {
-        notifications: [],
+        data: [],
         isFetching: false,
         error: {
             message: "There was an error..."
