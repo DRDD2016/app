@@ -10,21 +10,19 @@ const initialState = {
         eventName: '',
         eventDescription: ''
     },
-    eventWhat: {
-        0: ''
-    },
-    eventWhere: {
-        0: {
+    eventWhat: [''],
+    eventWhere: [
+        {
             placeName: '',
             placeAddress: ''
         }
-    },
-    eventWhen: {
-        0:{
+    ],
+    eventWhen: [
+        {
             date: '',
             time: ''
         }
-    },
+    ],
     friends: [],
     invitees: [],
     isFetching: false,
@@ -104,50 +102,46 @@ function setEventDetails (state, action, key) {
 }
 
 function setEvent (state, action) {
+    let newState = update(state, {
+        [action.eventType]: {$splice: [[action.inputKey, 1, action.data]]}
+    });
 
-    return {
-        ...state,
-        [action.eventType]: {
-            ...state[action.eventType],
-            [action.inputKey]: action.data
-        }
-    };
+    return newState;
 }
 
 function setEventWhen (state, action) {
 
+    let oldValue = state.eventWhen[action.inputKey];
+    let newValue = update(oldValue, {
+        [action.format]: {$set: action.data}
+    });
     let newState = update(state, {
-        eventWhen: {[action.inputKey]: {[action.format]: {$set: action.data}}}
+        'eventWhen': {$splice: [[action.inputKey, 1, newValue]]}
     });
     return newState;
 }
 
 function addInput (state, action) {
 
-    let initialValue = (action.eventType === "eventWhen") ? {} : '';
-
-    return {
-        ...state,
-        [action.eventType]: {
-            ...state[action.eventType],
-            [action.nextInputKey]: initialValue
-        }
+    let initialEventWhen = {
+        date: '',
+        time: ''
     };
+    let initialValue = (action.eventType === "eventWhen") ? initialEventWhen : '';
+
+    let newState = update(state, {
+
+        [action.eventType]: {$push: [initialValue]}
+    });
+    return newState;
 }
 
 function removeInput (state, action) {
 
-    const keys = Object.keys(state[action.eventType]);
-    let newState = {};
-
-    for (let i = 0; i < keys.length - 1; i++) {
-
-        newState[i] = state[action.eventType][i];
-    }
-    return {
-        ...state,
-        [action.eventType]: newState
-    };
+    let newState = update(state, {
+        [action.eventType]: {$splice: [[action.nextInputKey, 1]]}
+    });
+    return newState;
 }
 
 function addInvitee (state, action) {

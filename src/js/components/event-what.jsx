@@ -5,25 +5,24 @@ import Input from './create-event/input.jsx';
 
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
-    let inputCount = Object.keys(eventWhatData);
-    let inputs = inputCount.map( (value,i) => {
+    let inputs = eventWhatData.map( (value, i) => {
         return (
             <Input
                 className=""
                 onChange={ handleEventWhat.bind(this, i) }
                 key={ i }
-                value={ eventWhatData[value] }
+                value={ value }
                 placeholder= "What would you like to do?"
             />);
     });
 
 
     let addInputClasses = classnames("one column", "round-button", {
-        "hide": inputCount.length >= 3
+        "hide": eventWhatData.length >= 3
     });
 
     let removeInputClasses = classnames("one column", "round-button", {
-        "hide": inputCount.length === 1
+        "hide": eventWhatData.length === 1
     });
 
     let nextButtonClasses = classnames({
@@ -41,13 +40,13 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             { inputs }
             <div className="">
                 <div className="row">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(inputCount.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
                         +
                     </button>
                 </div>
 
                 <div className="row">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(inputCount.length) }>
+                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhatData.length - 1) }>
                         -
                     </button>
                 </div>

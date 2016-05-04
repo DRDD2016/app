@@ -5,12 +5,10 @@ import DateTimeInput from './create-event/date-time-input.jsx';
 
 const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTime }) => {
 
-    let inputCount = Object.keys(eventWhenData);
-
-    let inputs = inputCount.map( (value, i) => {
+    let inputs = eventWhenData.map( (value, i) => {
         return (
             <DateTimeInput
-                value={ eventWhenData[value] }
+                value={ value }
                 key={ i }
                 inputKey={ i }
                 handleTime={ handleTime }
@@ -19,11 +17,11 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
     });
 
     let addInputClasses = classnames({
-        "hide": inputCount.length >= 3
+        "hide": eventWhenData.length >= 3
     });
 
     let removeInputClasses = classnames({
-        "hide": inputCount.length === 1
+        "hide": eventWhenData.length === 1
     });
 
     let nextButtonClasses = classnames({
@@ -41,13 +39,13 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(inputCount.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhenData.length) }>
                         Add input
                     </button>
                 </div>
 
                 <div className="">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(inputCount.length) }>
+                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhenData.length - 1) }>
                         Remove input
                     </button>
                 </div>

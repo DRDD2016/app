@@ -12,27 +12,30 @@ test('Reducer handles ADD_INPUT as expected', (t) => {
     };
 
     const initialState = {
-        eventWhen: {
-            0:{
+        eventWhen: [
+            {
                 date: '',
                 time: ''
             }
-        }
+        ]
     };
 
     const nextState = reducer(initialState, action);
 
     const expected = {
-        eventWhen: {
-            0:{
+        eventWhen: [
+            {
                 date: '',
                 time: ''
             },
-            1:{}
-        }
+            {
+                date: '',
+                time: ''
+            }
+        ]
     };
 
-    t.deepEqual(nextState, expected, "eventWhen adds incremented key; value as empty object");
+    t.deepEqual(nextState, expected, "Reducer adds an element to the eventWhen array");
     /*-----*/
     const action2 = {
         type: "ADD_INPUT",
@@ -41,27 +44,27 @@ test('Reducer handles ADD_INPUT as expected', (t) => {
     };
 
     const initialState2 = {
-        eventWhere: {
-            0:{
+        eventWhere: [
+            {
                 placeName: '',
                 placeAddress: ''
             }
-        }
+        ]
     };
 
     const nextState2 = reducer(initialState2, action2);
 
     const expected2 = {
-        eventWhere: {
-            0:{
+        eventWhere: [
+            {
                 placeName: '',
                 placeAddress: ''
             },
-            1:""
-        }
+            ""
+        ]
     };
 
-    t.deepEqual(nextState2, expected2, "eventWhere adds incremented key; value as empty string");
+    t.deepEqual(nextState2, expected2, "Reducer adds an element to the eventWhere array");
     t.end();
 });
 
@@ -74,27 +77,30 @@ test('Reducer handles REMOVE_INPUT as expected', (t) => {
     };
 
     const initialState = {
-        eventWhen: {
-            0:{
+        eventWhen: [
+            {
                 date: '',
                 time: ''
             },
-            1:{}
-        }
+            {
+                date: '',
+                time: ''
+            }
+        ]
     };
 
     const nextState = reducer(initialState, action);
 
     const expected = {
-        eventWhen: {
-            0:{
+        eventWhen: [
+            {
                 date: '',
                 time: ''
             }
-        }
+        ]
     };
 
-    t.deepEqual(nextState, expected, "eventWhen removes last key");
+    t.deepEqual(nextState, expected, "Reducer removes last element on eventWhen array");
     /*-----*/
     const action2 = {
         type: "REMOVE_INPUT",
@@ -103,26 +109,37 @@ test('Reducer handles REMOVE_INPUT as expected', (t) => {
     };
 
     const initialState2 = {
-        eventWhere: {
-            0:{
-                placeName: '',
-                placeAddress: ''
+        eventWhere: [
+            {
+                placeName: 'Harrods',
+                placeAddress: 'Knightsbridge'
             },
-            1:""
-        }
+            {
+                placeName: 'Founders & Coders',
+                placeAddress: 'Bethnal Green'
+            },
+            {
+                placeName: 'Bowling Alley',
+                placeAddress: 'Brick Lane'
+            }
+        ]
     };
 
     const nextState2 = reducer(initialState2, action2);
 
     const expected2 = {
-        eventWhere: {
-            0:{
-                placeName: '',
-                placeAddress: ''
+        eventWhere: [
+            {
+                placeName: 'Harrods',
+                placeAddress: 'Knightsbridge'
+            },
+            {
+                placeName: 'Bowling Alley',
+                placeAddress: 'Brick Lane'
             }
-        }
+        ]
     };
 
-    t.deepEqual(nextState2, expected2, "eventWhere removes last key");
+    t.deepEqual(nextState2, expected2, "Reducer removes middle element in eventWhere array");
     t.end();
 })
