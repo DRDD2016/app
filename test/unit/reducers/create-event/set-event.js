@@ -32,7 +32,8 @@ test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
         eventDetails: {
             eventName:"Sohil Bowling",
             eventDescription:"Bowling"
-        }
+        },
+        eventWhat: ['']
     };
 
     const action = {
@@ -49,9 +50,38 @@ test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
             eventName:"Sohil Bowling",
             eventDescription:"Bowling"
         },
-        eventWhat: { 0: 'sohil' }
+        eventWhat: ['sohil']
+    };
+    t.deepEqual(nextState, expected, "eventWhat set correctly");
+    t.end();
+});
+
+test('Reducer handles SET_EVENT_WHAT as expected', (t) => {
+
+    const initialState = {
+        eventDetails: {
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
+        },
+        eventWhat: ['sohil1']
     };
 
+    const action = {
+        type: 'SET_EVENT_WHAT',
+        data: 'sohil2',
+        inputKey: 1,
+        eventType: "eventWhat",
+    };
+
+    const nextState = reducer(initialState, action);
+
+    const expected = {
+        eventDetails: {
+            eventName:"Sohil Bowling",
+            eventDescription:"Bowling"
+        },
+        eventWhat: ['sohil1','sohil2']
+    };
     t.deepEqual(nextState, expected, "eventWhat set correctly");
     t.end();
 });
@@ -67,12 +97,12 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
             0:"Bowling",
             1:"Swimming"
         },
-        eventWhere: {
-            0: {
+        eventWhere: [
+            {
                 placeName: "",
                 placeAddress: ""
             }
-        }
+        ]
     };
 
     const action = {
@@ -96,12 +126,12 @@ test('SET_EVENT_WHERE behaves as expected', (t) => {
             0: "Bowling",
             1: "Swimming"
         },
-        eventWhere: {
-            0: {
+        eventWhere: [
+            {
                 "placeName": "Founders & Coders",
                 "placeAddress": "123 Fake Street, London"
             }
-        }
+        ]
     };
 
     t.deepEqual(nextState, expected, "eventWhere set correctly");
@@ -123,9 +153,12 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
             0:"sohil",
             1:"Shoreditch"
         },
-        eventWhen: {
-            0: {}
-        }
+        eventWhen: [
+            {
+                date:'',
+                time:''
+            }
+        ]
     };
 
     const action = {
@@ -151,11 +184,12 @@ test('SET_EVENT_WHEN behaves as expected', (t) => {
             0:"sohil",
             1:"Shoreditch"
         },
-        eventWhen: {
-            0: {
-                time: '1460479400956'
+        eventWhen: [
+            {
+                time: '1460479400956',
+                date: ''
             }
-        }
+        ]
     };
 
     t.deepEqual(nextState, expected, "eventWhen set correctly");

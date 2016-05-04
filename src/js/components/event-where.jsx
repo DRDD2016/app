@@ -6,12 +6,10 @@ import AutocompleteInput from './create-event/autocomplete-input.jsx';
 
 const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere }) => {
 
-    let inputCount = Object.keys(eventWhereData);
+    let inputs = eventWhereData.map( (value, i) => {
 
-    let inputs = inputCount.map( (value, i) => {
-
-        let template = `${eventWhereData[value].placeName} ${eventWhereData[value].placeAddress}`;
-        let fullAddress = (eventWhereData[value].placeName ? template : "");
+        let template = `${value.placeName} ${value.placeAddress}`;
+        let fullAddress = (value.placeName ? template : "");
 
         let autocompleteID = 'autocomplete-' + i;
         return (
@@ -26,11 +24,11 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
     });
 
     let addInputClasses = classnames({
-        "hide": inputCount.length >= 3
+        "hide": eventWhereData.length >= 3
     });
 
     let removeInputClasses = classnames({
-        "hide": inputCount.length === 1
+        "hide": eventWhereData.length === 1
     });
 
     let nextButtonClasses = classnames({
@@ -48,13 +46,13 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(inputCount.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhereData.length) }>
                         Add input
                     </button>
                 </div>
 
                 <div className="">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(inputCount.length) }>
+                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhereData.length - 1) }>
                         Remove input
                     </button>
                 </div>
