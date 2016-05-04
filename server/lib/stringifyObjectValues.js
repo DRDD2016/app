@@ -1,12 +1,15 @@
 function stringifyObjectValues (object) {
 
-    for (var value in object) {
+    var newObject = {};
 
+    for (var value in object) {
         if (typeof object[value] === 'object') {
-            object[value] = JSON.stringify(object[value]);
+            newObject[value] = JSON.stringify(object[value]);
+        } else {
+            newObject[value] = object[value];
         }
     }
-    return object;
+    return newObject;
 }
 
 module.exports = stringifyObjectValues;

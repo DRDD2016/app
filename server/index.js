@@ -4,6 +4,7 @@ var Bell = require('bell');
 
 var Home  = require('./routes/home.js');
 var GetUser = require('./routes/get-user.js');
+var GetNotifications = require('./routes/get-notifications.js');
 var NewEvent = require('./routes/new-event.js');
 var NewEventInvitees = require('./routes/new-event-invitees.js');
 
@@ -36,7 +37,7 @@ exports.init = (port, callback) => {
         });
     });
 
-    server.register([Inert, Home, NewEvent, GetUser, NewEventInvitees], (err) => {
+    server.register([Inert, Home, NewEvent, GetUser, NewEventInvitees, GetNotifications], (err) => {
 
         if (err) {
             throw new Error(err);
@@ -59,7 +60,7 @@ exports.init = (port, callback) => {
 
                                 if (error) {
                                     reply(new Error("Could not register user"));
-                                } else {                            
+                                } else {
                                     reply.redirect('/#/feed')
                                          .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
                                 }

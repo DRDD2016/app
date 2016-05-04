@@ -14,7 +14,6 @@ const mapStateToProps = (state) => {
     const data = {
         eventName: state.createEvent.eventDetails.eventName,
         eventDescription: state.createEvent.eventDetails.eventDescription,
-        eventDetails: state.createEvent.eventDetails,
         eventWhat: state.createEvent.eventWhat,
         eventWhere: state.createEvent.eventWhere,
         eventWhen: state.createEvent.eventWhen,
