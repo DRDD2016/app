@@ -23,3 +23,45 @@ const notification = {
 };
 
 client.saddAsync("notifications:12345678", JSON.stringify(notification));
+
+/*
+* Creates test event:101
+*
+*/
+const eventName = "Birthday";
+const eventDescription = "Let's do something!";
+const eventWhat = [
+    "Bowling",
+    "Swimming"
+];
+const eventWhere = [
+    {
+        placeName: "Harrods",
+        placeAddress: "Knightsbridge, London"
+    }
+];
+const eventWhen = [
+    {
+        date: "2016-11-10",
+        time: "12:00"
+    }
+];
+const invitees = [
+    {
+        id: 12345678,
+        firstName: "Harry",
+        lastName: "Potter",
+        photoURL: "http://harrypotter.com/image.jpg"
+    }
+];
+
+const event = {
+    eventWhat: JSON.stringify(eventWhat),
+    eventWhere: JSON.stringify(eventWhere),
+    eventWhen: JSON.stringify(eventWhen),
+    invitees: JSON.stringify(invitees),
+    hostID: 10154129575200996,
+    isPoll: true
+};
+
+client.hmsetAsync("event:101", event);
