@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setEventWhat, addInput, removeInput } from '../actions/create-event.js';
-import EventWhat from '../components/event-what.jsx';
+import { setEventWhat, addInput, removeInput } from '../../actions/create-event.js';
+import EventWhat from '../../components/create-event/event-what.jsx';
 
 const mapStateToProps = (state) => {
     let data = state.createEvent.eventWhat;

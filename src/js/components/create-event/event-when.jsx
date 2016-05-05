@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
-import DateTimeInput from './create-event/date-time-input.jsx';
+import DateTimeInput from '../general/date-time-input.jsx';
 
 const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTime }) => {
 

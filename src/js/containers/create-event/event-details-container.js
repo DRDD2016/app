@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getFBFriends, setEventDetails } from '../actions/create-event.js';
-import EventDetails from '../components/event-details.jsx';
+import { getFBFriends, setEventDetails } from '../../actions/create-event.js';
+import EventDetails from '../../components/create-event/event-details.jsx';
 
 const mapStateToProps = (state) => {
     let shouldGetFBFriends = state.createEvent.invitees.length === 0 && state.createEvent.friends.length === 0;

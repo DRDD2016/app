@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { newEvent } from '../actions/create-event.js';
-import EventConfirm from '../components/event-confirm.jsx';
-import { store } from '../init-store.js';
+import { newEvent } from '../../actions/create-event.js';
+import EventConfirm from '../../components/create-event/event-confirm.jsx';
+import { store } from '../../init-store.js';
 
 function isPoll (data) {
 

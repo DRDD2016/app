@@ -1,6 +1,6 @@
 import React from 'react';
 
-class CreateEventContainer extends React.Component {
+class CreateEvent extends React.Component {
 
     render () {
 
@@ -18,4 +18,4 @@ class CreateEventContainer extends React.Component {
     }
 }
 
-export default CreateEventContainer;
+export default CreateEvent;

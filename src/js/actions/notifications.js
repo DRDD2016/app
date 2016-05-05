@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getUserID from '../lib/getUserID.js';
 
 export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 export const GET_NOTIFICATIONS_REQUEST = "GET_NOTIFICATIONS_REQUEST";
@@ -7,8 +8,7 @@ export const GET_NOTIFICATIONS_FAILURE = "GET_NOTIFICATIONS_FAILURE";
 
 export function getNotifications () {
 
-    var matchCookie = document.cookie.match(/sparkID=\d+/);
-    var id = matchCookie[0];
+    var id = getUserID();
 
     return (dispatch) => {
 

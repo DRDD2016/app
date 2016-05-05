@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getUserID from '../lib/getUserID.js';
 
 export const GET_USER = "GET_USER";
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
@@ -8,8 +9,7 @@ export const GET_USER_FAILURE = "GET_USER_FAILURE";
 
 export function getUser () {
 
-    var matchCookie = document.cookie.match(/sparkID=\d+/);
-    var id = matchCookie[0];
+    var id = getUserID();
 
     return (dispatch) => {
 

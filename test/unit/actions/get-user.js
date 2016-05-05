@@ -14,7 +14,7 @@ test('getUser async action creator returns expected action', (t) => {
         type: GET_USER_REQUEST,
         isFetching: true
     };
-    t.deepEqual(actual, expected, "getUser return the GET_USER_REQUEST action");
+    t.deepEqual(actual, expected, "getUser returns the GET_USER_REQUEST action");
     t.end();
 });
 

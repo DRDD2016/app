@@ -4,7 +4,7 @@ import App from '../components/app.jsx';
 
 const mapStateToProps = (state) => {
     return {
-        error: state.user.error || state.auth.error || state.createEvent.error 
+        error: state.user.error || state.auth.error || state.createEvent.error || state.event.error
     };
 };
 

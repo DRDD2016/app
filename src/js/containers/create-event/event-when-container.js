@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setEventWhen, addInput, removeInput } from '../actions/create-event.js';
-import EventWhen from '../components/event-when.jsx';
+import { setEventWhen, addInput, removeInput } from '../../actions/create-event.js';
+import EventWhen from '../../components/create-event/event-when.jsx';
 
 const mapStateToProps = (state) => {
 
