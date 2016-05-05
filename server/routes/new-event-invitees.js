@@ -18,14 +18,13 @@ exports.register = (server, options, next) => {
                 */
 
                 getUserToken(request.query.sparkID, (error, token) => {
- 
+
                     if (error) {
                         reply(error);
                     } else {
 
                         getFBFriends(token, function (error, friends) {
 
-                            console.log(friends, 'friends....');
                             var verdict = error || friends;
                             reply(verdict);
                         });

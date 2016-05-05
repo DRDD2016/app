@@ -11,7 +11,6 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
                 getNotifications(request.query.sparkID, (error, notifications) => {
-                    console.log(error, notifications);
                     var response = error || notifications;
                     reply(response);
                 });

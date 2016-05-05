@@ -11,9 +11,9 @@ export function getEvent(eventID) {
     return (dispatch) => {
 
         dispatch(getEventRequest());
-        axios.get('/get-event?' + eventID )
-            .then((event) => {
-                dispatch(getEventSuccess(event));
+        axios.get('/get-event?eventID=' + eventID )
+            .then((response) => {
+                dispatch(getEventSuccess(response.data));
             })
             .catch((error) => {
                 dispatch(getEventFailure(error));
