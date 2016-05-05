@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
-import ConfirmEventWhat from './create-event/confirm-event-what.jsx';
-import ConfirmEventWhereorWhen from './create-event/confirm-event-where-or-when.jsx';
+import ConfirmEventWhat from '../general/confirm-event-what.jsx';
+import ConfirmEventWhereorWhen from '../general/confirm-event-where-or-when.jsx';
 
 const EventConfirm = ({ data, saveEvent }) => {
 

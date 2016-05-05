@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
-import Input from './create-event/input.jsx';
-import AutocompleteInput from './create-event/autocomplete-input.jsx';
+import Input from '../general/input.jsx';
+import AutocompleteInput from '../general/autocomplete-input.jsx';
 
 const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere }) => {
 

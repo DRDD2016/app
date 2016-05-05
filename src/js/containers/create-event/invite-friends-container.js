@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addInvitee, removeInvitee } from '../actions/create-event.js';
-import InviteFriends from '../components/invite-friends.jsx';
+import { addInvitee, removeInvitee } from '../../actions/create-event.js';
+import InviteFriends from '../../components/create-event/invite-friends.jsx';
 
 const mapStateToProps = (state) => {
     let friends = state.createEvent.friends;
