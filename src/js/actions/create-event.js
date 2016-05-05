@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getUserID from '../lib/getUserID.js';
 
 // create event
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
@@ -37,8 +38,7 @@ export function removeInvitee(invitee, index) {
 
 export function getFBFriends () {
 
-    var matchCookie = document.cookie.match(/sparkID=\d+/);
-    var id = matchCookie[0];
+    var id = getUserID();
 
     return (dispatch) => {
         dispatch(getFBFriendsRequest());
