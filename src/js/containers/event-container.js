@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event.jsx';
 import getUserID from '../lib/getUserID.js';
+import { getEvent } from '../actions/event.js';
 
 const mapStateToProps = (state) => {
 
@@ -17,9 +18,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 
     return {
-        getEvent: () => {
-            console.log("getting event");
-            // dispatch(getEvent());
+        fetchEvent: (eventID) => {
+            dispatch(getEvent(eventID));
         }
     };
 };

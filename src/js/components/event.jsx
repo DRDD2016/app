@@ -1,13 +1,14 @@
 import React from 'react';
 
-class EventContainer extends React.Component {
+class Event extends React.Component {
 
     constructor (props) {
         super(props);
     }
 
     componentWillMount () {
-        this.props.getEvent();
+
+        this.props.fetchEvent(this.props.params.eventID);
     }
 
     render () {
@@ -31,3 +32,5 @@ class EventContainer extends React.Component {
         );
     }
 }
+
+export default Event;
