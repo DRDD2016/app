@@ -1,4 +1,5 @@
 import React from 'react';
+import Poll from './poll.jsx';
 
 class Event extends React.Component {
 
@@ -7,10 +8,26 @@ class Event extends React.Component {
     }
 
     componentWillMount () {
-
         this.props.fetchEvent(this.props.params.eventID);
     }
 
+    renderView() {
+        if(this.props.isHost){
+            return (
+                 <div>This is the host page</div>
+            );
+        }
+        if(!this.props.isHost && this.props.isPoll){
+            return (
+                <Poll event={this.props.event} />
+            );
+        }
+        if(!this.props.isHost && !this.props.isPoll){
+            return (
+                <div>This is the confirmed event</div>
+            );
+        }
+    }
     render () {
 
         return (
@@ -20,14 +37,9 @@ class Event extends React.Component {
                     this.props.isFetching && <div>Loading...</div>
                 }
                 {
-                    this.props.isHost && <div>This is the host page</div>
+                    !this.props.isFetching && this.renderView()
                 }
-                {
-                    !this.props.isHost && this.props.isPoll && <div>This is a poll page</div>
-                }
-                {
-                    !this.props.isHost && !this.props.isPoll && <div>This is the confirmed event</div>
-                }
+
             </div>
         );
     }

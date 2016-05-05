@@ -6,11 +6,11 @@ import { getEvent } from '../actions/event.js';
 
 const mapStateToProps = (state) => {
 
-    let isHost = state.event.hostID === getUserID();
+    let isHost = state.event.data.hostID === getUserID();
     return {
-        isPoll: state.event.isPoll,
+        isPoll: state.event.data.isPoll,
         isHost,
-        event: state.event,
+        event: state.event.data,
         isFetching: state.event.isFetching
     };
 };
