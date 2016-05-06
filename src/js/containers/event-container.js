@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent } from '../actions/event.js';
+import { getEvent, updatePoll } from '../actions/event.js';
 
 const mapStateToProps = (state) => {
 
@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
         isPoll: state.event.data.isPoll,
         isHost,
         event: state.event.data,
+        poll: state.event.poll,
         isFetching: state.event.isFetching
     };
 };
@@ -20,6 +21,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchEvent: (eventID) => {
             dispatch(getEvent(eventID));
+        },
+
+        toggleSelection: (eventType, index) => {
+            dispatch(updatePoll(eventType, index));
         }
     };
 };

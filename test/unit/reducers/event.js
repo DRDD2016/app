@@ -226,3 +226,84 @@ test('Reducer handles GET_EVENT_FAILURE as expected', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+test('Reducer handles UPDATE_POLL as expected', (t) => {
+
+    const initialState = {
+        data: {
+            eventName: "sohil",
+            eventDescription: "Birthday",
+            isPoll: false,
+            eventWhat: [
+                "birthday party",
+                "bowling"
+            ],
+            eventWhere: [
+                {
+                    placeName: "harrods",
+                    placeAddress: "knightsbridge"
+                },
+                {
+                    placeName: "FAC",
+                    placeAddress: "E2 0SY"
+                }
+            ],
+            eventWhen: [
+                {
+                    date: "2016-12-12",
+                    time: "10:10"
+                }
+            ]
+        },
+        isFetching: false,
+        error: undefined,
+        poll: {
+            eventWhere: [false, false],
+            eventWhen: [false],
+        }
+    };
+    const action = {
+        type: 'UPDATE_POLL',
+        eventType: 'eventWhere',
+        index: 1
+    };
+
+    const actual = reducer(initialState, action);
+
+    const expected = {
+        data: {
+            eventName: "sohil",
+            eventDescription: "Birthday",
+            isPoll: false,
+            eventWhat: [
+                "birthday party",
+                "bowling"
+            ],
+            eventWhere: [
+                {
+                    placeName: "harrods",
+                    placeAddress: "knightsbridge"
+                },
+                {
+                    placeName: "FAC",
+                    placeAddress: "E2 0SY"
+                }
+            ],
+            eventWhen: [
+                {
+                    date: "2016-12-12",
+                    time: "10:10"
+                }
+            ]
+        },
+        isFetching: false,
+        error: undefined,
+        poll: {
+            eventWhere: [false, true],
+            eventWhen: [false],
+        }
+    };
+
+    t.deepEqual(actual, expected);
+    t.end();
+});

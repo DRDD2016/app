@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE } from '../actions/event.js';
+import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -12,9 +12,6 @@ const initialState = {
     }
 };
 
-
-
-
 export default function event (state = initialState, action) {
 
     switch (action.type) {
@@ -25,6 +22,8 @@ export default function event (state = initialState, action) {
         return handleGetEventSuccess(state,action);
     case GET_EVENT_FAILURE:
         return handleGetEventFailure(state,action);
+    case UPDATE_POLL:
+        return updatePoll(state,action);
 
     default:
         return state;
@@ -32,6 +31,7 @@ export default function event (state = initialState, action) {
 }
 
 function handleGetEventRequest(state,action) {
+
     let newState = update(state, {
         isFetching: { $set: action.isFetching }
     });
@@ -40,8 +40,7 @@ function handleGetEventRequest(state,action) {
 
 function handleGetEventSuccess (state, action) {
 
-    console.log(action.data.isPoll);
-    if(action.data.isPoll){
+    if (action.data.isPoll){
         return update(state, {
             isFetching: { $set: action.isFetching },
             data: { $set: action.data },
@@ -64,7 +63,8 @@ function handleGetEventFailure (state, action) {
     return newState;
 }
 
-function setPoll (event){
+function setPoll (event) {
+
     let targets = ['eventWhat','eventWhere','eventWhen'];
 
     return targets.reduce((pollObject,target,i) => {
@@ -76,4 +76,13 @@ function setPoll (event){
         return pollObject;
 
     }, {});
+}
+
+function updatePoll (state, action) {
+
+    let newValue = !state.poll[action.eventType][action.index];
+    let newState = update(state, {
+        poll: { [action.eventType]: {$splice:[[action.index, 1, newValue]]}}
+    });
+    return newState;
 }
