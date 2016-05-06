@@ -7,6 +7,14 @@ export const GET_EVENT_SUCCESS = 'GET_EVENT_SUCCESS';
 export const GET_EVENT_FAILURE = 'GET_EVENT_FAILURE';
 export const UPDATE_POLL = 'UPDATE_POLL';
 
+export const CONFIRM_POLL = 'CONFIRM_POLL';
+export const CONFIRM_POLL_REQUEST = 'CONFIRM_POLL_REQUEST';
+export const CONFIRM_POLL_SUCCESS = 'CONFIRM_POLL_SUCCESS';
+export const CONFIRM_POLL_FAILURE = 'CONFIRM_POLL_FAILURE';
+
+
+
+
 
 export function getEvent (eventID) {
 
@@ -52,5 +60,41 @@ export function updatePoll (eventType, index) {
         type: UPDATE_POLL,
         eventType,
         index
+    };
+}
+
+
+export function confirmPoll (poll) {
+
+    return (dispatch) => {
+
+        dispatch(confirmPollRequest());
+        axios.get('/confirm-poll?' + getUserID(), poll)
+            .then((response) => {
+                dispatch(confirmPollSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(confirmPollFailure(error));
+            });
+    };
+}
+
+export function confirmPollRequest() {
+    return {
+        type: CONFIRM_POLL_REQUEST,
+        isFetching: true
+    };
+}
+
+export function confirmPollSuccess() {
+    return {
+        type: CONFIRM_POLL_SUCCESS,
+        isFetching: false
+    };
+}
+export function confirmPollFailure() {
+    return {
+        type: CONFIRM_POLL_FAILURE,
+        isFetching: false
     };
 }

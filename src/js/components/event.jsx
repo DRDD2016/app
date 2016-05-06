@@ -23,6 +23,7 @@ class Event extends React.Component {
                 <Poll event= {this.props.event }
                       toggleSelection={ this.props.toggleSelection }
                       poll={ this.props.poll }
+                      handlePollConfirmation={ this.props.handlePollConfirmation }
                 />
             );
         }

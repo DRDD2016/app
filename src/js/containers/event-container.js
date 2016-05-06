@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Event from '../components/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll } from '../actions/event.js';
+import { store } from '../init-store.js';
 
 const mapStateToProps = (state) => {
 
@@ -25,6 +26,12 @@ const mapDispatchToProps = (dispatch) => {
 
         toggleSelection: (eventType, index) => {
             dispatch(updatePoll(eventType, index));
+        },
+
+        handlePollConfirmation: (poll) => {
+            let eventID = store.getState().event.data.eventID;
+            console.log(store.getState().event);
+            // dispatch(confirmPoll(poll, eventID));
         }
     };
 };

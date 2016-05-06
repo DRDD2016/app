@@ -1,6 +1,8 @@
 import test from 'tape';
 import { GET_EVENT, GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL } from '../../../src/js/actions/event.js';
 import { getEvent, getEventRequest, getEventSuccess, getEventFailure, updatePoll } from '../../../src/js/actions/event.js';
+import { CONFIRM_POLL, CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE } from '../../../src/js/actions/event.js';
+import { confirmPoll, confirmPollRequest, confirmPollSuccess, confirmPollFailure } from '../../../src/js/actions/event.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 test('getEvent async action creator returns expected action', (t) => {
@@ -79,5 +81,23 @@ test('updatePoll action creator returns expected action', (t) => {
     const actual = updatePoll("eventWhen", 2);
 
     t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('confirmPoll async action creator returns expected action', (t) => {
+
+    let actual;
+    const { dispatch, queue } = createThunk();
+    let eventID = 'event:100';
+    dispatch(confirmPoll(eventID));
+
+    [{...actual}] = queue;
+
+    const expected = {
+        type: GET_EVENT_REQUEST,
+        isFetching: true
+    };
+
+    t.deepEqual(actual, expected, "getEvent returns GET_EVENT_REQUEST action");
     t.end();
 });
