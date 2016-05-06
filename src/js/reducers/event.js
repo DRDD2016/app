@@ -4,8 +4,16 @@ import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE } from '../acti
 const initialState = {
     data: {},
     isFetching: false,
-    error: undefined
+    error: undefined,
+    poll: {
+        eventWhat: [],
+        eventWhere: [],
+        eventWhen: [],
+    }
 };
+
+
+
 
 export default function event (state = initialState, action) {
 
@@ -32,11 +40,19 @@ function handleGetEventRequest(state,action) {
 
 function handleGetEventSuccess (state, action) {
 
-    let newState = update(state, {
-        isFetching: { $set: action.isFetching },
-        data: { $set: action.data }
-    });
-    return newState;
+    console.log(action.data.isPoll);
+    if(action.data.isPoll){
+        return update(state, {
+            isFetching: { $set: action.isFetching },
+            data: { $set: action.data },
+            poll: { $set: setPoll(action.data) }
+        });
+    } else {
+        return update(state, {
+            isFetching: { $set: action.isFetching },
+            data: { $set: action.data }
+        });
+    }
 }
 
 function handleGetEventFailure (state, action) {
@@ -46,4 +62,18 @@ function handleGetEventFailure (state, action) {
         error: { $set: action.error }
     });
     return newState;
+}
+
+function setPoll (event){
+    let targets = ['eventWhat','eventWhere','eventWhen'];
+
+    return targets.reduce((pollObject,target,i) => {
+
+        if(event[target].length > 1){
+            pollObject[target] = new Array(event[target].length).fill(false);
+        }
+
+        return pollObject;
+
+    }, {});
 }
