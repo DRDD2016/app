@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import PollButton from './general/poll-button.jsx';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 
-const Poll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID }) => {
+const Poll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost }) => {
 
     let eventWhat = createPollSelections(event, toggleSelection, poll, 'eventWhat', EventWhatSection);
 

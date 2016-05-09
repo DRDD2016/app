@@ -6,6 +6,7 @@ import { getNotifications } from '../actions/notifications.js';
 
 
 const mapStateToProps = (state) => {
+
     return {
         user: state.user,
         notifications: state.notifications.data,

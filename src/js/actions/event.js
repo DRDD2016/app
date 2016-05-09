@@ -68,8 +68,14 @@ export function confirmPoll (poll, eventID) {
 
     return (dispatch) => {
 
+        let payload = {
+            poll,
+            eventID,
+            userID: getUserID()
+        };
+
         dispatch(confirmPollRequest());
-        axios.get('/confirm-poll?' + getUserID() + '&eventID=' + eventID, poll)
+        axios.post('/confirm-poll', payload)
             .then((response) => {
                 dispatch(confirmPollSuccess(response.data));
             })

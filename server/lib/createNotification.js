@@ -1,20 +1,24 @@
 var getUser = require('../db/getUser.js');
 
-function createNotification (eventID, eventInfo, callback) {
+function createNotification (userID, eventID, eventInfo, callback) {
 
-    console.log(eventInfo, "THIS IS THE EVENT INFO");
-    getUser(eventInfo.hostID, (error, hostInfo) => {
-        var fullName = hostInfo.firstName + " " + hostInfo.lastName;
+    getUser(userID, (error, userInfo) => {
+        console.log(userID);
+        if (error) {
+            callback(new Error('problem fetching user to create notification'));
+        }
 
         var notification = {
             eventID: eventID,
             timestamp: Date.now(),
-            hostName: fullName,
-            hostPhotoURL: hostInfo.photoURL,
+            firstName: userInfo.firstName,
+            lastName: userInfo.lastName,
+            photoURL: userInfo.photoURL,
             eventWhat: eventInfo.eventWhat,
             eventWhere: eventInfo.eventWhere,
             eventWhen: eventInfo.eventWhen,
-            isPoll: eventInfo.isPoll
+            isPoll: eventInfo.isPoll,
+            hostID: eventInfo.hostID
         };
 
         return callback (error, notification);

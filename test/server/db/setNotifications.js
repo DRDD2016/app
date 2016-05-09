@@ -1,17 +1,13 @@
 import test from 'tape';
-import setNotificationsForInvitees from '../../../server/db/setNotificationsForInvitees.js';
+import setNotifications from '../../../server/db/setNotifications.js';
 import client from '../../../server/db/init.js';
 
 
-test("setNotificationsForInvitees adds the sets correctly for all invitees", (t) => {
+test("setNotifications adds the sets correctly for all invitees", (t) => {
 
     const invitees = [
-        {
-            id: 12345678
-        },
-        {
-            id: 10154129575200996
-        }
+        12345678,
+        10154129575200996
     ];
 
     const notification = {
@@ -23,7 +19,7 @@ test("setNotificationsForInvitees adds the sets correctly for all invitees", (t)
     };
 
     const expected = [JSON.stringify(notification)];
-    setNotificationsForInvitees(invitees, notification, (error, result) => {
+    setNotifications(invitees, notification, (error, result) => {
         t.ok(result, "both sets added for invitees");
 
         client.smembers('notifications:12345678', (error, actual) => {

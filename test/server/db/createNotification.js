@@ -7,8 +7,9 @@ test('createNotification returns a valid notification object for a poll event', 
         isPoll: true,
         timestamp: Date.now(),
         eventID: "event:100",
-        hostName: "Sohil Pandya",
-        hostPhotoURL: "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/12821522_10154022257850996_5243104697257562021_n.jpg?oh=3b82501dc03ce1aa1d0db64278f606fa&oe=57AC45AB",
+        firstName: "Sohil",
+        lastName: "Pandya",
+        photoURL: "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/12821522_10154022257850996_5243104697257562021_n.jpg?oh=3b82501dc03ce1aa1d0db64278f606fa&oe=57AC45AB",
         eventWhat: [
             "Bowling",
             "Drinking"
@@ -24,11 +25,13 @@ test('createNotification returns a valid notification object for a poll event', 
                 placeName: "TBC",
                 placeAddress: ""
             }
-        ]
+        ],
+        hostID: 12345678
     };
     const eventID = "event:100";
+    const testUser = 10154129575200996;
     const eventInfo = {
-        hostID: 10154129575200996,
+        hostID: 12345678,
         eventName: "Sohil's bowling",
         eventDescription: "Let's go bowling",
         isPoll: true,
@@ -49,7 +52,7 @@ test('createNotification returns a valid notification object for a poll event', 
             }
         ]
     };
-    createNotification(eventID, eventInfo, (error, result) => {
+    createNotification(testUser, eventID, eventInfo, (error, result) => {
 
         for (let key in result) {
             if (key === 'timestamp') {
@@ -68,8 +71,9 @@ test('createNotification returns a valid notification object for a confirmed eve
         isPoll: false,
         timestamp: Date.now(),
         eventID: "event:200",
-        hostName: "Sohil Pandya",
-        hostPhotoURL: "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/12821522_10154022257850996_5243104697257562021_n.jpg?oh=3b82501dc03ce1aa1d0db64278f606fa&oe=57AC45AB",
+        firstName: "Sohil",
+        lastName: "Pandya",
+        photoURL: "https://scontent.xx.fbcdn.net/v/t1.0-1/p320x320/12821522_10154022257850996_5243104697257562021_n.jpg?oh=3b82501dc03ce1aa1d0db64278f606fa&oe=57AC45AB",
         eventWhat: [
             "Bowling",
             "Drinking"
@@ -85,12 +89,14 @@ test('createNotification returns a valid notification object for a confirmed eve
                 placeName: "TBC",
                 placeAddress: ""
             }
-        ]
+        ],
+        hostID: 12345678
     };
+    const testUser = 10154129575200996;
     const eventID = "event:200";
     const eventInfo = {
         isPoll: false,
-        hostID: 10154129575200996,
+        hostID: 12345678,
         eventName: "Sohil's bowling",
         eventDescription: "Let's go bowling",
         eventWhat: [
@@ -110,7 +116,7 @@ test('createNotification returns a valid notification object for a confirmed eve
             }
         ]
     };
-    createNotification(eventID, eventInfo, (error, result) => {
+    createNotification(testUser, eventID, eventInfo, (error, result) => {
 
         for (let key in result) {
             if (key === 'timestamp') {

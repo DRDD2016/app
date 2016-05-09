@@ -8,6 +8,7 @@ var GetNotifications = require('./routes/get-notifications.js');
 var NewEvent = require('./routes/new-event.js');
 var NewEventInvitees = require('./routes/new-event-invitees.js');
 var GetEvent = require('./routes/get-event.js');
+var ConfirmPoll = require('./routes/confirm-poll.js');
 
 var addUser = require('./db/addUser.js');
 var getFBPhoto = require('./lib/getFBPhoto.js');
@@ -37,7 +38,7 @@ exports.init = (port, callback) => {
         });
     });
 
-    server.register([Inert, Home, NewEvent, GetUser, NewEventInvitees, GetNotifications, GetEvent], (err) => {
+    server.register([Inert, Home, NewEvent, GetUser, NewEventInvitees, GetNotifications, GetEvent, ConfirmPoll], (err) => {
 
         if (err) {
             throw new Error(err);
