@@ -84,7 +84,7 @@ test('updatePoll action creator returns expected action', (t) => {
     t.end();
 });
 
-test.skip('confirmPoll async action creator returns expected action', (t) => {
+test('confirmPoll async action creator returns expected action', (t) => {
 
     let actual;
     const { dispatch, queue } = createThunk();
@@ -92,6 +92,11 @@ test.skip('confirmPoll async action creator returns expected action', (t) => {
         eventWhat: [],
         eventWhere: [],
         eventWhen: []
+    };
+
+    const poll = {
+        eventWhat: [true, false, false],
+        eventWhere: [true, true]
     };
     dispatch(confirmPoll(poll));
 
@@ -103,5 +108,42 @@ test.skip('confirmPoll async action creator returns expected action', (t) => {
     };
 
     t.deepEqual(actual, expected, "getEvent returns CONFIRM_POLL_REQUEST action");
+    t.end();
+});
+
+test('confirmPollRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: CONFIRM_POLL_REQUEST,
+        isFetching: true
+    };
+    const actual = confirmPollRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+
+});
+
+test('confirmPollSuccess action creator returns expected action', (t) => {
+    const expected = {
+        type: CONFIRM_POLL_SUCCESS,
+        isFetching: false,
+    };
+
+    const actual = confirmPollSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('confirmPollFailure action creator returns expected action', (t) => {
+    const expected = {
+        type: CONFIRM_POLL_FAILURE,
+        isFetching: false,
+    };
+
+    const actual = confirmPollFailure();
+
+    t.deepEqual(actual, expected);
     t.end();
 });
