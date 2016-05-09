@@ -13,19 +13,19 @@ class Event extends React.Component {
 
     renderView () {
 
-        if (this.props.isHost){
+        if (this.props.userIsHost){
             return (
                  <div>This is the host page</div>
             );
         }
-        if (!this.props.isHost && this.props.isPoll) {
+        if (!this.props.userIsHost && this.props.isPoll) {
             return (
-                <Poll event= {this.props.event }
+                <Poll event= { this.props.event }
                       toggleSelection={ this.props.toggleSelection }
                       poll={ this.props.poll }
                       handlePollConfirmation={ this.props.handlePollConfirmation }
                       eventID={ this.props.params.eventID }
-                      isHost={ this.props.isHost }
+                      isHost={ this.props.userIsHost }
                 />
             );
         }

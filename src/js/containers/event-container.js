@@ -5,14 +5,13 @@ import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll } from '../actions/event.js';
 
 const mapStateToProps = (state) => {
-
-    let isHost = state.event.data.hostID === getUserID();
+    
     return {
         isPoll: state.event.data.isPoll,
-        isHost,
         event: state.event.data,
         poll: state.event.poll,
-        isFetching: state.event.isFetching
+        isFetching: state.event.isFetching,
+        userIsHost: state.event.data.hostID == getUserID().match(/\d+/)[0]
     };
 };
 
