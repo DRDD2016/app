@@ -1,6 +1,7 @@
 import React from 'react';
 import Notification from './notification.jsx';
 import { Link } from 'react-router';
+import getUserID from '../lib/getUserID.js';
 
 class Feed extends React.Component {
 
@@ -16,18 +17,20 @@ class Feed extends React.Component {
     render () {
 
         let notifications = this.props.notifications.map((data, i) => {
-
+            // console.log();
             return (
                 <Notification
                     key={ i }
                     eventID={ data.eventID }
                     timestamp={ data.timestamp }
                     isPoll={ data.isPoll }
-                    hostName={ data.hostName }
-                    hostPhotoURL={ data.hostPhotoURL }
+                    firstName={ data.firstName }
+                    lastName={ data.lastName }
+                    photoURL={ data.photoURL }
                     eventWhat={ data.eventWhat }
                     eventWhere={ data.eventWhere }
-                    eventWhen={ data.eventWhen } />
+                    eventWhen={ data.eventWhen }
+                    userIsHost={ data.hostID == getUserID().match(/\d+/)[0] } />
             );
         });
 

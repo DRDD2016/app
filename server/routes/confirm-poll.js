@@ -1,4 +1,7 @@
 var castVote = require('../db/castVote.js');
+var getEvent = require('../db/getEvent.js');
+var createNotification = require('../lib/createNotification.js');
+var setNotifications = require('../db/setNotifications.js');
 
 exports.register = (server, options, next) => {
 
@@ -14,12 +17,28 @@ exports.register = (server, options, next) => {
 
                     return reply(new Error("Missing data for confirm-poll"));
                 }
-                var userID = request.payload.userID.match(/\d+/)[0];
+                var inviteeID = request.payload.userID.match(/\d+/)[0];
+                var eventID = request.payload.eventID;
+                castVote(request.payload.poll, inviteeID, eventID, (error, response) => {
 
-                castVote(request.payload.poll, userID, request.payload.eventID, (error, response) => {
+                    if (error) {
+                        return reply(error);
+                    }
+                    getEvent(eventID)
+                        .then((event) => {
 
-                    var result = error || response;
-                    return reply(result);
+                            createNotification(inviteeID, eventID, event, (error, notification) => {
+
+                                if (error) {
+                                    return reply(error);
+                                }
+                                setNotifications([event.hostID], notification, (error, response) => {
+
+                                    var result = error || response;
+                                    reply(result);
+                                });
+                            });
+                        });
                 });
             }
         }

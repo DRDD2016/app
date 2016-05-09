@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Notification = ({ eventID, timestamp, isPoll, hostName, hostPhotoURL, eventWhat, eventWhere, eventWhen }) => {
+const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll }) => {
+    console.log(userIsHost);
     return (
         <Link to={ 'event/' + eventID } >
             <div className="row">
-                <img className="two columns profile-photo" src={ hostPhotoURL } alt="Host photo" />
+                <img className="two columns profile-photo" src={ photoURL } alt="Host photo" />
                 <div className="seven columns">
                     <p>
-                        { hostName } has invited you to { isPoll ? " vote on a poll" : "an event" }
+                        { firstName + " " + lastName }
+                        { userIsHost && isPoll && " has voted on your poll" }
+                        { userIsHost && !isPoll && " has responded to your event" }
+                        { !userIsHost && isPoll && " wants you to vote on their poll" }
+                        { !userIsHost && !isPoll && " has invited you to their event" }
                     </p>
                 </div>
                 <div className="three columns">

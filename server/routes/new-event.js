@@ -1,6 +1,6 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var createNotification = require('../lib/createNotification.js');
-var setNotificationsForInvitees = require('../db/setNotificationsForInvitees.js');
+var setNotifications = require('../db/setNotifications.js');
 
 exports.register = (server, options, next) => {
 
@@ -18,17 +18,21 @@ exports.register = (server, options, next) => {
                         return reply(error);
                     }
                     // create notification object
-                    createNotification(eventID, data, (error, notification) => {
+                    createNotification(data.hostID, eventID, data, (error, notification) => {
 
                         if (error) {
                             return reply(error);
                         }
 
-                        setNotificationsForInvitees(data.invitees, notification, (error, response) => {
+                        var inviteesIDs = data.invitees.map((inviteeObj) => {
+
+                            return inviteeObj.id;
+                        });
+                        setNotifications(inviteesIDs, notification, (error, response) => {
+                        
                             var verdict = error || response;
                             return reply(verdict);
                         });
-
                     });
                     // go to invitees list
                     // for each invitee, push new notification object

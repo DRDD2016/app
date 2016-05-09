@@ -25,6 +25,7 @@ class Event extends React.Component {
                       poll={ this.props.poll }
                       handlePollConfirmation={ this.props.handlePollConfirmation }
                       eventID={ this.props.params.eventID }
+                      isHost={ this.props.isHost }
                 />
             );
         }
