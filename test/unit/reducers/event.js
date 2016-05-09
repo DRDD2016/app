@@ -307,3 +307,99 @@ test('Reducer handles UPDATE_POLL as expected', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+test('Reducer handles CONFIRM_POLL_REQUEST as expected', (t) => {
+
+    const initialState = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: {
+            eventWhat: [],
+            eventWhere: [],
+            eventWhen: [],
+        }
+    };
+    const action = {
+        type: "CONFIRM_POLL_REQUEST",
+        isFetching: true
+    };
+    const actual = reducer(initialState, action);
+    const expected = {
+        data: {},
+        isFetching: true,
+        error: undefined,
+        poll: {
+            eventWhat: [],
+            eventWhere: [],
+            eventWhen: [],
+        }
+    };
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles CONFIRM_POLL_SUCCESS as expected', (t) => {
+
+    const initialState = {
+        data: {},
+        isFetching: true,
+        error: undefined,
+        poll: {
+            eventWhat: [],
+            eventWhere: [],
+            eventWhen: [],
+        }
+    };
+    const action = {
+        type: "CONFIRM_POLL_SUCCESS",
+        isFetching: false
+    };
+    const actual = reducer(initialState, action);
+    const expected = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: {
+            eventWhat: [],
+            eventWhere: [],
+            eventWhen: [],
+        }
+    };
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles CONFIRM_POLL_FAILURE as expected', (t) => {
+
+    const initialState = {
+        data: {},
+        isFetching: true,
+        error: undefined,
+        poll: {
+            eventWhat: [],
+            eventWhere: [],
+            eventWhen: [],
+        }
+    };
+    const action = {
+        type: "CONFIRM_POLL_FAILURE",
+        isFetching: false
+    };
+    const actual = reducer(initialState, action);
+    const expected = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: {
+            eventWhat: [],
+            eventWhere: [],
+            eventWhen: [],
+        }
+    };
+
+    t.deepEqual(actual, expected);
+    t.end();
+});

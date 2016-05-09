@@ -88,17 +88,13 @@ test('confirmPoll async action creator returns expected action', (t) => {
 
     let actual;
     const { dispatch, queue } = createThunk();
-    let eventID = {
-        eventWhat: [],
-        eventWhere: [],
-        eventWhen: []
-    };
 
     const poll = {
         eventWhat: [true, false, false],
         eventWhere: [true, true]
     };
-    dispatch(confirmPoll(poll));
+    const eventID = 'event:101';
+    dispatch(confirmPoll(poll, eventID));
 
     [{...actual}] = queue;
 

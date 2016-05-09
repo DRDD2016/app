@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 
-const PollButton = ({ poll, handlePollConfirmation }) => {
+const PollButton = ({ poll, handlePollConfirmation, eventID }) => {
 
     let userHasCompletedPoll = Object.keys(poll).map((categoryName, i) => {
 
@@ -21,7 +21,7 @@ const PollButton = ({ poll, handlePollConfirmation }) => {
 
     return (
 
-        <button onClick={ () => handlePollConfirmation(poll) } className={ classes }>Cast vote</button>
+        <button onClick={ () => handlePollConfirmation(poll, eventID) } className={ classes }>Cast vote</button>
     );
 };
 

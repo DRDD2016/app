@@ -2,8 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent, updatePoll } from '../actions/event.js';
-import { store } from '../init-store.js';
+import { getEvent, updatePoll, confirmPoll } from '../actions/event.js';
 
 const mapStateToProps = (state) => {
 
@@ -28,9 +27,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(updatePoll(eventType, index));
         },
 
-        handlePollConfirmation: (poll) => {
-            let eventID = store.getState().event.data.eventID;
-            console.log(store.getState().event);
+        handlePollConfirmation: (poll, eventID) => {
+            console.log(eventID, 'eventID', poll, 'poll');
             // dispatch(confirmPoll(poll, eventID));
         }
     };
