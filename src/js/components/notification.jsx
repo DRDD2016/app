@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll }) => {
-    console.log(userIsHost);
+
     return (
         <Link to={ 'event/' + eventID } >
             <div className="row">
