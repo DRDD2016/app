@@ -24,6 +24,7 @@ class Event extends React.Component {
                       toggleSelection={ this.props.toggleSelection }
                       poll={ this.props.poll }
                       handlePollConfirmation={ this.props.handlePollConfirmation }
+                      eventID={ this.props.params.eventID }
                 />
             );
         }

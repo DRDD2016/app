@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import PollButton from './general/poll-button.jsx';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 
-const Poll = ({ event, toggleSelection, poll, handlePollConfirmation }) => {
+const Poll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID }) => {
 
     let eventWhat = createPollSelections(event, toggleSelection, poll, 'eventWhat', EventWhatSection);
 
@@ -35,7 +35,8 @@ const Poll = ({ event, toggleSelection, poll, handlePollConfirmation }) => {
             </div>
 
             <PollButton poll={ poll }
-                        handlePollConfirmation={ handlePollConfirmation }/>
+                        handlePollConfirmation={ handlePollConfirmation }
+                        eventID={ eventID }/>
         </div>
     );
 };

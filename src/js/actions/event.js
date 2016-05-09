@@ -64,12 +64,12 @@ export function updatePoll (eventType, index) {
 }
 
 
-export function confirmPoll (poll) {
+export function confirmPoll (poll, eventID) {
 
     return (dispatch) => {
 
         dispatch(confirmPollRequest());
-        axios.get('/confirm-poll?' + getUserID(), poll)
+        axios.get('/confirm-poll?' + getUserID() + '&eventID=' + eventID, poll)
             .then((response) => {
                 dispatch(confirmPollSuccess(response.data));
             })
