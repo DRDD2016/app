@@ -28,8 +28,7 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         handlePollConfirmation: (poll, eventID) => {
-            console.log(eventID, 'eventID', poll, 'poll');
-            // dispatch(confirmPoll(poll, eventID));
+            dispatch(confirmPoll(poll, eventID));
         }
     };
 };
