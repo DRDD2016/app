@@ -44,7 +44,7 @@ test('parseObjectValues parses an event object as expected', (t) => {
     const actual = parseObjectValues(semiStringified);
     t.equal(typeof actual.eventName, 'string');
     t.equal(typeof actual.eventDescription, 'string');
-    t.equal(typeof actual.hostID, 'number');
+    t.equal(typeof actual.hostID, 'string');
     t.equal(typeof actual.isPoll, 'boolean');
     t.equal(typeof actual.eventWhat, 'object');
     t.equal(typeof actual.eventWhere, 'object');
