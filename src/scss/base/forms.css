@@ -55,7 +55,8 @@ label,
 legend {
   display: block;
   margin-bottom: .5rem;
-  font-weight: 600; }
+  font-weight: 600;
+  text-align: center; }
 fieldset {
   padding: 0;
   border-width: 0; }
