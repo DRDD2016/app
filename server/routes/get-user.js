@@ -6,14 +6,18 @@ exports.register = (server, options, next) => {
         method: 'GET',
         path: '/get-user',
         config: {
-            description: 'get user details and pass it down in the response',
+            description: 'get user details from database',
 
             handler: (request, reply) => {
 
-                getUser(request.query.userID, (error, userData) => {
+                getUser(request.query.userID)
+                .then((userData) => {
 
-                    var response = error || userData;
-                    reply(response);
+                    reply(userData);
+                })
+                .catch((error) => {
+                    console.error("Error getting user info from database:", error);
+                    callback(error);
                 });
             }
         }
