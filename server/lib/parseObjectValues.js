@@ -1,11 +1,11 @@
 function parseObjectValues (oldObject) {
 
-    var targetValues = ['invitees', 'eventWhat', 'eventWhere', 'eventWhen', 'isPoll', 'hostID'];
+    var targetValues = ['invitees', 'eventWhat', 'eventWhere', 'eventWhen', 'isPoll'];
 
     return Object.keys(oldObject).reduce((newObject, key, i) => {
 
-        if (targetValues.indexOf(key) > -1) {
 
+        if (targetValues.indexOf(key) > -1) {
             newObject[key] = JSON.parse(oldObject[key]);
         } else {
 
