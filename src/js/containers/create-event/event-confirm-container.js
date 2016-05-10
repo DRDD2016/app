@@ -33,10 +33,9 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         discardEvent: () => {
-            // CREATE A DISPATCH TO RESET STATE
+
             dispatch(clearCreateEvent());
         },
-
     };
 };
 

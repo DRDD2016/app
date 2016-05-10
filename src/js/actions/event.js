@@ -13,14 +13,12 @@ export const CONFIRM_POLL_SUCCESS = 'CONFIRM_POLL_SUCCESS';
 export const CONFIRM_POLL_FAILURE = 'CONFIRM_POLL_FAILURE';
 
 
-
-
-
 export function getEvent (eventID) {
 
     return (dispatch) => {
 
         dispatch(getEventRequest());
+        
         axios.get('/get-event?eventID=' + eventID )
             .then((response) => {
                 dispatch(getEventSuccess(response.data));
@@ -54,7 +52,6 @@ export function getEventFailure (error) {
     };
 }
 
-
 export function updatePoll (eventType, index) {
     return {
         type: UPDATE_POLL,
@@ -62,7 +59,6 @@ export function updatePoll (eventType, index) {
         index
     };
 }
-
 
 export function confirmPoll (poll, eventID) {
 
@@ -75,6 +71,7 @@ export function confirmPoll (poll, eventID) {
         };
 
         dispatch(confirmPollRequest());
+
         axios.post('/confirm-poll', payload)
             .then((response) => {
                 dispatch(confirmPollSuccess(response.data));
