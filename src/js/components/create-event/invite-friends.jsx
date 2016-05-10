@@ -41,20 +41,23 @@ class InviteFriends extends React.Component {
                 );
             }
         });
+
+        let classes = classnames({
+            'hide': this.props.invitees.length === 0
+        });
+
         return (
             <div>
                 <h3> Invite your Friends! </h3>
                 <div>
-                    {invitees}
+                    { invitees }
                 </div>
 
                 <div className="ui middle aligned divided list">
-                    {friends}
+                    { friends }
                 </div>
 
-
-
-                <button>
+                <button className={ classes }>
                     <Link to='/create-event/confirm'>Next</Link>
                 </button>
             </div>
