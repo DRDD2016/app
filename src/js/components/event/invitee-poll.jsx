@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
-import PollButton from './general/poll-button.jsx';
-import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
+import PollButton from '../general/poll-button.jsx';
+import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
 
-const Poll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost }) => {
+const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost }) => {
 
     let eventWhat = createPollSelections(event, toggleSelection, poll, 'eventWhat', EventWhatSection);
 
@@ -71,4 +71,4 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
 }
 
 
-export default Poll;
+export default InviteePoll;

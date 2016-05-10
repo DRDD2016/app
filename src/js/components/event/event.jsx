@@ -1,5 +1,6 @@
 import React from 'react';
-import Poll from './poll.jsx';
+import InviteePoll from './invitee-poll.jsx';
+import HostPoll from './host-poll.jsx';
 
 class Event extends React.Component {
 
@@ -7,26 +8,27 @@ class Event extends React.Component {
         super(props);
     }
 
-    componentWillMount () {
-        this.props.fetchEvent(this.props.params.eventID);
-    }
-
     renderView () {
 
-        if (this.props.userIsHost){
+        if (this.props.userIsHost && this.props.isPoll) {
             return (
-                 <div>This is the host page</div>
+                 <HostPoll />
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {
             return (
-                <Poll event= { this.props.event }
+                <InviteePoll event= { this.props.event }
                       toggleSelection={ this.props.toggleSelection }
                       poll={ this.props.poll }
                       handlePollConfirmation={ this.props.handlePollConfirmation }
                       eventID={ this.props.params.eventID }
                       isHost={ this.props.userIsHost }
                 />
+            );
+        }
+        if (this.props.userIsHost && !this.props.isPoll) {
+            return (
+                 <div>This is the host confirmed event page</div>
             );
         }
         if (!this.props.isHost && !this.props.isPoll){

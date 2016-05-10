@@ -4,6 +4,7 @@ import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import initStore from './init-store.js';
 import { requireAuthentication } from './requireAuthentication.jsx';
+import { getEvent } from './actions/event.js';
 
 require('../scss/main.scss');
 
@@ -21,12 +22,20 @@ import InviteFriendsContainer from './containers/create-event/invite-friends-con
 
 import { store } from './init-store.js';
 
+function fetchEvent (nextState, replace, callback) {
+
+    store.dispatch(getEvent(nextState.params.eventID));
+    callback();
+}
+
 const routes = (
     <Route path='/' component={ AppContainer }>
 
         <IndexRoute component={ LoginContainer } />
         <Route path='/feed' component={ requireAuthentication(FeedContainer) } />
-        <Route path='/event/:eventID' component={ requireAuthentication(EventContainer)} />
+        <Route path='/event/:eventID'
+               component={ requireAuthentication(EventContainer)}
+               onEnter={ fetchEvent } />
 
         <Route path='/create-event' component={ requireAuthentication(CreateEvent) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />
