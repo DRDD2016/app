@@ -1,7 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 
-// create event
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
 export const SET_EVENT_WHAT = "SET_EVENT_WHAT";
 export const SET_EVENT_WHERE = "SET_EVENT_WHERE";
@@ -132,14 +131,16 @@ export function getFBFriends () {
     var id = getUserID();
 
     return (dispatch) => {
+
         dispatch(getFBFriendsRequest());
-        axios.get('/new-event/invitees?' + id)
-        .then((response) => {
-            dispatch(getFBFriendsSuccess(response.data));
-        })
-        .catch((error) => {
-            dispatch(getFBFriendsFailure(error));
-        });
+
+        axios.get('/new-event/invitees?userID=' + id)
+            .then((response) => {
+                dispatch(getFBFriendsSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(getFBFriendsFailure(error));
+            });
     };
 }
 

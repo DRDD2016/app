@@ -17,7 +17,7 @@ exports.register = (server, options, next) => {
 
                     return reply(new Error("Missing data for confirm-poll"));
                 }
-                var inviteeID = request.payload.userID.match(/\d+/)[0];
+                var inviteeID = request.payload.userID;
                 var eventID = request.payload.eventID;
                 castVote(request.payload.poll, inviteeID, eventID, (error, response) => {
 

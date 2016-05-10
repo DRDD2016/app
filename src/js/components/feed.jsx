@@ -17,7 +17,7 @@ class Feed extends React.Component {
     render () {
 
         let notifications = this.props.notifications.map((data, i) => {
-            // console.log();
+            
             return (
                 <Notification
                     key={ i }
@@ -30,7 +30,7 @@ class Feed extends React.Component {
                     eventWhat={ data.eventWhat }
                     eventWhere={ data.eventWhere }
                     eventWhen={ data.eventWhen }
-                    userIsHost={ data.hostID == getUserID().match(/\d+/)[0] } />
+                    userIsHost={ data.hostID == getUserID() } />
             );
         });
 

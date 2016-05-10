@@ -10,7 +10,7 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                getUser(request.query.sparkID, (error, userData) => {
+                getUser(request.query.userID, (error, userData) => {
 
                     var response = error || userData;
                     reply(response);

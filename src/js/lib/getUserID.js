@@ -1,4 +1,9 @@
 export default function getUserID () {
 
-    return document.cookie.match(/sparkID=\d+/)[0];
+    const result = document.cookie.match(/sparkID=\d+/)[0].match(/\d+/);
+    
+    if (!result) {
+        throw new Error('User session cookie not found.');
+    }
+    return result[0];
 }
