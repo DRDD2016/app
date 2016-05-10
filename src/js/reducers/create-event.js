@@ -1,7 +1,7 @@
 import update from 'react-addons-update';
 import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
          ADD_INPUT, REMOVE_INPUT,
-         NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE,
+         NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE, CLEAR_CREATE_EVENT,
          GET_FB_FRIENDS_REQUEST, GET_FB_FRIENDS_SUCCESS, GET_FB_FRIENDS_FAILURE,
          ADD_INVITEE, REMOVE_INVITEE } from '../actions/create-event.js';
 
@@ -54,6 +54,8 @@ export default function createEvent(state = initialState, action) {
     case NEW_EVENT_SUCCESS:
     case NEW_EVENT_FAILURE:
         return handleNewEvent(state, action);
+    case CLEAR_CREATE_EVENT:
+        return initialState;
 
     case GET_FB_FRIENDS_REQUEST:
     case GET_FB_FRIENDS_SUCCESS:
