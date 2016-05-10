@@ -14,11 +14,11 @@ function getNotifications(id, callback) {
             });
         })
         .then((parsedArray) => {
-        
+
             return callback(null, parsedArray);
         })
         .catch((error) => {
-            console.log(error);
+            
             return callback(error);
         });
 }

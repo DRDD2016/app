@@ -13,15 +13,16 @@ export function getNotifications () {
     return (dispatch) => {
 
         dispatch(getNotificationsRequest());
-        axios.get('/get-notifications?' + id)
-        .then((response) => {
-            console.log("is this running");
-            dispatch(getNotificationsSuccess(response.data));
-        })
-        .catch((error) => {
-            console.log("error", error);
-            dispatch(getNotificationsFailure(error));
-        });
+
+        axios.get('/get-notifications?userID=' + id)
+            .then((response) => {
+
+                dispatch(getNotificationsSuccess(response.data));
+            })
+            .catch((error) => {
+
+                dispatch(getNotificationsFailure(error));
+            });
     };
 }
 

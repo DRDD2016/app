@@ -4,14 +4,14 @@ import { Link } from 'react-router';
 import ConfirmEventWhat from '../general/confirm-event-what.jsx';
 import ConfirmEventWhereorWhen from '../general/confirm-event-where-or-when.jsx';
 
-const EventConfirm = ({ data, saveEvent }) => {
+const EventConfirm = ({ data, saveEvent, discardEvent }) => {
 
     const invitedFriends = data.invitees.map((inviteeObject) => {
         return (
             <div key={ inviteeObject.id } className="item">
-                <img className="ui avatar image" src={inviteeObject.photoURL} />
+                <img className="ui avatar image" src={ inviteeObject.photoURL } />
                 <div className="">
-                    <a className="header">{inviteeObject.firstName}</a>
+                    <a className="header">{ inviteeObject.firstName }</a>
                 </div>
             </div>
 
@@ -56,6 +56,9 @@ const EventConfirm = ({ data, saveEvent }) => {
 
             <button onClick={ (e) => saveEvent(data) }>
                 Save event
+            </button>
+            <button onClick={ (e) => discardEvent() }>
+                Discard event
             </button>
         </div>
     );

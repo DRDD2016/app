@@ -11,13 +11,7 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                /*
-                - get current user's token
-                - get the user's facebook friends
-                    - for each friend, get details from database
-                */
-
-                getUserToken(request.query.sparkID, (error, token) => {
+                getUserToken(request.query.userID, (error, token) => {
 
                     if (error) {
                         reply(error);

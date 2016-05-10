@@ -1,123 +1,32 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 
-// create event
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
 export const SET_EVENT_WHAT = "SET_EVENT_WHAT";
 export const SET_EVENT_WHERE = "SET_EVENT_WHERE";
 export const SET_EVENT_WHEN = "SET_EVENT_WHEN";
-export const ADD_INPUT = "ADD_INPUT";
-export const REMOVE_INPUT = "REMOVE_INPUT";
+
 export const NEW_EVENT = "NEW_EVENT";
 export const NEW_EVENT_REQUEST = "NEW_EVENT_REQUEST";
 export const NEW_EVENT_SUCCESS = "NEW_EVENT_SUCCESS";
 export const NEW_EVENT_FAILURE = "NEW_EVENT_FAILURE";
+export const CLEAR_CREATE_EVENT = "CLEAR_CREATE_EVENT";
+
 export const GET_FB_FRIENDS = "GET_FB_FRIENDS";
 export const GET_FB_FRIENDS_REQUEST = "GET_FB_FRIENDS_REQUEST";
 export const GET_FB_FRIENDS_SUCCESS = "GET_FB_FRIENDS_SUCCESS";
 export const GET_FB_FRIENDS_FAILURE = "GET_FB_FRIENDS_FAILURE";
+
+export const ADD_INPUT = "ADD_INPUT";
+export const REMOVE_INPUT = "REMOVE_INPUT";
+
 export const ADD_INVITEE = "ADD_INVITEE";
 export const REMOVE_INVITEE = "REMOVE_INVITEE";
 
 
-export function addInvitee(friend, index) {
-    return {
-        type: ADD_INVITEE,
-        data: friend,
-        index
-    };
-}
-
-export function removeInvitee(invitee, index) {
-    return {
-        type: REMOVE_INVITEE,
-        data: invitee,
-        index
-    };
-}
-
-export function getFBFriends () {
-
-    var id = getUserID();
-
-    return (dispatch) => {
-        dispatch(getFBFriendsRequest());
-        axios.get('/new-event/invitees?' + id)
-        .then((response) => {
-            dispatch(getFBFriendsSuccess(response.data));
-        })
-        .catch((error) => {
-            dispatch(getFBFriendsFailure(error));
-        });
-    };
-}
-
-export function getFBFriendsRequest () {
-    return {
-        type: GET_FB_FRIENDS_REQUEST,
-        isFetching: true,
-        data: []
-    };
-}
-
-export function getFBFriendsSuccess (data) {
-    return {
-        type: GET_FB_FRIENDS_SUCCESS,
-        isFetching: false,
-        data: data
-    };
-}
-
-export function getFBFriendsFailure (error) {
-    return {
-        type: GET_FB_FRIENDS_FAILURE,
-        isFetching: false,
-        error: error
-    };
-}
-
-export function newEventRequest () {
-
-    return {
-        type: NEW_EVENT_REQUEST,
-        isFetching: true
-    };
-}
-
-export function newEventSuccess () {
-
-    return {
-        type: NEW_EVENT_SUCCESS,
-        isFetching: false,
-        didSave: true
-    };
-}
-
-export function newEventFailure (error) {
-
-    return {
-        type: NEW_EVENT_FAILURE,
-        isFetching: false,
-        error: error,
-        didSave: false
-    };
-}
-
-export function newEvent (eventData) {
-
-    return function (dispatch) {
-
-        dispatch(newEventRequest());
-
-        return axios.post('/new-event', eventData)
-            .then((response) => {
-                dispatch(newEventSuccess());
-            })
-            .catch((error) => {
-                dispatch(newEventFailure(error));
-            });
-    };
-}
+/********
+SET EVENT ACTIONS
+********/
 
 export function setEventDetails (data, inputType) {
 
@@ -160,6 +69,109 @@ export function setEventWhen (data, inputKey, format) {
     };
 }
 
+/********
+NEW EVENT ACTIONS
+********/
+
+export function newEvent (eventData) {
+
+    return function (dispatch) {
+
+        dispatch(newEventRequest());
+
+        return axios.post('/new-event', eventData)
+            .then((response) => {
+                dispatch(newEventSuccess());
+            })
+            .catch((error) => {
+                dispatch(newEventFailure(error));
+            });
+    };
+}
+
+export function newEventRequest () {
+
+    return {
+        type: NEW_EVENT_REQUEST,
+        isFetching: true
+    };
+}
+
+export function newEventSuccess () {
+
+    return {
+        type: NEW_EVENT_SUCCESS,
+        isFetching: false,
+        didSave: true
+    };
+}
+
+export function newEventFailure (error) {
+
+    return {
+        type: NEW_EVENT_FAILURE,
+        isFetching: false,
+        error: error,
+        didSave: false
+    };
+}
+
+export function clearCreateEvent () {
+    return {
+        type: CLEAR_CREATE_EVENT
+    };
+}
+
+/********
+GET FB FRIENDS ACTIONS
+********/
+
+export function getFBFriends () {
+
+    var id = getUserID();
+
+    return (dispatch) => {
+
+        dispatch(getFBFriendsRequest());
+
+        axios.get('/new-event/invitees?userID=' + id)
+            .then((response) => {
+                dispatch(getFBFriendsSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(getFBFriendsFailure(error));
+            });
+    };
+}
+
+export function getFBFriendsRequest () {
+    return {
+        type: GET_FB_FRIENDS_REQUEST,
+        isFetching: true,
+        data: []
+    };
+}
+
+export function getFBFriendsSuccess (data) {
+    return {
+        type: GET_FB_FRIENDS_SUCCESS,
+        isFetching: false,
+        data: data
+    };
+}
+
+export function getFBFriendsFailure (error) {
+    return {
+        type: GET_FB_FRIENDS_FAILURE,
+        isFetching: false,
+        error: error
+    };
+}
+
+/********
+INPUT ACTIONS
+********/
+
 export function addInput (nextInputKey, eventType) {
     return {
         type: ADD_INPUT,
@@ -173,5 +185,25 @@ export function removeInput (nextInputKey, eventType) {
         type: REMOVE_INPUT,
         nextInputKey,
         eventType
+    };
+}
+
+/********
+INVITEE ACTIONS
+********/
+
+export function addInvitee (friend, index) {
+    return {
+        type: ADD_INVITEE,
+        data: friend,
+        index
+    };
+}
+
+export function removeInvitee (invitee, index) {
+    return {
+        type: REMOVE_INVITEE,
+        data: invitee,
+        index
     };
 }

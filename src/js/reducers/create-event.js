@@ -1,7 +1,7 @@
 import update from 'react-addons-update';
 import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
          ADD_INPUT, REMOVE_INPUT,
-         NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE,
+         NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE, CLEAR_CREATE_EVENT,
          GET_FB_FRIENDS_REQUEST, GET_FB_FRIENDS_SUCCESS, GET_FB_FRIENDS_FAILURE,
          ADD_INVITEE, REMOVE_INVITEE } from '../actions/create-event.js';
 
@@ -30,7 +30,7 @@ const initialState = {
     didSave: undefined,
     isPoll: undefined
 };
-export default function createEvent(state = initialState, action) {
+export default function createEvent  (state = initialState, action) {
 
     switch (action.type) {
 
@@ -54,6 +54,8 @@ export default function createEvent(state = initialState, action) {
     case NEW_EVENT_SUCCESS:
     case NEW_EVENT_FAILURE:
         return handleNewEvent(state, action);
+    case CLEAR_CREATE_EVENT:
+        return initialState;
 
     case GET_FB_FRIENDS_REQUEST:
     case GET_FB_FRIENDS_SUCCESS:
@@ -103,7 +105,7 @@ function setEventDetails (state, action, key) {
 
 function setEvent (state, action) {
     let newState = update(state, {
-        [action.eventType]: {$splice: [[action.inputKey, 1, action.data]]}
+        [action.eventType]: { $splice: [[action.inputKey, 1, action.data]] }
     });
 
     return newState;
@@ -113,10 +115,10 @@ function setEventWhen (state, action) {
 
     let oldValue = state.eventWhen[action.inputKey];
     let newValue = update(oldValue, {
-        [action.format]: {$set: action.data}
+        [action.format]: { $set: action.data }
     });
     let newState = update(state, {
-        'eventWhen': {$splice: [[action.inputKey, 1, newValue]]}
+        'eventWhen': { $splice: [[action.inputKey, 1, newValue]] }
     });
     return newState;
 }
@@ -131,7 +133,7 @@ function addInput (state, action) {
 
     let newState = update(state, {
 
-        [action.eventType]: {$push: [initialValue]}
+        [action.eventType]: { $push: [initialValue] }
     });
     return newState;
 }
@@ -139,7 +141,7 @@ function addInput (state, action) {
 function removeInput (state, action) {
 
     let newState = update(state, {
-        [action.eventType]: {$splice: [[action.nextInputKey, 1]]}
+        [action.eventType]: {  $splice: [[action.nextInputKey, 1]]  }
     });
     return newState;
 }
@@ -147,8 +149,8 @@ function removeInput (state, action) {
 function addInvitee (state, action) {
 
     let newState = update(state, {
-        invitees: {$push: [action.data]},
-        friends: {$splice: [[action.index, 1]]}
+        invitees: { $push: [action.data] },
+        friends: { $splice: [[action.index, 1]] }
     });
     return newState;
 }
@@ -156,8 +158,8 @@ function addInvitee (state, action) {
 function removeInvitee (state, action) {
 
     let newState = update(state, {
-        friends: {$push: [action.data]},
-        invitees: {$splice: [[action.index, 1]]}
+        friends: { $push: [action.data] },
+        invitees: { $splice: [[action.index, 1]] }
     });
     return newState;
 }

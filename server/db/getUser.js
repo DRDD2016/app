@@ -7,7 +7,7 @@ function getUser (id, callback) {
         .then((response) => {
 
             if (response === null) {
-                throw new Error("User does not exist.");
+                callback(new Error("User does not exist."));
             } else {
 
                 delete response.token;
@@ -15,10 +15,6 @@ function getUser (id, callback) {
                     callback(null, response);
                 }
             }
-        })
-        .catch((error) => {
-            console.error("Error getting user info from database:", error);
-            callback(error);
         });
 }
 

@@ -17,15 +17,15 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                     </p>
                 </div>
                 <div className="three columns">
-                    <ul>
+                    <label>
                         { eventWhat.length === 1 ? eventWhat[0] : "TBC" }
-                    </ul>
-                    <ul>
+                    </label>
+                    <label>
                         { eventWhere.length === 1 ? `{ $eventWhere[0].placeName }` : "TBC" }
-                    </ul>
-                    <ul>
+                    </label>
+                    <label>
                         { eventWhen.length === 1 ? eventWhen[0].date : "TBC" }
-                    </ul>
+                    </label>
                 </div>
                 <hr />
             </div>
