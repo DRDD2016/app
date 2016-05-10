@@ -57,6 +57,9 @@ const EventConfirm = ({ data, saveEvent }) => {
             <button onClick={ (e) => saveEvent(data) }>
                 Save event
             </button>
+            <button onClick={ (e) => discardEvent() }>
+                Discard event
+            </button>
         </div>
     );
 };
