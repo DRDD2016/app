@@ -10,14 +10,13 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                getUser(request.query.userID)
-                .then((userData) => {
+                getUser(request.query.userID, (error, userData) => {
 
-                    reply(userData);
-                })
-                .catch((error) => {
-                    console.error("Error getting user info from database:", error);
-                    callback(error);
+                    if (error) {
+                        console.error("Error getting user info from database:", error);
+                    }
+                    var result = error || userData;
+                    reply(result);
                 });
             }
         }

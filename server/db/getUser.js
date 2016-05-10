@@ -1,18 +1,18 @@
 var client = require('./init.js');
 
-function getUser (id) {
+function getUser (id, callback) {
 
     var hashKey = 'user:' + id;
-    return client.hgetallAsync(hashKey)
+    client.hgetallAsync(hashKey)
         .then((response) => {
 
             if (response === null) {
-                throw new Error("User does not exist.");
+                callback(new Error("User does not exist."));
             } else {
 
                 delete response.token;
                 if (!response.token) {
-                    return response;
+                    callback(null, response);
                 }
             }
         });
