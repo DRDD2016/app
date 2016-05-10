@@ -11,12 +11,12 @@ export const EventWhatSection = ({ text }) => {
 
 export const EventWhereSection = ({ text }) => {
     return (
-        <label>{text.placeName} {text.placeAddress}</label>
+        <label>{ text.placeName } { text.placeAddress }</label>
     );
 };
 
 export const EventWhenSection = ({ text }) => {
     return (
-        <label>{text.date} {text.time}</label>
+        <label>{ text.date } { text.time }</label>
     );
 };

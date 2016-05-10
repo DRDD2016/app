@@ -6,6 +6,7 @@ function getNotifications (id, callback) {
 
     client.smembersAsync(notificationID)
         .then((response) => {
+
             return response.map((value) => {
 
                 return JSON.parse(value);
@@ -16,7 +17,7 @@ function getNotifications (id, callback) {
             return callback(null, parsedArray);
         })
         .catch((error) => {
-            
+
             return callback(error);
         });
 }

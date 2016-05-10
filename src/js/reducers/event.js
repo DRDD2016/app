@@ -46,7 +46,7 @@ function handleGetEventRequest (state, action) {
 
 function handleGetEventSuccess (state, action) {
 
-    if (action.data.isPoll){
+    if (action.data.isPoll) {
         return update(state, {
             isFetching: { $set: action.isFetching },
             data: { $set: action.data },
