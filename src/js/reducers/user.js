@@ -9,28 +9,28 @@ const initialState = {
     error: undefined
 };
 
-export default function user(state = initialState,action) {
+export default function user (state = initialState, action) {
     switch (action.type) {
     case GET_USER_REQUEST:
-        return handleGetUserRequest(state,action);
+        return handleGetUserRequest(state, action);
     case GET_USER_SUCCESS:
-        return handleGetUserSuccess(state,action);
+        return handleGetUserSuccess(state, action);
     case GET_USER_FAILURE:
-        return handleGetUserFailure(state,action);
+        return handleGetUserFailure(state, action);
 
     default:
         return state;
     }
 }
 
-function handleGetUserRequest(state, action){
+function handleGetUserRequest (state, action){
     return {
         ...state,
         isFetching: true
     };
 }
 
-function handleGetUserSuccess(state, action){
+function handleGetUserSuccess (state, action){
     return {
         ...state,
         isFetching: false,
@@ -41,7 +41,7 @@ function handleGetUserSuccess(state, action){
     };
 }
 
-function handleGetUserFailure(state, action){
+function handleGetUserFailure (state, action){
     return {
         ...state,
         isFetching: false,

@@ -12,7 +12,7 @@ class AutocompleteInput extends React.Component {
                 country: 'uk'
             }
         };
-        let autocomplete = new google.maps.places.Autocomplete(inputDOMElement,options);
+        let autocomplete = new google.maps.places.Autocomplete(inputDOMElement, options);
 
         autocomplete.addListener('place_changed', () => {
 

@@ -15,7 +15,7 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
                 type="time"
                 value={ value.time}
                 placeholder="Time"
-                onChange={ (e) => handleTime(inputKey,e) } />
+                onChange={ (e) => handleTime(inputKey, e) } />
         </div>
     );
 };

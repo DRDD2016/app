@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class EventDetails extends React.Component {
-    constructor(props){
+    constructor (props){
         super(props);
     }
 
-    componentDidMount() {
+    componentDidMount () {
         if (this.props.shouldGetFBFriends) {
             this.props.getFBFriends();
         }
@@ -33,7 +33,7 @@ class EventDetails extends React.Component {
                     <div className="">
                         <input
                             onChange={ this.props.handleChange.bind(this, 'eventDescription') }
-                            value={ this.props.eventDetails ? this.props.eventDetails.eventDescription: '' }
+                            value={ this.props.eventDetails ? this.props.eventDetails.eventDescription : '' }
                             type="text"
                             placeholder="Event description" />
                     </div>

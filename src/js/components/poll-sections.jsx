@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const EventWhatSection = ({ text}) => {
+export const EventWhatSection = ({ text }) => {
 
     return (
         <label>

@@ -5,7 +5,7 @@ import getUserID from '../lib/getUserID.js';
 
 class Feed extends React.Component {
 
-    constructor(props){
+    constructor (props){
         super(props);
     }
 
@@ -17,7 +17,7 @@ class Feed extends React.Component {
     render () {
 
         let notifications = this.props.notifications.map((data, i) => {
-            
+
             return (
                 <Notification
                     key={ i }

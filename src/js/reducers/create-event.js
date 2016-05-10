@@ -30,7 +30,7 @@ const initialState = {
     didSave: undefined,
     isPoll: undefined
 };
-export default function createEvent(state = initialState, action) {
+export default function createEvent  (state = initialState, action) {
 
     switch (action.type) {
 
@@ -105,7 +105,7 @@ function setEventDetails (state, action, key) {
 
 function setEvent (state, action) {
     let newState = update(state, {
-        [action.eventType]: {$splice: [[action.inputKey, 1, action.data]]}
+        [action.eventType]: { $splice: [[action.inputKey, 1, action.data]] }
     });
 
     return newState;
@@ -115,10 +115,10 @@ function setEventWhen (state, action) {
 
     let oldValue = state.eventWhen[action.inputKey];
     let newValue = update(oldValue, {
-        [action.format]: {$set: action.data}
+        [action.format]: { $set: action.data }
     });
     let newState = update(state, {
-        'eventWhen': {$splice: [[action.inputKey, 1, newValue]]}
+        'eventWhen': { $splice: [[action.inputKey, 1, newValue]] }
     });
     return newState;
 }
@@ -133,7 +133,7 @@ function addInput (state, action) {
 
     let newState = update(state, {
 
-        [action.eventType]: {$push: [initialValue]}
+        [action.eventType]: { $push: [initialValue] }
     });
     return newState;
 }
@@ -141,7 +141,7 @@ function addInput (state, action) {
 function removeInput (state, action) {
 
     let newState = update(state, {
-        [action.eventType]: {$splice: [[action.nextInputKey, 1]]}
+        [action.eventType]: {  $splice: [[action.nextInputKey, 1]]  }
     });
     return newState;
 }
@@ -149,8 +149,8 @@ function removeInput (state, action) {
 function addInvitee (state, action) {
 
     let newState = update(state, {
-        invitees: {$push: [action.data]},
-        friends: {$splice: [[action.index, 1]]}
+        invitees: { $push: [action.data] },
+        friends: { $splice: [[action.index, 1]] }
     });
     return newState;
 }
@@ -158,8 +158,8 @@ function addInvitee (state, action) {
 function removeInvitee (state, action) {
 
     let newState = update(state, {
-        friends: {$push: [action.data]},
-        invitees: {$splice: [[action.index, 1]]}
+        friends: { $push: [action.data] },
+        invitees: { $splice: [[action.index, 1]] }
     });
     return newState;
 }

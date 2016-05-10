@@ -18,13 +18,13 @@ export default function event (state = initialState, action) {
     switch (action.type) {
 
     case GET_EVENT_REQUEST:
-        return handleGetEventRequest(state,action);
+        return handleGetEventRequest(state, action);
     case GET_EVENT_SUCCESS:
-        return handleGetEventSuccess(state,action);
+        return handleGetEventSuccess(state, action);
     case GET_EVENT_FAILURE:
-        return handleGetEventFailure(state,action);
+        return handleGetEventFailure(state, action);
     case UPDATE_POLL:
-        return updatePoll(state,action);
+        return updatePoll(state, action);
 
     case CONFIRM_POLL_REQUEST:
     case CONFIRM_POLL_SUCCESS:
@@ -36,7 +36,7 @@ export default function event (state = initialState, action) {
     }
 }
 
-function handleGetEventRequest(state,action) {
+function handleGetEventRequest (state, action) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching }
@@ -71,11 +71,11 @@ function handleGetEventFailure (state, action) {
 
 function setPoll (event) {
 
-    let targets = ['eventWhat','eventWhere','eventWhen'];
+    let targets = ['eventWhat', 'eventWhere', 'eventWhen'];
 
-    return targets.reduce((pollObject,target,i) => {
+    return targets.reduce((pollObject, target, i) => {
 
-        if(event[target].length > 1){
+        if (event[target].length > 1) {
             pollObject[target] = new Array(event[target].length).fill(false);
         }
 
@@ -88,12 +88,13 @@ function updatePoll (state, action) {
 
     let newValue = !state.poll[action.eventType][action.index];
     let newState = update(state, {
-        poll: { [action.eventType]: {$splice:[[action.index, 1, newValue]]}}
+        poll: { [action.eventType]: { $splice: [[action.index, 1, newValue]] } }
     });
     return newState;
 }
 
 function handleConfirmPoll (state, action) {
+
     let newState = update(state, {
         isFetching: { $set: action.isFetching }
     });

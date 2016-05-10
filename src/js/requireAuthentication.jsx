@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function requireAuthentication(Component) {
+export function requireAuthentication (Component) {
 
     class AuthenticatedComponent extends React.Component {
 
@@ -8,7 +8,7 @@ export function requireAuthentication(Component) {
             this.checkAuth();
         }
 
-        componentWillReceiveProps(nextProps) {
+        componentWillReceiveProps (nextProps) {
             this.checkAuth();
         }
 

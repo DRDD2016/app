@@ -14,7 +14,7 @@ export function getUser () {
     return (dispatch) => {
 
         dispatch(getUserRequest());
-        axios.get('/get-user?userID='+ id)
+        axios.get('/get-user?userID=' + id)
         .then((response) => {
 
             dispatch(getUserSuccess(response.data));

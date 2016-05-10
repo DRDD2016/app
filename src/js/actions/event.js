@@ -18,7 +18,7 @@ export function getEvent (eventID) {
     return (dispatch) => {
 
         dispatch(getEventRequest());
-        
+
         axios.get('/get-event?eventID=' + eventID )
             .then((response) => {
                 dispatch(getEventSuccess(response.data));
@@ -82,20 +82,20 @@ export function confirmPoll (poll, eventID) {
     };
 }
 
-export function confirmPollRequest() {
+export function confirmPollRequest () {
     return {
         type: CONFIRM_POLL_REQUEST,
         isFetching: true
     };
 }
 
-export function confirmPollSuccess() {
+export function confirmPollSuccess () {
     return {
         type: CONFIRM_POLL_SUCCESS,
         isFetching: false
     };
 }
-export function confirmPollFailure() {
+export function confirmPollFailure () {
     return {
         type: CONFIRM_POLL_FAILURE,
         isFetching: false

@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import axios from 'axios';
 
 class InviteFriends extends React.Component {
-    constructor(props){
+    constructor (props){
         super(props);
     }
 
