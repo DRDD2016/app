@@ -28,7 +28,7 @@ test('getEvent retrieves the correct event', (t) => {
             photoURL: "http://harrypotter.com/image.jpg"
         }
     ];
-    const hostID = 10154129575200996;
+    const hostID = '10154129575200996';
     const isPoll = true;
 
     const expected = {
@@ -44,7 +44,7 @@ test('getEvent retrieves the correct event', (t) => {
         .then((actual) => {
 
             t.deepEqual(actual, expected);
-            t.equal(typeof actual.hostID, 'number', 'hostID parsed back to a number');
+            t.equal(typeof actual.hostID, 'string', 'hostID kept as a string');
             t.equal(typeof actual.isPoll, 'boolean', 'isPoll parsed back to a boolean');
             t.equal(Array.isArray(actual.eventWhat), true, 'eventWhat parsed back to an array');
             t.equal(Array.isArray(actual.eventWhere), true, 'eventWhere parsed back to an array');
