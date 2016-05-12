@@ -18,11 +18,13 @@ exports.register = (server, options, next) => {
 
                         if(event.hostID === request.query.userID) {
 
+
                             getUserVotes(event, request.query.eventID, (setVoteObject) => {
                                 console.log(setVoteObject);
                                 reply( { event: event, tally: setVoteObject } )
                             });
                         } else {
+                            console.log('req',req);
 
                             getUserPoll(event, request.query.eventID, request.query.userID, (setPollObject) => {
                                 console.log(setPollObject);
