@@ -57,5 +57,4 @@ test('TEST TEARDOWN', (t) => {
     client.del("event:2");
 
     t.end();
-    client.quit();
 });

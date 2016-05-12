@@ -8,7 +8,7 @@ exports.register = (server, options, next) => {
                 description: 'return the home page',
 
                 handler: {
-                    directory:{
+                    directory: {
                         path: 'public',
                         listing: true
                     }

@@ -10,11 +10,11 @@ function setNotifications (user, notification, callback) {
     user.forEach((id, index) => {
 
         var setName = "notifications:" + id;
-        console.log("set name",setName);
+        
         client.saddAsync(setName, JSON.stringify(notification))
 
         .then((response) => {
-            if(index === user.length - 1) {
+            if (index === user.length - 1) {
                 return callback(null, response);
             }
         })
