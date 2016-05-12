@@ -3,7 +3,7 @@ var getUser = require('../db/getUser.js');
 function createNotification (userID, eventID, eventInfo, callback) {
 
     getUser(userID, (error, userInfo) => {
-        console.log(userID);
+
         if (error) {
             callback(new Error('problem fetching user to create notification'));
         }
@@ -21,7 +21,7 @@ function createNotification (userID, eventID, eventInfo, callback) {
             hostID: eventInfo.hostID
         };
 
-        return callback (error, notification);
+        return callback(error, notification);
     });
 }
 

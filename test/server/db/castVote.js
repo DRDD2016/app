@@ -20,17 +20,17 @@ test('castVote adds user to the correct sets', (t) => {
 
     castVote(poll, userID, eventID, (error, response) => {
 
-        t.notOk(error);
-        t.ok(response);
+        t.notOk(error, 'castVote executes without error');
+        t.ok(response, 'castVote returns a value to the callback');
 
         client.smembersAsync(testSetKey1)
             .then((result1) => {
 
-                t.deepEqual(result1, ['12345678']);
+                t.deepEqual(result1, ['12345678'], 'User vote is added to respective vote set');
 
                 client.smembersAsync(testSetKey2)
                 .then((result2) => {
-                    t.deepEqual(result2, ['12345678']);
+                    t.deepEqual(result2, ['12345678'], 'User vote is added to respective vote set');
                     t.end();
                 });
             });
@@ -49,8 +49,8 @@ test('castVote edits a user\'s previous vote', (t) => {
 
     castVote(poll, userID, eventID, (error, response) => {
 
-        t.notOk(error);
-        t.ok(response);
+        t.notOk(error, 'castVote executes without error');
+        t.ok(response, 'castVote returns a value to the callback');
 
         client.smembersAsync(testSetKey)
             .then((result) => {

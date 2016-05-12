@@ -38,13 +38,13 @@ exports.init = (port, callback) => {
         });
     });
 
-    server.register([Inert, Home, NewEvent, GetUser, NewEventInvitees, GetNotifications, GetEvent, ConfirmPoll], (err) => {
+    server.register([Inert, Home, GetUser, GetNotifications, NewEvent, NewEventInvitees, GetEvent, ConfirmPoll], (err) => {
 
         if (err) {
             throw new Error(err);
         }
         server.route([{
-            method: ['GET','POST'],
+            method: ['GET', 'POST'],
             path: '/bell/door',
             config: {
                 auth: {
@@ -56,7 +56,7 @@ exports.init = (port, callback) => {
                         return reply('Auth failed due to: ' + request.auth.error.message).code(401);
                     } else {
 
-                        getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function(error, url) {
+                        getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function (error, url) {
                             if (error) {
                                 return reply(error);
                             }
