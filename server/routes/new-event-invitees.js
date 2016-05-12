@@ -1,5 +1,6 @@
 var getUserToken = require('../db/getUserToken.js');
 var getFBFriends = require('../lib/getFBFriends.js');
+var isValidUserID = require('../lib/isValidUserID.js');
 
 exports.register = (server, options, next) => {
 
@@ -11,12 +12,15 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
+                if (!isValidUserID(request.query.userID)) {
+                    throw new Error('Invalid userID');
+                }
+
                 getUserToken(request.query.userID, (error, token) => {
 
                     if (error) {
                         reply(error);
                     } else {
-
                         getFBFriends(token, function (error, friends) {
 
                             var verdict = error || friends;
