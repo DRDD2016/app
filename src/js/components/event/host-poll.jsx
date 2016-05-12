@@ -13,7 +13,7 @@ class HostPoll extends React.Component{
     render () {
         let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection);
 
-        let eventWhere = createVoteSection(this.props.event,this.props.tally, 'eventWhere', EventWhereSection);
+        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection);
 
 
 
