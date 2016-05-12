@@ -19,17 +19,17 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
             <h3>{event.eventName}</h3>
             <h3>{event.eventDescription}</h3>
 
-            <h4>EventWhat</h4>
+            <h4>What</h4>
             <div className="ui massive labels">
                 { eventWhat }
             </div>
 
-            <h4>EventWhere</h4>
+            <h4>Where</h4>
             <div className="ui massive labels">
                 { eventWhere }
             </div>
 
-            <h4>EventWhen</h4>
+            <h4>When</h4>
             <div className="ui massive labels">
                 { eventWhen }
             </div>

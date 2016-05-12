@@ -18,6 +18,7 @@ const mapStateToProps = (state) => {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
         poll: state.event.poll,
+        tally: state.event.tally,
         isFetching: state.event.isFetching,
         userIsHost: state.event.data.hostID == getUserID()
     };

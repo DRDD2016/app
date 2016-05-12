@@ -19,8 +19,9 @@ export function getEvent (eventID) {
 
         dispatch(getEventRequest());
 
-        axios.get('/get-event?eventID=' + eventID )
+        axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
+                console.log(response.data.event);
                 dispatch(getEventSuccess(response.data));
             })
             .catch((error) => {
