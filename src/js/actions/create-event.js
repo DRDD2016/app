@@ -180,10 +180,10 @@ export function addInput (nextInputKey, eventType) {
     };
 }
 
-export function removeInput (nextInputKey, eventType) {
+export function removeInput (inputIndex, eventType) {
     return {
         type: REMOVE_INPUT,
-        nextInputKey,
+        inputIndex,
         eventType
     };
 }

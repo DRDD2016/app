@@ -5,25 +5,28 @@ import Input from '../general/input.jsx';
 
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
+    console.log("This is the data", eventWhatData);
+
     let inputs = eventWhatData.map( (value, i) => {
+        console.log(value);
         return (
             <Input
                 className=""
-                onChange={ handleEventWhat.bind(this, i) }
+                handleChange={ (e) => handleEventWhat(i) }
                 key={ i }
+                inputIndex={ i }
                 value={ value }
+                removeInput={ removeInput }
                 placeholder= "What would you like to do?"
             />);
     });
 
 
-    let addInputClasses = classnames("one column", "round-button", {
+    let addInputClasses = classnames("six columns", {
         "hide": eventWhatData.length >= 3
     });
 
-    let removeInputClasses = classnames("one column", "round-button", {
-        "hide": eventWhatData.length === 1
-    });
+
 
     let nextButtonClasses = classnames({
         "hide": eventWhatData[0] === ""
@@ -41,20 +44,16 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             <div className="">
                 <div className="row">
                     <button className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
-                        +
+                        Add input
                     </button>
                 </div>
 
                 <div className="row">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhatData.length - 1) }>
-                        -
-                    </button>
-                </div>
-
-                <div className="row">
-                    <button className={ nextButtonClasses }>
-                        <Link to='/create-event/where'>Next</Link>
-                    </button>
+                    <Link to='/create-event/where'>
+                        <button className={ nextButtonClasses }>
+                            Next
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -140,9 +140,13 @@ function addInput (state, action) {
 
 function removeInput (state, action) {
 
+    console.log("allllllll the things", state[action.eventType]);
+    console.log("REMOVING YOUUU", state[action.eventType][action.inputIndex]);
+
     let newState = update(state, {
-        [action.eventType]: {  $splice: [[action.nextInputKey, 1]]  }
+        [action.eventType]: {  $splice: [[action.inputIndex, 1]]  }
     });
+    console.log("AND NOW", newState[action.eventType]);
     return newState;
 }
 

@@ -1,13 +1,23 @@
 import React from 'react';
+import classnames from 'classnames';
 
-const Input = ({ onChange, value, placeholder }) => {
+const Input = ({ handleChange, value, placeholder, removeInput, inputIndex }) => {
+
+    let removeInputClasses = classnames("two columns", {
+        "hide": inputIndex === 0
+    });
+
     return (
-        <div className="">
+        <div className="row">
             <input
-                defaultValue={ value }
-                onChange={ onChange }
+                className="ten columns"
+                value={ value }
+                onChange={ handleChange }
                 type="text"
                 placeholder={ placeholder } />
+            <button className={ removeInputClasses } onClick={ (e) => removeInput(inputIndex) }>
+                rm { inputIndex }
+            </button>
         </div>
     );
 };
