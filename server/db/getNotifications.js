@@ -14,7 +14,15 @@ function getNotifications (id, callback) {
         })
         .then((parsedArray) => {
 
-            return callback(null, parsedArray);
+            return parsedArray.sort((a, b) => {
+                return b.timestamp - a.timestamp;
+            });
+
+
+        })
+        .then((sortedArray) => {
+            return callback(null, sortedArray);
+
         })
         .catch((error) => {
 
