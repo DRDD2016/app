@@ -91,21 +91,20 @@ server.init(9001, (error, server) => {
         });
     });
 
-    test.skip('`get-event` works', (t) => {
+    test('`get-event` works', (t) => {
 
         const options = {
             method: 'GET',
             url: '/get-event?eventID=' + fixtures.eventConfirmedHarryEventID + '&userID=' + fixtures.SOHIL_ID
         };
         const eventObjectKeys = Object.keys(fixtures.eventConfirmedHarry);
-
         server.inject(options, (response) => {
 
-            t.equal(response.statusCode, 200, '200 status code');
             Object.keys(response.result.event).forEach((key) => {
 
                 t.ok(eventObjectKeys.indexOf(key) !== -1, 'Correct key in event object');
             });
+            t.equal(response.statusCode, 200, '200 status code');
             t.end();
         });
     });

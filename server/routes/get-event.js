@@ -15,26 +15,30 @@ exports.register = (server, options, next) => {
                     .then((event) => {
 
                         //if userID and event.hostID is the same
+                        var isHost = event.hostID === request.query.userID;
 
-                        if(event.hostID === request.query.userID) {
-
+                        if (isHost && event.isPoll) {
 
                             getUserVotes(event, request.query.eventID, (setVoteObject) => {
-                                console.log(setVoteObject);
-                                reply( { event: event, tally: setVoteObject } )
+                                reply( { event: event, tally: setVoteObject } );
                             });
-                        } else {
-                            console.log('req',req);
+                        }
+                        if (isHost && !event.isPoll) {
+                            //push the list of going/not-going etc here along with the event
+
+                            reply( { event: event });
+                        }
+                        if (!isHost && event.isPoll) {
 
                             getUserPoll(event, request.query.eventID, request.query.userID, (setPollObject) => {
-                                console.log(setPollObject);
                                 reply( { event: event, poll: setPollObject } );
                             });
                         }
-                        //then create vote Object
+                        if (!isHost && !event.isPoll) {
+                            //push the users rsvp along with the event
 
-                        // else
-                            //create poll object
+                            reply( { event: event });
+                        }
 
 
                     })

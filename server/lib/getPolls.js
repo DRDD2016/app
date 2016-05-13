@@ -22,7 +22,6 @@ function getDataFromDB (setKey, userID, callback) {
 }
 
 function recurseThroughPolls (array, eventID, userID, eventType, callback, index, mappedArray) {
-
     if (!index && !mappedArray) {
         index = 0;
         mappedArray = [];
@@ -34,7 +33,6 @@ function recurseThroughPolls (array, eventID, userID, eventType, callback, index
 
         getDataFromDB(setKey, userID, (err, hasVoted) => {
             if (err) {
-                console.log(err,'erroro');
                 return callback(err);
             }
             mappedArray.push(hasVoted);
@@ -47,13 +45,13 @@ function recurseThroughPolls (array, eventID, userID, eventType, callback, index
 }
 
 function getUserPoll (event, eventID, userID, callback) {
-
     var setPoll = createEventTypeObject(event);
     var eventTypeArray = Object.keys(setPoll);
 
     eventTypeArray.forEach((eventType, i) => {
 
         recurseThroughPolls(setPoll[eventType], eventID, userID, eventType, (err, mappedArray) => {
+
             setPoll[eventType] = mappedArray;
             if ((eventTypeArray.length - 1) === i) {
                 callback(setPoll);
