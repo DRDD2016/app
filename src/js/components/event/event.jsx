@@ -12,13 +12,15 @@ class Event extends React.Component {
 
         if (this.props.userIsHost && this.props.isPoll) {
             return (
-                 <HostPoll />
+                 <HostPoll tally= { this.props.tally }
+                           event= { this.props.event }
+                           eventID= { this.props.params.eventID }/>
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {
             return (
                 <InviteePoll event= { this.props.event }
-                      toggleSelection={ this.props.toggleSelection }
+                      toggleSelection= { this.props.toggleSelection }
                       poll={ this.props.poll }
                       handlePollConfirmation={ this.props.handlePollConfirmation }
                       eventID={ this.props.params.eventID }

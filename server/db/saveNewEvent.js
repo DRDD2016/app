@@ -8,15 +8,15 @@ function saveNewEvent (event, callback) {
         var eventID = "event:" + reply;
 
         client.hmsetAsync(eventID, "eventName", stringifiedObject.eventName,
-                                    "eventDescription", stringifiedObject.eventDescription,
-                                    "eventWhat", stringifiedObject.eventWhat, "eventWhere", stringifiedObject.eventWhere, "eventWhen", stringifiedObject.eventWhen,
-                                    "invitees", stringifiedObject.invitees, "hostID", stringifiedObject.hostID, "isPoll", stringifiedObject.isPoll)
-                             .then(() => {
-                                 callback(null, eventID);
-                             })
-                             .catch((error) => {
-                                 callback(error);
-                             });
+                                   "eventDescription", stringifiedObject.eventDescription,
+                                   "eventWhat", stringifiedObject.eventWhat, "eventWhere", stringifiedObject.eventWhere, "eventWhen", stringifiedObject.eventWhen,
+                                   "invitees", stringifiedObject.invitees, "hostID", stringifiedObject.hostID, "isPoll", stringifiedObject.isPoll)
+         .then(() => {
+             callback(null, eventID);
+         })
+         .catch((error) => {
+             callback(error);
+         });
     });
 }
 

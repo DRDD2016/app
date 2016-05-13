@@ -1,4 +1,5 @@
 import test from 'tape';
+import client from '../../../server/db/init.js';
 import reducer from '../../../src/js/reducers/user.js';
 
 test('Reducer handles GET_USER_REQUEST as expected', (t) => {
@@ -94,4 +95,9 @@ test('Reducer handles GET_USER_FAILURE as expected', (t) => {
 
     t.deepEqual(actual, expected, "GET_USER_FAILURE sets state correctly");
     t.end();
+});
+
+test('FINAL TEARDOWN', (t) => {
+
+    client.quit(t.end);
 });

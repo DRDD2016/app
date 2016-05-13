@@ -6,11 +6,8 @@ const initialState = {
     data: {},
     isFetching: false,
     error: undefined,
-    poll: {
-        eventWhat: [],
-        eventWhere: [],
-        eventWhen: [],
-    }
+    poll: undefined,
+    tally: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -46,18 +43,27 @@ function handleGetEventRequest (state, action) {
 
 function handleGetEventSuccess (state, action) {
 
-    if (action.data.isPoll) {
-        return update(state, {
-            isFetching: { $set: action.isFetching },
-            data: { $set: action.data },
-            poll: { $set: setPoll(action.data) }
-        });
-    } else {
-        return update(state, {
-            isFetching: { $set: action.isFetching },
-            data: { $set: action.data }
-        });
-    }
+    let newState = update(state, {
+        isFetching: { $set: action.isFetching },
+        data: { $set: action.data.event },
+        tally: { $set: action.data.tally },
+        poll: { $set: action.data.poll }
+    });
+    return newState;
+
+    // if (action.data.isPoll) {
+    //     return update(state, {
+    //         isFetching: { $set: action.isFetching },
+    //         data: { $set: action.data.event },
+    //         tally: { $set: action.data.tally },
+    //         poll: { $set: action.data.poll }
+    //     });
+    // } else {
+    //     return update(state, {
+    //         isFetching: { $set: action.isFetching },
+    //         data: { $set: action.data }
+    //     });
+    // }
 }
 
 function handleGetEventFailure (state, action) {

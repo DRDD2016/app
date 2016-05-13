@@ -15,6 +15,7 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { !userIsHost && isPoll && " wants you to vote on their poll" }
                         { !userIsHost && !isPoll && " has invited you to their event" }
                     </p>
+                    <p> { moment(timestamp).startOf('hour').fromNow() } </p>
                 </div>
                 <div className="three columns">
                     <label>
