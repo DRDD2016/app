@@ -1,6 +1,11 @@
 import React from 'react';
+import classnames from 'classnames';
 
-const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
+const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput }) => {
+
+    let removeInputClasses = classnames("circular ui icon button", {
+        "hide": inputKey === 0
+    });
 
     return (
         <div className="row">
@@ -11,11 +16,14 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime }) => {
                 placeholder="Date"
                 onChange={ handleDate.bind(this, inputKey) } />
             <input
-                className="six columns"
+                className="four columns"
                 type="time"
                 value={ value.time}
                 placeholder="Time"
                 onChange={ (e) => handleTime(inputKey, e) } />
+            <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
+                <i className="icon remove" />
+            </div>
         </div>
     );
 };
