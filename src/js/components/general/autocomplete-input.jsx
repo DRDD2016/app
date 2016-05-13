@@ -25,7 +25,7 @@ class AutocompleteInput extends React.Component {
     render () {
         const { handleChange, value, placeholder, id, inputKey, removeInput } = this.props;
 
-        let removeInputClasses = classnames("one column", {
+        let removeInputClasses = classnames("circular ui icon button", {
             "hide": inputKey === 0
         });
 
@@ -39,9 +39,9 @@ class AutocompleteInput extends React.Component {
                     value={ value }
                     type="text"
                     placeholder={ placeholder } />
-                <button className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
-                    -
-                </button>
+                <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
+                    <i className="icon remove" />
+                </div>
             </div>
         );
     }

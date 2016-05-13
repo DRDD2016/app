@@ -19,12 +19,12 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     });
 
 
-    let addInputClasses = classnames("one column", {
+    let addInputClasses = classnames("circular ui icon button", {
         "hide": eventWhatData.length >= 3
     });
 
 
-    let nextButtonClasses = classnames({
+    let nextButtonClasses = classnames("twelve columns", {
         "hide": eventWhatData[0] === ""
     });
 
@@ -39,9 +39,9 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             { inputs }
             <div className="">
                 <div className="row">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
-                        +
-                    </button>
+                    <div className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
+                        <i className="icon plus" />
+                    </div>
                 </div>
 
                 <div className="row">

@@ -8,7 +8,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
     let inputs = eventWhereData.map( (value, i) => {
 
-        let template = `${value.placeName} ${value.placeAddress}`;
+        let template = `${value.placeName}${value.placeAddress}`;
         let fullAddress = (value.placeName ? template : "");
 
         let autocompleteID = 'autocomplete-' + i;

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 const Input = ({ onChange, value, placeholder, removeInput, inputKey }) => {
 
-    let removeInputClasses = classnames("one column", {
+    let removeInputClasses = classnames("circular ui icon button", {
         "hide": inputKey === 0
     });
 
@@ -15,9 +15,9 @@ const Input = ({ onChange, value, placeholder, removeInput, inputKey }) => {
                 onChange={ onChange }
                 type="text"
                 placeholder={ placeholder } />
-            <button className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
-                X
-            </button>
+            <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
+                <i className="icon remove" />
+            </div>
         </div>
     );
 };
