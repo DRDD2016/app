@@ -47,13 +47,26 @@ function createVoteSection (event, tally, eventType, EventTypeComponent) {
 
         var tallyCount = tally[eventType] ? tally[eventType][i] : '';
 
-        return (
+        if (tally[eventType]) {
+
+            return (
+                <div  className="ui label massive"  key={eventType + '-' + i}>
+                    <EventTypeComponent text={ choice }
+                        tally={ tallyCount }
+                        />
+                </div>
+            );
+        } else {
+
+            return (
                 <div key={eventType + '-' + i}>
                     <EventTypeComponent text={ choice }
                         tally={ tallyCount }
                         />
                 </div>
-        );
+            );
+        }
+
     });
 
 }
