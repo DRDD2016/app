@@ -8,27 +8,25 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
     let inputs = eventWhereData.map( (value, i) => {
 
-        let template = `${value.placeName} ${value.placeAddress}`;
+        let template = `${value.placeName}${value.placeAddress}`;
         let fullAddress = (value.placeName ? template : "");
 
         let autocompleteID = 'autocomplete-' + i;
         return (
                 <AutocompleteInput
-                    handleInput={ handleEventWhere.bind(this, i) }
+                    handleChange={ handleEventWhere.bind(this, i) }
                     key={ i }
+                    inputKey={ i }
                     value={ fullAddress }
                     placeholder= "Where?"
                     id = { autocompleteID }
+                    removeInput={ removeInput }
                 />
         );
     });
 
     let addInputClasses = classnames({
         "hide": eventWhereData.length >= 3
-    });
-
-    let removeInputClasses = classnames({
-        "hide": eventWhereData.length === 1
     });
 
     let nextButtonClasses = classnames({
@@ -51,11 +49,6 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
                     </button>
                 </div>
 
-                <div className="">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhereData.length - 1) }>
-                        Remove input
-                    </button>
-                </div>
                 <div className="">
                   <Link to='/create-event/when'>
                     <button className={ nextButtonClasses }>

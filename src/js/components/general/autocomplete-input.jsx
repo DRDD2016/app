@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import classnames from 'classnames';
 
 class AutocompleteInput extends React.Component {
 
@@ -18,21 +19,29 @@ class AutocompleteInput extends React.Component {
 
             let result = autocomplete.getPlace();
 
-            this.props.handleInput(result.name, result.formatted_address);
+            this.props.handleChange(result.name, result.formatted_address);
         });
     }
     render () {
-        const { handleInput, value, placeholder, id } = this.props;
+        const { handleChange, value, placeholder, id, inputKey, removeInput } = this.props;
+
+        let removeInputClasses = classnames("circular ui icon button", {
+            "hide": inputKey === 0
+        });
 
         return (
-            <div>
+            <div className="row">
                 <input
-                    onChange={ (e) => handleInput(e.target.value, "")}
+                    className="ten columns"
+                    onChange={ (e) => handleChange(e.target.value, "")}
                     ref="searchField"
                     id={ id }
-                    defaultValue={ value }
+                    value={ value }
                     type="text"
                     placeholder={ placeholder } />
+                <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
+                    <i className="icon remove" />
+                </div>
             </div>
         );
     }

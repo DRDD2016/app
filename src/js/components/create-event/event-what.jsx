@@ -12,20 +12,19 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
                 onChange={ handleEventWhat.bind(this, i) }
                 key={ i }
                 value={ value }
+                inputKey={ i }
+                removeInput={ removeInput }
                 placeholder= "What would you like to do?"
             />);
     });
 
 
-    let addInputClasses = classnames("one column", "round-button", {
+    let addInputClasses = classnames("circular ui icon button", {
         "hide": eventWhatData.length >= 3
     });
 
-    let removeInputClasses = classnames("one column", "round-button", {
-        "hide": eventWhatData.length === 1
-    });
 
-    let nextButtonClasses = classnames({
+    let nextButtonClasses = classnames("twelve columns", {
         "hide": eventWhatData[0] === ""
     });
 
@@ -40,21 +39,17 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             { inputs }
             <div className="">
                 <div className="row">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
-                        +
-                    </button>
+                    <div className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
+                        <i className="icon plus" />
+                    </div>
                 </div>
 
                 <div className="row">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhatData.length - 1) }>
-                        -
-                    </button>
-                </div>
-
-                <div className="row">
-                    <button className={ nextButtonClasses }>
-                        <Link to='/create-event/where'>Next</Link>
-                    </button>
+                    <Link to='/create-event/where'>
+                        <button className={ nextButtonClasses }>
+                            Next
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
