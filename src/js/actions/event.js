@@ -12,6 +12,8 @@ export const CONFIRM_POLL_REQUEST = 'CONFIRM_POLL_REQUEST';
 export const CONFIRM_POLL_SUCCESS = 'CONFIRM_POLL_SUCCESS';
 export const CONFIRM_POLL_FAILURE = 'CONFIRM_POLL_FAILURE';
 
+export const CONFIRMED_EVENT_SELECTION = 'CONFIRMED_EVENT_SELECTION';
+
 
 export function getEvent (eventID) {
 
@@ -99,5 +101,14 @@ export function confirmPollFailure () {
     return {
         type: CONFIRM_POLL_FAILURE,
         isFetching: false
+    };
+}
+
+export function confirmedEventSelection (eventType, value, index) {
+    return {
+        type: CONFIRMED_EVENT_SELECTION,
+        eventType,
+        value,
+        index
     };
 }

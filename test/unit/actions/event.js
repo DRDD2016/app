@@ -3,6 +3,8 @@ import { GET_EVENT, GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPD
 import { getEvent, getEventRequest, getEventSuccess, getEventFailure, updatePoll } from '../../../src/js/actions/event.js';
 import { CONFIRM_POLL, CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE } from '../../../src/js/actions/event.js';
 import { confirmPoll, confirmPollRequest, confirmPollSuccess, confirmPollFailure } from '../../../src/js/actions/event.js';
+import { CONFIRMED_EVENT_SELECTION } from '../../../src/js/actions/event.js';
+import { confirmedEventSelection } from '../../../src/js/actions/event.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 test('getEvent async action creator returns expected action', (t) => {
@@ -139,6 +141,24 @@ test('confirmPollFailure action creator returns expected action', (t) => {
     };
 
     const actual = confirmPollFailure();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('confirmedEventSelection action creator returns expected action', (t) => {
+
+    const expected = {
+        type: CONFIRMED_EVENT_SELECTION,
+        eventType: "eventWhen",
+        value: {
+            date: "2015-12-12",
+            time: "10:10"
+        },
+        index: 1
+    };
+
+    const actual = confirmedEventSelection("eventWhen", { date: "2015-12-12", time: "10:10" },  1);
 
     t.deepEqual(actual, expected);
     t.end();
