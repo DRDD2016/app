@@ -55,12 +55,37 @@ server.init(9001, (error, server) => {
         });
     });
 
-    test('`new-event` works', (t) => {
+    test('`new-event` adds a poll event', (t) => {
 
         const options = {
             method: 'POST',
             url: '/new-event',
             payload: fixtures.eventPollSohil
+        };
+
+        server.inject(options, (response) => {
+
+            t.ok(response.result, 'truthiness is returned');
+            client.exists('calendar:' + fixtures.HARRY_ID, (error, response) => {
+                /* TEARDOWN
+                - decrement eventKeys
+                - delete event
+                - delete notification
+                */
+                client.decr('eventKeys');
+                client.del('event:301');
+                client.del('notifications:12345678');
+                t.end();
+            });
+        });
+    });
+
+    test('`new-event` adds a confirmed event', (t) => {
+
+        const options = {
+            method: 'POST',
+            url: '/new-event',
+            payload: fixtures.eventConfirmedHarry
         };
 
         server.inject(options, (response) => {
@@ -72,8 +97,10 @@ server.init(9001, (error, server) => {
             - delete notification
             */
             client.decr('eventKeys');
-            client.del('event:301');
-            client.del('notifications:12345678');
+            client.del('event:101');
+            client.del('notifications:' + fixtures.SOHIL_ID);
+            client.del('calendar:12345678');
+            client.del('calendar:' + fixtures.SOHIL_ID);
             t.end();
         });
     });

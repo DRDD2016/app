@@ -1,6 +1,7 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var createNotification = require('../lib/createNotification.js');
 var setNotifications = require('../db/setNotifications.js');
+var addEventToCalendar = require('../db/addEventToCalendar.js');
 
 exports.register = (server, options, next) => {
 
@@ -29,9 +30,21 @@ exports.register = (server, options, next) => {
                             return inviteeObj.id;
                         });
                         setNotifications(inviteesIDs, notification, (error, response) => {
-                        
-                            var verdict = error || response;
-                            return reply(verdict);
+
+                            if (error) {
+                                return reply(error);
+                            }
+
+                            if (!data.isPoll) {
+
+                                var calendarArray = inviteesIDs.concat([data.hostID]);
+                                console.log("heyusfsuifhsd");
+                                addEventToCalendar(calendarArray, eventID, (error, response) => {
+                                    console.log(response);
+                                    var verdict = error || response;
+                                    return reply(verdict);
+                                });
+                            }
                         });
                     });
                     // go to invitees list
