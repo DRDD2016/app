@@ -16,7 +16,7 @@ const Input = ({ onChange, value, placeholder, removeInput, inputKey }) => {
                 type="text"
                 placeholder={ placeholder } />
             <button className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
-                -
+                X
             </button>
         </div>
     );
