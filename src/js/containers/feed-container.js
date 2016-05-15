@@ -13,25 +13,9 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-
-    //some dispatches
-    return {
-        hydrateState: () => {
-            console.log("this would get user");
-            // dispatch(getUser());
-        },
-
-        hydrateFeed: () => {
-            console.log("this would get notifications");
-            // dispatch(getNotifications());
-        }
-    };
-};
 
 const FeedContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Feed);
 
 export default FeedContainer;
