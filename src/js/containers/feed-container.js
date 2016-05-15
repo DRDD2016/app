@@ -4,7 +4,6 @@ import Feed from '../components/feed.jsx';
 import { getUser } from '../actions/user.js';
 import { getNotifications } from '../actions/notifications.js';
 
-
 const mapStateToProps = (state) => {
 
     return {
@@ -19,11 +18,13 @@ const mapDispatchToProps = (dispatch) => {
     //some dispatches
     return {
         hydrateState: () => {
-            dispatch(getUser());
+            console.log("this would get user");
+            // dispatch(getUser());
         },
 
         hydrateFeed: () => {
-            dispatch(getNotifications());
+            console.log("this would get notifications");
+            // dispatch(getNotifications());
         }
     };
 };

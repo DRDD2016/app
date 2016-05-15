@@ -37,7 +37,7 @@ export function getNotificationsSuccess (data) {
     return {
         type: GET_NOTIFICATIONS_SUCCESS,
         isFetching: false,
-        data: data
+        data
     };
 }
 
@@ -45,6 +45,6 @@ export function getNotificationsFailure (error) {
     return {
         type: GET_NOTIFICATIONS_FAILURE,
         isFetching: false,
-        error: error
+        error
     };
 }
