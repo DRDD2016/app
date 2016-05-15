@@ -25,6 +25,8 @@ client.hmsetAsync("user:12345678",
           'token', "notokenhere",
           'photoURL', fixtures.Harry.photoURL);
 
+
+
 /*
 SET DEFAULT CONFIRMED EVENT 100
 */
@@ -37,6 +39,8 @@ client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
                  "invitees", eventConfirmedDefault.invitees, "hostID", eventConfirmedDefault.hostID, "isPoll", eventConfirmedDefault.isPoll);
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
+client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
+
 /*
 SET DEFAULT POLL EVENT 300
 */
@@ -50,3 +54,4 @@ client.hmsetAsync("event:300", "eventName", eventPollDefault.eventName,
 
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventPollSohilNotification));
+client.sadd("calendar:" + fixtures.HARRY_ID, fixtures.eventPollSohilEventID);

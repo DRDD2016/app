@@ -55,6 +55,7 @@ export const eventConfirmedHarryNotification = {
     isPoll: false,
     hostID: Harry.id
 };
+
 /*
 EVENT:101 - poll
 */
@@ -94,6 +95,12 @@ export const eventPollSohilNotification = {
     hostID: Sohil.id
 };
 
+
+
 export const eventPollSohilVoted = {
     eventWhat: [true, false, true]
+};
+
+export const genericError = {
+    message: "Whoops"
 };

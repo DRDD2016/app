@@ -23,7 +23,7 @@ server.init(9001, (error, server) => {
         });
     });
 
-    test('`getUser` retrieves user information from database EXCLUDING token', (t) => {
+    test('`get-user` retrieves user information from database EXCLUDING token', (t) => {
 
         const options = {
             method: 'GET',
@@ -47,15 +47,37 @@ server.init(9001, (error, server) => {
         server.inject(options, (response) => {
 
             const actual = JSON.parse(response.payload);
-            console.log(actual);
-            t.ok(Array.isArray(actual), 'An array is returned');
-            t.equal(typeof actual[0], 'object', 'An array of objects is returned');
-
             const expectedKeys = Object.keys(fixtures.eventPollSohilNotification);
+
+            t.ok(Array.isArray(actual), 'An array is returned');
+            t.equal(typeof actual[0], 'object', 'An array of notification objects is returned');
 
             expectedKeys.forEach((expectedKey) => {
 
                 t.ok(actual[0].hasOwnProperty(expectedKey), `The '${expectedKey}' key exists`);
+            });
+            t.end();
+        });
+    });
+
+    test('`get-calendar` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/get-calendar?userID=' + fixtures.SOHIL_ID
+        };
+
+        server.inject(options, (response) => {
+
+            const result = response.result;
+            const expectedKeys = Object.keys(fixtures.eventConfirmedHarry);
+
+            t.ok(Array.isArray(result), 'An array is returned');
+            t.equal(typeof result[0], 'object', 'An array of calendar objects is returned');
+
+            expectedKeys.forEach((expectedKey) => {
+
+                t.ok(result[0].hasOwnProperty(expectedKey), `The '${expectedKey}' key exists`);
             });
             t.end();
         });
