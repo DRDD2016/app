@@ -12,19 +12,18 @@ exports.register = (server, options, next) => {
             description: 'saves newly created events.',
 
             handler: (request, reply) => {
+
                 var data = request.payload;
                 saveNewEvent(data, (error, eventID) => {
 
                     if (error) {
                         return reply(error);
                     }
-                    // create notification object
                     createNotification(data.hostID, eventID, data, (error, notification) => {
 
                         if (error) {
                             return reply(error);
                         }
-
                         var inviteesIDs = data.invitees.map((inviteeObj) => {
 
                             return inviteeObj.id;
@@ -34,16 +33,16 @@ exports.register = (server, options, next) => {
                             if (error) {
                                 return reply(error);
                             }
-
                             if (!data.isPoll) {
 
-                                var calendarArray = inviteesIDs.concat([data.hostID]);
-                                console.log("heyusfsuifhsd");
-                                addEventToCalendar(calendarArray, eventID, (error, response) => {
-                                    console.log(response);
+                                var calendarRecipientsArray = inviteesIDs.concat([data.hostID]);
+                                addEventToCalendar(calendarRecipientsArray, eventID, (error, response) => {
+
                                     var verdict = error || response;
                                     return reply(verdict);
                                 });
+                            } else {
+                                reply(response);
                             }
                         });
                     });
