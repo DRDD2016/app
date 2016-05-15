@@ -39,6 +39,13 @@ const mapDispatchToProps = (dispatch) => {
         handlePollConfirmation: (poll, eventID) => {
 
             dispatch(confirmPoll(poll, eventID));
+        },
+
+        handleconfirmedEventSelection: (eventType, value, index) => {
+
+            console.log(eventType, value, index);
+            //dispatch in the future
+            // dispatch(confirmedEventSelection(eventType, choice, index))
         }
     };
 };

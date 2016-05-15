@@ -1,13 +1,14 @@
 import update from 'react-addons-update';
 import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
-         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE } from '../actions/event.js';
+         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, CONFIRMED_EVENT_SELECTION } from '../actions/event.js';
 
 const initialState = {
     data: {},
     isFetching: false,
     error: undefined,
     poll: undefined,
-    tally: undefined
+    tally: undefined,
+    confirmedEventSelection: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -27,6 +28,9 @@ export default function event (state = initialState, action) {
     case CONFIRM_POLL_SUCCESS:
     case CONFIRM_POLL_FAILURE:
         return handleConfirmPoll(state, action);
+
+    case CONFIRMED_EVENT_SELECTION:
+        return confirmedEventSelection(state, action);
 
     default:
         return state;

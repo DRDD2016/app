@@ -4,7 +4,7 @@ function createEventTypeObject (event) {
     var targets = ['eventWhat', 'eventWhere', 'eventWhen'];
     return targets.reduce((eventType, target, i) => {
         if (event[target].length > 1) {
-            eventType[target] = new Array(event[target].length).fill(0);
+            eventType[target] = new Array(event[target].length).fill(null);
         }
         return eventType;
     }, {});
@@ -12,8 +12,8 @@ function createEventTypeObject (event) {
 
 
 function getDataFromDB (setKey, callback) {
-    client.scard(setKey, (err, voteNum) => {
-        callback(err, voteNum);
+    client.scard(setKey, (error, voteNum) => {
+        callback(error, voteNum);
     });
 }
 
@@ -28,37 +28,33 @@ function recurseThroughVotes (array, eventID, eventType, callback, index, mapped
     } else {
         var setKey = "vote:" + eventID + "|" + eventType + ":" + index;
 
-        getDataFromDB(setKey, (err, voteNum) => {
-            if (err) {
-                console.log(err,'erroro');
-                return callback(err);
+        getDataFromDB(setKey, (error, voteNum) => {
+            if (error) {
+
+                return callback(error);
             }
             mappedArray.push(voteNum);
             return recurseThroughVotes(array, eventID, eventType, callback, ++index, mappedArray);
 
         });
     }
-
-
 }
 
 function getUserVotes (event, eventID, callback) {
 
-    var setVote = createEventTypeObject(event);
-    var eventTypeArray = Object.keys(setVote);
+    var voteObject = createEventTypeObject(event);
+    var eventTypeArray = Object.keys(voteObject);
 
     eventTypeArray.forEach((eventType, i) => {
 
-        recurseThroughVotes(setVote[eventType], eventID, eventType, (err, mappedArray) => {
-            setVote[eventType] = mappedArray;
+        recurseThroughVotes(voteObject[eventType], eventID, eventType, (error, mappedArray) => {
+
+            voteObject[eventType] = mappedArray;
             if ((eventTypeArray.length - 1) === i) {
-                callback(setVote);
+                callback(null, voteObject);
             }
         });
     });
-
 }
-
-
 
 module.exports = getUserVotes;
