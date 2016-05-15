@@ -9,8 +9,12 @@
     display: flex
 }
 
-.navbar .navbutton {
+.navbutton {
     width: 20%;
     color: white;
     justify-content: space-around;
+}
+
+a:hover {
+    background-color: $grey;
 }

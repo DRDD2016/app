@@ -1,25 +1,40 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Navbar = () => {
 
     return (
         <div className="navbar">
-            <div className="navbutton">
-                <label>Albums</label>
-            </div>
-            <div className="navbutton">
-                <i className="fa fa-calendar-o" ariaHidden="true"></i>
-                <label>Calendar</label>
-            </div>
-            <div className="navbutton">
-                <label>Feed</label>
-            </div>
-            <div className="navbutton">
-                <label>Profile</label>
-            </div>
-            <div className="navbutton">
-                <label>Create</label>
-            </div>
+            <a className="navbutton" href="#">
+                <div >
+                    <label>Albums</label>
+                </div>
+            </a>
+
+            <Link className="navbutton" to="calendar">
+                <div >
+                    <i className="fa fa-calendar-o" ariaHidden="true"></i>
+                    <label>Calendar</label>
+                </div>
+            </Link>
+
+            <Link className="navbutton" to="feed">
+                <div >
+                    <label>Feed</label>
+                </div>
+            </Link>
+
+            <a className="navbutton" href="#">
+                <div >
+                    <label>Profile</label>
+                </div>
+            </a>
+
+            <Link className="navbutton" to="create-event">
+                <div >
+                    <label>Create</label>
+                </div>
+            </Link>
         </div>
     );
 };
