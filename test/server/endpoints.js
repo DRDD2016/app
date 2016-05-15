@@ -47,10 +47,16 @@ server.init(9001, (error, server) => {
         server.inject(options, (response) => {
 
             const actual = JSON.parse(response.payload);
+            console.log(actual);
             t.ok(Array.isArray(actual), 'An array is returned');
             t.equal(typeof actual[0], 'object', 'An array of objects is returned');
-            t.ok(actual[0].hasOwnProperty('timestamp'), 'A timestamp key exists');
-            //todo: test the other keys in db
+
+            const expectedKeys = Object.keys(fixtures.eventPollSohilNotification);
+
+            expectedKeys.forEach((expectedKey) => {
+
+                t.ok(actual[0].hasOwnProperty(expectedKey), `The '${expectedKey}' key exists`);
+            });
             t.end();
         });
     });
@@ -74,7 +80,7 @@ server.init(9001, (error, server) => {
                 */
                 client.decr('eventKeys');
                 client.del('event:301');
-                client.del('notifications:12345678');
+                client.spop('notifications:12345678');
                 t.end();
             });
         });
@@ -153,10 +159,6 @@ server.init(9001, (error, server) => {
 
             t.ok(1, 'Successful POST request');
             t.end();
-
-            client.del("vote:event:300|eventWhat:0");
-            client.del("vote:event:300|eventWhat:2");
-            client.spop('notifications:12345678');
         });
     });
 });

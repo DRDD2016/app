@@ -2,6 +2,7 @@ var client = require('../../server/db/init.js');
 var stringifyObjectValues = require('../../server/lib/stringifyObjectValues.js');
 var fixtures = require('./fixtures');
 
+console.log("Initialising database for testing");
 /*
 - create Sohil
 - create Harry
@@ -10,7 +11,6 @@ var fixtures = require('./fixtures');
 - create event:300 (poll)
 - create event:300 notifications
 */
-
 client.hmsetAsync("user:10154129575200996",
                  'firstName', fixtures.Sohil.firstName,
                  'lastName', fixtures.Sohil.lastName,

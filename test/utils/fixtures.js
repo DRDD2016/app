@@ -76,7 +76,10 @@ export const eventPollSohil = {
     isPoll: true,
     hostID: Sohil.id
 };
-// event:101 notification
+
+/**
+ ** event:101 notification
+**/
 
 export const eventPollSohilNotification = {
     eventID: eventPollSohilEventID,
