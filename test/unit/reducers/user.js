@@ -97,7 +97,15 @@ test('Reducer handles GET_USER_FAILURE as expected', (t) => {
     t.end();
 });
 
-test('FINAL TEARDOWN', (t) => {
+test('FINAL TEST TEARDOWN: test/unit/reducers/user.js', (t) => {
 
+    /* TEARDOWN: endpoints `new-event`
+    - decrement eventKeys
+    - delete event
+    - delete notification
+    */
+    client.del("vote:event:300|eventWhat:0");
+    client.del("vote:event:300|eventWhat:2");
+    client.del('notifications:12345678');
     client.quit(t.end);
 });

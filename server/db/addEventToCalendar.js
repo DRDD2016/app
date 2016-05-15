@@ -1,17 +1,17 @@
 var client = require('./init.js');
 
-function setNotifications (users, notification, callback) {
+function addEventToCalendar (users, eventID, callback) {
 
     if (!Array.isArray(users)) {
 
-        throw new Error("setNotifications: first argument must be an array");
+        throw new Error("addEventToCalendar: first argument must be an array");
     }
-
+    console.log("here");
     users.forEach((id, index) => {
 
-        var setName = "notifications:" + id;
+        var setName = "calendar:" + id;
 
-        client.saddAsync(setName, JSON.stringify(notification))
+        client.saddAsync(setName, eventID)
 
         .then((response) => {
             if (index === users.length - 1) {
@@ -24,4 +24,4 @@ function setNotifications (users, notification, callback) {
     });
 }
 
-module.exports = setNotifications;
+module.exports = addEventToCalendar;
