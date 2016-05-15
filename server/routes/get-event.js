@@ -11,37 +11,28 @@ exports.register = (server, options, next) => {
             description: 'get the requested event',
 
             handler: (request, reply) => {
-                getEvent(request.query.eventID)
-                    .then((event) => {
 
-                        //if userID and event.hostID is the same
+                getEvent(request.query.eventID, (error, event) => {
 
-                        if(event.hostID === request.query.userID) {
-
-
-                            getUserVotes(event, request.query.eventID, (setVoteObject) => {
-                                console.log(setVoteObject);
-                                reply( { event: event, tally: setVoteObject } )
-                            });
-                        } else {
-                            console.log('req',req);
-
-                            getUserPoll(event, request.query.eventID, request.query.userID, (setPollObject) => {
-                                console.log(setPollObject);
-                                reply( { event: event, poll: setPollObject } );
-                            });
-                        }
-                        //then create vote Object
-
-                        // else
-                            //create poll object
-
-
-                    })
-                    .catch((error) => {
-
+                    if (error) {
                         return reply(error);
-                    });
+                    }
+
+                    if (event.hostID === request.query.userID) {
+
+
+                        getUserVotes(event, request.query.eventID, (setVoteObject) => {
+
+                            reply( { event: event, tally: setVoteObject } );
+                        });
+                    } else {
+
+                        getUserPoll(event, request.query.eventID, request.query.userID, (setPollObject) => {
+
+                            reply( { event: event, poll: setPollObject } );
+                        });
+                    }
+                });
             }
         }
     }]);
