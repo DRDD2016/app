@@ -28,7 +28,9 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { eventWhen.length === 1 ? eventWhen[0].date : "TBC" }
                     </label>
                 </div>
-                <hr />
+            </div>
+            <div className="row">
+                <hr className="twelve columns" />
             </div>
         </Link>
     );
