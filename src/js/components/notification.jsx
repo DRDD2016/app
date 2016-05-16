@@ -7,7 +7,7 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
         <Link to={ 'event/' + eventID } >
             <div className="row">
                 <img className="two columns profile-photo" src={ photoURL } alt="Host photo" />
-                <div className="seven columns">
+                <div className="seven columns text">
                     <p>
                         { firstName + " " + lastName }
                         { userIsHost && isPoll && " has voted on your poll" }

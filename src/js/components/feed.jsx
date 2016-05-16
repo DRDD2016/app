@@ -26,7 +26,7 @@ const Feed = ({ notifications, isFetching }) => {
 
     return (
 
-        <div className="container">
+        <div>
             {
                 isFetching && "Loading..."
             }
