@@ -1,4 +1,16 @@
 .event-header {
     background: linear-gradient(135deg, $magenta, $lime);
-    height: 5em;
+    margin-bottom: 2em;
+}
+
+.title {
+    padding: 0.5em 0em;
+    margin-bottom: 0;
+}
+
+.back-button, .cancel-event-creation {
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 2.5em;
+    margin-bottom: 0;
 }

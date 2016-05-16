@@ -27,11 +27,11 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
         );
     });
 
-    let addInputClasses = classnames({
+    let addInputClasses = classnames("twelve columns", {
         "hide": eventWhereData.length >= 3
     });
 
-    let nextButtonClasses = classnames({
+    let nextButtonClasses = classnames("twelve columns", {
         "hide": eventWhereData[0].placeName === ""
     });
 

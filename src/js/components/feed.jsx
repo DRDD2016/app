@@ -27,7 +27,7 @@ const Feed = ({ notifications, isFetching }) => {
 
     return (
 
-        <div>
+        <div className="container">
             {
                 isFetching && <Spinner />
             }
