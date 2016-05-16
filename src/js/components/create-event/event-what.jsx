@@ -31,7 +31,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     return (
         <div className="">
             <div className="">
-                <div className="row">
+                <div className="event-header row">
                     <h2 className="twelve columns title">What?</h2>
                 </div>
             </div>

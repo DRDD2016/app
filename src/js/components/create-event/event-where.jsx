@@ -39,7 +39,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
     return (
         <div className="">
             <div className="">
-                <div className="">
+                <div className="event-header row">
                     <h2>Where?</h2>
                 </div>
             </div>
