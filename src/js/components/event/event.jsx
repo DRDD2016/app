@@ -44,7 +44,7 @@ class Event extends React.Component {
     render () {
 
         return (
-            <div>
+            <div className="container">
                 {
                     this.props.isFetching && <Spinner />
                 }
