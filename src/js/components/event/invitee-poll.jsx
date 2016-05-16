@@ -19,20 +19,14 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
             <h3>{event.eventName}</h3>
             <h3>{event.eventDescription}</h3>
 
-            <h4>What</h4>
-            <div className="ui massive labels">
-                { eventWhat }
-            </div>
+            { eventWhat }
+            <hr/>
 
-            <h4>Where</h4>
-            <div className="ui massive labels">
-                { eventWhere }
-            </div>
+            { eventWhere }
+            <hr/>
 
-            <h4>When</h4>
-            <div className="ui massive labels">
-                { eventWhen }
-            </div>
+            { eventWhen }
+            <hr/>
 
             <PollButton poll={ poll }
                         handlePollConfirmation={ handlePollConfirmation }
@@ -46,11 +40,15 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
     return event[eventType].map((choice, i) => {
 
         let options = {
-            "blue": poll[eventType] && poll[eventType][i] === true,
-
+            "poll-eventWhat": eventType === "eventWhat" && poll[eventType],
+            "poll-eventWhere": eventType === "eventWhere" && poll[eventType],
+            "poll-eventWhen": eventType === "eventWhen" && poll[eventType],
+            "poll-selected-eventWhat": eventType === "eventWhat" && poll[eventType] && poll[eventType][i] === true,
+            "poll-selected-eventWhere": eventType === "eventWhere" && poll[eventType] && poll[eventType][i] === true,
+            "poll-selected-eventWhen": eventType === "eventWhen" && poll[eventType] && poll[eventType][i] === true
         };
 
-        let classes = classnames("ui", "label", options);
+        let classes = classnames("poll-option", options);
 
         if (poll[eventType]) {
 
