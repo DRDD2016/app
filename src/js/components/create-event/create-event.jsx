@@ -20,9 +20,9 @@ class CreateEvent extends React.Component {
         return (
             <div>
                 <div className="event-header row">
-                    <p className="three columns"><i className="step backward icon"></i> Back </p>
-                    <h2 className=" six columns title"> { this.eventType() }</h2>
-                    <p className="three columns"> Cancel </p>
+                    <p className="three columns back-button" onClick={ this.context.router.goBack }> Back </p>
+                    <h3 className=" six columns title"> { this.eventType() }</h3>
+                    <p className="three columns cancel-event-creation"> Cancel </p>
                 </div>
 
                 <div className="container">
@@ -32,5 +32,10 @@ class CreateEvent extends React.Component {
         );
     }
 }
+
+
+CreateEvent.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default CreateEvent;
