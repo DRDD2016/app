@@ -37,7 +37,7 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhenData.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput }>
                         Add input
                     </button>
                 </div>

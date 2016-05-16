@@ -47,7 +47,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhereData.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput }>
                         Add input
                     </button>
                 </div>

@@ -16,13 +16,13 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setEventWhat(event.target.value, inputKey));
         },
 
-        addInput: (nextInputKey) => {
+        addInput: () => {
 
-            dispatch(addInput(nextInputKey, "eventWhat"));
+            dispatch(addInput("eventWhat"));
         },
 
-        removeInput: (lastInputKey) => {
-            dispatch(removeInput(lastInputKey, "eventWhat"));
+        removeInput: (inputIndex) => {
+            dispatch(removeInput(inputIndex, "eventWhat"));
         }
     };
 };
