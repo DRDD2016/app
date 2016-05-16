@@ -28,12 +28,10 @@ import { store } from './init-store.js';
 
 function initialiseAppState (nextState, replace, callback) {
 
-    if (store.getState().user.id === '') {
 
-        store.dispatch(getUser());
-        store.dispatch(getNotifications());
-        store.dispatch(getCalendar());
-    }
+    store.dispatch(getUser());
+    store.dispatch(getNotifications());
+    store.dispatch(getCalendar());
     callback();
 }
 

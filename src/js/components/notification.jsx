@@ -5,19 +5,21 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
 
     return (
         <Link to={ 'event/' + eventID } >
-            <div className="row">
-                <img className="two columns profile-photo" src={ photoURL } alt="Host photo" />
-                <div className="seven columns text">
-                    <p>
+            <div className="row notifications">
+                <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
+                <div className="six columns">
+                    <p className="timestamp"> { moment(timestamp).startOf('hour').fromNow() } </p>
+                    <p className="name">
                         { firstName + " " + lastName }
+                    <span>
                         { userIsHost && isPoll && " has voted on your poll" }
                         { userIsHost && !isPoll && " has responded to your event" }
                         { !userIsHost && isPoll && " wants you to vote on their poll" }
                         { !userIsHost && !isPoll && " has invited you to their event" }
+                    </span>
                     </p>
-                    <p> { moment(timestamp).startOf('hour').fromNow() } </p>
                 </div>
-                <div className="three columns">
+                <div className="three columns event-type">
                     <label>
                         { eventWhat.length === 1 ? eventWhat[0] : "TBC" }
                     </label>
@@ -28,9 +30,6 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { eventWhen.length === 1 ? eventWhen[0].date : "TBC" }
                     </label>
                 </div>
-            </div>
-            <div className="row">
-                <hr className="twelve columns" />
             </div>
         </Link>
     );
