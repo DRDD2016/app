@@ -20,7 +20,9 @@ class CreateEvent extends React.Component {
         return (
             <div>
                 <div className="event-header row">
-                    <h2 className=" twelve columns title"> { this.eventType() }</h2>
+                    <p className="three columns"><i className="step backward icon"></i> Back </p>
+                    <h2 className=" six columns title"> { this.eventType() }</h2>
+                    <p className="three columns"> Cancel </p>
                 </div>
 
                 <div className="container">
