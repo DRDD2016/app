@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CssLoader = () => {
+const Spinner = () => {
 
 
     return (
@@ -12,4 +12,4 @@ const CssLoader = () => {
     );
 };
 
-export default CssLoader;
+export default Spinner;
