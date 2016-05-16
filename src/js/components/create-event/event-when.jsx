@@ -17,12 +17,12 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
             />);
     });
 
-    let addInputClasses = classnames({
+    let addInputClasses = classnames("twelve columns", {
         "hide": eventWhenData.length >= 3
     });
 
 
-    let nextButtonClasses = classnames({
+    let nextButtonClasses = classnames("twelve columns", {
         "hide": eventWhenData[0].date === ""
     });
 

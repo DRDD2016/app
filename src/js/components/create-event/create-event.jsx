@@ -15,14 +15,18 @@ class CreateEvent extends React.Component {
         return pathname.charAt(0).toUpperCase() + pathname.slice(1);
     }
 
-    render () {
+    cancelEvent () {
+        this.props.discardEvent();
+        this.context.router.push('/feed');
+    }
 
+    render () {
         return (
             <div>
                 <div className="event-header row">
                     <p className="three columns back-button" onClick={ this.context.router.goBack }> Back </p>
                     <h3 className=" six columns title"> { this.eventType() }</h3>
-                    <p className="three columns cancel-event-creation"> Cancel </p>
+                    <p className="three columns cancel-event-creation" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
                 </div>
 
                 <div className="container">
