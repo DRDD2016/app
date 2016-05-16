@@ -24,21 +24,24 @@ exports.register = (server, options, next) => {
                     if (error) {
                         return reply(error);
                     }
-                    getEvent(eventID)
-                        .then((event) => {
+                    getEvent(eventID, (error, event) => {
 
-                            createNotification(inviteeID, eventID, event, (error, notification) => {
+                        if (error) {
+                            return reply(error);
+                        }
 
-                                if (error) {
-                                    return reply(error);
-                                }
-                                setNotifications([event.hostID], notification, (error, response) => {
+                        createNotification(inviteeID, eventID, event, (error, notification) => {
 
-                                    var result = error || response;
-                                    reply(result);
-                                });
+                            if (error) {
+                                return reply(error);
+                            }
+                            setNotifications([event.hostID], notification, (error, response) => {
+
+                                var result = error || response;
+                                reply(result);
                             });
                         });
+                    });
                 });
             }
         }

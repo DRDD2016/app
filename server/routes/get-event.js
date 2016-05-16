@@ -1,6 +1,6 @@
 var getEvent = require('../db/getEvent.js');
-var getUserVotes = require('../lib/getVotes.js');
-var getUserPoll = require('../lib/getPolls.js');
+var getVotes = require('../lib/getVotes.js');
+var getPoll = require('../lib/getPoll.js');
 
 exports.register = (server, options, next) => {
 
@@ -11,37 +11,41 @@ exports.register = (server, options, next) => {
             description: 'get the requested event',
 
             handler: (request, reply) => {
-                getEvent(request.query.eventID)
-                    .then((event) => {
 
-                        //if userID and event.hostID is the same
+                getEvent(request.query.eventID, (error, event) => {
 
-                        if(event.hostID === request.query.userID) {
-
-
-                            getUserVotes(event, request.query.eventID, (setVoteObject) => {
-                                console.log(setVoteObject);
-                                reply( { event: event, tally: setVoteObject } )
-                            });
-                        } else {
-                            console.log('req',req);
-
-                            getUserPoll(event, request.query.eventID, request.query.userID, (setPollObject) => {
-                                console.log(setPollObject);
-                                reply( { event: event, poll: setPollObject } );
-                            });
-                        }
-                        //then create vote Object
-
-                        // else
-                            //create poll object
-
-
-                    })
-                    .catch((error) => {
-
+                    if (error) {
                         return reply(error);
-                    });
+                    }
+                    var isHost = event.hostID === request.query.userID;
+
+                    if (isHost && event.isPoll) {
+
+                        getVotes(event, request.query.eventID, (error, voteObject) => {
+
+                            var response = error || { event: event, tally: voteObject };
+
+                            reply( response );
+                        });
+                    }
+                    if (isHost && !event.isPoll) {
+
+                        reply( { event: event });
+                    }
+                    if (!isHost && event.isPoll) {
+
+                        getPoll(event, request.query.eventID, request.query.userID, (error, pollObject) => {
+
+                            var response = error || { event: event, poll: pollObject };
+
+                            reply( response );
+                        });
+                    }
+                    if (!isHost && !event.isPoll) {
+
+                        reply( { event: event });
+                    }
+                });
             }
         }
     }]);

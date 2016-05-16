@@ -1,6 +1,7 @@
 import React from 'react';
 import InviteePoll from './invitee-poll.jsx';
 import HostPoll from './host-poll.jsx';
+import CssLoader from '../general/css-loader.jsx';
 
 class Event extends React.Component {
 
@@ -14,7 +15,8 @@ class Event extends React.Component {
             return (
                  <HostPoll tally= { this.props.tally }
                            event= { this.props.event }
-                           eventID= { this.props.params.eventID }/>
+                           eventID= { this.props.params.eventID }
+                           handleconfirmedEventSelection= { this.props.handleconfirmedEventSelection }/>
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {
@@ -44,7 +46,7 @@ class Event extends React.Component {
         return (
             <div>
                 {
-                    this.props.isFetching && <div>Loading...</div>
+                    this.props.isFetching && <CssLoader />
                 }
                 {
                     !this.props.isFetching && this.renderView()

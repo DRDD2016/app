@@ -1,8 +1,10 @@
 var client = require('../db/init.js');
 
 function createEventTypeObject (event) {
+
     var targets = ['eventWhat', 'eventWhere', 'eventWhen'];
     return targets.reduce((eventType, target, i) => {
+
         if (event[target].length > 1) {
             eventType[target] = new Array(event[target].length).fill(false);
         }
@@ -11,12 +13,13 @@ function createEventTypeObject (event) {
 }
 
 function getDataFromDB (setKey, userID, callback) {
-    client.sismember(setKey, userID, (err, integer) => {
+
+    client.sismember(setKey, userID, (error, integer) => {
 
         if (integer === 1) {
-            callback(err, true);
+            callback(error, true);
         } else {
-            callback(err, false);
+            callback(error, false);
         }
     });
 }
@@ -28,41 +31,38 @@ function recurseThroughPolls (array, eventID, userID, eventType, callback, index
         mappedArray = [];
     }
     if (index === array.length) {
+
         return callback(null, mappedArray);
     } else {
         var setKey = "vote:" + eventID + "|" + eventType + ":" + index;
 
-        getDataFromDB(setKey, userID, (err, hasVoted) => {
-            if (err) {
-                console.log(err,'erroro');
-                return callback(err);
+        getDataFromDB(setKey, userID, (error, hasVoted) => {
+            if (error) {
+                return callback(error);
             }
             mappedArray.push(hasVoted);
             return recurseThroughPolls(array, eventID, userID, eventType, callback, ++index, mappedArray);
 
         });
     }
-
-
 }
 
-function getUserPoll (event, eventID, userID, callback) {
+function getPoll (event, eventID, userID, callback) {
 
-    var setPoll = createEventTypeObject(event);
-    var eventTypeArray = Object.keys(setPoll);
+    var pollObject = createEventTypeObject(event);
+    var eventTypeArray = Object.keys(pollObject);
 
     eventTypeArray.forEach((eventType, i) => {
 
-        recurseThroughPolls(setPoll[eventType], eventID, userID, eventType, (err, mappedArray) => {
-            setPoll[eventType] = mappedArray;
+        recurseThroughPolls(pollObject[eventType], eventID, userID, eventType, (error, mappedArray) => {
+
+            pollObject[eventType] = mappedArray;
             if ((eventTypeArray.length - 1) === i) {
-                callback(setPoll);
+
+                callback(error, pollObject);
             }
         });
     });
-
 }
 
-
-
-module.exports = getUserPoll;
+module.exports = getPoll;

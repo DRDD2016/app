@@ -24,8 +24,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setEventWhen(event.target.value, inputKey, "time"));
         },
 
-        addInput: (nextInputKey) => {
-            dispatch(addInput(nextInputKey, "eventWhen"));
+        addInput: () => {
+            dispatch(addInput("eventWhen"));
         },
 
         removeInput: (lastInputKey) => {

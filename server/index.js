@@ -5,6 +5,7 @@ var Bell = require('bell');
 var Home  = require('./routes/home.js');
 var GetUser = require('./routes/get-user.js');
 var GetNotifications = require('./routes/get-notifications.js');
+var GetCalendar = require('./routes/get-calendar.js');
 var NewEvent = require('./routes/new-event.js');
 var NewEventInvitees = require('./routes/new-event-invitees.js');
 var GetEvent = require('./routes/get-event.js');
@@ -38,7 +39,7 @@ exports.init = (port, callback) => {
         });
     });
 
-    server.register([Inert, Home, GetUser, GetNotifications, NewEvent, NewEventInvitees, GetEvent, ConfirmPoll], (err) => {
+    server.register([Inert, Home, GetUser, GetNotifications, GetCalendar, NewEvent, NewEventInvitees, GetEvent, ConfirmPoll], (err) => {
 
         if (err) {
             throw new Error(err);

@@ -13,6 +13,7 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
                 inputKey={ i }
                 handleTime={ handleTime }
                 handleDate={ handleDate }
+                removeInput={ removeInput }
             />);
     });
 
@@ -20,12 +21,9 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
         "hide": eventWhenData.length >= 3
     });
 
-    let removeInputClasses = classnames({
-        "hide": eventWhenData.length === 1
-    });
 
     let nextButtonClasses = classnames({
-        "hide": eventWhenData[0].date === "" || eventWhenData[0].time === ""
+        "hide": eventWhenData[0].date === ""
     });
 
     return (
@@ -39,14 +37,8 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhenData.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput }>
                         Add input
-                    </button>
-                </div>
-
-                <div className="">
-                    <button className={ removeInputClasses } onClick={ (e) => removeInput(eventWhenData.length - 1) }>
-                        Remove input
                     </button>
                 </div>
 

@@ -65,10 +65,9 @@ test('addInput creates the correct action', (t) => {
 
     const expected = {
         type: ADD_INPUT,
-        nextInputKey: Infinity,
         eventType: "theEventType"
     };
-    const actual = addInput(Infinity, "theEventType");
+    const actual = addInput("theEventType");
 
     t.deepEqual(actual, expected);
     t.end();
@@ -78,7 +77,7 @@ test('removeInput creates the correct action', (t) => {
 
     const expected = {
         type: REMOVE_INPUT,
-        nextInputKey: Infinity,
+        inputKey: Infinity,
         eventType: "theEventType"
     };
     const actual = removeInput(Infinity, "theEventType");
