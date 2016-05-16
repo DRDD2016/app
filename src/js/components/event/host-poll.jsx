@@ -11,13 +11,13 @@ class HostPoll extends React.Component{
 
 
     render () {
-        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection);
+        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection, this.props.handleconfirmedEventSelection);
 
-        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection);
+        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection, this.props.handleconfirmedEventSelection);
 
 
 
-        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection);
+        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection, this.props.handleconfirmedEventSelection);
 
 
 
@@ -41,19 +41,32 @@ class HostPoll extends React.Component{
     }
 }
 
-function createVoteSection (event, tally, eventType, EventTypeComponent) {
+function createVoteSection (event, tally, eventType, EventTypeComponent, handleconfirmedEventSelection) {
 
     return event[eventType].map((choice, i) => {
 
         var tallyCount = tally[eventType] ? tally[eventType][i] : '';
 
-        return (
+        if (tally[eventType]) {
+
+            return (
+                <div onClick={ () => handleconfirmedEventSelection(eventType, choice, i) } className="ui label massive"  key={eventType + '-' + i}>
+                    <EventTypeComponent text={ choice }
+                        tally={ tallyCount }
+                        />
+                </div>
+            );
+        } else {
+
+            return (
                 <div key={eventType + '-' + i}>
                     <EventTypeComponent text={ choice }
                         tally={ tallyCount }
                         />
                 </div>
-        );
+            );
+        }
+
     });
 
 }

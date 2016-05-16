@@ -4,7 +4,6 @@ import Feed from '../components/feed.jsx';
 import { getUser } from '../actions/user.js';
 import { getNotifications } from '../actions/notifications.js';
 
-
 const mapStateToProps = (state) => {
 
     return {
@@ -14,23 +13,9 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-
-    //some dispatches
-    return {
-        hydrateState: () => {
-            dispatch(getUser());
-        },
-
-        hydrateFeed: () => {
-            dispatch(getNotifications());
-        }
-    };
-};
 
 const FeedContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Feed);
 
 export default FeedContainer;

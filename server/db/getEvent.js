@@ -1,15 +1,17 @@
 var client = require('./init.js');
 var parseObjectValues = require('../lib/parseObjectValues.js');
 
-function getEvent (eventID) {
+function getEvent (eventID, callback) {
 
-    return client.hgetallAsync(eventID)
+    client.hgetallAsync(eventID)
         .then((event) => {
+
             var parsedEvent = parseObjectValues(event);
-            return parsedEvent;
+            callback(null, parsedEvent);
         })
         .catch((error) => {
-            return error;
+            
+            callback(error);
         });
 }
 

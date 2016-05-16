@@ -104,10 +104,10 @@ function setEventDetails (state, action, key) {
 }
 
 function setEvent (state, action) {
+
     let newState = update(state, {
         [action.eventType]: { $splice: [[action.inputKey, 1, action.data]] }
     });
-
     return newState;
 }
 

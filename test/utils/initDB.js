@@ -2,6 +2,7 @@ var client = require('../../server/db/init.js');
 var stringifyObjectValues = require('../../server/lib/stringifyObjectValues.js');
 var fixtures = require('./fixtures');
 
+console.log("Initialising database for testing");
 /*
 - create Sohil
 - create Harry
@@ -10,7 +11,6 @@ var fixtures = require('./fixtures');
 - create event:300 (poll)
 - create event:300 notifications
 */
-
 client.hmsetAsync("user:10154129575200996",
                  'firstName', fixtures.Sohil.firstName,
                  'lastName', fixtures.Sohil.lastName,
@@ -25,6 +25,8 @@ client.hmsetAsync("user:12345678",
           'token', "notokenhere",
           'photoURL', fixtures.Harry.photoURL);
 
+
+
 /*
 SET DEFAULT CONFIRMED EVENT 100
 */
@@ -37,6 +39,8 @@ client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
                  "invitees", eventConfirmedDefault.invitees, "hostID", eventConfirmedDefault.hostID, "isPoll", eventConfirmedDefault.isPoll);
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
+client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
+
 /*
 SET DEFAULT POLL EVENT 300
 */
@@ -50,3 +54,4 @@ client.hmsetAsync("event:300", "eventName", eventPollDefault.eventName,
 
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventPollSohilNotification));
+client.sadd("calendar:" + fixtures.HARRY_ID, fixtures.eventPollSohilEventID);

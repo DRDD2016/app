@@ -5,56 +5,46 @@ import Input from '../general/input.jsx';
 
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
-    console.log("This is the data", eventWhatData);
-
     let inputs = eventWhatData.map( (value, i) => {
-        console.log(value);
+
         return (
             <Input
                 className=""
                 handleChange={ (e) => handleEventWhat(i) }
                 key={ i }
-                inputIndex={ i }
                 value={ value }
+                inputKey={ i }
                 removeInput={ removeInput }
                 placeholder= "What would you like to do?"
             />);
     });
 
 
-    let addInputClasses = classnames("six columns", {
+    let addInputClasses = classnames("circular ui icon button", {
         "hide": eventWhatData.length >= 3
     });
 
-
-
-    let nextButtonClasses = classnames({
+    let nextButtonClasses = classnames("twelve columns", {
         "hide": eventWhatData[0] === ""
     });
 
     return (
-        <div className="">
-            <div className="">
-                <div className="row">
-                    <h2 className="twelve columns title">What?</h2>
+        <div>
+            <div className="row">
+                <h2 className="twelve columns title">What?</h2>
+            </div>
+            { inputs }
+            <div className="row">
+                <div className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
+                    <i className="icon plus" />
                 </div>
             </div>
-
-            { inputs }
-            <div className="">
-                <div className="row">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
-                        Add input
+            <div className="row">
+                <Link to='/create-event/where'>
+                    <button className={ nextButtonClasses }>
+                        Next
                     </button>
-                </div>
-
-                <div className="row">
-                    <Link to='/create-event/where'>
-                        <button className={ nextButtonClasses }>
-                            Next
-                        </button>
-                    </Link>
-                </div>
+                </Link>
             </div>
         </div>
     );
