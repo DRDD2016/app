@@ -2,7 +2,7 @@ import React from 'react';
 import Notification from './notification.jsx';
 import { Link } from 'react-router';
 import getUserID from '../lib/getUserID.js';
-import CssLoader from './general/css-loader.jsx';
+import Spinner from './general/spinner.jsx';
 
 
 const Feed = ({ notifications, isFetching }) => {
@@ -29,7 +29,7 @@ const Feed = ({ notifications, isFetching }) => {
 
         <div>
             {
-                isFetching && <CssLoader />
+                isFetching && <Spinner />
             }
             <div className="row">
                 <h4 className="twelve columns">Feed</h4>
