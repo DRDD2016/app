@@ -6,13 +6,10 @@ class CreateEvent extends React.Component {
 
         return (
             <div>
-                <div>
-
-                    <h4>
-                        Create an event
-                    </h4>
-                </div>
-                {this.props.children}
+                <h4>
+                    Create an event
+                </h4>
+                { this.props.children }
             </div>
         );
     }

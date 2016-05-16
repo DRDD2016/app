@@ -172,18 +172,18 @@ export function getFBFriendsFailure (error) {
 INPUT ACTIONS
 ********/
 
-export function addInput (nextInputKey, eventType) {
+export function addInput (inputKey, eventType) {
     return {
         type: ADD_INPUT,
-        nextInputKey,
+        // nextInputKey,
         eventType
     };
 }
 
-export function removeInput (inputIndex, eventType) {
+export function removeInput (inputKey, eventType) {
     return {
         type: REMOVE_INPUT,
-        inputIndex,
+        inputKey,
         eventType
     };
 }

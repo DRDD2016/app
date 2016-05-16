@@ -35,7 +35,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             </div>
             { inputs }
             <div className="row">
-                <div className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
+                <div className={ addInputClasses } onClick={ (e) => addInput }>
                     <i className="icon plus" />
                 </div>
             </div>
