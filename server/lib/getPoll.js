@@ -37,6 +37,7 @@ function recurseThroughPolls (array, eventID, userID, eventType, callback, index
         var setKey = "vote:" + eventID + "|" + eventType + ":" + index;
 
         getDataFromDB(setKey, userID, (error, hasVoted) => {
+
             if (error) {
                 return callback(error);
             }

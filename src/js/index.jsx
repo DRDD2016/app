@@ -16,7 +16,7 @@ import LoginContainer from './containers/login-container.js';
 import FeedContainer from './containers/feed-container.js';
 import EventContainer from './containers/event-container.js';
 import CalendarContainer from './containers/calendar-container.js';
-import CreateEvent from './components/create-event/create-event.jsx';
+import CreateEventContainer from './containers/create-event/create-event-container.js';
 import EventDetailsContainer from './containers/create-event/event-details-container.js';
 import EventWhatContainer from './containers/create-event/event-what-container.js';
 import EventWhereContainer from './containers/create-event/event-where-container.js';
@@ -56,7 +56,7 @@ const routes = (
         <Route path='/calendar'
                component={ requireAuthentication(CalendarContainer) } />
 
-        <Route path='/create-event' component={ requireAuthentication(CreateEvent) } >
+           <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />
             <Route path='what' component={ requireAuthentication(EventWhatContainer) } />
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />

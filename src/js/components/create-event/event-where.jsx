@@ -13,7 +13,6 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
         let chosenTemplate = value.placeAddress === '' ? templateNoSpace : templateWithSpace;
         let fullAddress = (value.placeName ? chosenTemplate : "");
 
-
         let autocompleteID = 'autocomplete-' + i;
         return (
                 <AutocompleteInput
@@ -38,16 +37,11 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
     return (
         <div className="">
-            <div className="">
-                <div className="event-header row">
-                    <h2>Where?</h2>
-                </div>
-            </div>
 
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput() }>
                         Add input
                     </button>
                 </div>

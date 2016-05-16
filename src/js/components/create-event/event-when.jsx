@@ -28,16 +28,11 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
 
     return (
         <div className="">
-            <div className="">
-                <div className="event-header row">
-                    <h2 className="twelve columns title">When?</h2>
-                </div>
-            </div>
 
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput() }>
                         Add input
                     </button>
                 </div>

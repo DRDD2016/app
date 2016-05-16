@@ -9,7 +9,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
 
         return (
             <Input
-                handleChange={ (e) => handleEventWhat(i) }
+                handleChange={ handleEventWhat.bind(this, i) }
                 key={ i }
                 value={ value }
                 inputKey={ i }
@@ -28,20 +28,18 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
 
     return (
         <div>
-            <div className="event-header row">
-                <h2 className="twelve columns title">What?</h2>
-            </div>
 
             { inputs }
 
             <div className="row">
-                <div className={ addInputClasses } onClick={ (e) => addInput }>
+                <div className={ addInputClasses } onClick={ (e) => addInput() }>
                     <i className="icon plus" />
                 </div>
             </div>
 
             <div className="row">
                 <Link className="twelve columns" to='/create-event/where'>
+
                     <button className={ nextButtonClasses }>
                         Next
                     </button>

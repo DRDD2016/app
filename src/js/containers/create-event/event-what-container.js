@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
         },
 
         addInput: () => {
-
+            console.log('addinput');
             dispatch(addInput("eventWhat"));
         },
 

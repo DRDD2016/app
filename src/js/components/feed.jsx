@@ -5,7 +5,6 @@ import getUserID from '../lib/getUserID.js';
 import CssLoader from './general/css-loader.jsx';
 
 
-
 const Feed = ({ notifications, isFetching }) => {
 
     let mappedNotifications = notifications.map((data, i) => {
@@ -36,13 +35,6 @@ const Feed = ({ notifications, isFetching }) => {
                 <h4 className="twelve columns">Feed</h4>
             </div>
             { mappedNotifications }
-            <div className="row">
-                <button className="twelve columns">
-                  <Link to="/create-event">
-                    Create new event
-                  </Link>
-                </button>
-            </div>
         </div>
     );
 };
