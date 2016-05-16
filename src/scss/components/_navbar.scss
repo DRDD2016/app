@@ -13,6 +13,19 @@
     width: 20%;
     color: white;
     justify-content: space-around;
+    align-content: center;
+}
+
+i.icon {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 0.4em;
+}
+
+.menu-label {
+    padding-top: 1em;
 }
 
 a:hover {

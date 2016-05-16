@@ -7,32 +7,40 @@ const Navbar = () => {
         <div className="navbar">
             <a className="navbutton" href="#">
                 <div >
-                    <label>Albums</label>
+                    <i className="menu-icon photo big icon "></i>
+                    <label className="menu-label">Albums</label>
+
                 </div>
             </a>
 
             <Link className="navbutton" to="calendar">
-                <div >
-                    <i className="fa fa-calendar-o" ariaHidden="true"></i>
-                    <label>Calendar</label>
+                <div>
+                    <i className="calendar big icon menu-icon"></i>
+                    <label className="menu-label">Calendar</label>
                 </div>
             </Link>
 
             <Link className="navbutton" to="feed">
                 <div >
-                    <label>Feed</label>
+                    <i className="world big icon menu-icon"></i>
+                    <label className="menu-label">Feed</label>
+
                 </div>
             </Link>
 
             <a className="navbutton" href="#">
                 <div >
-                    <label>Profile</label>
+                    <i className="user big icon menu-icon"></i>
+                    <label className="menu-label">Profile</label>
+
                 </div>
             </a>
 
             <Link className="navbutton" to="create-event">
                 <div >
-                    <label>Create</label>
+                    <i className="write big icon menu-icon"></i>
+                    <label className="menu-label">Create</label>
+
                 </div>
             </Link>
         </div>
