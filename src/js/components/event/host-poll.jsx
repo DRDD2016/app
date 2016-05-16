@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
 
 
@@ -34,15 +35,27 @@ class HostPoll extends React.Component {
 function createVoteSection (event, tally, eventType, EventTypeComponent, confirmEvent) {
 
     return event[eventType].map((choice, i) => {
+        console.log(choice);
+        let options = {
+            "poll-eventWhat": eventType === "eventWhat" && tally[eventType],
+            "poll-eventWhere": eventType === "eventWhere" && tally[eventType],
+            "poll-eventWhen": eventType === "eventWhen" && tally[eventType],
+            "poll-selected-eventWhat": eventType === "eventWhat" && tally[eventType] && tally[eventType][i] === true,
+            "poll-selected-eventWhere": eventType === "eventWhere" && tally[eventType] && tally[eventType][i] === true,
+            "poll-selected-eventWhen": eventType === "eventWhen" && tally[eventType] && tally[eventType][i] === true
+        };
+
+        let classes = classnames("poll-option nine columns", options);
 
         var tallyCount = tally[eventType] ? tally[eventType][i] : '';
 
         if (tally[eventType]) {
 
             return (
-                <div onClick={ () => confirmEvent(eventType, choice, i) } className={ "ui label massive poll-" + eventType }  key={ eventType + '-' + i }>
+                <div onClick={ () => confirmEvent(eventType, choice, i) } className={ "" + eventType }  key={ eventType + '-' + i }>
                     <EventTypeComponent text={ choice }
                         tally={ tallyCount }
+                        classOptions={ classes }
                         />
                 </div>
             );
@@ -52,6 +65,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, confirm
                 <div key={ eventType + '-' + i }>
                     <EventTypeComponent text={ choice }
                         tally={ tallyCount }
+                        classOptions={ classes }
                         />
                 </div>
             );
