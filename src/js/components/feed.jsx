@@ -2,6 +2,8 @@ import React from 'react';
 import Notification from './notification.jsx';
 import { Link } from 'react-router';
 import getUserID from '../lib/getUserID.js';
+import CssLoader from './general/css-loader.jsx';
+
 
 
 const Feed = ({ notifications, isFetching }) => {
@@ -28,7 +30,7 @@ const Feed = ({ notifications, isFetching }) => {
 
         <div>
             {
-                isFetching && "Loading..."
+                isFetching && <CssLoader />
             }
             <div className="row">
                 <h4 className="twelve columns">Feed</h4>
