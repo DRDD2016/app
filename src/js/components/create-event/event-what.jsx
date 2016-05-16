@@ -6,10 +6,10 @@ import Input from '../general/input.jsx';
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
     let inputs = eventWhatData.map( (value, i) => {
+
         return (
             <Input
-                className=""
-                onChange={ handleEventWhat.bind(this, i) }
+                handleChange={ handleEventWhat.bind(this, i) }
                 key={ i }
                 value={ value }
                 inputKey={ i }
@@ -18,39 +18,32 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             />);
     });
 
-
     let addInputClasses = classnames("circular ui icon button", {
         "hide": eventWhatData.length >= 3
     });
-
 
     let nextButtonClasses = classnames("twelve columns", {
         "hide": eventWhatData[0] === ""
     });
 
     return (
-        <div className="">
-            <div className="">
-                <div className="row">
-                    <h2 className="twelve columns title">What?</h2>
+        <div>
+
+            { inputs }
+
+            <div className="row">
+                <div className={ addInputClasses } onClick={ (e) => addInput() }>
+                    <i className="icon plus" />
                 </div>
             </div>
 
-            { inputs }
-            <div className="">
-                <div className="row">
-                    <div className={ addInputClasses } onClick={ (e) => addInput(eventWhatData.length) }>
-                        <i className="icon plus" />
-                    </div>
-                </div>
+            <div className="row">
+                <Link className="twelve columns" to='/create-event/where'>
 
-                <div className="row">
-                    <Link to='/create-event/where'>
-                        <button className={ nextButtonClasses }>
-                            Next
-                        </button>
-                    </Link>
-                </div>
+                    <button className={ nextButtonClasses }>
+                        Next
+                    </button>
+                </Link>
             </div>
         </div>
     );

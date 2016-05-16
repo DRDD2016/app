@@ -1,0 +1,36 @@
+
+.poll-option {
+    line-height: 45px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+
+    &.poll-eventWhat {
+        color: $what;
+        border: 1px solid $what;
+    }
+
+    &.poll-eventWhere {
+        color: $where;
+        border: 1px solid $where;
+    }
+
+    &.poll-eventWhen {
+        color: $when;
+        border: 1px solid $when;
+    }
+
+    &.poll-selected-eventWhat {
+        background-color: $what;
+        color: white;
+    }
+
+    &.poll-selected-eventWhere {
+        background-color: $where;
+        color: white;
+    }
+
+    &.poll-selected-eventWhen {
+        background-color: $when;
+        color: white;
+    }
+}

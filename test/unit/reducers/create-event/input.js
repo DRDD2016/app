@@ -7,7 +7,6 @@ test('Reducer handles ADD_INPUT as expected', (t) => {
 
     const action = {
         type: "ADD_INPUT",
-        nextInputKey: 1,
         eventType: "eventWhen"
     };
 
@@ -39,7 +38,6 @@ test('Reducer handles ADD_INPUT as expected', (t) => {
     /*-----*/
     const action2 = {
         type: "ADD_INPUT",
-        nextInputKey: 1,
         eventType: "eventWhere"
     };
 
@@ -72,7 +70,7 @@ test('Reducer handles REMOVE_INPUT as expected', (t) => {
 
     const action = {
         type: "REMOVE_INPUT",
-        nextInputKey: 1,
+        inputKey: 1,
         eventType: "eventWhen"
     };
 
@@ -104,7 +102,7 @@ test('Reducer handles REMOVE_INPUT as expected', (t) => {
     /*-----*/
     const action2 = {
         type: "REMOVE_INPUT",
-        nextInputKey: 1,
+        inputKey: 1,
         eventType: "eventWhere"
     };
 

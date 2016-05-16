@@ -141,7 +141,7 @@ function addInput (state, action) {
 function removeInput (state, action) {
 
     let newState = update(state, {
-        [action.eventType]: {  $splice: [[action.nextInputKey, 1]]  }
+        [action.eventType]: {  $splice: [[action.inputKey, 1]]  }
     });
     return newState;
 }

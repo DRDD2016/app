@@ -1,7 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const Input = ({ onChange, value, placeholder, removeInput, inputKey }) => {
+
+const Input = ({ handleChange, value, placeholder, removeInput, inputKey }) => {
 
     let removeInputClasses = classnames("circular ui icon button", {
         "hide": inputKey === 0
@@ -12,7 +13,7 @@ const Input = ({ onChange, value, placeholder, removeInput, inputKey }) => {
             <input
                 className="ten columns"
                 value={ value }
-                onChange={ onChange }
+                onChange={ handleChange }
                 type="text"
                 placeholder={ placeholder } />
             <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>

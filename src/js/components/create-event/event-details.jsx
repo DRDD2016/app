@@ -16,9 +16,6 @@ class EventDetails extends React.Component {
         return (
             <div className="">
                 <div className="row">
-                    <h2 className="twelve columns title">Event details</h2>
-                </div>
-                <div className="row">
                     <input
                         className="twelve columns"
                         onChange={ this.props.handleChange.bind(this, 'eventName') }

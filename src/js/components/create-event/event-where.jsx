@@ -8,8 +8,10 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
     let inputs = eventWhereData.map( (value, i) => {
 
-        let template = `${value.placeName}${value.placeAddress}`;
-        let fullAddress = (value.placeName ? template : "");
+        let templateNoSpace = `${value.placeName}${value.placeAddress}`;
+        let templateWithSpace = `${value.placeName} ${value.placeAddress}`;
+        let chosenTemplate = value.placeAddress === '' ? templateNoSpace : templateWithSpace;
+        let fullAddress = (value.placeName ? chosenTemplate : "");
 
         let autocompleteID = 'autocomplete-' + i;
         return (
@@ -35,16 +37,11 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
     return (
         <div className="">
-            <div className="">
-                <div className="">
-                    <h2>Where?</h2>
-                </div>
-            </div>
 
             { inputs }
             <div className="">
                 <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput(eventWhereData.length) }>
+                    <button className={ addInputClasses } onClick={ (e) => addInput() }>
                         Add input
                     </button>
                 </div>
