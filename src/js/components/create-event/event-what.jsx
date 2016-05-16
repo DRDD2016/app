@@ -31,7 +31,6 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
             <div className="event-header row">
                 <h2 className="twelve columns title">What?</h2>
             </div>
-
             { inputs }
 
             <div className="row">
@@ -42,6 +41,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
 
             <div className="row">
                 <Link className="twelve columns" to='/create-event/where'>
+
                     <button className={ nextButtonClasses }>
                         Next
                     </button>

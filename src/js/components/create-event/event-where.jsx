@@ -13,7 +13,6 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
         let chosenTemplate = value.placeAddress === '' ? templateNoSpace : templateWithSpace;
         let fullAddress = (value.placeName ? chosenTemplate : "");
 
-
         let autocompleteID = 'autocomplete-' + i;
         return (
                 <AutocompleteInput
