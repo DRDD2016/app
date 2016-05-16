@@ -28,6 +28,7 @@ import { store } from './init-store.js';
 
 function initialiseAppState (nextState, replace, callback) {
 
+
     store.dispatch(getUser());
     store.dispatch(getNotifications());
     store.dispatch(getCalendar());
@@ -49,7 +50,7 @@ const routes = (
                onEnter={ initialiseAppState } />
 
         <Route path='/event/:eventID'
-               component={ requireAuthentication(EventContainer)}
+               component={ requireAuthentication(EventContainer) }
                onEnter={ fetchEvent } />
 
         <Route path='/calendar'
