@@ -18,7 +18,7 @@ class EventDetails extends React.Component {
         let hideNext = this.props.eventDetails.eventName === "" || this.props.eventDetails.eventDescription === "";
 
         let nextButtonClasses = classnames("twelve columns", {
-            "hide": hideNext == true
+            "hide": hideNext
         });
 
         return (

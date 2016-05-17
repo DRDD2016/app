@@ -20,9 +20,9 @@ class CreateEvent extends React.Component {
 
 
     render () {
-        let hideEventDetails = this.props.eventDetails.eventName == "" || this.props.eventDetails.eventDescription == "" || this.props.location.pathname.split('/').pop() == "create-event";
+        let hideEventDetails = this.props.eventDetails.eventName === "" || this.props.eventDetails.eventDescription === "" || this.props.location.pathname.split('/').pop() === "create-event";
         let eventDetails = classnames("row event-details-header", {
-            "display-none": hideEventDetails == true
+            "display-none": hideEventDetails
         });
         return (
             <div>
