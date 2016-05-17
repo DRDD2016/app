@@ -8,10 +8,6 @@ class CreateEvent extends React.Component {
         super(props);
     }
 
-    capitalizeFirstLetter (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
     eventType () {
         let pathname = this.props.location.pathname.split('/').pop();
         return pathname.charAt(0).toUpperCase() + pathname.slice(1);
@@ -24,17 +20,16 @@ class CreateEvent extends React.Component {
 
 
     render () {
-        let hideEventDetails = this.props.eventDetails.eventName != "" && this.props.eventDetails.eventDescription != "" && this.props.location.pathname.split('/').pop() != "create-event";
-        console.log(hideEventDetails);
+        let hideEventDetails = this.props.eventDetails.eventName == "" || this.props.eventDetails.eventDescription == "" || this.props.location.pathname.split('/').pop() == "create-event";
         let eventDetails = classnames("row event-details-header", {
-            "display-none": hideEventDetails == false
+            "display-none": hideEventDetails == true
         });
         return (
             <div>
                 <div className="event-header row">
                     <p className="three columns back-button" onClick={ this.context.router.goBack }> Back </p>
                     <h3 className=" six columns title"> { this.eventType() }</h3>
-                    <p className="three columns cancel-event-creation" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
+                    <p className="three columns cancel-event-button" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
                 </div>
 
                 <div className={ eventDetails }>

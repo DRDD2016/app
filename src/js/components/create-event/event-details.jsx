@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import classnames from 'classnames';
 
 class EventDetails extends React.Component {
     constructor (props){
@@ -13,6 +14,13 @@ class EventDetails extends React.Component {
     }
 
     render () {
+
+        let hideNext = this.props.eventDetails.eventName === "" || this.props.eventDetails.eventDescription === "";
+
+        let nextButtonClasses = classnames("twelve columns", {
+            "hide": hideNext == true
+        });
+
         return (
             <div className="">
                 <div className="row">
@@ -34,7 +42,7 @@ class EventDetails extends React.Component {
                 </div>
                 <div className="row">
                     <Link to='/create-event/what'>
-                        <button className="twelve columns">
+                        <button className={ nextButtonClasses }>
                             Next
                         </button>
                     </Link>
