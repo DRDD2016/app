@@ -1,6 +1,5 @@
 .event-header {
     background: linear-gradient(135deg, $magenta, $lime);
-    margin-bottom: 2em;
 }
 
 .title {
@@ -13,4 +12,26 @@
     text-align: center;
     padding-top: 2.5em;
     margin-bottom: 0;
+}
+
+.event-details-header {
+    background-color: $blue;
+}
+
+.event-details-header > p {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.4em 0;
+    color: $white;
+}
+
+.event-details-header > p:first-child {
+    font-size: 1.2em;
+    font-weight: bolder;
+    padding-bottom: 0;
+
+}
+
+.container {
+    margin-top: 0.5em;
 }
