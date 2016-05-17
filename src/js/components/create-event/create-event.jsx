@@ -1,13 +1,11 @@
 import React from 'react';
+import classnames from 'classnames';
+
 
 class CreateEvent extends React.Component {
 
     constructor (props){
         super(props);
-    }
-
-    capitalizeFirstLetter (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
     eventType () {
@@ -20,13 +18,23 @@ class CreateEvent extends React.Component {
         this.context.router.push('/feed');
     }
 
+
     render () {
+        let hideEventDetails = this.props.eventDetails.eventName === "" || this.props.eventDetails.eventDescription === "" || this.props.location.pathname.split('/').pop() === "create-event";
+        let eventDetails = classnames("row event-details-header", {
+            "display-none": hideEventDetails
+        });
         return (
             <div>
                 <div className="event-header row">
                     <p className="three columns back-button" onClick={ this.context.router.goBack }> Back </p>
                     <h3 className=" six columns title"> { this.eventType() }</h3>
-                    <p className="three columns cancel-event-creation" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
+                    <p className="three columns cancel-event-button" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
+                </div>
+
+                <div className={ eventDetails }>
+                    <p> { this.props.eventDetails.eventName }</p>
+                    <p> { this.props.eventDetails.eventDescription }</p>
                 </div>
 
                 <div className="container">
