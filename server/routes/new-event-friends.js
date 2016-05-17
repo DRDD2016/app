@@ -6,7 +6,7 @@ exports.register = (server, options, next) => {
 
     server.route([{
         method: 'GET',
-        path: '/new-event/invitees',
+        path: '/new-event/friends',
         config: {
             description: 'fetches facebook friends using this app',
 
