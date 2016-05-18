@@ -58,8 +58,9 @@ export default function createEvent  (state = initialState, action) {
         return initialState;
 
     case GET_FB_FRIENDS_REQUEST:
+        return handleFBFriendsRequest(state, action);
     case GET_FB_FRIENDS_SUCCESS:
-        return handleFBFriends(state, action);
+        return handleFBFriendsSuccess(state, action);
     case GET_FB_FRIENDS_FAILURE:
         return handleFBFriendsFailure(state, action);
 
@@ -75,8 +76,14 @@ export default function createEvent  (state = initialState, action) {
     }
 }
 
+function handleFBFriendsRequest (state, action) {
+    return {
+        ...state,
+        isFetching: action.isFetching,
+    };
+}
 
-function handleFBFriends (state, action) {
+function handleFBFriendsSuccess (state, action) {
     return {
         ...state,
         isFetching: action.isFetching,
