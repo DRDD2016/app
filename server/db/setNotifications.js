@@ -8,7 +8,7 @@ function setNotifications (users, notification, callback) {
     }
 
     users.forEach((id, index) => {
-
+        notification.subjectID = id;
         var setName = "notifications:" + id;
 
         client.saddAsync(setName, JSON.stringify(notification))

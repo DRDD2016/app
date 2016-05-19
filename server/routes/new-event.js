@@ -24,19 +24,18 @@ exports.register = (server, options, next) => {
                         if (error) {
                             return reply(error);
                         }
-                        var inviteesIDs = data.invitees.map((inviteeObj) => {
+                        var userIDs = data.invitees.map((inviteeObj) => {
 
                             return inviteeObj.id;
-                        });
-                        setNotifications(inviteesIDs, notification, (error, response) => {
+                        }).concat([data.hostID]);
+                        setNotifications(userIDs, notification, (error, response) => {
 
                             if (error) {
                                 return reply(error);
                             }
                             if (!data.isPoll) {
 
-                                var calendarRecipientsArray = inviteesIDs.concat([data.hostID]);
-                                addEventToCalendar(calendarRecipientsArray, eventID, (error, response) => {
+                                addEventToCalendar(userIDs, eventID, (error, response) => {
 
                                     var verdict = error || response;
                                     return reply(verdict);

@@ -35,7 +35,6 @@ class HostPoll extends React.Component {
 function createVoteSection (event, tally, eventType, EventTypeComponent, confirmEvent) {
 
     return event[eventType].map((choice, i) => {
-        console.log(choice);
         let options = {
             "poll-eventWhat": eventType === "eventWhat" && tally[eventType],
             "poll-eventWhere": eventType === "eventWhere" && tally[eventType],
