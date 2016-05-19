@@ -9,6 +9,10 @@ class CreateEvent extends React.Component {
 
     eventType () {
         let pathname = this.props.location.pathname.split('/').pop();
+        
+        if (pathname === "create-event") {
+            pathname = "Create an event";
+        }
         return pathname.charAt(0).toUpperCase() + pathname.slice(1);
     }
 
@@ -31,9 +35,6 @@ class CreateEvent extends React.Component {
                 <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                     eventName={ this.props.eventDetails.eventName }
                                     eventDescription={ this.props.eventDetails.eventDescription } />
-
-
-
 
                 <div className="container">
                     { this.props.children }

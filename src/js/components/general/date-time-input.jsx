@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput }) => {
 
-    let removeInputClasses = classnames("circular ui icon button", {
+    let removeInputClasses = classnames("one column", {
         "hide": inputKey === 0
     });
 

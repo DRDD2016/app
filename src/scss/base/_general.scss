@@ -10,10 +10,24 @@
     width: 20%;
 }
 
-.title {
-  text-align: center;
+.text-snippet {
+    text-align: center;
 }
 
 .container {
     margin-bottom: 5em;
+    margin-top: 0.5em;
+}
+
+.title {
+    padding: 0.5em 0em;
+    margin-bottom: 0;
+    font-size: 1.8em;
+    text-align: center;
+}
+
+.justify {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
 }

@@ -25,14 +25,14 @@ class AutocompleteInput extends React.Component {
     render () {
         const { handleChange, value, placeholder, id, inputKey, removeInput } = this.props;
 
-        let removeInputClasses = classnames("circular ui icon button", {
-            "hide": inputKey === 0
+        let removeInputClasses = classnames("one column", {
+            "display-none": inputKey === 0
         });
 
         return (
             <div className="row">
                 <input
-                    className="ten columns"
+                    className="eleven columns"
                     onChange={ (e) => handleChange(e.target.value, "")}
                     ref="searchField"
                     id={ id }

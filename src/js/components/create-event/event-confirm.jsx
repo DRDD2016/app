@@ -36,9 +36,7 @@ const EventConfirm = ({ data, saveEvent }) => {
                 {invitedFriends}
             </div>
 
-
-
-            <button onClick={ (e) => saveEvent(data) }>
+            <button className="twelve columns" onClick={ (e) => saveEvent(data) }>
                 Save event
             </button>
         </div>
