@@ -27,14 +27,14 @@ test('Reducer handles GET_FB_FRIENDS_SUCCESS as expected', (t) => {
     const action = {
         type: "GET_FB_FRIENDS_SUCCESS",
         isFetching: false,
-        data: "an array of friends"
+        data: ["an array of friends"]
     };
 
     const nextState = reducer(initialState, action);
 
 
     expected.isFetching = false;
-    expected.friends = "an array of friends";
+    expected.friends = ["an array of friends"];
 
     t.deepEqual(nextState, expected, 'GET_FB_FRIENDS_SUCCESS sets state correctly');
     t.end();
@@ -48,13 +48,17 @@ test('Reducer handles GET_FB_FRIENDS_FAILURE as expected', (t) => {
     const action = {
         type: "GET_FB_FRIENDS_FAILURE",
         isFetching: false,
-        error: "An error occurred"
+        error: {
+            message: "An error occurred"
+        }
     };
 
     const nextState = reducer(initialState, action);
 
     expected.isFetching = false;
-    expected.error = "An error occurred";
+    expected.error = {
+        message: "An error occurred"
+    };
 
     t.deepEqual(nextState, expected, 'GET_FB_FRIENDS_FAILURE sets state correctly');
     t.end();

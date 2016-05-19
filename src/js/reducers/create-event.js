@@ -77,47 +77,42 @@ export default function createEvent  (state = initialState, action) {
 }
 
 function handleFBFriendsRequest (state, action) {
-    return {
-        ...state,
-        isFetching: action.isFetching,
-    };
+
+    return update(state, {
+        isFetching: { $set: action.isFetching }
+    });
 }
 
 function handleFBFriendsSuccess (state, action) {
-    return {
-        ...state,
-        isFetching: action.isFetching,
-        friends: action.data,
-        error: action.error
-    };
+
+    return update(state, {
+        isFetching: { $set: action.isFetching },
+        friends: { $push: action.data },
+    });
 }
 
 function handleFBFriendsFailure (state, action) {
-    return {
-        ...state,
-        isFetching: action.isFetching,
-        error: action.error
-    };
+
+    return update(state, {
+        isFetching: { $set: action.isFetching },
+        error: { $set: action.error }
+    });
 }
 
 function handleNewEvent (state, action) {
-    return {
-        ...state,
-        isFetching: action.isFetching,
-        didSave: action.didSave,
-        error: action.payload
-    };
+
+    return update(state, {
+        isFetching: { $set: action.isFetching },
+        didSave: { $set: action.didSave },
+        error: { $set: action.error }
+    });
 }
 
 function setEventDetails (state, action, key) {
 
-    return {
-        ...state,
-        [action.eventType]: {
-            ...state.eventDetails,
-            [action.inputType]: action.data
-        }
-    };
+    return update(state, {
+        eventDetails: { [action.inputType]: { $set: action.data } }
+    });
 }
 
 function setEvent (state, action) {
@@ -149,7 +144,6 @@ function addInput (state, action) {
     let initialValue = (action.eventType === "eventWhen") ? initialEventWhen : '';
 
     let newState = update(state, {
-
         [action.eventType]: { $push: [initialValue] }
     });
     return newState;
