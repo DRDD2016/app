@@ -5,7 +5,10 @@ function createNotification (userID, eventID, eventInfo, callback) {
     getUser(userID, (error, userInfo) => {
 
         if (error) {
-            callback(new Error('problem fetching user to create notification'));
+            return callback(new Error('Problem fetching user to create notification (1)'));
+        }
+        if (!userInfo) {
+            return callback(new Error('Problem fetching user to create notification (2)'));
         }
 
         var notification = {
