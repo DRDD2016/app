@@ -20,7 +20,9 @@ const Feed = ({ notifications, isFetching }) => {
                 eventWhat={ data.eventWhat }
                 eventWhere={ data.eventWhere }
                 eventWhen={ data.eventWhen }
-                userIsHost={ data.hostID == getUserID() } />
+                userIsHost={ data.hostID == getUserID() }
+                hostID={ data.hostID }
+                subjectID={ data.subjectID } />
         );
     });
 
