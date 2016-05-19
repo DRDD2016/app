@@ -34,7 +34,13 @@ const Feed = ({ notifications, isFetching }) => {
             <div className="row">
                 <h4 className="twelve columns">Feed</h4>
             </div>
-            { mappedNotifications }
+            {
+                notifications.length === 0 &&
+                    <p>Nothing to see here</p>
+            }
+            {
+                mappedNotifications
+            }
         </div>
     );
 };

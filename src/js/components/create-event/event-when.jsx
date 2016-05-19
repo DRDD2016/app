@@ -27,21 +27,19 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
     });
 
     return (
-        <div className="">
+        <div>
 
             { inputs }
             <div className="">
-                <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput() }>
-                        Add input
-                    </button>
-                </div>
+                <button className={ addInputClasses } onClick={ (e) => addInput() }>
+                    Add input
+                </button>
 
-                <div className="">
+                <Link to='/create-event/invitees'>
                     <button className={ nextButtonClasses }>
-                        <Link to='/create-event/invitees'>Next</Link>
+                        Next
                     </button>
-                </div>
+                </Link>
             </div>
         </div>
     );
