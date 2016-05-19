@@ -42,3 +42,4 @@ bundle.js
 secret.md
 env.sh
 test-env.sh
+flush.sh
