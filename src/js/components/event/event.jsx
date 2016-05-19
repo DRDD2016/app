@@ -52,7 +52,7 @@ class Event extends React.Component {
         } else {
             return (
                 <div>
-                    <EventDetailsHeader classes="row event-details-header"
+                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                         eventName={ this.props.event.eventName }
                                         eventDescription={ this.props.event.eventDescription } />
                     <div className="container">

@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 
 class CreateEvent extends React.Component {
@@ -20,10 +19,7 @@ class CreateEvent extends React.Component {
 
 
     render () {
-        let hideEventDetails = this.props.eventDetails.eventName === "" || this.props.eventDetails.eventDescription === "" || this.props.location.pathname.split('/').pop() === "create-event";
-        let eventDetails = classnames("row event-details-header", {
-            "display-none": hideEventDetails
-        });
+
         return (
             <div>
                 <div className="event-header row">
@@ -32,7 +28,7 @@ class CreateEvent extends React.Component {
                     <p className="three columns cancel-event-button" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
                 </div>
 
-                <EventDetailsHeader classes={ eventDetails }
+                <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                     eventName={ this.props.eventDetails.eventName }
                                     eventDescription={ this.props.eventDetails.eventDescription } />
 
