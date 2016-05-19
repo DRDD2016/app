@@ -30,12 +30,7 @@ const mapDispatchToProps = (dispatch) => {
             data.isPoll = isPoll(data);
             data.hostID = state.user.id;
             dispatch(newEvent(data));
-        },
-
-        discardEvent: () => {
-
-            dispatch(clearCreateEvent());
-        },
+        }
     };
 };
 

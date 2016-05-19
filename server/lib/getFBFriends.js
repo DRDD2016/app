@@ -3,7 +3,6 @@ var client = require('../db/init.js');
 var mapFriendsToUsers = require('./mapFriendsToUsers.js');
 
 function getFBFriends (token, callback) {
-
     FB.setAccessToken(token);
     FB.api(
         '/me/friends',
@@ -17,7 +16,7 @@ function getFBFriends (token, callback) {
                 });
 
             } else {
-                callback(response.error);
+                callback(new Error(response.error));
             }
         }
     );

@@ -2,6 +2,8 @@ import React from 'react';
 import InviteePoll from './invitee-poll.jsx';
 import HostPoll from './host-poll.jsx';
 import Spinner from '../general/spinner.jsx';
+import EventDetailsHeader from '../general/event-details-header.jsx';
+
 
 class Event extends React.Component {
 
@@ -43,16 +45,23 @@ class Event extends React.Component {
     }
     render () {
 
-        return (
-            <div className="container">
-                {
-                    this.props.isFetching && <Spinner />
-                }
-                {
-                    !this.props.isFetching && this.renderView()
-                }
-            </div>
-        );
+        if (this.props.isFetching) {
+            return (
+                <Spinner />
+            );
+        } else {
+            return (
+                <div>
+                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                                        eventName={ this.props.event.eventName }
+                                        eventDescription={ this.props.event.eventDescription } />
+                    <div className="container">
+                        {this.renderView()}
+                    </div>
+                </div>
+            );
+        }
+
     }
 }
 

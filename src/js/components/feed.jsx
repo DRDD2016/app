@@ -8,7 +8,6 @@ import Spinner from './general/spinner.jsx';
 const Feed = ({ notifications, isFetching }) => {
 
     let mappedNotifications = notifications.map((data, i) => {
-
         return (
             <Notification
                 key={ i }
@@ -26,7 +25,6 @@ const Feed = ({ notifications, isFetching }) => {
     });
 
     return (
-
         <div className="container">
             {
                 isFetching && <Spinner />
