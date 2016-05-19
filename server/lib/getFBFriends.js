@@ -17,7 +17,8 @@ function getFBFriends (token, callback) {
                 });
 
             } else {
-                callback(response.error);
+                console.log(response.error);
+                callback(new Error(response.error));
             }
         }
     );
