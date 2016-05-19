@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 const Input = ({ handleChange, value, placeholder, removeInput, inputKey }) => {
 
-    let removeInputClasses = classnames("circular ui icon button", {
+    let removeInputClasses = classnames({
         "hide": inputKey === 0
     });
 

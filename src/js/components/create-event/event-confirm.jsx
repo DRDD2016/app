@@ -20,21 +20,6 @@ const EventConfirm = ({ data, saveEvent }) => {
     return (
         <div>
 
-            <div className="ui list">
-                <div className="item">
-                    <i className="remove bookmark icon"></i>
-                    <div className="content">
-                        { data.eventName }
-                    </div>
-                </div>
-                <div className="item">
-                    <i className="sidebar icon"></i>
-                    <div className="content">
-                        { data.eventDescription }
-                    </div>
-                </div>
-            </div>
-
             <ConfirmEventWhat
                 eventWhat = { data.eventWhat }
             />
