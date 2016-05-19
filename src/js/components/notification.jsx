@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll }) => {
+const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID }) => {
+
+    let hostIsSubject = subjectID === hostID;
     return (
         <Link to={ 'event/' + eventID } >
             <div className="row notifications">
@@ -9,12 +11,15 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                 <div className="six columns">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>
                     <p className="name">
-                        { firstName + " " + lastName }
+                        { hostIsSubject && " You"}
+                        { !hostIsSubject && firstName + " " + lastName }
                     <span>
-                        { userIsHost && isPoll && " has voted on your poll" }
-                        { userIsHost && !isPoll && " has responded to your event" }
-                        { !userIsHost && isPoll && " wants you to vote on their poll" }
-                        { !userIsHost && !isPoll && " has invited you to their event" }
+                        { hostIsSubject && isPoll && " have created a poll " }
+                        { hostIsSubject && !isPoll && " have created an event " }
+                        { !hostIsSubject && userIsHost && isPoll && " has voted on your poll" }
+                        { !hostIsSubject && userIsHost && !isPoll && " has responded to your event" }
+                        { !hostIsSubject && !userIsHost && isPoll && " wants you to vote on their poll" }
+                        { !hostIsSubject && !userIsHost && !isPoll && " has invited you to their event" }
                     </span>
                     </p>
                 </div>

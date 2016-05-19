@@ -18,7 +18,8 @@ function createNotification (userID, eventID, eventInfo, callback) {
             eventWhere: eventInfo.eventWhere,
             eventWhen: eventInfo.eventWhen,
             isPoll: eventInfo.isPoll,
-            hostID: eventInfo.hostID
+            hostID: eventInfo.hostID,
+            subjectID: undefined
         };
 
         return callback(error, notification);
