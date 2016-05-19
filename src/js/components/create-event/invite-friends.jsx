@@ -42,7 +42,7 @@ class InviteFriends extends React.Component {
             }
         });
 
-        let classes = classnames({
+        let classes = classnames("twelve columns", {
             'hide': this.props.invitees.length === 0
         });
 
@@ -57,9 +57,9 @@ class InviteFriends extends React.Component {
                     { friends }
                 </div>
 
-                <button className={ classes }>
-                    <Link to='/create-event/confirm'>Next</Link>
-                </button>
+                <Link to='/create-event/confirm'>
+                    <button className={ classes }>Next</button>
+                </Link>
             </div>
         );
     }
