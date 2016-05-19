@@ -54,6 +54,7 @@ export default function createEvent  (state = initialState, action) {
     case NEW_EVENT_SUCCESS:
     case NEW_EVENT_FAILURE:
         return handleNewEvent(state, action);
+        
     case CLEAR_CREATE_EVENT:
         return initialState;
 
