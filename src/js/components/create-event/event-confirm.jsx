@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import ConfirmEventWhat from '../general/confirm-event-what.jsx';
 import ConfirmEventWhereorWhen from '../general/confirm-event-where-or-when.jsx';
 
-const EventConfirm = ({ data, saveEvent, discardEvent }) => {
+const EventConfirm = ({ data, saveEvent }) => {
 
     const invitedFriends = data.invitees.map((inviteeObject) => {
         return (
@@ -19,7 +19,6 @@ const EventConfirm = ({ data, saveEvent, discardEvent }) => {
     });
     return (
         <div>
-            <h2>Confirm</h2>
 
             <div className="ui list">
                 <div className="item">
@@ -56,9 +55,6 @@ const EventConfirm = ({ data, saveEvent, discardEvent }) => {
 
             <button onClick={ (e) => saveEvent(data) }>
                 Save event
-            </button>
-            <button onClick={ (e) => discardEvent() }>
-                Discard event
             </button>
         </div>
     );
