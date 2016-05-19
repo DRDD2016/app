@@ -54,20 +54,6 @@ function handleGetEventSuccess (state, action) {
         poll: { $set: action.data.poll }
     });
     return newState;
-
-    // if (action.data.isPoll) {
-    //     return update(state, {
-    //         isFetching: { $set: action.isFetching },
-    //         data: { $set: action.data.event },
-    //         tally: { $set: action.data.tally },
-    //         poll: { $set: action.data.poll }
-    //     });
-    // } else {
-    //     return update(state, {
-    //         isFetching: { $set: action.isFetching },
-    //         data: { $set: action.data }
-    //     });
-    // }
 }
 
 function handleGetEventFailure (state, action) {

@@ -134,7 +134,7 @@ export function getFBFriends () {
 
         dispatch(getFBFriendsRequest());
 
-        axios.get('/new-event/invitees?userID=' + id)
+        axios.get('/new-event/friends?userID=' + id)
             .then((response) => {
                 dispatch(getFBFriendsSuccess(response.data));
             })
