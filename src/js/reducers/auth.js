@@ -1,3 +1,4 @@
+import update from 'react-addons-update';
 import { USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS, USER_LOGIN_FAILURE } from '../actions/create-event.js';
 
 const initialState = {
@@ -18,9 +19,9 @@ export default function auth (state = initialState, action) {
 }
 
 function handleUserLogin (state, action) {
-    return {
-        ...state,
-        isFetching: action.isFetching,
-        isAuthenticated: action.isAuthenticated,
-    };
+
+    return update(state, {
+        isFetching: { $set: action.isFetching },
+        isAuthenticated: { $set: action.isAuthenticated }
+    });
 }

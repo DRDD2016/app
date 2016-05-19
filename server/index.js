@@ -1,18 +1,7 @@
 var Hapi  = require('hapi');
-var Inert = require('inert');
 var Bell = require('bell');
-
-var Home  = require('./routes/home.js');
-var GetUser = require('./routes/get-user.js');
-var GetNotifications = require('./routes/get-notifications.js');
-var GetCalendar = require('./routes/get-calendar.js');
-var NewEvent = require('./routes/new-event.js');
-var NewEventInvitees = require('./routes/new-event-invitees.js');
-var GetEvent = require('./routes/get-event.js');
-var ConfirmPoll = require('./routes/confirm-poll.js');
-
-var addUser = require('./db/addUser.js');
-var getFBPhoto = require('./lib/getFBPhoto.js');
+var plugins = require('./plugins.js');
+var authenticateUser = require('./lib/authenticateUser.js');
 
 exports.init = (port, callback) => {
 
@@ -39,7 +28,7 @@ exports.init = (port, callback) => {
         });
     });
 
-    server.register([Inert, Home, GetUser, GetNotifications, GetCalendar, NewEvent, NewEventInvitees, GetEvent, ConfirmPoll], (err) => {
+    server.register(plugins, (err) => {
 
         if (err) {
             throw new Error(err);
@@ -51,29 +40,7 @@ exports.init = (port, callback) => {
                 auth: {
                     strategies: ['facebook']
                 },
-                handler: (request, reply) => {
-
-                    if (!request.auth.isAuthenticated) {
-                        return reply('Auth failed due to: ' + request.auth.error.message).code(401);
-                    } else {
-
-                        getFBPhoto(request.auth.credentials.profile.id, request.auth.credentials.token, function (error, url) {
-                            if (error) {
-                                return reply(error);
-                            }
-                            addUser(request.auth.credentials, url, (error, result) => {
-
-                                if (error) {
-                                    reply(new Error("Could not register user"));
-                                } else {
-                                    reply.redirect('/#/feed')
-                                         .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
-                                }
-                            });
-                        });
-
-                    }
-                }
+                handler: authenticateUser
             }
         }]);
     });

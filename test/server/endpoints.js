@@ -137,7 +137,7 @@ server.init(9001, (error, server) => {
         /* ADD REAL FRIENDS TO DB */
         const options = {
             method: 'GET',
-            url: '/new-event/invitees?userID=' + fixtures.SOHIL_ID
+            url: '/new-event/friends?userID=' + fixtures.SOHIL_ID
         };
 
         server.inject(options, (response) => {

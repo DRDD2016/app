@@ -8,6 +8,6 @@ test('clearCreateEvent returns expected action', (t) => {
     const expected = {
         type: CLEAR_CREATE_EVENT
     };
-    t.deepEqual(actual, expected, "newEvent return the GET_FB_FRIENDS action");
+    t.deepEqual(actual, expected, "clearCreateEvent returns the CLEAR_CREATE_EVENT action");
     t.end();
 });

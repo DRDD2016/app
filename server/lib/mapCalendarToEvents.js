@@ -13,9 +13,11 @@ function mapCalendarToEvents (eventIDArray, callback, index, previous) {
 
         if (error) {
             return callback(error);
+        } else {
+
+            previous.push(event);
+            mapCalendarToEvents(eventIDArray, callback, ++index, previous);
         }
-        previous.push(event);
-        mapCalendarToEvents(eventIDArray, callback, ++index, previous);
     });
 }
 
