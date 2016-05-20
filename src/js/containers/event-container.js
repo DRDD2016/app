@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
         event: state.event.data,
         poll: state.event.poll,
         tally: state.event.tally,
+        hostEventChoices: state.event.hostEventChoices,
         isFetching: state.event.isFetching,
         userIsHost: state.event.data.hostID == getUserID()
     };
@@ -38,6 +39,10 @@ const mapDispatchToProps = (dispatch) => {
         handleHostEventChoices: (eventType, value, index) => {
 
             dispatch(addHostEventChoice(eventType, value, index));
+        },
+        handleEventConfirmation: (hostEventChoices, eventID) => {
+
+            console.log(hostEventChoices, 'host choice', eventID);
         }
     };
 };

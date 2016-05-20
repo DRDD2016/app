@@ -106,7 +106,7 @@ function handleConfirmPoll (state, action) {
 
 function addHostEventChoice (state, action) {
     let newState = update(state, {
-        hostEventChoices: { [action.eventType]: { $set: action.value } }
+        hostEventChoices: { [action.eventType]: { $set: action.index } }
     });
     return newState;
 }
