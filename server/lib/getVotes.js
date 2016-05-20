@@ -40,21 +40,38 @@ function recurseThroughVotes (array, eventID, eventType, callback, index, mapped
     }
 }
 
+function iterateEventTypes (eventID, voteObject, list, recursor, callback) {
+
+    var progressCount = 0;
+
+    function report (error, mappedArray, eventType) {
+
+        if (error) {
+            return callback(error);
+        }
+        voteObject[eventType] = mappedArray;
+        progressCount++;
+
+        if (progressCount === list.length) {
+
+            callback(null, voteObject);
+        }
+    }
+
+    list.forEach((eventType, i) => {
+
+        var arrayToWorkOn = voteObject[eventType];
+
+        recursor(arrayToWorkOn, eventID, eventType, report);
+    });
+}
+
 function getUserVotes (event, eventID, callback) {
 
     var voteObject = createEventTypeObject(event);
     var eventTypeArray = Object.keys(voteObject);
 
-    eventTypeArray.forEach((eventType, i) => {
-
-        recurseThroughVotes(voteObject[eventType], eventID, eventType, (error, mappedArray) => {
-
-            voteObject[eventType] = mappedArray;
-            if ((eventTypeArray.length - 1) === i) {
-                callback(null, voteObject);
-            }
-        });
-    });
+    iterateEventTypes(eventID, voteObject, eventTypeArray, recurseThroughVotes, callback);
 }
 
 module.exports = getUserVotes;
