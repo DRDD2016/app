@@ -14,6 +14,15 @@ export const CONFIRM_POLL_FAILURE = 'CONFIRM_POLL_FAILURE';
 
 export const ADD_HOST_EVENT_CHOICE = 'ADD_HOST_EVENT_CHOICE';
 
+export const CONFIRM_EVENT = 'CONFIRM_EVENT';
+export const CONFIRM_EVENT_REQUEST = 'CONFIRM_EVENT_REQUEST';
+export const CONFIRM_EVENT_SUCCESS = 'CONFIRM_EVENT_SUCCESS';
+export const CONFIRM_EVENT_FAILURE = 'CONFIRM_EVENT_FAILURE';
+
+
+/********
+GET EVENT ACTIONS
+********/
 
 export function getEvent (eventID) {
 
@@ -61,6 +70,10 @@ export function updatePoll (eventType, index) {
         index
     };
 }
+
+/********
+CONFIRM POLL ACTIONS
+********/
 
 export function confirmPoll (poll, eventID) {
 
@@ -110,5 +123,50 @@ export function addHostEventChoice (eventType, value, index) {
         eventType,
         value,
         index
+    };
+}
+
+/********
+CONFIRM EVENT ACTIONS
+********/
+
+export function confirmEvent (hostEventChoices, eventID) {
+
+    return (dispatch) => {
+
+        let payload = {
+            hostEventChoices,
+            eventID
+        };
+
+        dispatch(confirmEventRequest());
+
+        axios.post('/confirm-event', payload)
+            .then((response) => {
+                dispatch(confirmEventSuccess());
+            })
+            .catch((error) => {
+                dispatch(confirmEventFailure());
+            });
+    };
+}
+
+export function confirmEventRequest () {
+    return {
+        type: CONFIRM_EVENT_REQUEST,
+        isFetching: true
+    };
+}
+
+export function confirmEventSuccess () {
+    return {
+        type: CONFIRM_EVENT_SUCCESS,
+        isFetching: false,
+    };
+}
+export function confirmEventFailure () {
+    return {
+        type: CONFIRM_EVENT_FAILURE,
+        isFetching: false
     };
 }

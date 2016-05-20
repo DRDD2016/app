@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
+import HostCreateEventButton from './host-create-event-button.jsx';
 
 
 class HostPoll extends React.Component {
@@ -10,9 +11,9 @@ class HostPoll extends React.Component {
     }
 
     render () {
-        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection, this.props.handleHostEventChoices);
-        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection, this.props.handleHostEventChoices);
-        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection, this.props.handleHostEventChoices);
+        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection, this.props.handleHostEventChoices, this.props.hostEventChoices);
+        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection, this.props.handleHostEventChoices, this.props.hostEventChoices);
+        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection, this.props.handleHostEventChoices, this.props.hostEventChoices);
 
         return (
             <div>
@@ -26,21 +27,25 @@ class HostPoll extends React.Component {
 
                 <h4>When</h4>
                 { eventWhen }
+
+                <HostCreateEventButton hostEventChoices={ this.props.hostEventChoices }
+                                       handleConfirmEvent={ this.props.handleConfirmEvent }
+                                       eventID={ this.props.eventID } />
+
             </div>
         );
     }
 }
 
-function createVoteSection (event, tally, eventType, EventTypeComponent, handleHostEventChoices) {
-
+function createVoteSection (event, tally, eventType, EventTypeComponent, handleHostEventChoices, hostEventChoices) {
     return event[eventType].map((choice, i) => {
         let options = {
             "poll-eventWhat": eventType === "eventWhat" && tally[eventType],
             "poll-eventWhere": eventType === "eventWhere" && tally[eventType],
             "poll-eventWhen": eventType === "eventWhen" && tally[eventType],
-            // "poll-selected-eventWhat": eventType === "eventWhat" && tally[eventType] && tally[eventType][i] === true,
-            // "poll-selected-eventWhere": eventType === "eventWhere" && tally[eventType] && tally[eventType][i] === true,
-            // "poll-selected-eventWhen": eventType === "eventWhen" && tally[eventType] && tally[eventType][i] === true
+            "poll-selected-eventWhat": eventType === "eventWhat" && hostEventChoices[eventType] === i,
+            "poll-selected-eventWhere": eventType === "eventWhere" && hostEventChoices[eventType] === i,
+            "poll-selected-eventWhen": eventType === "eventWhen" && hostEventChoices[eventType] === i
         };
 
         let classes = classnames("poll-option nine columns", options);

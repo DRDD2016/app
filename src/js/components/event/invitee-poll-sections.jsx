@@ -1,4 +1,5 @@
 import React from 'react';
+import formatDate from '../../lib/formatDate.js';
 
 export const EventWhatSection = ({ text, tally, classOptions }) => {
     return (
@@ -26,7 +27,7 @@ export const EventWhenSection = ({ text, tally, classOptions }) => {
     return (
         <div className="row">
             <label className={ classOptions }>
-                { text.date } { text.time }
+                { formatDate(text.date) } { text.time }
             </label>
             <span className="tally three columns">{ tally }</span>
         </div>
