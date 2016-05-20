@@ -12,7 +12,7 @@ export const CONFIRM_POLL_REQUEST = 'CONFIRM_POLL_REQUEST';
 export const CONFIRM_POLL_SUCCESS = 'CONFIRM_POLL_SUCCESS';
 export const CONFIRM_POLL_FAILURE = 'CONFIRM_POLL_FAILURE';
 
-export const HOST_EVENT_CHOICES = 'HOST_EVENT_CHOICES';
+export const ADD_HOST_EVENT_CHOICE = 'ADD_HOST_EVENT_CHOICE';
 
 
 export function getEvent (eventID) {
@@ -71,7 +71,7 @@ export function confirmPoll (poll, eventID) {
             eventID,
             userID: getUserID()
         };
-        
+
         dispatch(confirmPollRequest());
 
         axios.post('/confirm-poll', payload)
@@ -104,9 +104,9 @@ export function confirmPollFailure () {
     };
 }
 
-export function hostEventChoices (eventType, value, index) {
+export function addHostEventChoice (eventType, value, index) {
     return {
-        type: HOST_EVENT_CHOICES,
+        type: ADD_HOST_EVENT_CHOICE,
         eventType,
         value,
         index

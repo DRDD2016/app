@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
-         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, HOST_EVENT_CHOICES } from '../actions/event.js';
+         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, ADD_HOST_EVENT_CHOICE } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -29,8 +29,8 @@ export default function event (state = initialState, action) {
     case CONFIRM_POLL_FAILURE:
         return handleConfirmPoll(state, action);
 
-    case HOST_EVENT_CHOICES:
-        return hostEventChoices(state, action);
+    case ADD_HOST_EVENT_CHOICE:
+        return addHostEventChoice(state, action);
 
     default:
         return state;
@@ -104,7 +104,7 @@ function handleConfirmPoll (state, action) {
     return newState;
 }
 
-function hostEventChoices (state, action) {
+function addHostEventChoice (state, action) {
     let newState = update(state, {
         hostEventChoices: { [action.eventType]: { $set: action.value } }
     });

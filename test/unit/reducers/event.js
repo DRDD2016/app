@@ -330,7 +330,7 @@ test('Reducer handles CONFIRM_POLL_FAILURE as expected', (t) => {
     t.end();
 });
 
-test('reducer handles HOST_EVENT_CHOICES as expected', (t) => {
+test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
 
     const initialState = {
         data: {},
@@ -346,7 +346,7 @@ test('reducer handles HOST_EVENT_CHOICES as expected', (t) => {
     };
 
     const action = {
-        type: "HOST_EVENT_CHOICES",
+        type: "ADD_HOST_EVENT_CHOICE",
         eventType: 'eventWhat',
         value: 'Sohil Birthday',
         index: 0
@@ -385,7 +385,7 @@ test('reducer handles HOST_EVENT_CHOICES as expected', (t) => {
 
 
     const action2 = {
-        type: "HOST_EVENT_CHOICES",
+        type: "ADD_HOST_EVENT_CHOICE",
         eventType: 'eventWhere',
         value: {
             placeName: "1 Oxford St", placeAddress: "1 Oxford St, London WC1A 1GG, UK"
