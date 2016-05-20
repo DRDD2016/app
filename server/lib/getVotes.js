@@ -17,27 +17,55 @@ function getDataFromDB (setKey, callback) {
     });
 }
 
-function recurseThroughVotes (array, eventID, eventType, callback, index, mappedArray) {
+function recurseThroughVotes (array, eventID, eventType, recursorCallback, index, mappedArray) {
 
     if (!index && !mappedArray) {
         index = 0;
         mappedArray = [];
     }
     if (index === array.length) {
-        return callback(null, mappedArray);
+
+        return recursorCallback(null, mappedArray, eventType);
     } else {
         var setKey = "vote:" + eventID + "|" + eventType + ":" + index;
 
         getDataFromDB(setKey, (error, voteNum) => {
             if (error) {
 
-                return callback(error);
+                return recursorCallback(error);
             }
             mappedArray.push(voteNum);
-            return recurseThroughVotes(array, eventID, eventType, callback, ++index, mappedArray);
+
+            return recurseThroughVotes(array, eventID, eventType, recursorCallback, ++index, mappedArray);
 
         });
     }
+}
+
+function iterateEventTypes (eventID, voteObject, list, recursor, callback) {
+
+    var progressCount = 0;
+
+    function report (error, mappedArray, eventType) {
+
+        if (error) {
+            return callback(error);
+        }
+        // console.log(eventType);
+        voteObject[eventType] = mappedArray;
+        progressCount++;
+
+        if (progressCount === list.length) {
+
+            callback(null, voteObject);
+        }
+    }
+
+    list.forEach((eventType, i) => {
+
+        var arrayToWorkOn = voteObject[eventType];
+        recursor(arrayToWorkOn, eventID, eventType, report);
+    });
 }
 
 function getUserVotes (event, eventID, callback) {
@@ -45,16 +73,7 @@ function getUserVotes (event, eventID, callback) {
     var voteObject = createEventTypeObject(event);
     var eventTypeArray = Object.keys(voteObject);
 
-    eventTypeArray.forEach((eventType, i) => {
-
-        recurseThroughVotes(voteObject[eventType], eventID, eventType, (error, mappedArray) => {
-
-            voteObject[eventType] = mappedArray;
-            if ((eventTypeArray.length - 1) === i) {
-                callback(null, voteObject);
-            }
-        });
-    });
+    iterateEventTypes(eventID, voteObject, eventTypeArray, recurseThroughVotes, callback);
 }
 
 module.exports = getUserVotes;

@@ -18,7 +18,7 @@ class Event extends React.Component {
                  <HostPoll tally= { this.props.tally }
                            event= { this.props.event }
                            eventID= { this.props.params.eventID }
-                           handleconfirmedEventSelection= { this.props.handleconfirmedEventSelection }/>
+                           handleHostEventChoices= { this.props.handleHostEventChoices }/>
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {

@@ -1,7 +1,5 @@
 var client = require('./init.js');
 
-
-
 module.exports = castVote;
 
 function castVote (poll, userID, eventID, callback, eventTypeArray, index) {
@@ -20,14 +18,14 @@ function castVote (poll, userID, eventID, callback, eventTypeArray, index) {
 
         var setKey = "vote:" + eventID + "|" + eventType + ":" + voteIndex;
         if (vote) {
-            // console.log("true", setKey, );
+
             client.sadd(setKey, userID, (error, response) => {
                 if (error) {
                     return callback(new Error("Failed add vote"));
                 }
             });
         } else {
-            // console.log("false", setKey);
+
             client.srem(setKey, userID, (error, response) => {
                 if (error) {
                     return callback(new Error("Failed to remove vote"));

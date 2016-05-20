@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
-         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, CONFIRMED_EVENT_SELECTION } from '../actions/event.js';
+         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, ADD_HOST_EVENT_CHOICE } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -8,7 +8,7 @@ const initialState = {
     error: undefined,
     poll: undefined,
     tally: undefined,
-    confirmedEventSelection: undefined
+    hostEventChoices: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -29,8 +29,8 @@ export default function event (state = initialState, action) {
     case CONFIRM_POLL_FAILURE:
         return handleConfirmPoll(state, action);
 
-    case CONFIRMED_EVENT_SELECTION:
-        return confirmedEventSelection(state, action);
+    case ADD_HOST_EVENT_CHOICE:
+        return addHostEventChoice(state, action);
 
     default:
         return state;
@@ -46,12 +46,19 @@ function handleGetEventRequest (state, action) {
 }
 
 function handleGetEventSuccess (state, action) {
-
+    let hostEventChoices = {};
+    if (action.data.tally) {
+        Object.keys(action.data.tally).forEach((eventType, i) => {
+            hostEventChoices[eventType] = '';
+        });
+    }
     let newState = update(state, {
+
         isFetching: { $set: action.isFetching },
         data: { $set: action.data.event },
         tally: { $set: action.data.tally },
-        poll: { $set: action.data.poll }
+        poll: { $set: action.data.poll },
+        hostEventChoices: { $set: hostEventChoices }
     });
     return newState;
 }
@@ -93,6 +100,13 @@ function handleConfirmPoll (state, action) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching }
+    });
+    return newState;
+}
+
+function addHostEventChoice (state, action) {
+    let newState = update(state, {
+        hostEventChoices: { [action.eventType]: { $set: action.value } }
     });
     return newState;
 }

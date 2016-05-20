@@ -10,10 +10,9 @@ class HostPoll extends React.Component {
     }
 
     render () {
-
-        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection, this.props.confirmEvent);
-        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection, this.props.confirmEvent);
-        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection, this.props.confirmEvent);
+        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection, this.props.handleHostEventChoices);
+        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection, this.props.handleHostEventChoices);
+        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection, this.props.handleHostEventChoices);
 
         return (
             <div>
@@ -32,16 +31,16 @@ class HostPoll extends React.Component {
     }
 }
 
-function createVoteSection (event, tally, eventType, EventTypeComponent, confirmEvent) {
+function createVoteSection (event, tally, eventType, EventTypeComponent, handleHostEventChoices) {
 
     return event[eventType].map((choice, i) => {
         let options = {
             "poll-eventWhat": eventType === "eventWhat" && tally[eventType],
             "poll-eventWhere": eventType === "eventWhere" && tally[eventType],
             "poll-eventWhen": eventType === "eventWhen" && tally[eventType],
-            "poll-selected-eventWhat": eventType === "eventWhat" && tally[eventType] && tally[eventType][i] === true,
-            "poll-selected-eventWhere": eventType === "eventWhere" && tally[eventType] && tally[eventType][i] === true,
-            "poll-selected-eventWhen": eventType === "eventWhen" && tally[eventType] && tally[eventType][i] === true
+            // "poll-selected-eventWhat": eventType === "eventWhat" && tally[eventType] && tally[eventType][i] === true,
+            // "poll-selected-eventWhere": eventType === "eventWhere" && tally[eventType] && tally[eventType][i] === true,
+            // "poll-selected-eventWhen": eventType === "eventWhen" && tally[eventType] && tally[eventType][i] === true
         };
 
         let classes = classnames("poll-option nine columns", options);
@@ -51,7 +50,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, confirm
         if (tally[eventType]) {
 
             return (
-                <div onClick={ () => confirmEvent(eventType, choice, i) } className={ "" + eventType }  key={ eventType + '-' + i }>
+                <div onClick={ () => handleHostEventChoices(eventType, choice, i) } className={ "" + eventType }  key={ eventType + '-' + i }>
                     <EventTypeComponent text={ choice }
                         tally={ tallyCount }
                         classOptions={ classes }

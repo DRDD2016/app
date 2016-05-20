@@ -23,6 +23,8 @@ exports.register = (server, options, next) => {
 
                         getVotes(event, request.query.eventID, (error, voteObject) => {
 
+
+
                             var response = error || { event: event, tally: voteObject };
 
                             reply( response );

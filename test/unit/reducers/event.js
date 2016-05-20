@@ -41,7 +41,9 @@ test('Reducer handles GET_EVENT_SUCCESS is as expected with isPoll set to true',
         isFetching: true,
         error: undefined,
         poll: undefined,
-        tally: undefined
+        tally: undefined,
+        hostEventChoices: undefined
+
     };
     const data = {
         event: {
@@ -112,7 +114,9 @@ test('Reducer handles GET_EVENT_SUCCESS is as expected with isPoll set to true',
             eventWhat: [false, false],
             eventWhere: [false, false]
         },
-        tally: undefined
+        tally: undefined,
+        hostEventChoices: {}
+
     };
 
     t.deepEqual(actual, expected, "Event is fetched successfully");
@@ -324,4 +328,89 @@ test('Reducer handles CONFIRM_POLL_FAILURE as expected', (t) => {
 
     t.deepEqual(actual, expected);
     t.end();
+});
+
+test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
+
+    const initialState = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: undefined,
+        tally: undefined,
+        hostEventChoices: {
+            eventWhat: '',
+            eventWhere: '',
+            eventWhen: ''
+        }
+    };
+
+    const action = {
+        type: "ADD_HOST_EVENT_CHOICE",
+        eventType: 'eventWhat',
+        value: 'Sohil Birthday',
+        index: 0
+    };
+
+    const actual = reducer(initialState, action);
+    const expected = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: undefined,
+        tally: undefined,
+        hostEventChoices: {
+            eventWhat: 'Sohil Birthday',
+            eventWhere: '',
+            eventWhen: ''
+        }
+    };
+
+    t.deepEqual(actual, expected);
+
+    const initialState2 = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: undefined,
+        tally: undefined,
+        hostEventChoices: {
+            eventWhat: 'Sohil Birthday',
+            eventWhere: '',
+            eventWhen: ''
+        }
+    };
+
+
+
+
+    const action2 = {
+        type: "ADD_HOST_EVENT_CHOICE",
+        eventType: 'eventWhere',
+        value: {
+            placeName: "1 Oxford St", placeAddress: "1 Oxford St, London WC1A 1GG, UK"
+        },
+        index: 0
+    };
+
+
+    const actual2 = reducer(initialState2, action2);
+    const expected2 = {
+        data: {},
+        isFetching: false,
+        error: undefined,
+        poll: undefined,
+        tally: undefined,
+        hostEventChoices: {
+            eventWhat: 'Sohil Birthday',
+            eventWhere: {
+                placeName: "1 Oxford St", placeAddress: "1 Oxford St, London WC1A 1GG, UK"
+            },
+            eventWhen: ''
+        }
+    };
+
+    t.deepEqual(actual2, expected2);
+    t.end();
+
 });

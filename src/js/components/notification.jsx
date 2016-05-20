@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID }) => {
 
     let hostIsSubject = subjectID === hostID;
-    console.log(hostID, 'hostID', subjectID, 'subject');
+    
     return (
         <Link to={ 'event/' + eventID } >
             <div className="row notifications">
