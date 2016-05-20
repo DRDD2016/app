@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 
-const HostCreateEventButton = ({ hostEventChoices, handleEventConfirmation, eventID }) => {
+const HostCreateEventButton = ({ hostEventChoices, handleConfirmEvent, eventID }) => {
     let hostHasSelectedEventOptions =
     Object.keys(hostEventChoices).every((categoryName) => {
         return hostEventChoices[categoryName] !== "";
@@ -13,7 +13,7 @@ const HostCreateEventButton = ({ hostEventChoices, handleEventConfirmation, even
     });
 
     return (
-        <button className={ classes } onClick={ () => handleEventConfirmation(hostEventChoices, eventID) }> Create Event </button>
+        <button className={ classes } onClick={ () => handleConfirmEvent(hostEventChoices, eventID) }> Create Event </button>
     );
 
 };

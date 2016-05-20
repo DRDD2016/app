@@ -29,7 +29,7 @@ class HostPoll extends React.Component {
                 { eventWhen }
 
                 <HostCreateEventButton hostEventChoices={ this.props.hostEventChoices }
-                                       handleEventConfirmation={ this.props.handleEventConfirmation }
+                                       handleConfirmEvent={ this.props.handleConfirmEvent }
                                        eventID={ this.props.eventID } />
 
             </div>

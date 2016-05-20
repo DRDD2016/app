@@ -20,7 +20,7 @@ class Event extends React.Component {
                            eventID= { this.props.params.eventID }
                            handleHostEventChoices= { this.props.handleHostEventChoices }
                            hostEventChoices= { this.props.hostEventChoices }
-                           handleEventConfirmation= { this.props.handleEventConfirmation }/>
+                           handleConfirmEvent= { this.props.handleConfirmEvent }/>
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {

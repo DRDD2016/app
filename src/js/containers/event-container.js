@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent, updatePoll, confirmPoll, addHostEventChoice } from '../actions/event.js';
+import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent } from '../actions/event.js';
 
 
 const mapStateToProps = (state) => {
@@ -40,9 +40,9 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(addHostEventChoice(eventType, value, index));
         },
-        handleEventConfirmation: (hostEventChoices, eventID) => {
-
-            console.log(hostEventChoices, 'host choice', eventID);
+        handleConfirmEvent: (hostEventChoices, eventID) => {
+            console.log(hostEventChoices, eventID);
+            dispatch(confirmEvent(hostEventChoices, eventID));
         }
     };
 };
