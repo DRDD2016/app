@@ -9,7 +9,7 @@ client.saddAsync('vote:event:301|eventWhere:2', 'user:11111111');
 
 
 
-test.only('getUserVotes returns the correct object', (t) => {
+test('getUserVotes returns the correct object', (t) => {
     var eventID = 'event:301';
     var eventObject = {
         eventWhat: ['sohil', 'pandya', 'nooo'],
