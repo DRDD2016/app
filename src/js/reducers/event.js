@@ -1,6 +1,7 @@
 import update from 'react-addons-update';
 import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
-         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, ADD_HOST_EVENT_CHOICE } from '../actions/event.js';
+         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, ADD_HOST_EVENT_CHOICE,
+         CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -31,6 +32,11 @@ export default function event (state = initialState, action) {
 
     case ADD_HOST_EVENT_CHOICE:
         return addHostEventChoice(state, action);
+
+    case CONFIRM_EVENT_REQUEST:
+    case CONFIRM_EVENT_SUCCESS:
+    case CONFIRM_EVENT_FAILURE:
+        return handleConfirmEvent(state, action);
 
     default:
         return state;
@@ -106,7 +112,15 @@ function handleConfirmPoll (state, action) {
 
 function addHostEventChoice (state, action) {
     let newState = update(state, {
-        hostEventChoices: { [action.eventType]: { $set: action.value } }
+        hostEventChoices: { [action.eventType]: { $set: action.index } }
+    });
+    return newState;
+}
+
+function handleConfirmEvent (state, action) {
+
+    let newState = update(state, {
+        isFetching: { $set: action.isFetching }
     });
     return newState;
 }

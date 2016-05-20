@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent, updatePoll, confirmPoll, addHostEventChoice } from '../actions/event.js';
+import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent } from '../actions/event.js';
 
 
 const mapStateToProps = (state) => {
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => {
         event: state.event.data,
         poll: state.event.poll,
         tally: state.event.tally,
+        hostEventChoices: state.event.hostEventChoices,
         isFetching: state.event.isFetching,
         userIsHost: state.event.data.hostID == getUserID()
     };
@@ -38,6 +39,10 @@ const mapDispatchToProps = (dispatch) => {
         handleHostEventChoices: (eventType, value, index) => {
 
             dispatch(addHostEventChoice(eventType, value, index));
+        },
+        handleConfirmEvent: (hostEventChoices, eventID) => {
+            console.log(hostEventChoices, eventID);
+            dispatch(confirmEvent(hostEventChoices, eventID));
         }
     };
 };
