@@ -360,7 +360,7 @@ test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
         poll: undefined,
         tally: undefined,
         hostEventChoices: {
-            eventWhat: 'Sohil Birthday',
+            eventWhat: 0,
             eventWhere: '',
             eventWhen: ''
         }
@@ -375,7 +375,7 @@ test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
         poll: undefined,
         tally: undefined,
         hostEventChoices: {
-            eventWhat: 'Sohil Birthday',
+            eventWhat: 0,
             eventWhere: '',
             eventWhen: ''
         }
@@ -402,10 +402,8 @@ test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
         poll: undefined,
         tally: undefined,
         hostEventChoices: {
-            eventWhat: 'Sohil Birthday',
-            eventWhere: {
-                placeName: "1 Oxford St", placeAddress: "1 Oxford St, London WC1A 1GG, UK"
-            },
+            eventWhat: 0,
+            eventWhere: 0,
             eventWhen: ''
         }
     };
