@@ -1,6 +1,6 @@
 import update from 'react-addons-update';
 import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
-         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, CONFIRMED_EVENT_SELECTION } from '../actions/event.js';
+         CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, HOST_EVENT_CHOICES } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -8,7 +8,11 @@ const initialState = {
     error: undefined,
     poll: undefined,
     tally: undefined,
-    confirmedEventSelection: undefined
+    hostEventChoices: {
+        eventWhat: '',
+        eventWhere: '',
+        eventWhen: ''
+    }
 };
 
 export default function event (state = initialState, action) {
@@ -29,8 +33,8 @@ export default function event (state = initialState, action) {
     case CONFIRM_POLL_FAILURE:
         return handleConfirmPoll(state, action);
 
-    case CONFIRMED_EVENT_SELECTION:
-        return confirmedEventSelection(state, action);
+    case HOST_EVENT_CHOICES:
+        return hostEventChoices(state, action);
 
     default:
         return state;
@@ -93,6 +97,14 @@ function handleConfirmPoll (state, action) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching }
+    });
+    return newState;
+}
+
+function hostEventChoices (state, action) {
+    console.log(action.eventType,'eventtype');
+    let newState = update(state, {
+        hostEventChoices: { [action.eventType]: { $set: action.value } }
     });
     return newState;
 }

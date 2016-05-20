@@ -12,7 +12,7 @@ export const CONFIRM_POLL_REQUEST = 'CONFIRM_POLL_REQUEST';
 export const CONFIRM_POLL_SUCCESS = 'CONFIRM_POLL_SUCCESS';
 export const CONFIRM_POLL_FAILURE = 'CONFIRM_POLL_FAILURE';
 
-export const CONFIRMED_EVENT_SELECTION = 'CONFIRMED_EVENT_SELECTION';
+export const HOST_EVENT_CHOICES = 'HOST_EVENT_CHOICES';
 
 
 export function getEvent (eventID) {
@@ -104,9 +104,9 @@ export function confirmPollFailure () {
     };
 }
 
-export function confirmedEventSelection (eventType, value, index) {
+export function hostEventChoices (eventType, value, index) {
     return {
-        type: CONFIRMED_EVENT_SELECTION,
+        type: HOST_EVENT_CHOICES,
         eventType,
         value,
         index

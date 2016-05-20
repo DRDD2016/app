@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent, updatePoll, confirmPoll } from '../actions/event.js';
+import { getEvent, updatePoll, confirmPoll, hostEventChoices } from '../actions/event.js';
 
 /*
 poll info if userIsHost and isPoll - get that before rendering the HostPoll
@@ -41,11 +41,11 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(confirmPoll(poll, eventID));
         },
 
-        confirmEvent: (eventType, value, index) => {
+        handleHostEventChoices: (eventType, value, index) => {
 
             console.log(eventType, value, index);
             //dispatch in the future
-            // dispatch(confirmedEventSelection(eventType, choice, index))
+            dispatch(hostEventChoices(eventType, value, index));
         }
     };
 };
