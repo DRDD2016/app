@@ -5,6 +5,8 @@ import { CONFIRM_POLL, CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_
 import { confirmPoll, confirmPollRequest, confirmPollSuccess, confirmPollFailure } from '../../../src/js/actions/event.js';
 import { ADD_HOST_EVENT_CHOICE } from '../../../src/js/actions/event.js';
 import { addHostEventChoice } from '../../../src/js/actions/event.js';
+import { CONFIRM_EVENT, CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE } from '../../../src/js/actions/event.js';
+import { confirmEvent, confirmEventRequest, confirmEventSuccess, confirmEventFailure } from '../../../src/js/actions/event.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 test('getEvent async action creator returns expected action', (t) => {
@@ -14,7 +16,7 @@ test('getEvent async action creator returns expected action', (t) => {
     let eventID = 'event:100';
     dispatch(getEvent(eventID));
 
-    [{...actual}] = queue;
+    [{ ...actual }] = queue;
 
     const expected = {
         type: GET_EVENT_REQUEST,
@@ -98,7 +100,7 @@ test('confirmPoll async action creator returns expected action', (t) => {
     const eventID = 'event:101';
     dispatch(confirmPoll(poll, eventID));
 
-    [{...actual}] = queue;
+    [{ ...actual }] = queue;
 
     const expected = {
         type: CONFIRM_POLL_REQUEST,
@@ -159,6 +161,67 @@ test('addHostEventChoice action creator returns expected action', (t) => {
     };
 
     const actual = addHostEventChoice("eventWhen", { date: "2015-12-12", time: "10:10" },  1);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+
+test('confirmEvent async action creator returns expected action', (t) => {
+
+    let actual;
+    const { dispatch, queue } = createThunk();
+
+    const hostEventChoices = {
+        eventWhat: 0,
+        eventWhere: 0
+    };
+    const eventID = 'event:101';
+    dispatch(confirmEvent(hostEventChoices, eventID));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: CONFIRM_EVENT_REQUEST,
+        isFetching: true
+    };
+
+    t.deepEqual(actual, expected, "confirmEvent returns CONFIRM_EVENT_REQUEST action");
+    t.end();
+});
+
+test('confirmEventRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: CONFIRM_EVENT_REQUEST,
+        isFetching: true
+    };
+    const actual = confirmEventRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+
+});
+
+test('confirmEventSuccess action creator returns expected action', (t) => {
+    const expected = {
+        type: CONFIRM_EVENT_SUCCESS,
+        isFetching: false,
+    };
+
+    const actual = confirmEventSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('confirmEventFailure action creator returns expected action', (t) => {
+    const expected = {
+        type: CONFIRM_EVENT_FAILURE,
+        isFetching: false,
+    };
+
+    const actual = confirmEventFailure();
 
     t.deepEqual(actual, expected);
     t.end();
