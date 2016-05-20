@@ -9,7 +9,7 @@ client.saddAsync('vote:event:301|eventWhere:2', 'user:11111111');
 
 
 
-test.skip('getUserVotes returns the correct object', (t) => {
+test('getUserVotes returns the correct object', (t) => {
     var eventID = 'event:301';
     var eventObject = {
         eventWhat: ['sohil', 'pandya', 'nooo'],
@@ -43,9 +43,8 @@ test.skip('getUserVotes returns the correct object', (t) => {
         eventWhen: [1, 0]
     };
 
-    getUserVotes(eventObject, eventID, (setVoteObject) => {
+    getUserVotes(eventObject, eventID, (error, setVoteObject) => {
 
-        console.log(setVoteObject, 'setVoteObject in test');
         t.deepEqual(setVoteObject, expected, 'eventObjects is set correctly');
         t.end();
     });

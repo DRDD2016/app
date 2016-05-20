@@ -8,11 +8,7 @@ const initialState = {
     error: undefined,
     poll: undefined,
     tally: undefined,
-    hostEventChoices: {
-        eventWhat: '',
-        eventWhere: '',
-        eventWhen: ''
-    }
+    hostEventChoices: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -50,12 +46,19 @@ function handleGetEventRequest (state, action) {
 }
 
 function handleGetEventSuccess (state, action) {
-
+    let hostEventChoices = {};
+    if (action.data.tally) {
+        Object.keys(action.data.tally).forEach((eventType, i) => {
+            hostEventChoices[eventType] = '';
+        });
+    }
     let newState = update(state, {
+
         isFetching: { $set: action.isFetching },
         data: { $set: action.data.event },
         tally: { $set: action.data.tally },
-        poll: { $set: action.data.poll }
+        poll: { $set: action.data.poll },
+        hostEventChoices: { $set: hostEventChoices }
     });
     return newState;
 }
@@ -102,7 +105,6 @@ function handleConfirmPoll (state, action) {
 }
 
 function hostEventChoices (state, action) {
-    console.log(action.eventType,'eventtype');
     let newState = update(state, {
         hostEventChoices: { [action.eventType]: { $set: action.value } }
     });

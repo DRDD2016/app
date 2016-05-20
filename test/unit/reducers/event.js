@@ -41,7 +41,9 @@ test('Reducer handles GET_EVENT_SUCCESS is as expected with isPoll set to true',
         isFetching: true,
         error: undefined,
         poll: undefined,
-        tally: undefined
+        tally: undefined,
+        hostEventChoices: undefined
+
     };
     const data = {
         event: {
@@ -112,7 +114,9 @@ test('Reducer handles GET_EVENT_SUCCESS is as expected with isPoll set to true',
             eventWhat: [false, false],
             eventWhere: [false, false]
         },
-        tally: undefined
+        tally: undefined,
+        hostEventChoices: {}
+
     };
 
     t.deepEqual(actual, expected, "Event is fetched successfully");

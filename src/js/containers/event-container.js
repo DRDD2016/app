@@ -4,12 +4,6 @@ import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, hostEventChoices } from '../actions/event.js';
 
-/*
-poll info if userIsHost and isPoll - get that before rendering the HostPoll
-
-*/
-
-
 
 const mapStateToProps = (state) => {
 
@@ -43,8 +37,6 @@ const mapDispatchToProps = (dispatch) => {
 
         handleHostEventChoices: (eventType, value, index) => {
 
-            console.log(eventType, value, index);
-            //dispatch in the future
             dispatch(hostEventChoices(eventType, value, index));
         }
     };

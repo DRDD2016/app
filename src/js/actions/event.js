@@ -71,7 +71,7 @@ export function confirmPoll (poll, eventID) {
             eventID,
             userID: getUserID()
         };
-
+        
         dispatch(confirmPollRequest());
 
         axios.post('/confirm-poll', payload)
