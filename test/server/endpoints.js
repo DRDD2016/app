@@ -1,6 +1,7 @@
 import test from 'tape';
 import server from '../../server/index.js';
 import client from '../../server/db/init.js';
+import parseObjectValues from '../../server/lib/parseObjectValues.js';
 import * as fixtures from '../utils/fixtures.js';
 
 server.init(9001, (error, server) => {
@@ -180,6 +181,62 @@ server.init(9001, (error, server) => {
 
             t.ok(1, 'Successful POST request');
             t.end();
+        });
+    });
+
+    test('`confirm-event` works', (t) => {
+        
+        const hostEventChoices = {
+            eventWhat: 0,
+            eventWhere: 1,
+            eventWhen: 1
+        };
+        const options = {
+            method: 'POST',
+            url: '/confirm-event',
+            payload: {
+                hostEventChoices,
+                eventID: 'event:400',
+                poll: fixtures.eventPollSohilVoted
+            }
+        };
+
+        const expected = fixtures.pollToConfirmedEventAfter;
+        const inviteeID = fixtures.pollToConfirmedEvent.invitees[0].id;
+
+        server.inject(options, (response) => {
+
+            t.ok(1, 'Successful POST request');
+            client.hgetallAsync('event:400')
+                .then((event) => {
+
+                    t.deepEqual(parseObjectValues(event), expected, 'Event is successfully confirmed');
+
+                    client.smembers('calendar:' + inviteeID, (error, calendar) => {
+
+                        const latestCalendarEntry = calendar.filter((item) => {
+                            return item === 'event:400';
+                        });
+                        t.equal(latestCalendarEntry[0], 'event:400', 'A calendar item was created');
+
+                        client.smembers("notifications:" + inviteeID, (error, notifications) => {
+
+                            var latestNotification = notifications.map((item) => {
+
+                                return JSON.parse(item);
+                            }).filter((item) => {
+                                console.log(item.eventID);
+                                return item.eventID === 'event:400';
+                            });
+                            // t.equal(slatestNotification, 'event:400', 'A notification was created');
+                            client.del('event:400');
+                            client.spop('calendar:' + inviteeID);
+                            client.spop("notifications:" + inviteeID);
+                            t.end();
+                        });
+                    });
+
+                });
         });
     });
 });

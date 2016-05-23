@@ -5,6 +5,7 @@ export const HARRY_ID = "12345678";
 export const SOHIL_ID = "10154129575200996";
 export const eventConfirmedHarryEventID = "event:100";
 export const eventPollSohilEventID = "event:300";
+export const pollToConfirmedEventID = "event:400";
 
 
 export const Sohil = {
@@ -57,7 +58,7 @@ export const eventConfirmedHarryNotification = {
 };
 
 /*
-EVENT:101 - poll
+EVENT:300 - poll
 */
 export const eventPollSohil = {
     eventName: "Sohil's thing",
@@ -79,7 +80,7 @@ export const eventPollSohil = {
 };
 
 /**
- ** event:101 notification
+ ** event:300 notification
 **/
 
 export const eventPollSohilNotification = {
@@ -95,11 +96,88 @@ export const eventPollSohilNotification = {
     hostID: Sohil.id
 };
 
-
-
 export const eventPollSohilVoted = {
     eventWhat: [true, false, true]
 };
+
+/*
+EVENT:400 - poll to confirmed event
+*/
+export const pollToConfirmedEvent = {
+    eventName: "Queen's birthday",
+    eventDescription: "a royal occasion",
+    eventWhat: ["Hiking", "Banquet", "Ball"],
+    eventWhere: [
+        {
+            placeName: "Balmoral Castle",
+            placeAddress: "Ballater, Aberdeenshire"
+        },
+        {
+            placeName: "Buckingham Palace",
+            placeAddress: "London"
+        }
+    ],
+    eventWhen: [
+        {
+            date: "2016-06-12",
+            time: "12:00"
+        },
+        {
+            date: "2016-04-21",
+            time: "12:00"
+        }
+    ],
+    invitees: [
+        Harry
+    ],
+    isPoll: true,
+    hostID: Sohil.id
+};
+
+export const pollToConfirmedEventAfter = {
+    eventName: "Queen's birthday",
+    eventDescription: "a royal occasion",
+    eventWhat: ["Hiking"],
+    eventWhere: [
+        {
+            placeName: "Buckingham Palace",
+            placeAddress: "London"
+        }
+    ],
+    eventWhen: [
+        {
+            date: "2016-04-21",
+            time: "12:00"
+        }
+    ],
+    invitees: [
+        Harry
+    ],
+    isPoll: false,
+    hostID: Sohil.id
+};
+
+
+/**
+ ** event:400 notification
+**/
+
+export const pollToConfirmedEventNotification = {
+    eventID: pollToConfirmedEventID,
+    timestamp: Date.now(),
+    firstName: Sohil.firstName,
+    lastName: Sohil.lastName,
+    photoURL: Sohil.photoURL,
+    eventWhat: pollToConfirmedEvent.eventWhat,
+    eventWhere: pollToConfirmedEvent.eventWhere,
+    eventWhen: pollToConfirmedEvent.eventWhen,
+    isPoll: true,
+    hostID: Sohil.id
+};
+
+
+
+
 
 export const genericError = {
     message: "Whoops"

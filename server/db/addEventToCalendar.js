@@ -6,7 +6,7 @@ function addEventToCalendar (users, eventID, callback) {
 
         throw new Error("addEventToCalendar: first argument must be an array");
     }
-    console.log("here");
+    
     users.forEach((id, index) => {
 
         var setName = "calendar:" + id;

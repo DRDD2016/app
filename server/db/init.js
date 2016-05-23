@@ -4,6 +4,13 @@ var bluebird = require('bluebird');
 
 bluebird.promisifyAll(redis);
 
+if (!process.env.DEVELOPMENT && !process.env.REDIS_URL) {
+    console.error("A redis url is required.");
+    console.error("To run the main app, set the REDIS_URL environment variable.");
+    console.error("To run tests, set the DEVELOPMENT environment variable.");
+    process.exit();
+}
+
 var dbURL = process.env.DEVELOPMENT || process.env.REDIS_URL;
 
 
