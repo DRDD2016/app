@@ -7,7 +7,7 @@ function getRSVPs (eventID, callback) {
         notGoing: [],
         maybe: []
     };
-
+    var statuses = Object.keys(RSVPs);
     var progressCount = 0;
 
     function report (error, attendanceStatus, data) {
@@ -18,14 +18,16 @@ function getRSVPs (eventID, callback) {
         RSVPs[attendanceStatus] = data;
         progressCount++;
 
-        if (progressCount === eventTypes.length) {
+        if (progressCount === statuses.length) {
 
             callback(null, RSVPs);
         }
     }
 
-    RSVPs.forEach((attendanceStatus) => {
-
+    statuses.forEach((attendanceStatus) => {
+        
         getRSVPsForAttendanceStatus(eventID, attendanceStatus, report);
     });
 }
+
+module.exports = getRSVPs;

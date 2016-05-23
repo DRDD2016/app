@@ -6,9 +6,13 @@ function getRSVPsForAttendanceStatus (eventID, status, callback) {
 
     client.smembersAsync(setKey)
         .then((RSVPs) => {
+
             callback(null, status, RSVPs);
         })
         .catch((error) => {
+            
             callback(error);
         });
 }
+
+module.exports = getRSVPsForAttendanceStatus;

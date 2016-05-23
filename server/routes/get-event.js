@@ -1,7 +1,7 @@
 var getEvent = require('../db/getEvent.js');
 var getVotes = require('../lib/getVotes.js');
 var getPoll = require('../lib/getPoll.js');
-var mapFriendsToUsers = require('../lib/mapFriendsToUsers.js');
+var getRSVPs = require('../lib/getRSVPs.js');
 
 exports.register = (server, options, next) => {
 
@@ -30,7 +30,7 @@ exports.register = (server, options, next) => {
                         });
                     }
                     if ((isHost && !event.isPoll) || (!isHost && !event.isPoll)) {
-
+                        
                         getRSVPs(request.query.eventID, (error, RSVPs) => {
 
                             var response = error || { event: event, invitees: event.invitees, RSVPs: RSVPs };
