@@ -155,12 +155,13 @@ server.init(9001, (error, server) => {
             method: 'GET',
             url: '/get-event?eventID=' + fixtures.eventConfirmedHarryEventID + '&userID=' + fixtures.SOHIL_ID
         };
-        const eventObjectKeys = Object.keys(fixtures.eventConfirmedHarry);
+        let eventObjectKeys = Object.keys(fixtures.eventConfirmedHarry);
+        eventObjectKeys.push('eventID');
         server.inject(options, (response) => {
 
             Object.keys(response.result.event).forEach((key) => {
 
-                t.ok(eventObjectKeys.indexOf(key) !== -1, 'Correct key in event object');
+                t.ok(eventObjectKeys.indexOf(key) !== -1, `'${key}' exists in event object`);
             });
             t.equal(response.statusCode, 200, '200 status code');
             t.end();
