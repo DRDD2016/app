@@ -71,6 +71,8 @@ server.init(9001, (error, server) => {
         server.inject(options, (response) => {
 
             const result = response.result;
+            console.log(result,'response-------');
+
             const expectedKeys = Object.keys(fixtures.eventConfirmedHarry);
 
             t.ok(Array.isArray(result), 'An array is returned');
@@ -185,7 +187,7 @@ server.init(9001, (error, server) => {
     });
 
     test('`confirm-event` works', (t) => {
-        
+
         const hostEventChoices = {
             eventWhat: 0,
             eventWhere: 1,
@@ -201,7 +203,8 @@ server.init(9001, (error, server) => {
             }
         };
 
-        const expected = fixtures.pollToConfirmedEventAfter;
+        let expected = fixtures.pollToConfirmedEventAfter;
+        expected.eventID = "event:400";
         const inviteeID = fixtures.pollToConfirmedEvent.invitees[0].id;
 
         server.inject(options, (response) => {

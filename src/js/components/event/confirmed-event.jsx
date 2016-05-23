@@ -1,5 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
+import EventDetailsHeader from '../general/event-details-header.jsx';
+
 
 class ConfirmedEvent extends React.Component {
 
@@ -11,6 +13,7 @@ class ConfirmedEvent extends React.Component {
         let event = this.props.event;
         return (
             <div>
+
                 this is the confirmed event page for both host and inviteed.
                 <div>
                     What { event.eventWhat[0] }
@@ -22,7 +25,7 @@ class ConfirmedEvent extends React.Component {
                     When { event.eventWhen[0].date } + { event.eventWhen[0].date }
                 </div>
 
-                
+
             </div>
 
 
@@ -30,3 +33,5 @@ class ConfirmedEvent extends React.Component {
     }
 
 }
+
+export default ConfirmedEvent;

@@ -12,7 +12,9 @@ function saveNewEvent (event, callback) {
                                    "eventNote", '',
                                    "eventWhat", stringifiedObject.eventWhat, "eventWhere", stringifiedObject.eventWhere, "eventWhen", stringifiedObject.eventWhen,
                                    "invitees", stringifiedObject.invitees, "isPoll", stringifiedObject.isPoll,
-                                   "hostID", stringifiedObject.hostID, "eventID", eventID)
+                                   "hostID", stringifiedObject.hostID,
+                                   "hostPhotoURL", stringifiedObject.hostPhotoURL,
+                                   "eventID", eventID)
          .then(() => {
              callback(null, eventID);
          })

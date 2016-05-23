@@ -42,7 +42,8 @@ export const eventConfirmedHarry = {
         Sohil
     ],
     isPoll: false,
-    hostID: Harry.id
+    hostID: Harry.id,
+    hostPhotoURL: Harry.photoURL
 };
 
 export const eventConfirmedHarryNotification = {
@@ -132,7 +133,9 @@ export const pollToConfirmedEvent = {
         Harry
     ],
     isPoll: true,
-    hostID: Sohil.id
+    hostID: Sohil.id,
+    hostPhotoURL: Sohil.photoURL,
+    eventNote: ''
 };
 
 export const pollToConfirmedEventAfter = {
@@ -155,7 +158,10 @@ export const pollToConfirmedEventAfter = {
         Harry
     ],
     isPoll: false,
-    hostID: Sohil.id
+    hostID: Sohil.id,
+    hostPhotoURL: Sohil.photoURL,
+    eventNote: ''
+
 };
 
 

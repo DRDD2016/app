@@ -3,6 +3,7 @@ import InviteePoll from './invitee-poll.jsx';
 import HostPoll from './host-poll.jsx';
 import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
+import ConfirmedEvent from './confirmed-event.jsx';
 
 
 class Event extends React.Component {
@@ -36,13 +37,7 @@ class Event extends React.Component {
         }
         if (this.props.userIsHost && !this.props.isPoll) {
             return (
-                <div>
-                    <div> This is host confirmed event view</div>
-                     <HostConfirmedEvent event={ this.props.event }
-                                         RSVP={ this.props.RSVP }
-                                         eventID={ this.props.eventID }
-                                         isHost={ this.props.userIsHost}/>
-                </div>
+                     <ConfirmedEvent event={ this.props.event }/>
             );
         }
         if (!this.props.isHost && !this.props.isPoll){
@@ -62,7 +57,8 @@ class Event extends React.Component {
                 <div>
                     <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                         eventName={ this.props.event.eventName }
-                                        eventDescription={ this.props.event.eventDescription } />
+                                        eventDescription={ this.props.event.eventDescription }
+                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
                         {this.renderView()}
                     </div>
