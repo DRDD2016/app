@@ -1,10 +1,19 @@
 import React from 'react';
+import CalendarItem from './calendar-item.jsx';
 
-const Calendar = ({ calendar, fetchEvent }) => {
+const Calendar = ({ data, isFetching, fetchEvent }) => {
 
     return (
-        <div>
-            This is the calendar
+        <div className="container">
+            {
+                data.map((item, i) => {
+                    return <CalendarItem key={ i }
+                                         eventName={ item.eventName }
+                                         eventWhat={ item.eventWhat }
+                                         eventWhere={ item.eventWhere }
+                                         eventWhen={ item.eventWhen } />;
+                })
+            }
         </div>
     );
 };

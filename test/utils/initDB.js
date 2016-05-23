@@ -10,6 +10,7 @@ console.log("Initialising database for testing");
 - create event:100 notifications
 - create event:300 (poll)
 - create event:300 notifications
+- create event:400 (poll) REMEMBER TO DELETE
 */
 client.hmsetAsync("user:10154129575200996",
                  'firstName', fixtures.Sohil.firstName,
@@ -55,3 +56,18 @@ client.hmsetAsync("event:300", "eventName", eventPollDefault.eventName,
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventPollSohilNotification));
 client.sadd("calendar:" + fixtures.HARRY_ID, fixtures.eventPollSohilEventID);
+
+/****
+SET POLL TO CONFIRMED EVENT 400
+****/
+
+var pollToConfirmed = stringifyObjectValues(fixtures.pollToConfirmedEvent);
+
+client.hmsetAsync("event:400", "eventName", pollToConfirmed.eventName,
+                 "eventDescription", pollToConfirmed.eventDescription,
+                 "eventWhat", pollToConfirmed.eventWhat, "eventWhere", pollToConfirmed.eventWhere, "eventWhen", pollToConfirmed.eventWhen,
+                 "invitees", pollToConfirmed.invitees, "hostID", pollToConfirmed.hostID, "isPoll", pollToConfirmed.isPoll);
+
+
+// client.saddAsync("notifications:12345678", JSON.stringify(fixtures.pollToConfirmedNotification));
+// client.sadd("calendar:" + fixtures.HARRY_ID, fixtures.pollToConfirmedEventID);

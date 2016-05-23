@@ -1,0 +1,65 @@
+.subject-name {
+    font-weight: bolder;
+    color: $off-black;
+    padding-left: 1em;
+}
+
+.subject-name > span {
+    font-size: 0.8em;
+    color: $dark-grey;
+    font-weight: 100;
+}
+
+.timestamp {
+    font-size: 0.7em;
+    color: $dark-grey;
+    font-weight: 100;
+    padding-left: 1em;
+    margin-bottom: 0.5em;
+}
+
+.notification {
+    margin: 0.7em 0;
+    // border-bottom: 2px solid $grey;
+}
+
+.event-type {
+    text-align: center;
+    color: $off-black;
+}
+
+label.eventWhat, label.eventWhere-placeName, label.eventWhen-date, label.eventWhen-time {
+    position: relative;
+}
+
+// label.eventWhat::before {
+//     font-family: fontawesome;
+//     content: "\f041 ";
+//     font-style: normal;
+//     font-weight: normal;
+//     text-decoration: inherit;
+// }
+
+label.eventWhere-placeName::before {
+    font-family: fontawesome;
+    content: "\f041 ";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+label.eventWhen-date::before {
+    font-family: fontawesome;
+    content: "\f133 ";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+label.eventWhen-time::before {
+    font-family: fontawesome;
+    content: "\f017 ";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}

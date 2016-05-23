@@ -8,6 +8,8 @@ function setNotifications (users, notification, callback) {
     }
 
     users.forEach((id, index) => {
+
+        // identify the person at whom this notification is aimed
         notification.subjectID = id;
         var setName = "notifications:" + id;
 
