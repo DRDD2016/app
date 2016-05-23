@@ -1,7 +1,5 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
-var createNotification = require('../lib/createNotification.js');
-var setNotifications = require('../db/setNotifications.js');
-var addEventToCalendar = require('../db/addEventToCalendar.js');
+var notifyEveryone = require('../lib/notifyEveryone.js');
 
 exports.register = (server, options, next) => {
 
@@ -19,31 +17,10 @@ exports.register = (server, options, next) => {
                     if (error) {
                         return reply(error);
                     }
-                    createNotification(data.hostID, eventID, data, (error, notification) => {
+                    notifyEveryone(data.hostID, eventID, data, (error, success) => {
 
-                        if (error) {
-                            return reply(error);
-                        }
-                        var userIDs = data.invitees.map((inviteeObj) => {
-
-                            return inviteeObj.id;
-                        }).concat([data.hostID]);
-                        setNotifications(userIDs, notification, (error, response) => {
-
-                            if (error) {
-                                return reply(error);
-                            }
-                            if (!data.isPoll) {
-
-                                addEventToCalendar(userIDs, eventID, (error, response) => {
-
-                                    var verdict = error || response;
-                                    return reply(verdict);
-                                });
-                            } else {
-                                reply(response);
-                            }
-                        });
+                        var verdict = error || success;
+                        reply(verdict);
                     });
                     // go to invitees list
                     // for each invitee, push new notification object

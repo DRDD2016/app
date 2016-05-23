@@ -1,3 +1,8 @@
+var setHostEventChoices = require('../lib/setHostEventChoices.js');
+var convertPollToConfirmedEvent = require('../db/convertPollToConfirmedEvent.js');
+var getEvent = require('../db/getEvent.js');
+var notifyEveryone = require('../lib/notifyEveryone.js');
+
 
 exports.register = (server, options, next) => {
 
@@ -9,10 +14,36 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                console.log(request.payload.eventID);
-                console.log(request.payload.hostEventChoices);
+                var eventID = request.payload.eventID;
+                var hostEventChoices = request.payload.hostEventChoices;
 
-                reply("made it to backend!!!");
+                if (!eventID) {
+                    reply(new Error("[confirm-event] eventID missing"));
+                }
+                if (!hostEventChoices) {
+                    reply(new Error("[confirm-event] host's event choices missing"));
+                }
+
+                setHostEventChoices(eventID, hostEventChoices, (error, success) => {
+
+                    if (error) {
+                        reply(error);
+                    }
+                    convertPollToConfirmedEvent(eventID, (error, success) => {
+
+                        getEvent(eventID, (error, event) => {
+
+                            if (error) {
+                                reply(error);
+                            }
+                            notifyEveryone(event.hostID, eventID, event, (error, success) => {
+
+                                var verdict = error || success;
+                                reply(verdict);
+                            });
+                        });
+                    });
+                });
             }
         }
     }]);
