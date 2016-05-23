@@ -28,6 +28,7 @@ EVENT:100 - confirmed
 export const eventConfirmedHarry = {
     eventName: "Harry's birthday",
     eventDescription: "It's my birthday",
+    eventNote: '',
     eventWhat: ["Eat"],
     eventWhere: [{
         placeName: "Harrods",
