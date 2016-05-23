@@ -1,6 +1,7 @@
 var getEvent = require('../db/getEvent.js');
 var getVotes = require('../lib/getVotes.js');
 var getPoll = require('../lib/getPoll.js');
+var mapFriendsToUsers = require('../lib/mapFriendsToUsers.js');
 
 exports.register = (server, options, next) => {
 
@@ -23,16 +24,19 @@ exports.register = (server, options, next) => {
 
                         getVotes(event, request.query.eventID, (error, voteObject) => {
 
-
-
                             var response = error || { event: event, tally: voteObject };
 
                             reply( response );
                         });
                     }
-                    if (isHost && !event.isPoll) {
+                    if ((isHost && !event.isPoll) || (!isHost && !event.isPoll)) {
 
-                        reply( { event: event });
+                        getRSVPs(request.query.eventID, (error, RSVPs) => {
+
+                            var response = error || { event: event, invitees: event.invitees, RSVPs: RSVPs };
+
+                            reply(response);
+                        });
                     }
                     if (!isHost && event.isPoll) {
 
@@ -42,10 +46,6 @@ exports.register = (server, options, next) => {
 
                             reply( response );
                         });
-                    }
-                    if (!isHost && !event.isPoll) {
-
-                        reply( { event: event });
                     }
                 });
             }

@@ -155,7 +155,7 @@ server.init(9001, (error, server) => {
         };
         const eventObjectKeys = Object.keys(fixtures.eventConfirmedHarry);
         server.inject(options, (response) => {
-
+            console.log(response.result);
             Object.keys(response.result.event).forEach((key) => {
 
                 t.ok(eventObjectKeys.indexOf(key) !== -1, 'Correct key in event object');
@@ -185,7 +185,7 @@ server.init(9001, (error, server) => {
     });
 
     test('`confirm-event` works', (t) => {
-        
+
         const hostEventChoices = {
             eventWhat: 0,
             eventWhere: 1,
