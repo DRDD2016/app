@@ -22,9 +22,6 @@ exports.register = (server, options, next) => {
                         var verdict = error || success;
                         reply(verdict);
                     });
-                    // go to invitees list
-                    // for each invitee, push new notification object
-
                 });
             }
         }

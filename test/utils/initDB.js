@@ -36,8 +36,10 @@ var eventConfirmedDefault = stringifyObjectValues(fixtures.eventConfirmedHarry);
 
 client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
                  "eventDescription", eventConfirmedDefault.eventDescription,
+                 "eventNote", '',
                  "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
-                 "invitees", eventConfirmedDefault.invitees, "hostID", eventConfirmedDefault.hostID, "isPoll", eventConfirmedDefault.isPoll);
+                 "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
+                 "hostID", eventConfirmedDefault.hostID, "eventID", "event:100");
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
