@@ -3,7 +3,7 @@ import test from 'tape';
 
 test.skip('`getUser` retrieves user information from database EXCLUDING token', (t) => {
 
-    if (!process.env.REDISCLOUD_URL) {
+    if (!process.env.DEVELOPMENT) {
         throw new Error("Please set the test db url");
     }
     const hashKey = "user:" + 12345678;

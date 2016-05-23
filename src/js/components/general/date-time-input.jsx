@@ -16,6 +16,7 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput })
                 placeholder="Date"
                 onChange={ handleDate.bind(this, inputKey) } />
             <input
+                step="300"
                 className="four columns"
                 type="time"
                 value={ value.time}

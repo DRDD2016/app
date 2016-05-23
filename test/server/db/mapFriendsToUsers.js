@@ -24,7 +24,7 @@ test('mapFriendsToUsers retrieves user info for each FB friend', (t) => {
     ];
 
     mapFriendsToUsers(friendsFromFB, (error, friends) => {
-        console.log(friends);
+    
         t.deepEqual(friends, expected, "function maps friends to users");
         t.end();
     });

@@ -36,8 +36,11 @@ var eventConfirmedDefault = stringifyObjectValues(fixtures.eventConfirmedHarry);
 
 client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
                  "eventDescription", eventConfirmedDefault.eventDescription,
+                 "eventNote", '',
                  "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
-                 "invitees", eventConfirmedDefault.invitees, "hostID", eventConfirmedDefault.hostID, "isPoll", eventConfirmedDefault.isPoll);
+                 "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
+                 "hostID", eventConfirmedDefault.hostID,
+                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:100");
 
 client.saddAsync("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
@@ -66,7 +69,7 @@ var pollToConfirmed = stringifyObjectValues(fixtures.pollToConfirmedEvent);
 client.hmsetAsync("event:400", "eventName", pollToConfirmed.eventName,
                  "eventDescription", pollToConfirmed.eventDescription,
                  "eventWhat", pollToConfirmed.eventWhat, "eventWhere", pollToConfirmed.eventWhere, "eventWhen", pollToConfirmed.eventWhen,
-                 "invitees", pollToConfirmed.invitees, "hostID", pollToConfirmed.hostID, "isPoll", pollToConfirmed.isPoll);
+                 "invitees", pollToConfirmed.invitees, "hostID", pollToConfirmed.hostID, "hostPhotoURL", pollToConfirmed.hostPhotoURL, "eventID", "event:400", "eventNote", '', "isPoll", pollToConfirmed.isPoll);
 
 
 // client.saddAsync("notifications:12345678", JSON.stringify(fixtures.pollToConfirmedNotification));

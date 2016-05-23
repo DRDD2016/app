@@ -9,8 +9,12 @@ function saveNewEvent (event, callback) {
 
         client.hmsetAsync(eventID, "eventName", stringifiedObject.eventName,
                                    "eventDescription", stringifiedObject.eventDescription,
+                                   "eventNote", '',
                                    "eventWhat", stringifiedObject.eventWhat, "eventWhere", stringifiedObject.eventWhere, "eventWhen", stringifiedObject.eventWhen,
-                                   "invitees", stringifiedObject.invitees, "hostID", stringifiedObject.hostID, "isPoll", stringifiedObject.isPoll)
+                                   "invitees", stringifiedObject.invitees, "isPoll", stringifiedObject.isPoll,
+                                   "hostID", stringifiedObject.hostID,
+                                   "hostPhotoURL", stringifiedObject.hostPhotoURL,
+                                   "eventID", eventID)
          .then(() => {
              callback(null, eventID);
          })
