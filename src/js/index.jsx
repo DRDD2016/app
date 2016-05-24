@@ -28,9 +28,20 @@ import { store } from './init-store.js';
 
 function initialiseAppState (nextState, replace, callback) {
 
+    if (!store.getState().user.id) {
 
-    store.dispatch(getUser());
+        store.dispatch(getUser());
+    }
     store.dispatch(getNotifications());
+    callback();
+}
+
+function fetchCalendar (nextState, replace, callback) {
+
+    if (!store.getState().user.id) {
+
+        store.dispatch(getUser());
+    }
     store.dispatch(getCalendar());
     callback();
 }
@@ -54,7 +65,8 @@ const routes = (
                onEnter={ fetchEvent } />
 
         <Route path='/calendar'
-               component={ requireAuthentication(CalendarContainer) } />
+               component={ requireAuthentication(CalendarContainer) }
+               onEnter={ fetchCalendar } />
 
            <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />

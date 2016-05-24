@@ -37,7 +37,7 @@ function handleCalendarSuccess (state, action) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
-        data: { $push: action.data }
+        data: { $set: action.data }
     });
     return newState;
 }
