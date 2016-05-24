@@ -192,12 +192,12 @@ export function updateRSVP (RSVPstatus, eventID) {
 
         dispatch(updateRSVPRequest());
 
-        axios.post('/confirm-event', payload)
+        axios.post('/update-rsvp', payload)
             .then((response) => {
-                dispatch(confirmEventSuccess());
+                dispatch(updateRSVPSuccess());
             })
             .catch((error) => {
-                dispatch(confirmEventFailure());
+                dispatch(updateRSVPFailure());
             });
     };
 }
