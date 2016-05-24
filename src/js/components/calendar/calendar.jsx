@@ -11,7 +11,8 @@ const Calendar = ({ data, isFetching, fetchEvent }) => {
                                          eventName={ item.eventName }
                                          eventWhat={ item.eventWhat }
                                          eventWhere={ item.eventWhere }
-                                         eventWhen={ item.eventWhen } />;
+                                         eventWhen={ item.eventWhen }
+                                         eventID={ item.eventID } />;
                 })
             }
         </div>
