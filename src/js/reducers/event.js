@@ -9,7 +9,9 @@ const initialState = {
     error: undefined,
     poll: undefined,
     tally: undefined,
-    hostEventChoices: undefined
+    hostEventChoices: undefined,
+    invitees: undefined,
+    RSVPs: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -52,19 +54,23 @@ function handleGetEventRequest (state, action) {
 }
 
 function handleGetEventSuccess (state, action) {
-    let hostEventChoices = {};
+    let hostEventChoices;
+
     if (action.data.tally) {
+        hostEventChoices = {};
         Object.keys(action.data.tally).forEach((eventType, i) => {
             hostEventChoices[eventType] = '';
         });
     }
+    console.log(action.data.poll, "POLL???");
     let newState = update(state, {
 
         isFetching: { $set: action.isFetching },
         data: { $set: action.data.event },
         tally: { $set: action.data.tally },
         poll: { $set: action.data.poll },
-        hostEventChoices: { $set: hostEventChoices }
+        hostEventChoices: { $set: action.data.hostEventChoices },
+        RSVPs: { $set: action.data.RSVPs }
     });
     return newState;
 }
@@ -76,21 +82,6 @@ function handleGetEventFailure (state, action) {
         error: { $set: action.error }
     });
     return newState;
-}
-
-function setPoll (event) {
-
-    let targets = ['eventWhat', 'eventWhere', 'eventWhen'];
-
-    return targets.reduce((pollObject, target, i) => {
-
-        if (event[target].length > 1) {
-            pollObject[target] = new Array(event[target].length).fill(false);
-        }
-
-        return pollObject;
-
-    }, {});
 }
 
 function updatePoll (state, action) {
