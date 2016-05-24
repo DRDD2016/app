@@ -11,6 +11,10 @@ import { UPDATE_RSVP, UPDATE_RSVP_REQUEST, UPDATE_RSVP_SUCCESS, UPDATE_RSVP_FAIL
 import { updateRSVP, updateRSVPRequest, updateRSVPSuccess, updateRSVPFailure } from '../../../src/js/actions/event.js';
 import createThunk from '../../utils/mock-thunk.js';
 
+/********
+GET EVENT ACTIONS
+********/
+
 test('getEvent async action creator returns expected action', (t) => {
 
     let actual;
@@ -76,6 +80,10 @@ test('getEventFailure action creator returns expected action', (t) => {
     t.end();
 });
 
+/********
+UPDATE POLL ACTIONS
+********/
+
 test('updatePoll action creator returns expected action', (t) => {
 
     const expected = {
@@ -89,6 +97,10 @@ test('updatePoll action creator returns expected action', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+/********
+CONFIRM POLL ACTIONS
+********/
 
 test('confirmPoll async action creator returns expected action', (t) => {
 
@@ -150,6 +162,10 @@ test('confirmPollFailure action creator returns expected action', (t) => {
     t.end();
 });
 
+/********
+ADD HOST EVENT CHOICE ACTIONS
+********/
+
 test('addHostEventChoice action creator returns expected action', (t) => {
 
     const expected = {
@@ -168,6 +184,9 @@ test('addHostEventChoice action creator returns expected action', (t) => {
     t.end();
 });
 
+/********
+CONFIRM EVENT ACTIONS
+********/
 
 test('confirmEvent async action creator returns expected action', (t) => {
 
@@ -228,6 +247,10 @@ test('confirmEventFailure action creator returns expected action', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+/********
+UPDATE EVENT ACTIONS
+********/
 
 test('updateRSVP async action creator returns expected action', (t) => {
 
