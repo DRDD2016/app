@@ -39,14 +39,18 @@ class Event extends React.Component {
             return (
                      <ConfirmedEvent event={ this.props.event }
                                      eventID={ this.props.params.eventID }
-                                     istHost={ this.props.userIsHost }/>
+                                     isHost={ this.props.userIsHost }
+                                     RSVPs={this.props.RSVPs}
+                                     invitees={this.props.invitees}/>
             );
         }
         if (!this.props.isHost && !this.props.isPoll){
             return (
                 <ConfirmedEvent event={ this.props.event }
                                 eventID={ this.props.params.eventID }
-                                istHost={ this.props.userIsHost }/>
+                                isHost={ this.props.userIsHost }
+                                RSVPs={this.props.RSVPs}
+                                invitees={this.props.invitees}/>
             );
         }
     }

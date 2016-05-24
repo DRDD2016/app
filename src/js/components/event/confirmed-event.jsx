@@ -29,12 +29,46 @@ class ConfirmedEvent extends React.Component {
             });
         }
 
-        console.log(RSVPUserList(fakeRSVPs, fakeInvitees, 'going'));
+        let going = this.props.RSVPs.going;
+        let notGoing = this.props.RSVPs.notGoing;
+        let maybe = this.props.RSVPs.maybe;
+        let responded = going.concat(maybe, notGoing);
+
+        function notRespondedList (responded, invitees) {
+
+            if (responded.length === 0) {
+                return invitees.map((userObject) => {
+                    return (
+                        <div className="ui image label" key={userObject.firstName}>
+                            <img src={userObject.photoURL} />
+                                  {userObject.firstName}
+                        </div>
+                    );
+                });
+            } else {
+                return responded.map((id, index) => {
+                    let user = invitees.filter((userObject) => {
+                        return id !== userObject.id;
+                    });
+                    return (
+                        <div className="ui image label large">
+                            <img src={user[0].photoURL} key={user[0].firstName} />
+                              {user[0].firstName}
+                        </div>
+
+                    );
+                });
+            }
+        }
+
+
 
         return (
             <div>
 
                 This is the confirmed event page for both host and inviteed.
+
+
                 <div>
                     What { event.eventWhat[0] }
                 </div>
@@ -44,12 +78,15 @@ class ConfirmedEvent extends React.Component {
                 <div>
                     When { event.eventWhen[0].date } { event.eventWhen[0].date }
                 </div>
+                <div className="twelve columns">
+                        { notRespondedList(responded, this.props.invitees) }
+                </div>
 
-
+                <div className="row">
                 <div className="four columns">
                     <div onClick={ onClickRSVP }> Going </div>
 
-                    <div className="four columns ui middle aligned selection list">
+                    <div className="ui middle aligned selection list">
                         { RSVPUserList( this.props.RSVPs, this.props.invitees, 'going') }
                     </div>
                 </div>
@@ -57,7 +94,7 @@ class ConfirmedEvent extends React.Component {
                 <div className="four columns">
                     <div onClick={ onClickRSVP }> Maybe </div>
 
-                    <div className="four columns ui middle aligned selection list">
+                    <div className=" ui middle aligned selection list">
                         { RSVPUserList( this.props.RSVPs, this.props.invitees, 'maybe') }
                     </div>
                 </div>
@@ -65,9 +102,10 @@ class ConfirmedEvent extends React.Component {
                 <div className="four columns">
                     <div onClick={ onClickRSVP }> Not Going </div>
 
-                    <div className="four columns ui middle aligned selection list">
+                    <div className="ui middle aligned selection list">
                         { RSVPUserList( this.props.RSVPs, this.props.invitees, 'notGoing') }
                     </div>
+                </div>
                 </div>
 
 
