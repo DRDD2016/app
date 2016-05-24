@@ -4,6 +4,7 @@ import HostPoll from './host-poll.jsx';
 import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
+import CancelConfirmedEventModal from './cancel-confirmed-event-modal.jsx';
 
 
 class Event extends React.Component {
@@ -12,15 +13,22 @@ class Event extends React.Component {
         super(props);
     }
 
+    cancelEventConfirmationModal () {
+        $('.ui.basic.modal')
+            .modal('show');
+    }
+
+    handleCancelConfirmedEvent () {
+        $('.ui.basic.modal')
+            .modal('hide');
+        this.props.handleCancelConfirmedEvent(this.props.params.eventID);
+    }
+
+
+
     renderView () {
 
         if (this.props.userIsHost && this.props.isPoll) {
-            console.log(this.props.tally);
-            console.log(this.props.event);
-            console.log(this.props.params.eventID);
-            console.log(this.props.handleHostEventChoices);
-            console.log(this.props.hostEventChoices);
-            console.log(this.props.handleConfirmEvent);
 
             return (
                  <HostPoll tally= { this.props.tally }
@@ -63,13 +71,47 @@ class Event extends React.Component {
     }
     render () {
 
+        let headerTitle = this.props.isPoll ? "Poll" : "Event";
         if (this.props.isFetching) {
             return (
                 <Spinner />
             );
+        } if (this.props.userIsHost) {
+            return (
+                <div>
+
+                    <CancelConfirmedEventModal
+                        handleCancelConfirmedEvent={this.handleCancelConfirmedEvent} />
+
+
+
+
+
+
+                    <div className="event-header row">
+                        <p className="three columns back-button" > Edit </p>
+                        <h3 className=" six columns title"> { headerTitle }</h3>
+                        <p className="three columns cancel-event-button"
+                            onClick={ this.cancelEventConfirmationModal }>
+                            Cancel </p>
+                    </div>
+
+                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                                        eventName={ this.props.event.eventName }
+                                        eventDescription={ this.props.event.eventDescription }
+                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
+                    <div className="container">
+                        {this.renderView()}
+                    </div>
+                </div>
+            );
         } else {
             return (
                 <div>
+
+                    <div className="event-header row">
+                        <h3 className=" twelve columns title"> { headerTitle }</h3>
+                    </div>
 
                     <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                         eventName={ this.props.event.eventName }

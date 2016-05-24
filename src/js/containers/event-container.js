@@ -43,8 +43,12 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addHostEventChoice(eventType, value, index));
         },
         handleConfirmEvent: (hostEventChoices, eventID) => {
-            console.log(hostEventChoices, eventID);
+
             dispatch(confirmEvent(hostEventChoices, eventID));
+        },
+        handleCancelConfirmedEvent: (eventID) => {
+
+            console.log(eventID);
         }
     };
 };
