@@ -7,6 +7,8 @@ import { ADD_HOST_EVENT_CHOICE } from '../../../src/js/actions/event.js';
 import { addHostEventChoice } from '../../../src/js/actions/event.js';
 import { CONFIRM_EVENT, CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE } from '../../../src/js/actions/event.js';
 import { confirmEvent, confirmEventRequest, confirmEventSuccess, confirmEventFailure } from '../../../src/js/actions/event.js';
+import { UPDATE_RSVP, UPDATE_RSVP_REQUEST, UPDATE_RSVP_SUCCESS, UPDATE_RSVP_FAILURE } from '../../../src/js/actions/event.js';
+import { updateRSVP, updateRSVPRequest, updateRSVPSuccess, updateRSVPFailure } from '../../../src/js/actions/event.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 test('getEvent async action creator returns expected action', (t) => {
@@ -224,5 +226,64 @@ test('confirmEventFailure action creator returns expected action', (t) => {
     const actual = confirmEventFailure();
 
     t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('updateRSVP async action creator returns expected action', (t) => {
+
+    let actual;
+    const { dispatch, queue } = createThunk();
+
+    const RSVPstatus = 'going';
+    const eventID = 'event:101';
+    dispatch(updateRSVP(RSVPstatus, eventID));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: UPDATE_RSVP_REQUEST,
+        isFetching: true
+    };
+
+    t.deepEqual(actual, expected, "updateRSVP returns UPDATE_RSVP_REQUEST action");
+    t.end();
+});
+
+test('updateRSVPRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: UPDATE_RSVP_REQUEST,
+        isFetching: true
+    };
+    const actual = updateRSVPRequest();
+
+    t.deepEqual(actual, expected, 'updateRSVPRequest returns UPDATE_RSVP_REQUEST action');
+    t.end();
+
+});
+
+test('updateRSVPSuccess action creator returns expected action', (t) => {
+
+    const expected = {
+        type: UPDATE_RSVP_SUCCESS,
+        isFetching: false,
+    };
+
+    const actual = updateRSVPSuccess();
+
+    t.deepEqual(actual, expected, 'updateRSVPSuccess returns UPDATE_RSVP_SUCCESS action');
+    t.end();
+});
+
+test('updateRSVPFailure action creator returns expected action', (t) => {
+
+    const expected = {
+        type: UPDATE_RSVP_FAILURE,
+        isFetching: false,
+    };
+
+    const actual = updateRSVPFailure();
+
+    t.deepEqual(actual, expected, 'updateRSVPFailure returns UPDATE_RSVP_FAILURE action');
     t.end();
 });

@@ -232,3 +232,57 @@ test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
     t.deepEqual(actual2, expected2);
     t.end();
 });
+
+test('Reducer handles UPDATE_RSVP_REQUEST as expected', (t) => {
+
+    let initialState = Object.assign({}, state);
+
+    const action = {
+        type: "UPDATE_RSVP_REQUEST",
+        isFetching: true
+    };
+
+    let actual = reducer(initialState, action);
+
+    let expected = initialState;
+    initialState.isFetching = true;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles UPDATE_RSVP_SUCCESS as expected', (t) => {
+
+    let initialState = Object.assign({}, state);
+
+    const action = {
+        type: "UPDATE_RSVP_SUCCESS",
+        isFetching: false
+    };
+
+    let actual = reducer(initialState, action);
+
+    let expected = initialState;
+    initialState.isFetching = false;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles UPDATE_RSVP_FAILURE as expected', (t) => {
+
+    let initialState = Object.assign({}, state);
+
+    const action = {
+        type: "UPDATE_RSVP_FAILURE",
+        isFetching: false
+    };
+
+    let actual = reducer(initialState, action);
+
+    let expected = initialState;
+    initialState.isFetching = false;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});

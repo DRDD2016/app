@@ -19,6 +19,11 @@ export const CONFIRM_EVENT_REQUEST = 'CONFIRM_EVENT_REQUEST';
 export const CONFIRM_EVENT_SUCCESS = 'CONFIRM_EVENT_SUCCESS';
 export const CONFIRM_EVENT_FAILURE = 'CONFIRM_EVENT_FAILURE';
 
+export const UPDATE_RSVP = 'UPDATE_RSVP';
+export const UPDATE_RSVP_REQUEST = 'UPDATE_RSVP_REQUEST';
+export const UPDATE_RSVP_SUCCESS = 'UPDATE_RSVP_SUCCESS';
+export const UPDATE_RSVP_FAILURE = 'UPDATE_RSVP_FAILURE';
+
 
 /********
 GET EVENT ACTIONS
@@ -167,6 +172,52 @@ export function confirmEventSuccess () {
 export function confirmEventFailure () {
     return {
         type: CONFIRM_EVENT_FAILURE,
+        isFetching: false
+    };
+}
+
+/********
+UPDATE RSVP ACTIONS
+********/
+
+export function updateRSVP (RSVPstatus, eventID) {
+
+    return (dispatch) => {
+
+        let payload = {
+            userID: getUserID(),
+            eventID,
+            RSVPstatus
+        };
+
+        dispatch(updateRSVPRequest());
+
+        axios.post('/confirm-event', payload)
+            .then((response) => {
+                dispatch(confirmEventSuccess());
+            })
+            .catch((error) => {
+                dispatch(confirmEventFailure());
+            });
+    };
+}
+
+export function updateRSVPRequest () {
+    return {
+        type: UPDATE_RSVP_REQUEST,
+        isFetching: true
+    };
+}
+
+export function updateRSVPSuccess () {
+    return {
+        type: UPDATE_RSVP_SUCCESS,
+        isFetching: false,
+    };
+}
+export function updateRSVPFailure () {
+    return {
+        type: UPDATE_RSVP_FAILURE,
         isFetching: false
     };
 }
