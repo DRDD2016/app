@@ -24,6 +24,11 @@ export const UPDATE_RSVP_REQUEST = 'UPDATE_RSVP_REQUEST';
 export const UPDATE_RSVP_SUCCESS = 'UPDATE_RSVP_SUCCESS';
 export const UPDATE_RSVP_FAILURE = 'UPDATE_RSVP_FAILURE';
 
+export const CANCEL_CONFIRMED_EVENT = 'CANCEL_CONFIRMED_EVENT';
+export const CANCEL_CONFIRMED_EVENT_REQUEST = 'CANCEL_CONFIRMED_EVENT_REQUEST';
+export const CANCEL_CONFIRMED_EVENT_SUCCESS = 'CANCEL_CONFIRMED_EVENT_SUCCESS';
+export const CANCEL_CONFIRMED_EVENT_FAILURE = 'CANCEL_CONFIRMED_EVENT_FAILURE';
+
 
 /********
 GET EVENT ACTIONS
@@ -219,5 +224,49 @@ export function updateRSVPFailure () {
     return {
         type: UPDATE_RSVP_FAILURE,
         isFetching: false
+    };
+}
+
+
+/********
+CANCEL CONFIRMED EVENT ACTIONS
+********/
+
+
+export function cancelConfirmedEvent (eventID) {
+
+    return (dispatch) => {
+
+        dispatch(cancelConfirmedEventRequest());
+
+        axios.get('/cancel-confirmed-event?eventID=' + eventID)
+            .then((response) => {
+                dispatch(cancelConfirmedEventSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(cancelConfirmedEventFailure(error));
+            });
+    };
+}
+
+export function cancelConfirmedEventRequest () {
+    return {
+        type: CANCEL_CONFIRMED_EVENT_REQUEST,
+        isFetching: true
+    };
+}
+
+export function cancelConfirmedEventSuccess () {
+    return {
+        type: CANCEL_CONFIRMED_EVENT_SUCCESS,
+        isFetching: false,
+    };
+}
+
+export function cancelConfirmedEventFailure (error) {
+    return {
+        type: CANCEL_CONFIRMED_EVENT_FAILURE,
+        isFetching: false,
+        error: error
     };
 }

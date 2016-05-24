@@ -49,6 +49,7 @@ const mapDispatchToProps = (dispatch) => {
         handleCancelConfirmedEvent: (eventID) => {
 
             console.log(eventID);
+            // dispatch(cancelConfirmedEvent(eventID));
         }
     };
 };
