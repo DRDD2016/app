@@ -15,6 +15,13 @@ class Event extends React.Component {
     renderView () {
 
         if (this.props.userIsHost && this.props.isPoll) {
+            console.log(this.props.tally);
+            console.log(this.props.event);
+            console.log(this.props.params.eventID);
+            console.log(this.props.handleHostEventChoices);
+            console.log(this.props.hostEventChoices);
+            console.log(this.props.handleConfirmEvent);
+
             return (
                  <HostPoll tally= { this.props.tally }
                            event= { this.props.event }
@@ -63,6 +70,7 @@ class Event extends React.Component {
         } else {
             return (
                 <div>
+
                     <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                         eventName={ this.props.event.eventName }
                                         eventDescription={ this.props.event.eventDescription }

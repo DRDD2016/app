@@ -12,18 +12,20 @@ const EventDetailsHeader = ({ location, eventName, eventDescription, hostPhotoUR
 
         return (
             <div className={ classes } >
-                <p> { eventName }</p>
-                <p> { eventDescription }</p>
+                <p className="event-detail-text">  { eventName }</p>
+                <p className="event-detail-text">  { eventDescription }</p>
             </div>
 
         );
     } else {
         return (
             <div className={ classes } >
-                <img className="four columns ui profile-photo circular image" src={ hostPhotoURL } alt="Host photo" />
-                <div className="eight columns">
-                    <p> { eventName }</p>
-                    <p> { eventDescription }</p>
+                <div className="four columns">
+                <img className=" ui event-detail-photo circular image" src={ hostPhotoURL } alt="Host photo" />
+                </div>
+                <div className="eight columns event-detail-text-container">
+                    <p className="event-detail-text"> { eventName }</p>
+                    <p className="event-detail-text"> { eventDescription }</p>
                 </div>
             </div>
 

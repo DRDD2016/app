@@ -6,7 +6,7 @@ import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent } f
 
 
 const mapStateToProps = (state) => {
-
+    console.log(state.event.hostEventChoices);
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
