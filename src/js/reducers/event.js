@@ -1,7 +1,8 @@
 import update from 'react-addons-update';
 import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
          CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE, ADD_HOST_EVENT_CHOICE,
-         CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE } from '../actions/event.js';
+         CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE,
+         UPDATE_RSVP_REQUEST, UPDATE_RSVP_SUCCESS, UPDATE_RSVP_FAILURE } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -9,7 +10,9 @@ const initialState = {
     error: undefined,
     poll: undefined,
     tally: undefined,
-    hostEventChoices: undefined
+    hostEventChoices: undefined,
+    invitees: undefined,
+    RSVPs: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -38,6 +41,11 @@ export default function event (state = initialState, action) {
     case CONFIRM_EVENT_FAILURE:
         return handleConfirmEvent(state, action);
 
+    case UPDATE_RSVP_REQUEST:
+    case UPDATE_RSVP_SUCCESS:
+    case UPDATE_RSVP_FAILURE:
+        return handleConfirmEvent(state, action); // TO REFACTOR
+
     default:
         return state;
     }
@@ -52,19 +60,24 @@ function handleGetEventRequest (state, action) {
 }
 
 function handleGetEventSuccess (state, action) {
-    let hostEventChoices = {};
+    let hostEventChoices;
+
     if (action.data.tally) {
+        hostEventChoices = {};
         Object.keys(action.data.tally).forEach((eventType, i) => {
             hostEventChoices[eventType] = '';
         });
     }
+
     let newState = update(state, {
 
         isFetching: { $set: action.isFetching },
         data: { $set: action.data.event },
         tally: { $set: action.data.tally },
         poll: { $set: action.data.poll },
-        hostEventChoices: { $set: hostEventChoices }
+        hostEventChoices: { $set: action.data.hostEventChoices },
+        RSVPs: { $set: action.data.RSVPs },
+        invitees: { $set: action.data.invitees }
     });
     return newState;
 }
@@ -76,21 +89,6 @@ function handleGetEventFailure (state, action) {
         error: { $set: action.error }
     });
     return newState;
-}
-
-function setPoll (event) {
-
-    let targets = ['eventWhat', 'eventWhere', 'eventWhen'];
-
-    return targets.reduce((pollObject, target, i) => {
-
-        if (event[target].length > 1) {
-            pollObject[target] = new Array(event[target].length).fill(false);
-        }
-
-        return pollObject;
-
-    }, {});
 }
 
 function updatePoll (state, action) {

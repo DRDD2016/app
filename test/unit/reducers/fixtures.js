@@ -31,3 +31,14 @@ export const calendar = {
         eventConfirmedHarry
     ]
 };
+
+export const event = {
+    data: {},
+    isFetching: false,
+    error: undefined,
+    poll: undefined,
+    tally: undefined,
+    hostEventChoices: undefined,
+    invitees: undefined,
+    RSVPs: undefined
+};

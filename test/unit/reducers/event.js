@@ -1,79 +1,40 @@
 import test from 'tape';
 import reducer from '../../../src/js/reducers/event.js';
+import { event as state } from './fixtures.js';
+import * as fixtures from '../../utils/fixtures.js';
 
+/********
+GET EVENT
+********/
 
 test('Reducer handles GET_EVENT_REQUEST as expected', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
     const action = {
         type: "GET_EVENT_REQUEST",
         isFetching: true
     };
+    const initialState = state;
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {},
-        isFetching: true,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
 
-    t.deepEqual(actual, expected);
+    let expected = initialState;
+    expected.isFetching = true;
+
+    t.deepEqual(actual, expected, 'on GET_EVENT_REQUEST, isFetching is `true`');
     t.end();
 });
 
-test('Reducer handles GET_EVENT_SUCCESS is as expected with isPoll set to true', (t) => {
+test('Reducer handles GET_EVENT_SUCCESS as expected with isPoll set to true', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: true,
-        error: undefined,
-        poll: undefined,
-        tally: undefined,
-        hostEventChoices: undefined
+    let initialState = Object.assign({}, state);
+    initialState.isFetching = true;
 
-    };
+    let event = fixtures.eventPollSohil;
+
     const data = {
-        event: {
-            eventName: "sohil",
-            eventDescription: "Birthday",
-            isPoll: true,
-            eventWhat: [
-                "birthday party",
-                "bowling"
-            ],
-            eventWhere: [
-                {
-                    placeName: "harrods",
-                    placeAddress: "knightsbridge"
-                },
-                {
-                    placeName: "FAC",
-                    placeAddress: "E2 0SY"
-                }
-            ],
-            eventWhen: [
-                {
-                    date: "2016-12-12",
-                    time: "10:10"
-                }
-            ]
-        },
+        event: fixtures.eventPollSohil,
         poll: {
-            eventWhat: [false, false],
-            eventWhere: [false, false]
+            eventWhat: [false, true],
+            eventWhere: [true, false]
         }
     };
     const action = {
@@ -82,112 +43,84 @@ test('Reducer handles GET_EVENT_SUCCESS is as expected with isPoll set to true',
         data: data
     };
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {
-            eventName: "sohil",
-            eventDescription: "Birthday",
-            isPoll: true,
-            eventWhat: [
-                "birthday party",
-                "bowling"
-            ],
-            eventWhere: [
-                {
-                    placeName: "harrods",
-                    placeAddress: "knightsbridge"
-                },
-                {
-                    placeName: "FAC",
-                    placeAddress: "E2 0SY"
-                }
-            ],
-            eventWhen: [
-                {
-                    date: "2016-12-12",
-                    time: "10:10"
-                }
-            ]
-        },
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhat: [false, false],
-            eventWhere: [false, false]
-        },
-        tally: undefined,
-        hostEventChoices: {}
 
-    };
+    let expected = Object.assign({}, state);
 
-    t.deepEqual(actual, expected, "Event is fetched successfully");
+    expected.isFetching = false;
+    expected.data = fixtures.eventPollSohil;
+    expected.poll = data.poll;
+
+    t.deepEqual(actual, expected, "Event object and poll successfully merged into store");
     t.end();
+});
 
+test('Reducer handles GET_EVENT_SUCCESS when with a ConfirmedEvent', (t) => {
+
+    let initialState = Object.assign({}, state);
+    initialState.isFetching = true;
+
+    const data = {
+        event: fixtures.eventConfirmedHarry,
+        RSVPs: {
+            going: [fixtures.HARRY_ID],
+            notGoing: [fixtures.SOHIL_ID]
+        }
+    };
+    const action = {
+        type: "GET_EVENT_SUCCESS",
+        isFetching: false,
+        data: data
+    };
+    const actual = reducer(initialState, action);
+
+    let expected = Object.assign({}, initialState);
+
+    expected.isFetching = false;
+    expected.data = data.event;
+    expected.RSVPs = data.RSVPs;
+
+    t.deepEqual(actual, expected, "Event info and RSVPs successfully merged into store");
+    t.end();
 });
 
 
 test('Reducer handles GET_EVENT_FAILURE as expected', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: true,
-        error: undefined
-    };
+    let initialState = state;
+    initialState.isFetching = true;
     const error = {
         message: "There was an error..."
     };
+
     const action = {
         type: "GET_EVENT_FAILURE",
         isFetching: false,
         error: error
     };
+
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {},
-        isFetching: false,
-        error: {
-            message: "There was an error..."
-        }
-    };
+
+    let expected = initialState;
+    expected.isFetching = false;
+    expected.error = error;
 
     t.deepEqual(actual, expected);
     t.end();
 });
 
+/********
+UPDATE POLL
+********/
+
 test('Reducer handles UPDATE_POLL as expected', (t) => {
 
-    const initialState = {
-        data: {
-            eventName: "sohil",
-            eventDescription: "Birthday",
-            isPoll: false,
-            eventWhat: [
-                "birthday party",
-                "bowling"
-            ],
-            eventWhere: [
-                {
-                    placeName: "harrods",
-                    placeAddress: "knightsbridge"
-                },
-                {
-                    placeName: "FAC",
-                    placeAddress: "E2 0SY"
-                }
-            ],
-            eventWhen: [
-                {
-                    date: "2016-12-12",
-                    time: "10:10"
-                }
-            ]
-        },
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhere: [false, false],
-            eventWhen: [false],
-        }
+    let initialState = state;
+    initialState.data = fixtures.pollToConfirmedEvent;
+    initialState.poll = {
+        eventWhere: [false, false],
+        eventWhen: [false],
     };
+
     const action = {
         type: 'UPDATE_POLL',
         eventType: 'eventWhere',
@@ -196,71 +129,29 @@ test('Reducer handles UPDATE_POLL as expected', (t) => {
 
     const actual = reducer(initialState, action);
 
-    const expected = {
-        data: {
-            eventName: "sohil",
-            eventDescription: "Birthday",
-            isPoll: false,
-            eventWhat: [
-                "birthday party",
-                "bowling"
-            ],
-            eventWhere: [
-                {
-                    placeName: "harrods",
-                    placeAddress: "knightsbridge"
-                },
-                {
-                    placeName: "FAC",
-                    placeAddress: "E2 0SY"
-                }
-            ],
-            eventWhen: [
-                {
-                    date: "2016-12-12",
-                    time: "10:10"
-                }
-            ]
-        },
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhere: [false, true],
-            eventWhen: [false],
-        }
-    };
+    let expected = initialState;
+    expected.poll.eventWhere = [false, true];
 
-    t.deepEqual(actual, expected);
+    t.deepEqual(actual, expected, 'Poll successfully updates');
     t.end();
 });
 
+/********
+CONFIRM POLL
+********/
+
 test('Reducer handles CONFIRM_POLL_REQUEST as expected', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
+    const initialState = state;
+
     const action = {
         type: "CONFIRM_POLL_REQUEST",
         isFetching: true
     };
+
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {},
-        isFetching: true,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
+    let expected = initialState;
+    expected.isFetching = true;
 
     t.deepEqual(actual, expected);
     t.end();
@@ -268,31 +159,17 @@ test('Reducer handles CONFIRM_POLL_REQUEST as expected', (t) => {
 
 test('Reducer handles CONFIRM_POLL_SUCCESS as expected', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: true,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
+    let initialState = state;
+    initialState.isFetching = true;
+
     const action = {
         type: "CONFIRM_POLL_SUCCESS",
         isFetching: false
     };
+
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
+    let expected = initialState;
+    expected.isFetching = false;
 
     t.deepEqual(actual, expected);
     t.end();
@@ -300,49 +177,34 @@ test('Reducer handles CONFIRM_POLL_SUCCESS as expected', (t) => {
 
 test('Reducer handles CONFIRM_POLL_FAILURE as expected', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: true,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
+    let initialState = state;
+    initialState.isFetching = true;
+
     const action = {
         type: "CONFIRM_POLL_FAILURE",
         isFetching: false
     };
+
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: {
-            eventWhat: [],
-            eventWhere: [],
-            eventWhen: [],
-        }
-    };
+
+    let expected = initialState;
+    expected.isFetching = false;
 
     t.deepEqual(actual, expected);
     t.end();
 });
 
+/********
+ADD HOST EVENT CHOICE
+********/
+
 test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
 
-    const initialState = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: undefined,
-        tally: undefined,
-        hostEventChoices: {
-            eventWhat: '',
-            eventWhere: '',
-            eventWhen: ''
-        }
+    let initialState = state;
+    initialState.hostEventChoices = {
+        eventWhat: 0,
+        eventWhere: '',
+        eventWhen: ''
     };
 
     const action = {
@@ -353,36 +215,17 @@ test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
     };
 
     const actual = reducer(initialState, action);
-    const expected = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: undefined,
-        tally: undefined,
-        hostEventChoices: {
-            eventWhat: 0,
-            eventWhere: '',
-            eventWhen: ''
-        }
+
+    let expected = initialState;
+    expected.hostEventChoices = {
+        eventWhat: 0,
+        eventWhere: '',
+        eventWhen: ''
     };
 
     t.deepEqual(actual, expected);
 
-    const initialState2 = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: undefined,
-        tally: undefined,
-        hostEventChoices: {
-            eventWhat: 0,
-            eventWhere: '',
-            eventWhen: ''
-        }
-    };
-
-
-
+    const initialState2 = expected;
 
     const action2 = {
         type: "ADD_HOST_EVENT_CHOICE",
@@ -393,22 +236,72 @@ test('reducer handles ADD_HOST_EVENT_CHOICE as expected', (t) => {
         index: 0
     };
 
-
     const actual2 = reducer(initialState2, action2);
-    const expected2 = {
-        data: {},
-        isFetching: false,
-        error: undefined,
-        poll: undefined,
-        tally: undefined,
-        hostEventChoices: {
-            eventWhat: 0,
-            eventWhere: 0,
-            eventWhen: ''
-        }
+    let expected2 = initialState2;
+    expected.hostEventChoices = {
+        eventWhat: 0,
+        eventWhere: 0,
+        eventWhen: ''
     };
 
     t.deepEqual(actual2, expected2);
     t.end();
+});
 
+/********
+UPDATE RSVP
+********/
+
+test('Reducer handles UPDATE_RSVP_REQUEST as expected', (t) => {
+
+    let initialState = Object.assign({}, state);
+
+    const action = {
+        type: "UPDATE_RSVP_REQUEST",
+        isFetching: true
+    };
+
+    let actual = reducer(initialState, action);
+
+    let expected = initialState;
+    initialState.isFetching = true;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles UPDATE_RSVP_SUCCESS as expected', (t) => {
+
+    let initialState = Object.assign({}, state);
+
+    const action = {
+        type: "UPDATE_RSVP_SUCCESS",
+        isFetching: false
+    };
+
+    let actual = reducer(initialState, action);
+
+    let expected = initialState;
+    initialState.isFetching = false;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles UPDATE_RSVP_FAILURE as expected', (t) => {
+
+    let initialState = Object.assign({}, state);
+
+    const action = {
+        type: "UPDATE_RSVP_FAILURE",
+        isFetching: false
+    };
+
+    let actual = reducer(initialState, action);
+
+    let expected = initialState;
+    initialState.isFetching = false;
+
+    t.deepEqual(actual, expected);
+    t.end();
 });
