@@ -8,7 +8,6 @@ const EventDetailsHeader = ({ location, eventName, eventDescription, hostPhotoUR
     let classes = classnames("row event-details-header", {
         "display-none": hideEventDetails
     });
-
     if (!hostPhotoURL) {
 
         return (
