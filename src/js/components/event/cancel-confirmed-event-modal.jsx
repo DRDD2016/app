@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const CancelConfirmedEventModal = ({ handleCancelConfirmedEvent }) => {
+const CancelConfirmedEventModal = ({ handleCancelConfirmedEvent, handleCloseModal }) => {
 
     return (
         <div className="ui basic modal">
@@ -16,7 +16,7 @@ const CancelConfirmedEventModal = ({ handleCancelConfirmedEvent }) => {
           </div>
           <div className="actions">
             <div className="two fluid ui inverted buttons">
-              <div className="ui red basic inverted button">
+              <div onClick={ handleCloseModal } className="ui red basic inverted button">
                 <i className="remove icon"></i>
                 No
               </div>

@@ -11,6 +11,7 @@ class Event extends React.Component {
 
     constructor (props) {
         super(props);
+        this.handleCancelConfirmedEvent = this.handleCancelConfirmedEvent.bind(this);
     }
 
     cancelEventConfirmationModal () {
@@ -22,6 +23,11 @@ class Event extends React.Component {
         $('.ui.basic.modal')
             .modal('hide');
         this.props.handleCancelConfirmedEvent(this.props.params.eventID);
+    }
+
+    handleCloseModal () {
+        $('.ui.basic.modal')
+            .modal('hide');
     }
 
 
@@ -81,7 +87,8 @@ class Event extends React.Component {
                 <div>
 
                     <CancelConfirmedEventModal
-                        handleCancelConfirmedEvent={this.handleCancelConfirmedEvent} />
+                        handleCancelConfirmedEvent={this.handleCancelConfirmedEvent}
+                        handleCloseModal={this.handleCloseModal} />
 
 
 
