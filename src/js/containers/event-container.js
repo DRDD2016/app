@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent } from '../actions/event.js';
+import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent } from '../actions/event.js';
+import { hydrateEditEvent } from '../actions/create-event.js';
 
 
 const mapStateToProps = (state) => {
-    console.log(state.event.hostEventChoices);
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
@@ -46,10 +46,13 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(confirmEvent(hostEventChoices, eventID));
         },
-        handleCancelConfirmedEvent: (eventID) => {
+        handleDeleteEvent: (eventID) => {
 
-            console.log(eventID);
-            // dispatch(cancelConfirmedEvent(eventID));
+            dispatch(deleteEvent(eventID));
+        },
+        handleEdit: (event) => {
+
+            dispatch(hydrateEditEvent(event));
         }
     };
 };

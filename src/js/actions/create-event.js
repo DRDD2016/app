@@ -23,6 +23,8 @@ export const REMOVE_INPUT = "REMOVE_INPUT";
 export const ADD_INVITEE = "ADD_INVITEE";
 export const REMOVE_INVITEE = "REMOVE_INVITEE";
 
+export const HYDRATE_EDIT_EVENT = "HYDRATE_EDIT_EVENT";
+
 
 /********
 SET EVENT ACTIONS
@@ -204,5 +206,16 @@ export function removeInvitee (invitee, index) {
         type: REMOVE_INVITEE,
         data: invitee,
         index
+    };
+}
+
+/********
+HYDRATE EDIT EVENT ACTIONS
+********/
+
+export function hydrateEditEvent (event) {
+    return {
+        type: HYDRATE_EDIT_EVENT,
+        data: event
     };
 }

@@ -5,13 +5,14 @@ import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
 import CancelConfirmedEventModal from './cancel-confirmed-event-modal.jsx';
+import { Link } from 'react-router';
 
 
 class Event extends React.Component {
 
     constructor (props) {
         super(props);
-        this.handleCancelConfirmedEvent = this.handleCancelConfirmedEvent.bind(this);
+        this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
     }
 
     cancelEventConfirmationModal () {
@@ -19,10 +20,12 @@ class Event extends React.Component {
             .modal('show');
     }
 
-    handleCancelConfirmedEvent () {
+    handleDeleteEvent () {
         $('.ui.basic.modal')
             .modal('hide');
-        this.props.handleCancelConfirmedEvent(this.props.params.eventID);
+        this.props.handleDeleteEvent(this.props.params.eventID);
+        this.context.router.push('/feed');
+
     }
 
     handleCloseModal () {
@@ -82,16 +85,51 @@ class Event extends React.Component {
             return (
                 <Spinner />
             );
-        } if (this.props.userIsHost) {
+        }
+        if (this.props.event === false) {
+            return (
+                <div>
+                    The Event has been deleted
+                </div>
+            );
+        }
+        if (this.props.userIsHost && !this.props.isPoll) {
             return (
                 <div>
 
                     <CancelConfirmedEventModal
-                        handleCancelConfirmedEvent={this.handleCancelConfirmedEvent}
+                        handleDeleteEvent={this.handleDeleteEvent}
                         handleCloseModal={this.handleCloseModal} />
 
                     <div className="event-header row">
+                        <Link onClick={ () => { this.props.handleEdit(this.props.event); } }to={ 'edit/' + this.props.params.eventID }>
                         <p className="three columns back-button" > Edit </p>
+                        </Link>
+                        <h3 className=" six columns title"> { headerTitle }</h3>
+                        <p className="three columns cancel-event-button"
+                            onClick={ this.cancelEventConfirmationModal }>
+                            Cancel </p>
+                    </div>
+
+                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                                        eventName={ this.props.event.eventName }
+                                        eventDescription={ this.props.event.eventDescription }
+                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
+                    <div className="container">
+                        {this.renderView()}
+                    </div>
+                </div>
+            );
+        } if (this.props.userIsHost && this.props.isPoll) {
+            return (
+                <div>
+
+                    <CancelConfirmedEventModal
+                        handleDeleteEvent={this.handleDeleteEvent}
+                        handleCloseModal={this.handleCloseModal} />
+
+                    <div className="event-header row">
+                        <p className="three columns back-button" > </p>
                         <h3 className=" six columns title"> { headerTitle }</h3>
                         <p className="three columns cancel-event-button"
                             onClick={ this.cancelEventConfirmationModal }>
@@ -128,5 +166,10 @@ class Event extends React.Component {
 
     }
 }
+
+
+Event.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default Event;

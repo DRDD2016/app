@@ -24,7 +24,7 @@ export const UPDATE_RSVP_REQUEST = 'UPDATE_RSVP_REQUEST';
 export const UPDATE_RSVP_SUCCESS = 'UPDATE_RSVP_SUCCESS';
 export const UPDATE_RSVP_FAILURE = 'UPDATE_RSVP_FAILURE';
 
-export const DELETE_EVENT = 'DELETE_EVENT_EVENT';
+export const DELETE_EVENT = 'DELETE_EVENT';
 export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST';
 export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
 export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
@@ -185,14 +185,14 @@ export function confirmEventFailure () {
 UPDATE RSVP ACTIONS
 ********/
 
-export function updateRSVP (RSVPstatus, eventID) {
+export function updateRSVP (RSVPStatus, eventID) {
 
     return (dispatch) => {
 
         let payload = {
             userID: getUserID(),
             eventID,
-            RSVPstatus
+            RSVPStatus
         };
 
         dispatch(updateRSVPRequest());

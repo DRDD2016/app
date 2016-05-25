@@ -1,18 +1,17 @@
 import React from 'react';
 
 
-const CancelConfirmedEventModal = ({ handleCancelConfirmedEvent, handleCloseModal }) => {
+const CancelConfirmedEventModal = ({ handleDeleteEvent, handleCloseModal }) => {
 
     return (
         <div className="ui basic modal">
-          <i className="close icon"></i>
-          <div className="header">
-            Are you sure you would like to delete the event?
-          </div>
-          <div className="image content">
-            <div className="image">
-              <i className="warning circle icon"></i>
+            <div className="image content">
+              <div className="image">
+                <i className="warning circle icon"></i>
+              </div>
             </div>
+          <div className="header">
+            Delete this event?
           </div>
           <div className="actions">
             <div className="two fluid ui inverted buttons">
@@ -20,7 +19,7 @@ const CancelConfirmedEventModal = ({ handleCancelConfirmedEvent, handleCloseModa
                 <i className="remove icon"></i>
                 No
               </div>
-              <div onClick={ handleCancelConfirmedEvent } className="ui green basic inverted button">
+              <div onClick={ handleDeleteEvent } className="ui green basic inverted button">
                 <i className="checkmark icon"></i>
                 Yes
               </div>

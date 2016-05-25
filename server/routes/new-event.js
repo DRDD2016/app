@@ -11,13 +11,20 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                var data = request.payload;
-                saveNewEvent(data, (error, eventID) => {
+                var event = request.payload;
+                saveNewEvent(event, (error, eventID) => {
 
                     if (error) {
                         return reply(error);
                     }
-                    notifyEveryone(data.hostID, eventID, data, (error, success) => {
+                    var recipients = event.invitees.map((invitee) => {
+
+                        return invitee.id;
+                    }).concat([event.hostID]);
+
+                    var subjectID = event.hostID;
+
+                    notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
                         var verdict = error || success;
                         reply(verdict);

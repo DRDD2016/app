@@ -16,7 +16,11 @@ exports.register = (server, options, next) => {
                 getEvent(request.query.eventID, (error, event) => {
 
                     if (error) {
+                        console.log(error,'this is where the error is');
                         return reply(error);
+                    }
+                    if (event === null) {
+                        return reply( { event: false } );
                     }
                     var isHost = event.hostID === request.query.userID;
 
@@ -30,7 +34,7 @@ exports.register = (server, options, next) => {
                         });
                     }
                     if ((isHost && !event.isPoll) || (!isHost && !event.isPoll)) {
-                        
+
                         getRSVPs(request.query.eventID, (error, RSVPs) => {
 
                             var response = error || { event: event, invitees: event.invitees, RSVPs: RSVPs };

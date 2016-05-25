@@ -15,6 +15,7 @@ import AppContainer from './containers/app-container.js';
 import LoginContainer from './containers/login-container.js';
 import FeedContainer from './containers/feed-container.js';
 import EventContainer from './containers/event-container.js';
+import EditEventContainer from './containers/edit-event-container.js';
 import CalendarContainer from './containers/calendar-container.js';
 import CreateEventContainer from './containers/create-event/create-event-container.js';
 import EventDetailsContainer from './containers/create-event/event-details-container.js';
@@ -63,6 +64,10 @@ const routes = (
         <Route path='/event/:eventID'
                component={ requireAuthentication(EventContainer) }
                onEnter={ fetchEvent } />
+
+           <Route path='/edit/:eventID'
+              component={ requireAuthentication(EditEventContainer) }
+              onEnter={ fetchEvent } />
 
         <Route path='/calendar'
                component={ requireAuthentication(CalendarContainer) }

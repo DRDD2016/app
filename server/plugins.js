@@ -8,6 +8,7 @@ var NewEventFriends = require('./routes/new-event-friends.js');
 var GetEvent = require('./routes/get-event.js');
 var ConfirmPoll = require('./routes/confirm-poll.js');
 var ConfirmEvent = require('./routes/confirm-event.js');
+var DeleteEvent = require('./routes/delete-event.js');
 
 var plugins = [
     Inert,
@@ -19,7 +20,8 @@ var plugins = [
     NewEventFriends,
     GetEvent,
     ConfirmPoll,
-    ConfirmEvent
+    ConfirmEvent,
+    DeleteEvent
 ];
 
 module.exports = plugins;
