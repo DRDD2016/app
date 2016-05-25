@@ -249,21 +249,21 @@ export function deleteEvent (eventID) {
     };
 }
 
-export function cancelConfirmedEventRequest () {
+export function deleteEventRequest () {
     return {
         type: DELETE_EVENT_REQUEST,
         isFetching: true
     };
 }
 
-export function cancelConfirmedEventSuccess () {
+export function deleteEventSuccess () {
     return {
         type: DELETE_EVENT_SUCCESS,
         isFetching: false,
     };
 }
 
-export function cancelConfirmedEventFailure (error) {
+export function deleteEventFailure (error) {
     return {
         type: DELETE_EVENT_FAILURE,
         isFetching: false,
