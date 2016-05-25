@@ -1,3 +1,4 @@
+var deleteEvent = require('../db/delete-event.js');
 
 exports.register = (server, options, next) => {
 
@@ -9,9 +10,12 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                console.log(request.query.eventID);
-                //do delete function
-                reply('you have the eventID');
+
+                deleteEvent(request.query.eventID, (error, response) => {
+                    const verdict = error || response
+                    console.log(verdict,'response.....');
+                    reply(verdict);
+                });
             }
         }
     }]);

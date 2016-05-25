@@ -23,6 +23,8 @@ class Event extends React.Component {
         $('.ui.basic.modal')
             .modal('hide');
         this.props.handleDeleteEvent(this.props.params.eventID);
+        this.context.router.push('/feed');
+
     }
 
     handleCloseModal () {
@@ -82,7 +84,15 @@ class Event extends React.Component {
             return (
                 <Spinner />
             );
-        } if (this.props.userIsHost) {
+        }
+        if (this.props.event === false) {
+            return (
+                <div>
+                    The Event has been deleted
+                </div>
+            );
+        }
+        if (this.props.userIsHost) {
             return (
                 <div>
 
@@ -128,5 +138,10 @@ class Event extends React.Component {
 
     }
 }
+
+
+Event.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default Event;

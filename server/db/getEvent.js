@@ -5,12 +5,17 @@ function getEvent (eventID, callback) {
 
     client.hgetallAsync(eventID)
         .then((event) => {
+            if (event !== null){
+                console.log("event inside first iff");
+                var parsedEvent = parseObjectValues(event);
+                callback(null, parsedEvent);
+            } else {
+                callback(null, null);
+            }
 
-            var parsedEvent = parseObjectValues(event);
-            callback(null, parsedEvent);
         })
         .catch((error) => {
-            
+
             callback(error);
         });
 }
