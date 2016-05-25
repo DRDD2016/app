@@ -259,9 +259,9 @@ test('updateRSVP async action creator returns expected action', (t) => {
     let actual;
     const { dispatch, queue } = createThunk();
 
-    const RSVPstatus = 'going';
+    const RSVPStatus = 'going';
     const eventID = 'event:101';
-    dispatch(updateRSVP(RSVPstatus, eventID));
+    dispatch(updateRSVP(RSVPStatus, eventID));
 
     [{ ...actual }] = queue;
 

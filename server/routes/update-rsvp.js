@@ -1,30 +1,32 @@
-var castVote = require('../db/castVote.js');
+var updateRSVP = require('../lib/updateRSVP.js');
 var getEvent = require('../db/getEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
-var createNotification = require('../lib/createNotification.js');
-var setNotifications = require('../db/setNotifications.js');
 
 exports.register = (server, options, next) => {
 
     server.route([{
+
         method: 'POST',
-        path: '/confirm-poll',
+        path: '/update-rsvp',
         config: {
-            description: 'add/update invitee vote',
+            description: 'Updates user RSVP for an event',
 
             handler: (request, reply) => {
 
-                if (!request.payload) {
+                if (!request.payload || !request.payload.userID || !request.payload.eventID || !request.payload.RSVPStatus) {
 
-                    return reply(new Error("Missing data for confirm-poll"));
+                    return reply(new Error("Missing data for update-rsvp"));
                 }
-                var subjectID = request.payload.userID;
+                var userID = request.payload.userID;
                 var eventID = request.payload.eventID;
-                castVote(request.payload.poll, subjectID, eventID, (error, response) => {
+                var userRSVPStatus = request.payload.RSVPStatus;
+
+                updateRSVP(userID, eventID, userRSVPStatus, (error, success) => {
 
                     if (error) {
                         return reply(error);
                     }
+
                     getEvent(eventID, (error, event) => {
 
                         if (error) {
@@ -40,10 +42,12 @@ exports.register = (server, options, next) => {
                 });
             }
         }
+
     }]);
     return next();
 };
 
+
 exports.register.attributes = {
-    name: 'ConfirmPoll'
+    name: 'UpdateRSVPs'
 };

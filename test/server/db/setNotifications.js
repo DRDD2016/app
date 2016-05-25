@@ -20,7 +20,7 @@ test("setNotifications adds the sets correctly for all invitees", (t) => {
     };
 
     const expected = [JSON.stringify(notification)];
-    setNotifications(invitees, notification, (error, result) => {
+    setNotifications(invitees, notification.subjectID, notification, (error, result) => {
         t.ok(result, "both sets added for invitees");
 
         client.smembers('notifications:12345678', (error, actual) => {

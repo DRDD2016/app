@@ -1,8 +1,8 @@
 var getUser = require('../db/getUser.js');
 
-function createNotification (userID, eventID, eventInfo, callback) {
+function createNotification (subjectID, eventID, eventInfo, callback) {
 
-    getUser(userID, (error, userInfo) => {
+    getUser(subjectID, (error, userInfo) => {
 
         if (error) {
             return callback(new Error('Problem fetching user to create notification (1)'));
