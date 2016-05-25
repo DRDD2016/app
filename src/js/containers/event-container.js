@@ -6,7 +6,7 @@ import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent } f
 
 
 const mapStateToProps = (state) => {
-
+    console.log(state.event.hostEventChoices);
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
@@ -43,8 +43,13 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(addHostEventChoice(eventType, value, index));
         },
         handleConfirmEvent: (hostEventChoices, eventID) => {
-            console.log(hostEventChoices, eventID);
+
             dispatch(confirmEvent(hostEventChoices, eventID));
+        },
+        handleCancelConfirmedEvent: (eventID) => {
+
+            console.log(eventID);
+            // dispatch(cancelConfirmedEvent(eventID));
         }
     };
 };

@@ -24,6 +24,11 @@ export const UPDATE_RSVP_REQUEST = 'UPDATE_RSVP_REQUEST';
 export const UPDATE_RSVP_SUCCESS = 'UPDATE_RSVP_SUCCESS';
 export const UPDATE_RSVP_FAILURE = 'UPDATE_RSVP_FAILURE';
 
+export const DELETE_EVENT = 'DELETE_EVENT_EVENT';
+export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST';
+export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
+export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
+
 
 /********
 GET EVENT ACTIONS
@@ -219,5 +224,49 @@ export function updateRSVPFailure () {
     return {
         type: UPDATE_RSVP_FAILURE,
         isFetching: false
+    };
+}
+
+
+/********
+CANCEL CONFIRMED EVENT ACTIONS
+********/
+
+
+export function deleteEvent (eventID) {
+
+    return (dispatch) => {
+
+        dispatch(deleteEventRequest());
+
+        axios.get('/delete-event?eventID=' + eventID)
+            .then((response) => {
+                dispatch(deleteEventSuccess(response.data));
+            })
+            .catch((error) => {
+                dispatch(deleteEventFailure(error));
+            });
+    };
+}
+
+export function deleteEventRequest () {
+    return {
+        type: DELETE_EVENT_REQUEST,
+        isFetching: true
+    };
+}
+
+export function deleteEventSuccess () {
+    return {
+        type: DELETE_EVENT_SUCCESS,
+        isFetching: false,
+    };
+}
+
+export function deleteEventFailure (error) {
+    return {
+        type: DELETE_EVENT_FAILURE,
+        isFetching: false,
+        error: error
     };
 }

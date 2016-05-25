@@ -68,14 +68,13 @@ function handleGetEventSuccess (state, action) {
             hostEventChoices[eventType] = '';
         });
     }
-
     let newState = update(state, {
 
         isFetching: { $set: action.isFetching },
         data: { $set: action.data.event },
         tally: { $set: action.data.tally },
         poll: { $set: action.data.poll },
-        hostEventChoices: { $set: action.data.hostEventChoices },
+        hostEventChoices: { $set: hostEventChoices },
         RSVPs: { $set: action.data.RSVPs },
         invitees: { $set: action.data.invitees }
     });

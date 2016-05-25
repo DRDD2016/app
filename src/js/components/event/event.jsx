@@ -4,17 +4,38 @@ import HostPoll from './host-poll.jsx';
 import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
+import CancelConfirmedEventModal from './cancel-confirmed-event-modal.jsx';
 
 
 class Event extends React.Component {
 
     constructor (props) {
         super(props);
+        this.handleCancelConfirmedEvent = this.handleCancelConfirmedEvent.bind(this);
     }
+
+    cancelEventConfirmationModal () {
+        $('.ui.basic.modal')
+            .modal('show');
+    }
+
+    handleCancelConfirmedEvent () {
+        $('.ui.basic.modal')
+            .modal('hide');
+        this.props.handleCancelConfirmedEvent(this.props.params.eventID);
+    }
+
+    handleCloseModal () {
+        $('.ui.basic.modal')
+            .modal('hide');
+    }
+
+
 
     renderView () {
 
         if (this.props.userIsHost && this.props.isPoll) {
+
             return (
                  <HostPoll tally= { this.props.tally }
                            event= { this.props.event }
@@ -56,13 +77,44 @@ class Event extends React.Component {
     }
     render () {
 
+        let headerTitle = this.props.isPoll ? "Poll" : "Event";
         if (this.props.isFetching) {
             return (
                 <Spinner />
             );
+        } if (this.props.userIsHost) {
+            return (
+                <div>
+
+                    <CancelConfirmedEventModal
+                        handleCancelConfirmedEvent={this.handleCancelConfirmedEvent}
+                        handleCloseModal={this.handleCloseModal} />
+
+                    <div className="event-header row">
+                        <p className="three columns back-button" > Edit </p>
+                        <h3 className=" six columns title"> { headerTitle }</h3>
+                        <p className="three columns cancel-event-button"
+                            onClick={ this.cancelEventConfirmationModal }>
+                            Cancel </p>
+                    </div>
+
+                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                                        eventName={ this.props.event.eventName }
+                                        eventDescription={ this.props.event.eventDescription }
+                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
+                    <div className="container">
+                        {this.renderView()}
+                    </div>
+                </div>
+            );
         } else {
             return (
                 <div>
+
+                    <div className="event-header row">
+                        <h3 className=" twelve columns title"> { headerTitle }</h3>
+                    </div>
+
                     <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
                                         eventName={ this.props.event.eventName }
                                         eventDescription={ this.props.event.eventDescription }
