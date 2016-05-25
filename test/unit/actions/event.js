@@ -9,6 +9,8 @@ import { CONFIRM_EVENT, CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EV
 import { confirmEvent, confirmEventRequest, confirmEventSuccess, confirmEventFailure } from '../../../src/js/actions/event.js';
 import { UPDATE_RSVP, UPDATE_RSVP_REQUEST, UPDATE_RSVP_SUCCESS, UPDATE_RSVP_FAILURE } from '../../../src/js/actions/event.js';
 import { updateRSVP, updateRSVPRequest, updateRSVPSuccess, updateRSVPFailure } from '../../../src/js/actions/event.js';
+import { DELETE_EVENT, DELETE_EVENT_REQUEST, DELETE_EVENT_SUCCESS, DELETE_EVENT_FAILURE } from '../../../src/js/actions/event.js';
+import { deleteEvent, deleteEventRequest, deleteEventSuccess, deleteEventFailure } from '../../../src/js/actions/event.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 /********
@@ -308,5 +310,72 @@ test('updateRSVPFailure action creator returns expected action', (t) => {
     const actual = updateRSVPFailure();
 
     t.deepEqual(actual, expected, 'updateRSVPFailure returns UPDATE_RSVP_FAILURE action');
+    t.end();
+});
+
+
+/********
+CANCEL CONFIRMED EVENT ACTIONS
+********/
+
+
+test('deleteEvent async action creator returns expected action', (t) => {
+
+    let actual;
+    const { dispatch, queue } = createThunk();
+    let eventID = 'event:100';
+    dispatch(deleteEvent(eventID));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: DELETE_EVENT_REQUEST,
+        isFetching: true
+    };
+
+    t.deepEqual(actual, expected, "deleteEvent returns DELETE_EVENT_REQUEST action");
+    t.end();
+});
+
+test('deleteEventRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: DELETE_EVENT_REQUEST,
+        isFetching: true
+    };
+    const actual = deleteEventRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('DeleteEventSuccess action creator returns expected action', (t) => {
+
+
+    const expected = {
+        type: DELETE_EVENT_SUCCESS,
+        isFetching: false
+    };
+
+    const actual = deleteEventSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('deleteEventFailure action creator returns expected action', (t) => {
+
+    const error = {
+        message: "Whoops"
+    };
+    const expected = {
+        type: DELETE_EVENT_FAILURE,
+        isFetching: false,
+        error
+    };
+
+    const actual = deleteEventFailure(error);
+
+    t.deepEqual(actual, expected);
     t.end();
 });

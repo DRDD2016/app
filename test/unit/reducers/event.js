@@ -305,3 +305,67 @@ test('Reducer handles UPDATE_RSVP_FAILURE as expected', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+/********
+DELETE EVENT
+********/
+
+test('Reducer handles DELETE_EVENT_REQUEST as expected', (t) => {
+
+    const action = {
+        type: "DELETE_EVENT_REQUEST",
+        isFetching: true
+    };
+    const initialState = state;
+    const actual = reducer(initialState, action);
+
+    let expected = initialState;
+    expected.isFetching = true;
+
+    t.deepEqual(actual, expected, 'on DELETE_EVENT_REQUEST, isFetching is `true`');
+    t.end();
+});
+
+test('Reducer handles DELETE_EVENT_SUCCESS as expected', (t) => {
+
+    const action = {
+        type: "DELETE_EVENT_SUCCESS",
+        isFetching: false
+    };
+    const initialState = state;
+    const actual = reducer(initialState, action);
+
+    let expected = initialState;
+    expected.isFetching = false;
+
+    t.deepEqual(actual, expected, 'on DELETE_EVENT_SUCCESS, isFetching is `false`');
+    t.end();
+});
+
+
+
+
+
+test('Reducer handles DELETE_EVENT_FAILURE as expected', (t) => {
+
+    let initialState = state;
+    initialState.isFetching = true;
+    const error = {
+        message: "There was an error..."
+    };
+
+    const action = {
+        type: "DELETE_EVENT_FAILURE",
+        isFetching: false,
+        error: error
+    };
+
+    const actual = reducer(initialState, action);
+
+    let expected = initialState;
+    expected.isFetching = false;
+    expected.error = error;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
