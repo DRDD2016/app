@@ -1,4 +1,4 @@
-
+var updateRSVP = require('../lib/updateRSVP.js');
 var getEvent = require('../db/getEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
 
@@ -13,7 +13,7 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                if (!request.payload) {
+                if (!request.payload || !request.payload.userID || !request.payload.eventID || !request.payload.RSVPStatus) {
 
                     return reply(new Error("Missing data for update-rsvp"));
                 }
@@ -21,7 +21,25 @@ exports.register = (server, options, next) => {
                 var eventID = request.payload.eventID;
                 var userRSVPStatus = request.payload.RSVPStatus;
 
-                // update rsvp;
+                updateRSVP(userID, eventID, userRSVPStatus, (error, success) => {
+
+                    if (error) {
+                        return reply(error);
+                    }
+
+                    getEvent(eventID, (error, event) => {
+
+                        if (error) {
+                            return reply(error);
+                        }
+                        var recipients = [event.hostID];
+                        notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
+
+                            var verdict = error || success;
+                            reply(verdict);
+                        });
+                    });
+                });
             }
         }
 

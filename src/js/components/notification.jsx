@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import formatDate from '../lib/formatDate.js';
 
 const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID }) => {
-
+    console.log(subjectID, hostID);
     let hostIsSubject = subjectID === hostID;
-
+    console.log(hostIsSubject);
     return (
         <Link to={ 'event/' + eventID } >
             <div className="row notification">

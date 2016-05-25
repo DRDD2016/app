@@ -1,22 +1,26 @@
 var client = require('./init.js');
 
-function setNotifications (users, notification, callback) {
+function setNotifications (recipients, subjectID, notification, callback) {
 
-    if (!Array.isArray(users)) {
+    if (!Array.isArray(recipients)) {
 
-        throw new Error("setNotifications: first argument must be an array");
+        callback(new Error("setNotifications: first argument must be an array"));
+    }
+    if (!subjectID) {
+
+        callback(new Error('setNotifications: subjectID is missing'));
     }
 
-    users.forEach((id, index) => {
+    recipients.forEach((recipientID, index) => {
 
         // identify the person at whom this notification is aimed
-        notification.subjectID = id;
-        var setName = "notifications:" + id;
+        notification.subjectID = subjectID;
+        var setName = "notifications:" + recipientID;
 
         client.saddAsync(setName, JSON.stringify(notification))
 
         .then((response) => {
-            if (index === users.length - 1) {
+            if (index === recipients.length - 1) {
                 return callback(null, response);
             }
         })

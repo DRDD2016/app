@@ -185,14 +185,14 @@ export function confirmEventFailure () {
 UPDATE RSVP ACTIONS
 ********/
 
-export function updateRSVP (RSVPstatus, eventID) {
+export function updateRSVP (RSVPStatus, eventID) {
 
     return (dispatch) => {
 
         let payload = {
             userID: getUserID(),
             eventID,
-            RSVPstatus
+            RSVPStatus
         };
 
         dispatch(updateRSVPRequest());

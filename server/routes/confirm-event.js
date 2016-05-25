@@ -36,7 +36,15 @@ exports.register = (server, options, next) => {
                             if (error) {
                                 reply(error);
                             }
-                            notifyEveryone(event.hostID, eventID, event, (error, success) => {
+
+                            var recipients = event.invitees.map((invitee) => {
+
+                                return invitee.id;
+                            }).concat([event.hostID]);
+
+                            var subjectID = event.hostID;
+
+                            notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
                                 var verdict = error || success;
                                 reply(verdict);
