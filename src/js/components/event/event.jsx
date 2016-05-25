@@ -5,6 +5,7 @@ import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
 import CancelConfirmedEventModal from './cancel-confirmed-event-modal.jsx';
+import { Link } from 'react-router';
 
 
 class Event extends React.Component {
@@ -92,7 +93,7 @@ class Event extends React.Component {
                 </div>
             );
         }
-        if (this.props.userIsHost) {
+        if (this.props.userIsHost && !this.props.isPoll) {
             return (
                 <div>
 
@@ -101,7 +102,34 @@ class Event extends React.Component {
                         handleCloseModal={this.handleCloseModal} />
 
                     <div className="event-header row">
+                        <Link to={ 'edit/' + this.props.eventID }>
                         <p className="three columns back-button" > Edit </p>
+                        </Link>
+                        <h3 className=" six columns title"> { headerTitle }</h3>
+                        <p className="three columns cancel-event-button"
+                            onClick={ this.cancelEventConfirmationModal }>
+                            Cancel </p>
+                    </div>
+
+                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                                        eventName={ this.props.event.eventName }
+                                        eventDescription={ this.props.event.eventDescription }
+                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
+                    <div className="container">
+                        {this.renderView()}
+                    </div>
+                </div>
+            );
+        } if (this.props.userIsHost && this.props.isPoll) {
+            return (
+                <div>
+
+                    <CancelConfirmedEventModal
+                        handleDeleteEvent={this.handleDeleteEvent}
+                        handleCloseModal={this.handleCloseModal} />
+
+                    <div className="event-header row">
+                        <p className="three columns back-button" > </p>
                         <h3 className=" six columns title"> { headerTitle }</h3>
                         <p className="three columns cancel-event-button"
                             onClick={ this.cancelEventConfirmationModal }>
