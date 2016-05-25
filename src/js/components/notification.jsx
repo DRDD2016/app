@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
+import getUserID from '../lib/getUserID.js';
 import formatDate from '../lib/formatDate.js';
 
 const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID }) => {
-    console.log(subjectID, hostID);
-    let hostIsSubject = subjectID === hostID;
-    console.log(hostIsSubject);
+
+    let userIsSubject = subjectID === getUserID();
     return (
         <Link to={ 'event/' + eventID } >
             <div className="row notification">
@@ -13,15 +13,17 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                 <div className="six columns">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>
                     <p className="subject-name">
-                        { hostIsSubject && " You"}
-                        { !hostIsSubject && firstName + " " + lastName }
+                        { userIsSubject && " You"}
+                        { !userIsSubject && firstName + " " + lastName }
                     <span>
-                        { hostIsSubject && isPoll && " have created a poll " }
-                        { hostIsSubject && !isPoll && " have created an event " }
-                        { !hostIsSubject && userIsHost && isPoll && " has voted on your poll" }
-                        { !hostIsSubject && userIsHost && !isPoll && " has responded to your event" }
-                        { !hostIsSubject && !userIsHost && isPoll && " wants you to vote on their poll" }
-                        { !hostIsSubject && !userIsHost && !isPoll && " has invited you to their event" }
+                        { userIsSubject && isPoll && " have created a poll " }
+                        { userIsSubject && !isPoll && " have created an event " }
+
+                        { !userIsSubject && userIsHost && isPoll && " has voted on your poll" }
+                        { !userIsSubject && userIsHost && !isPoll && " has responded to your event" }
+
+                        { !userIsSubject && !userIsHost && isPoll && " wants you to vote on their poll" }
+                        { !userIsSubject && !userIsHost && !isPoll && " has invited you to their event" }
                     </span>
                     </p>
                 </div>
