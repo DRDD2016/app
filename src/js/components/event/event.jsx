@@ -102,7 +102,7 @@ class Event extends React.Component {
                         handleCloseModal={this.handleCloseModal} />
 
                     <div className="event-header row">
-                        <Link to={ 'edit/' + this.props.eventID }>
+                        <Link onClick={ () => { this.props.handleEdit(this.props.event); } }to={ 'edit/' + this.props.params.eventID }>
                         <p className="three columns back-button" > Edit </p>
                         </Link>
                         <h3 className=" six columns title"> { headerTitle }</h3>
