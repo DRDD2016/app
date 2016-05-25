@@ -24,10 +24,10 @@ export const UPDATE_RSVP_REQUEST = 'UPDATE_RSVP_REQUEST';
 export const UPDATE_RSVP_SUCCESS = 'UPDATE_RSVP_SUCCESS';
 export const UPDATE_RSVP_FAILURE = 'UPDATE_RSVP_FAILURE';
 
-export const CANCEL_CONFIRMED_EVENT = 'CANCEL_CONFIRMED_EVENT';
-export const CANCEL_CONFIRMED_EVENT_REQUEST = 'CANCEL_CONFIRMED_EVENT_REQUEST';
-export const CANCEL_CONFIRMED_EVENT_SUCCESS = 'CANCEL_CONFIRMED_EVENT_SUCCESS';
-export const CANCEL_CONFIRMED_EVENT_FAILURE = 'CANCEL_CONFIRMED_EVENT_FAILURE';
+export const DELETE_EVENT = 'DELETE_EVENT_EVENT';
+export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST';
+export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
+export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
 
 
 /********
@@ -233,39 +233,39 @@ CANCEL CONFIRMED EVENT ACTIONS
 ********/
 
 
-export function cancelConfirmedEvent (eventID) {
+export function deleteEvent (eventID) {
 
     return (dispatch) => {
 
-        dispatch(cancelConfirmedEventRequest());
+        dispatch(deleteEventRequest());
 
-        axios.get('/cancel-confirmed-event?eventID=' + eventID)
+        axios.get('/delete-event?eventID=' + eventID)
             .then((response) => {
-                dispatch(cancelConfirmedEventSuccess(response.data));
+                dispatch(deleteEventSuccess(response.data));
             })
             .catch((error) => {
-                dispatch(cancelConfirmedEventFailure(error));
+                dispatch(deleteEventFailure(error));
             });
     };
 }
 
 export function cancelConfirmedEventRequest () {
     return {
-        type: CANCEL_CONFIRMED_EVENT_REQUEST,
+        type: DELETE_EVENT_REQUEST,
         isFetching: true
     };
 }
 
 export function cancelConfirmedEventSuccess () {
     return {
-        type: CANCEL_CONFIRMED_EVENT_SUCCESS,
+        type: DELETE_EVENT_SUCCESS,
         isFetching: false,
     };
 }
 
 export function cancelConfirmedEventFailure (error) {
     return {
-        type: CANCEL_CONFIRMED_EVENT_FAILURE,
+        type: DELETE_EVENT_FAILURE,
         isFetching: false,
         error: error
     };

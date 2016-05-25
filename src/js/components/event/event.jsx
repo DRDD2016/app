@@ -90,11 +90,6 @@ class Event extends React.Component {
                         handleCancelConfirmedEvent={this.handleCancelConfirmedEvent}
                         handleCloseModal={this.handleCloseModal} />
 
-
-
-
-
-
                     <div className="event-header row">
                         <p className="three columns back-button" > Edit </p>
                         <h3 className=" six columns title"> { headerTitle }</h3>
