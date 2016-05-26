@@ -2,9 +2,9 @@ var client = require('./init.js');
 
 function getCalendar (userID, callback) {
 
-    var setKey = "calendar:" + userID;
-    
-    client.smembersAsync(setKey)
+    var listName = "calendar:" + userID;
+
+    client.lrangeAsync(listName, 0, -1)
         .then((calendar) => {
             callback(null, calendar);
         })

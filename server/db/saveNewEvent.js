@@ -16,6 +16,7 @@ function saveNewEvent (event, callback) {
                                    "hostPhotoURL", stringifiedObject.hostPhotoURL,
                                    "eventID", eventID)
          .then(() => {
+            
              callback(null, eventID);
          })
          .catch((error) => {

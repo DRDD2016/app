@@ -4,7 +4,7 @@ function getNotifications (id, callback) {
 
     var notificationID = "notifications:" + id;
 
-    client.smembersAsync(notificationID)
+    client.lrangeAsync(notificationID, 0, -1)
         .then((response) => {
 
             return response.map((value) => {

@@ -16,19 +16,21 @@ exports.register = (server, options, next) => {
 
                     if (error) {
                         return reply(error);
+                    } else {
+
+                        var recipients = event.invitees.map((invitee) => {
+
+                            return invitee.id;
+                        }).concat([event.hostID]);
+
+                        var subjectID = event.hostID;
+
+                        notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
+                            
+                            var verdict = error || success;
+                            reply(verdict);
+                        });
                     }
-                    var recipients = event.invitees.map((invitee) => {
-
-                        return invitee.id;
-                    }).concat([event.hostID]);
-
-                    var subjectID = event.hostID;
-
-                    notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
-
-                        var verdict = error || success;
-                        reply(verdict);
-                    });
                 });
             }
         }

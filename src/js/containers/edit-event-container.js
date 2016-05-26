@@ -43,7 +43,6 @@ const mapDispatchToProps = (dispatch) => {
 
         handleSaveEditedEvent: (eventWhat, eventWhere, eventWhen, eventID) => {
 
-            console.log(eventWhat, eventWhere, eventWhen, eventID);
             dispatch(saveEditedEvent([eventWhat], [eventWhere], [eventWhen], eventID));
         }
     };

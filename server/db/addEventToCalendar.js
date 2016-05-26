@@ -6,12 +6,12 @@ function addEventToCalendar (users, eventID, callback) {
 
         throw new Error("addEventToCalendar: first argument must be an array");
     }
-    
+
     users.forEach((id, index) => {
 
-        var setName = "calendar:" + id;
+        var listName = "calendar:" + id;
 
-        client.saddAsync(setName, eventID)
+        client.lpushAsync(listName, eventID)
 
         .then((response) => {
             if (index === users.length - 1) {
