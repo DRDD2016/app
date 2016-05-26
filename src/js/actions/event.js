@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
+import { clearCreateEvent } from './create-event.js';
 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_REQUEST = 'GET_EVENT_REQUEST';
@@ -303,6 +304,7 @@ export function saveEditedEvent (eventWhat, eventWhere, eventWhen, eventID) {
         axios.post('/edit-event', payload)
         .then((response) => {
             dispatch(saveEditedEventSuccess());
+            dispatch(clearCreateEvent());
         })
         .catch((error) => {
             dispatch(savedEditedEventFailure(error));
