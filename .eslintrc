@@ -4,8 +4,10 @@
     "env": {
         "node": true
     },
-    "ecmaFeatures": {
-        "jsx": true
+    "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      }
     },
     "rules": {
         "no-console": ["warn", {allow: ["warn","error"]}],
@@ -18,10 +20,10 @@
         "space-before-function-paren": "error",
         "no-spaced-func": "error",
         "space-unary-ops": [
-        "error", {
+          "error", {
             "words": true,
             "nonwords": false
-        }
+          }
         ],
         "comma-spacing": ["error", {
             "before": false,
