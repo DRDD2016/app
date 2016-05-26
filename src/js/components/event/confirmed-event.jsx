@@ -11,19 +11,18 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
         return RSVPs[status].map((id, index) => {
 
-            let user = invitees.filter((userObject) => {
+            let usersWithRSVP = invitees.filter((userObject) => {
                 return id === userObject.id;
             });
 
             return (
-                <div className="row" key={ user[0].id }>
-                    <div className="four columns">
-                        <div className="item" >
-                            <img className="ui avatar image" src={ user[0].photoURL } />
-                            STATUS: {status}
-                            <div className="content">
-                                <div className="header">{ user[0].firstName }</div>
-                            </div>
+                <div className="twelve columns">
+
+                    <div className="item" key={ usersWithRSVP[0].id }>
+                        <img className="ui avatar image" src={ usersWithRSVP[0].photoURL } />
+
+                        <div className="content">
+                            <div className="header">{ usersWithRSVP[0].firstName }</div>
                         </div>
                     </div>
                 </div>
@@ -65,6 +64,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     { event.eventWhat[0] }
                 </div>
             </div>
+            <br />
 
             <div className="row">
                 <h4 className="twelve columns">
@@ -77,6 +77,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     { event.eventWhere[0].placeName } { event.eventWhere[0].placeName }
                 </div>
             </div>
+            <br />
 
             <div className="row">
                 <h4 className="twelve columns">
@@ -89,6 +90,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     { event.eventWhen[0].date } { event.eventWhen[0].date }
                 </div>
             </div>
+            <br />
 
             <hr />
 
@@ -115,20 +117,18 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 </div>
             </div>
 
-            <div className="ui middle aligned selection list">
+            <div className="four columns ui middle aligned selection list verticalise">
                 { RSVPUserList(RSVPs, invitees, 'going') }
             </div>
 
-
-            <div className=" ui middle aligned selection list">
+            <div className="four columns ui middle aligned selection list verticalise">
                 { RSVPUserList(RSVPs, invitees, 'maybe') }
             </div>
 
-            <div className="ui middle aligned selection list">
+            <div className="four columns ui middle aligned selection list verticalise">
                 { RSVPUserList(RSVPs, invitees, 'notGoing') }
             </div>
 
-            <hr />
 
         </div>
     );
