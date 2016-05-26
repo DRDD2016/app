@@ -16,6 +16,7 @@ function getRSVPs (eventID, callback) {
             return callback(error);
         }
         RSVPs[attendanceStatus] = data;
+        
         progressCount++;
 
         if (progressCount === statuses.length) {
@@ -25,7 +26,7 @@ function getRSVPs (eventID, callback) {
     }
 
     statuses.forEach((attendanceStatus) => {
-        
+
         getRSVPsForAttendanceStatus(eventID, attendanceStatus, report);
     });
 }

@@ -3,119 +3,136 @@ import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 
 
-class ConfirmedEvent extends React.Component {
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent }) => {
 
-    constructor (props) {
-        super(props);
+    let handleClick = !userIsHost ? RSVPToEvent : '';
+
+    function RSVPUserList (RSVPs, invitees, status) {
+
+        return RSVPs[status].map((id, index) => {
+
+            let user = invitees.filter((userObject) => {
+                return id === userObject.id;
+            });
+
+            return (
+                <div className="row" key={ user[0].id }>
+                    <div className="four columns">
+                        <div className="item" >
+                            <img className="ui avatar image" src={ user[0].photoURL } />
+                            STATUS: {status}
+                            <div className="content">
+                                <div className="header">{ user[0].firstName }</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        });
     }
 
-    render () {
-        let event = this.props.event;
-        let onClickRSVP = !this.props.isHost ? this.props.handleEventRSVP : '';
+    let going = RSVPs.going;
+    let notGoing = RSVPs.notGoing;
+    let maybe = RSVPs.maybe;
+    let responded = going.concat(maybe, notGoing);
 
-        function RSVPUserList (RSVPs, invitees, status) {
-            return RSVPs[status].map((id, index) => {
-                let user = invitees.filter((userObject) => {
-                    return id === userObject.id;
-                });
-                return (
-                    <div className="item" key={user[0].id}>
-                        <img className="ui avatar image" src={user[0].photoURL} />
-                        <div className="content">
-                            <div className="header">{user[0].firstName}</div>
-                        </div>
-                    </div>
-                );
-            });
-        }
+    let notRespondedList = (responded, invitees) => {
 
-        let going = this.props.RSVPs.going;
-        let notGoing = this.props.RSVPs.notGoing;
-        let maybe = this.props.RSVPs.maybe;
-        let responded = going.concat(maybe, notGoing);
+        let notResponded = invitees.filter((invitedUser, index) => {
+            return responded.indexOf(invitedUser.id) === -1;
+        });
 
-        function notRespondedList (responded, invitees) {
-
-            if (responded.length === 0) {
-                return invitees.map((userObject) => {
-                    return (
-                        <div className="ui image label" key={userObject.firstName}>
-                            <img src={userObject.photoURL} />
-                                  {userObject.firstName}
-                        </div>
-                    );
-                });
-            } else {
-                return responded.map((id, index) => {
-                    let user = invitees.filter((userObject) => {
-                        return id !== userObject.id;
-                    });
-                    return (
-                        <div className="ui image label large">
-                            <img src={user[0].photoURL} key={user[0].firstName} />
-                              {user[0].firstName}
-                        </div>
-
-                    );
-                });
-            }
-        }
-
-
-
-        return (
-            <div>
-
-                This is the confirmed event page for both host and inviteed.
-
-
-                <div>
-                    What { event.eventWhat[0] }
+        return notResponded.map((user, i) => {
+            return (
+                <div className="ui image label" key={ user.id }>
+                    <img src={ user.photoURL } />
+                    { user.firstName }
                 </div>
-                <div>
-                    Where { event.eventWhere[0].placeName } { event.eventWhere[0].placeName }
-                </div>
-                <div>
-                    When { event.eventWhen[0].date } { event.eventWhen[0].date }
-                </div>
+            );
+        });
+    };
+
+    return (
+        <div>
+            <div className="row">
+                <h4 className="twelve columns">
+                    What
+                </h4>
+            </div>
+
+            <div className="row">
                 <div className="twelve columns">
-                        { notRespondedList(responded, this.props.invitees) }
+                    { event.eventWhat[0] }
                 </div>
+            </div>
 
-                <div className="row">
+            <div className="row">
+                <h4 className="twelve columns">
+                    Where
+                </h4>
+            </div>
+
+            <div className="row">
+                <div className="twelve columns">
+                    { event.eventWhere[0].placeName } { event.eventWhere[0].placeName }
+                </div>
+            </div>
+
+            <div className="row">
+                <h4 className="twelve columns">
+                    When
+                </h4>
+            </div>
+
+            <div className="row">
+                <div className="twelve columns">
+                    { event.eventWhen[0].date } { event.eventWhen[0].date }
+                </div>
+            </div>
+
+            <hr />
+
+            <div className="row">
+                <div className="twelve columns">
+                    <div>Not responded</div>
+                    { notRespondedList(responded, invitees) }
+                </div>
+            </div>
+
+            <hr />
+
+            <div className="row">
                 <div className="four columns">
-                    <div onClick={ onClickRSVP }> Going </div>
-
-                    <div className="ui middle aligned selection list">
-                        { RSVPUserList( this.props.RSVPs, this.props.invitees, 'going') }
-                    </div>
+                    <div onClick={ () => handleClick('going', eventID) }> Going </div>
                 </div>
 
                 <div className="four columns">
-                    <div onClick={ onClickRSVP }> Maybe </div>
-
-                    <div className=" ui middle aligned selection list">
-                        { RSVPUserList( this.props.RSVPs, this.props.invitees, 'maybe') }
-                    </div>
+                    <div onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
                 </div>
 
                 <div className="four columns">
-                    <div onClick={ onClickRSVP }> Not Going </div>
-
-                    <div className="ui middle aligned selection list">
-                        { RSVPUserList( this.props.RSVPs, this.props.invitees, 'notGoing') }
-                    </div>
+                    <div onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
                 </div>
-                </div>
+            </div>
 
-
-
+            <div className="ui middle aligned selection list">
+                { RSVPUserList(RSVPs, invitees, 'going') }
             </div>
 
 
-        );
-    }
+            <div className=" ui middle aligned selection list">
+                { RSVPUserList(RSVPs, invitees, 'maybe') }
+            </div>
 
-}
+            <div className="ui middle aligned selection list">
+                { RSVPUserList(RSVPs, invitees, 'notGoing') }
+            </div>
+
+            <hr />
+
+        </div>
+    );
+
+};
 
 export default ConfirmedEvent;

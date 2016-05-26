@@ -35,7 +35,7 @@ const Feed = ({ notifications, isFetching }) => {
                 <h4 className="twelve columns">Feed</h4>
             </div>
             {
-                notifications.length === 0 &&
+                notifications.length === 0 && !isFetching &&
                     <p>Nothing to see here</p>
             }
             {

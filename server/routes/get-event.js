@@ -16,7 +16,7 @@ exports.register = (server, options, next) => {
                 getEvent(request.query.eventID, (error, event) => {
 
                     if (error) {
-                        console.log(error,'this is where the error is');
+
                         return reply(error);
                     }
                     if (event === null) {

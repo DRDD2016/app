@@ -22,6 +22,9 @@ import { saveEditedEvent, saveEditedEventRequest, saveEditedEventSuccess, saveEd
 
 import createThunk from '../../utils/mock-thunk.js';
 
+import { event as eventFixtures } from './fixtures.js';
+import * as genericFixtures from '../../utils/fixtures.js';
+
 /********
 GET EVENT ACTIONS
 ********/
@@ -301,9 +304,10 @@ test('updateRSVPSuccess action creator returns expected action', (t) => {
     const expected = {
         type: UPDATE_RSVP_SUCCESS,
         isFetching: false,
+        data: eventFixtures.RSVP
     };
 
-    const actual = updateRSVPSuccess();
+    const actual = updateRSVPSuccess(eventFixtures.RSVP);
 
     t.deepEqual(actual, expected, 'updateRSVPSuccess returns UPDATE_RSVP_SUCCESS action');
     t.end();
@@ -314,9 +318,10 @@ test('updateRSVPFailure action creator returns expected action', (t) => {
     const expected = {
         type: UPDATE_RSVP_FAILURE,
         isFetching: false,
+        error: genericFixtures.genericError
     };
 
-    const actual = updateRSVPFailure();
+    const actual = updateRSVPFailure(genericFixtures.genericError);
 
     t.deepEqual(actual, expected, 'updateRSVPFailure returns UPDATE_RSVP_FAILURE action');
     t.end();

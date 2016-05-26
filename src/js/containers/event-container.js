@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
-import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent } from '../actions/event.js';
+import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
 import { hydrateEditEvent } from '../actions/create-event.js';
 
 
@@ -27,17 +27,14 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(getEvent(eventID));
         },
-
         toggleSelection: (eventType, index) => {
 
             dispatch(updatePoll(eventType, index));
         },
-
         handlePollConfirmation: (poll, eventID) => {
 
             dispatch(confirmPoll(poll, eventID));
         },
-
         handleHostEventChoices: (eventType, value, index) => {
 
             dispatch(addHostEventChoice(eventType, value, index));
@@ -53,6 +50,10 @@ const mapDispatchToProps = (dispatch) => {
         handleEdit: (event) => {
 
             dispatch(hydrateEditEvent(event));
+        },
+        RSVPToEvent: (status, eventID) => {
+            console.log(`DISPATCHING FOR ${eventID}, ${status}`);
+            dispatch(updateRSVP(status, eventID));
         }
     };
 };

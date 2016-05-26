@@ -2,15 +2,15 @@ var client = require('./init.js');
 
 function getRSVPsForAttendanceStatus (eventID, status, callback) {
 
-    var setKey = 'rsvp:' + eventID + '|' + status;
-
+    var setKey = 'RSVP:' + eventID + '|' + status;
+    console.log(setKey);
     client.smembersAsync(setKey)
         .then((RSVPs) => {
-
+            
             callback(null, status, RSVPs);
         })
         .catch((error) => {
-            
+
             callback(error);
         });
 }
