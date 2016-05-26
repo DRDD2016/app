@@ -9,6 +9,7 @@ var GetEvent = require('./routes/get-event.js');
 var ConfirmPoll = require('./routes/confirm-poll.js');
 var ConfirmEvent = require('./routes/confirm-event.js');
 var DeleteEvent = require('./routes/delete-event.js');
+var EditEvent = require('./routes/edit-event.js');
 
 var plugins = [
     Inert,
@@ -21,7 +22,8 @@ var plugins = [
     GetEvent,
     ConfirmPoll,
     ConfirmEvent,
-    DeleteEvent
+    DeleteEvent,
+    EditEvent
 ];
 
 module.exports = plugins;

@@ -20,13 +20,17 @@ exports.register = (server, options, next) => {
                     if (error) {
                         reply(error);
                     }
+
                     getEvent(eventID, (error, event) => {
                         var subjectID = request.payload.userID;
                         var recipients = event.invitees.map((invitee) => {
                             return invitee.id;
-                        }).concat([event.hostID]);                        if (error) {
+                        }).concat([event.hostID]);
+
+                        if (error) {
                             reply(error);
                         }
+
                         notifyEveryone(recipients, subjectID, eventID, event, (error, response) => {
                             if (error) {
                                 reply(error);
@@ -34,6 +38,7 @@ exports.register = (server, options, next) => {
 
                             reply(response);
                         });
+
                     });
 
                 });
