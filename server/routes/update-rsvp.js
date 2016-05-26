@@ -17,27 +17,28 @@ exports.register = (server, options, next) => {
 
                     return reply(new Error("Missing data for update-rsvp"));
                 }
-                var userID = request.payload.userID;
+                var subjectID = request.payload.userID;
                 var eventID = request.payload.eventID;
                 var userRSVPStatus = request.payload.RSVPStatus;
 
-                updateRSVP(userID, eventID, userRSVPStatus, (error, success) => {
+                updateRSVP(subjectID, eventID, userRSVPStatus, (error, success) => {
 
                     if (error) {
                         return reply(error);
                     }
-
                     getEvent(eventID, (error, event) => {
-
+                        
                         if (error) {
                             return reply(error);
-                        }
-                        var recipients = [event.hostID];
-                        notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
+                        } else {
 
-                            var verdict = error || success;
-                            reply(verdict);
-                        });
+                            var recipients = [event.hostID];
+                            notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
+
+                                var verdict = error || success;
+                                reply(verdict);
+                            });
+                        }
                     });
                 });
             }
@@ -49,5 +50,5 @@ exports.register = (server, options, next) => {
 
 
 exports.register.attributes = {
-    name: 'UpdateRSVPs'
+    name: 'UpdateRSVP'
 };

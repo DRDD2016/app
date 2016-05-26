@@ -3,21 +3,22 @@ var parseObjectValues = require('../lib/parseObjectValues.js');
 
 function getEvent (eventID, callback) {
 
-    client.hgetallAsync(eventID)
-        .then((event) => {
+    client.hgetall(eventID, (error, event) => {
+
+        if (error) {
+            callback(error);
+        } else {
+
             if (event !== null){
-                console.log("event inside first iff");
+
                 var parsedEvent = parseObjectValues(event);
                 callback(null, parsedEvent);
             } else {
+
                 callback(null, null);
             }
-
-        })
-        .catch((error) => {
-
-            callback(error);
-        });
+        }
+    });
 }
 
 module.exports = getEvent;
