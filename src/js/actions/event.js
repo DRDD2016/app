@@ -290,7 +290,8 @@ export function saveEditedEvent (eventWhat, eventWhere, eventWhen, eventID) {
             eventID,
             eventWhat,
             eventWhere,
-            eventWhen
+            eventWhen,
+            userID: getUserID()
         };
 
         dispatch(saveEditedEventRequest());
