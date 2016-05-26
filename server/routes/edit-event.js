@@ -22,6 +22,7 @@ exports.register = (server, options, next) => {
                     }
 
                     getEvent(eventID, (error, event) => {
+                        console.log(event);
                         var subjectID = request.payload.userID;
                         var recipients = event.invitees.map((invitee) => {
                             return invitee.id;

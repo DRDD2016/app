@@ -243,4 +243,37 @@ server.init(9001, (error, server) => {
                 });
         });
     });
+
+
+    test('`edit-event` works', (t) => {
+
+        const options = {
+            method: 'POST',
+            url: '/edit-event',
+            payload: {
+                userID: '12345678',
+                eventID: 'event:100',
+                eventWhat: ["what"],
+                eventWhere: [
+                    {
+                        placeName: "name",
+                        placeAddress: "address"
+                    }
+                ],
+                eventWhen: [
+                    {
+                        date: "date",
+                        time: "00:00"
+                    }
+                ]
+            }
+        };
+
+        server.inject(options, (response) => {
+
+            t.ok(1, 'Successful POST request');
+            t.end();
+        });
+    });
+
 });
