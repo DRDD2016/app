@@ -40,6 +40,5 @@ bundle.js
 
 # Environment variables
 secret.md
-env.sh
-test-env.sh
-flush.sh
+*.sh
+migrate.js
