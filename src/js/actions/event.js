@@ -29,6 +29,13 @@ export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST';
 export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
 export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
 
+export const SAVE_EDITED_EVENT = 'SAVE_EDITED_EVENT';
+export const SAVE_EDITED_EVENT_REQUEST = 'SAVE_EDITED_EVENT_REQUEST';
+export const SAVE_EDITED_EVENT_SUCCESS = 'SAVE_EDITED_EVENT_SUCCESS';
+export const SAVE_EDITED_EVENT_FAILURE = 'SAVE_EDITED_EVENT_FAILURE';
+
+
+
 
 /********
 GET EVENT ACTIONS
@@ -266,6 +273,55 @@ export function deleteEventSuccess () {
 export function deleteEventFailure (error) {
     return {
         type: DELETE_EVENT_FAILURE,
+        isFetching: false,
+        error: error
+    };
+}
+
+/********
+SAVE_EDITED_EVENT ACTIONS
+********/
+
+export function saveEditedEvent (eventWhat, eventWhere, eventWhen, eventID) {
+
+    return (dispatch) => {
+
+        let payload = {
+            eventID,
+            eventWhat,
+            eventWhere,
+            eventWhen
+        };
+
+        dispatch(saveEditedEventRequest());
+
+        axios.post('/edit-event', payload)
+        .then((response) => {
+            dispatch(saveEditedEventSuccess());
+        })
+        .catch((error) => {
+            dispatch(savedEditedEventFailure(error));
+        });
+    };
+}
+
+export function saveEditedEventRequest () {
+    return {
+        type: SAVE_EDITED_EVENT_REQUEST,
+        isFetching: true
+    };
+}
+
+export function saveEditedEventSuccess () {
+    return {
+        type: SAVE_EDITED_EVENT_SUCCESS,
+        isFetching: false,
+    };
+}
+
+export function saveEditedEventFailure (error) {
+    return {
+        type: SAVE_EDITED_EVENT_FAILURE,
         isFetching: false,
         error: error
     };

@@ -2,63 +2,66 @@ import React from 'react';
 import Input from '../general/input.jsx';
 import AutocompleteInput from '../general/autocomplete-input.jsx';
 import DateTimeInput from '../general/date-time-input.jsx';
+import classnames from 'classnames';
 
 
 
 
-class EditEvent extends React.Component {
+const EditEvent = (props) => {
 
-    constructor (props) {
-        super(props);
-    }
+    let eventWhat = props.eventWhat[0];
+    let eventWhere = props.eventWhere[0];
+    let eventWhen = props.eventWhen[0];
 
-    render () {
+    let templateNoSpace = `${eventWhere.placeName}${eventWhere.placeAddress}`;
+    let templateWithSpace = `${eventWhere.placeName} ${eventWhere.placeAddress}`;
+    let chosenTemplate = eventWhere.placeAddress === '' ? templateNoSpace : templateWithSpace;
+    let fullAddress = (eventWhere.placeName ? chosenTemplate : "");
 
-        let value = this.props.eventWhat[0];
+    let hideButtonToggle = eventWhat.length === 0 || eventWhere.placeName === "" || eventWhen.date === "";
 
-        let eventWhere = this.props.eventWhere[0];
-        let eventWhen = this.props.eventWhen[0];
+    let hideSaveButton = classnames("twelve columns", {
+        "hide": hideButtonToggle
+    });
 
-        let templateNoSpace = `${eventWhere.placeName}${eventWhere.placeAddress}`;
-        let templateWithSpace = `${eventWhere.placeName} ${eventWhere.placeAddress}`;
-        let chosenTemplate = eventWhere.placeAddress === '' ? templateNoSpace : templateWithSpace;
-        let fullAddress = (eventWhere.placeName ? chosenTemplate : "");
-
-        return (
+    return (
             <div>
                 This is the Edit Event View
 
-                Event What
+                <h2> What </h2>
                 <Input
-                    handleChange={ this.props.handleEventWhat.bind(this, 0) }
-                    value={ value }
+                    handleChange={ props.handleEventWhat.bind(this, 0) }
+                    value={ eventWhat }
                     inputKey={ 0 }
                     removeInput=''
-                    placeholder= "What would you like to do?"
+                    placeholder="What would you like to do?"
                 />
 
-                Event Where
+                <h2> Where </h2>
                 <AutocompleteInput
-                    handleChange={ this.props.handleEventWhere.bind(this, 0) }
+                    handleChange={ props.handleEventWhere.bind(this, 0) }
                     inputKey={ 0 }
                     value={ fullAddress }
-                    placeholder= "Where?"
-                    id = 'autocomplete-0'
+                    placeholder="Where?"
+                    id='autocomplete-0'
                     removeInput=''
                 />
 
-            Event when
+                <h2> when </h2>
                 <DateTimeInput
                     value={ eventWhen }
                     inputKey={ 0 }
-                    handleTime={ this.props.handleTime }
-                    handleDate={ this.props.handleDate }
+                    handleTime={ props.handleTime }
+                    handleDate={ props.handleDate }
                     removeInput=''
                 />
 
+            <button className={ hideSaveButton } onClick={ () => { props.handleSaveEditedEvent(eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
+                    Save Edited Event
+                </button>
+
             </div>
         );
-    }
-}
+};
 
 export default EditEvent;

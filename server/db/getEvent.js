@@ -6,7 +6,6 @@ function getEvent (eventID, callback) {
     client.hgetallAsync(eventID)
         .then((event) => {
             if (event !== null){
-                console.log("event inside first iff");
                 var parsedEvent = parseObjectValues(event);
                 callback(null, parsedEvent);
             } else {

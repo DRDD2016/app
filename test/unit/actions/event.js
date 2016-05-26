@@ -1,16 +1,25 @@
 import test from 'tape';
 import { GET_EVENT, GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL } from '../../../src/js/actions/event.js';
 import { getEvent, getEventRequest, getEventSuccess, getEventFailure, updatePoll } from '../../../src/js/actions/event.js';
+
 import { CONFIRM_POLL, CONFIRM_POLL_REQUEST, CONFIRM_POLL_SUCCESS, CONFIRM_POLL_FAILURE } from '../../../src/js/actions/event.js';
 import { confirmPoll, confirmPollRequest, confirmPollSuccess, confirmPollFailure } from '../../../src/js/actions/event.js';
+
 import { ADD_HOST_EVENT_CHOICE } from '../../../src/js/actions/event.js';
 import { addHostEventChoice } from '../../../src/js/actions/event.js';
+
 import { CONFIRM_EVENT, CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE } from '../../../src/js/actions/event.js';
 import { confirmEvent, confirmEventRequest, confirmEventSuccess, confirmEventFailure } from '../../../src/js/actions/event.js';
+
 import { UPDATE_RSVP, UPDATE_RSVP_REQUEST, UPDATE_RSVP_SUCCESS, UPDATE_RSVP_FAILURE } from '../../../src/js/actions/event.js';
 import { updateRSVP, updateRSVPRequest, updateRSVPSuccess, updateRSVPFailure } from '../../../src/js/actions/event.js';
+
 import { DELETE_EVENT, DELETE_EVENT_REQUEST, DELETE_EVENT_SUCCESS, DELETE_EVENT_FAILURE } from '../../../src/js/actions/event.js';
 import { deleteEvent, deleteEventRequest, deleteEventSuccess, deleteEventFailure } from '../../../src/js/actions/event.js';
+
+import { SAVE_EDITED_EVENT, SAVE_EDITED_EVENT_REQUEST, SAVE_EDITED_EVENT_SUCCESS, SAVE_EDITED_EVENT_FAILURE } from '../../../src/js/actions/event.js';
+import { saveEditedEvent, saveEditedEventRequest, saveEditedEventSuccess, saveEditedEventFailure } from '../../../src/js/actions/event.js';
+
 import createThunk from '../../utils/mock-thunk.js';
 
 /********
@@ -375,6 +384,86 @@ test('deleteEventFailure action creator returns expected action', (t) => {
     };
 
     const actual = deleteEventFailure(error);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+/********
+SAVE EDITED EVENT ACTIONS
+********/
+
+
+test('saveEditedEvent async action creator returns expected action', (t) => {
+
+    let actual;
+    const { dispatch, queue } = createThunk();
+    let eventWhat = ["what"];
+    let eventWhere = [
+        {
+            placeName: "name",
+            placeAddress: "address"
+        }
+    ];
+    let eventWhen = [
+        {
+            date: "date",
+            time: "00:00"
+        }
+    ];
+    let eventID = 'event:100';
+
+    dispatch(saveEditedEvent(eventWhat, eventWhere, eventWhen, eventID));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: SAVE_EDITED_EVENT_REQUEST,
+        isFetching: true
+    };
+
+    t.deepEqual(actual, expected, "saveEditedEvent returns SAVE_EDITED_EVENT_REQUEST action");
+    t.end();
+});
+
+test('saveEditedEventRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: SAVE_EDITED_EVENT_REQUEST,
+        isFetching: true
+    };
+    const actual = saveEditedEventRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('saveEditedEventSuccess action creator returns expected action', (t) => {
+
+
+    const expected = {
+        type: SAVE_EDITED_EVENT_SUCCESS,
+        isFetching: false
+    };
+
+    const actual = saveEditedEventSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('saveEditedEventFailure action creator returns expected action', (t) => {
+
+    const error = {
+        message: "Whoops"
+    };
+    const expected = {
+        type: SAVE_EDITED_EVENT_FAILURE,
+        isFetching: false,
+        error
+    };
+
+    const actual = saveEditedEventFailure(error);
 
     t.deepEqual(actual, expected);
     t.end();

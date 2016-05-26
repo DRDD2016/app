@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EditEvent from '../components/event/edit-event.jsx';
-import { setEventWhat, setEventWhere } from '../actions/create-event.js';
+import { setEventWhat, setEventWhere, setEventWhen } from '../actions/create-event.js';
 
 
 
@@ -38,6 +38,12 @@ const mapDispatchToProps = (dispatch) => {
         handleTime: (inputKey, event) => {
 
             dispatch(setEventWhen(event.target.value, inputKey, "time"));
+        },
+
+        handleSaveEditedEvent: (eventWhat, eventWhere, eventWhen, eventID) => {
+
+            console.log(eventWhat, eventWhere, eventWhen, eventID);
+            //dispatch(saveEditedEvent(eventWhat, eventWhere, eventWhen));
         }
     };
 };
