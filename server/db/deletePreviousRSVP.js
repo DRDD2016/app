@@ -1,20 +1,12 @@
 var client = require('./init.js');
-var index = 0;
 
-function deletePreviousRSVP (userID, eventID, callback) {
+function deletePreviousRSVP (userID, eventID, status, callback) {
 
-    var statuses = ['going', 'notGoing', 'maybe'];
-    var setKey = 'RSVP' + ':' + eventID + '|' + statuses[index];
+    var setKey = 'RSVP' + ':' + eventID + '|' + status;
 
     client.sremAsync(setKey, userID)
         .then((response) => {
-            index++;
-
-            if (response === 1 || index === statuses.length) {
-                return callback(null, true);
-            } else {
-                deletePreviousRSVP(userID, eventID, callback);
-            }
+            callback(null, response);
         })
         .catch((error) => {
             return callback(error);

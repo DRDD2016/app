@@ -6,6 +6,7 @@ function getEvent (eventID, callback) {
     client.hgetall(eventID, (error, event) => {
 
         if (error) {
+
             callback(error);
         } else {
 
@@ -14,7 +15,7 @@ function getEvent (eventID, callback) {
                 var parsedEvent = parseObjectValues(event);
                 callback(null, parsedEvent);
             } else {
-
+                
                 callback(null, null);
             }
         }

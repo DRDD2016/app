@@ -42,6 +42,7 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
+
                 dispatch(getEventSuccess(response.data));
             })
             .catch((error) => {
@@ -199,10 +200,10 @@ export function updateRSVP (RSVPStatus, eventID) {
 
         axios.post('/update-rsvp', payload)
             .then((response) => {
-                dispatch(updateRSVPSuccess());
+                dispatch(updateRSVPSuccess(response.data));
             })
             .catch((error) => {
-                dispatch(updateRSVPFailure());
+                dispatch(updateRSVPFailure(error));
             });
     };
 }
@@ -214,16 +215,19 @@ export function updateRSVPRequest () {
     };
 }
 
-export function updateRSVPSuccess () {
+export function updateRSVPSuccess (RSVPs) {
     return {
         type: UPDATE_RSVP_SUCCESS,
         isFetching: false,
+        data: RSVPs
     };
 }
-export function updateRSVPFailure () {
+
+export function updateRSVPFailure (error) {
     return {
         type: UPDATE_RSVP_FAILURE,
-        isFetching: false
+        isFetching: false,
+        error
     };
 }
 
