@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
+import { clearCreateEvent } from './create-event.js';
 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_REQUEST = 'GET_EVENT_REQUEST';
@@ -29,6 +30,13 @@ export const DELETE_EVENT_REQUEST = 'DELETE_EVENT_REQUEST';
 export const DELETE_EVENT_SUCCESS = 'DELETE_EVENT_SUCCESS';
 export const DELETE_EVENT_FAILURE = 'DELETE_EVENT_FAILURE';
 
+export const SAVE_EDITED_EVENT = 'SAVE_EDITED_EVENT';
+export const SAVE_EDITED_EVENT_REQUEST = 'SAVE_EDITED_EVENT_REQUEST';
+export const SAVE_EDITED_EVENT_SUCCESS = 'SAVE_EDITED_EVENT_SUCCESS';
+export const SAVE_EDITED_EVENT_FAILURE = 'SAVE_EDITED_EVENT_FAILURE';
+
+
+
 
 /********
 GET EVENT ACTIONS
@@ -42,6 +50,7 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
+
                 dispatch(getEventSuccess(response.data));
             })
             .catch((error) => {
@@ -199,10 +208,10 @@ export function updateRSVP (RSVPStatus, eventID) {
 
         axios.post('/update-rsvp', payload)
             .then((response) => {
-                dispatch(updateRSVPSuccess());
+                dispatch(updateRSVPSuccess(response.data));
             })
             .catch((error) => {
-                dispatch(updateRSVPFailure());
+                dispatch(updateRSVPFailure(error));
             });
     };
 }
@@ -214,16 +223,19 @@ export function updateRSVPRequest () {
     };
 }
 
-export function updateRSVPSuccess () {
+export function updateRSVPSuccess (RSVPs) {
     return {
         type: UPDATE_RSVP_SUCCESS,
         isFetching: false,
+        data: RSVPs
     };
 }
-export function updateRSVPFailure () {
+
+export function updateRSVPFailure (error) {
     return {
         type: UPDATE_RSVP_FAILURE,
-        isFetching: false
+        isFetching: false,
+        error
     };
 }
 
@@ -266,6 +278,57 @@ export function deleteEventSuccess () {
 export function deleteEventFailure (error) {
     return {
         type: DELETE_EVENT_FAILURE,
+        isFetching: false,
+        error: error
+    };
+}
+
+/********
+SAVE_EDITED_EVENT ACTIONS
+********/
+
+export function saveEditedEvent (eventWhat, eventWhere, eventWhen, eventID) {
+
+    return (dispatch) => {
+
+        let payload = {
+            eventID,
+            eventWhat,
+            eventWhere,
+            eventWhen,
+            userID: getUserID()
+        };
+
+        dispatch(saveEditedEventRequest());
+
+        axios.post('/edit-event', payload)
+        .then((response) => {
+            dispatch(saveEditedEventSuccess());
+            dispatch(clearCreateEvent());
+        })
+        .catch((error) => {
+            dispatch(savedEditedEventFailure(error));
+        });
+    };
+}
+
+export function saveEditedEventRequest () {
+    return {
+        type: SAVE_EDITED_EVENT_REQUEST,
+        isFetching: true
+    };
+}
+
+export function saveEditedEventSuccess () {
+    return {
+        type: SAVE_EDITED_EVENT_SUCCESS,
+        isFetching: false,
+    };
+}
+
+export function saveEditedEventFailure (error) {
+    return {
+        type: SAVE_EDITED_EVENT_FAILURE,
         isFetching: false,
         error: error
     };

@@ -1,0 +1,56 @@
+var editEvent = require('../db/editEvent.js');
+var stringifyObjectValues = require('../lib/stringifyObjectValues.js');
+var notifyEveryone = require('../lib/notifyEveryone.js');
+var getEvent = require('../db/getEvent.js');
+
+exports.register = (server, options, next) => {
+
+    server.route([{
+        method: 'POST',
+        path: '/edit-event',
+        config: {
+            description: 'Edit existing events.',
+
+            handler: (request, reply) => {
+
+                var eventID = request.payload.eventID;
+
+                editEvent(request.payload.eventWhat, request.payload.eventWhere, request.payload.eventWhen, eventID, (error, response) => {
+
+                    if (error) {
+                        reply(error);
+                    }
+
+                    getEvent(eventID, (error, event) => {
+                        console.log(event);
+                        var subjectID = request.payload.userID;
+                        var recipients = event.invitees.map((invitee) => {
+                            return invitee.id;
+                        }).concat([event.hostID]);
+
+                        if (error) {
+                            reply(error);
+                        }
+
+                        notifyEveryone(recipients, subjectID, eventID, event, (error, response) => {
+                            if (error) {
+                                reply(error);
+                            }
+
+                            reply(response);
+                        });
+
+                    });
+
+                });
+
+            }
+        }
+    }]);
+
+    return next();
+};
+
+exports.register.attributes = {
+    name: 'EditEvent'
+};

@@ -1,6 +1,7 @@
 var updateRSVP = require('../lib/updateRSVP.js');
 var getEvent = require('../db/getEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
+var getRSVPs = require('../lib/getRSVPs.js');
 
 exports.register = (server, options, next) => {
 
@@ -17,11 +18,11 @@ exports.register = (server, options, next) => {
 
                     return reply(new Error("Missing data for update-rsvp"));
                 }
-                var userID = request.payload.userID;
+                var subjectID = request.payload.userID;
                 var eventID = request.payload.eventID;
                 var userRSVPStatus = request.payload.RSVPStatus;
 
-                updateRSVP(userID, eventID, userRSVPStatus, (error, success) => {
+                updateRSVP(subjectID, eventID, userRSVPStatus, (error, success) => {
 
                     if (error) {
                         return reply(error);
@@ -31,13 +32,18 @@ exports.register = (server, options, next) => {
 
                         if (error) {
                             return reply(error);
-                        }
-                        var recipients = [event.hostID];
-                        notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
+                        } else {
 
-                            var verdict = error || success;
-                            reply(verdict);
-                        });
+                            var recipients = [event.hostID];
+                            notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
+
+                                getRSVPs(eventID, (error, RSVPs) => {
+                                    var verdict = error || RSVPs;
+                                
+                                    reply(verdict);
+                                });
+                            });
+                        }
                     });
                 });
             }
@@ -49,5 +55,5 @@ exports.register = (server, options, next) => {
 
 
 exports.register.attributes = {
-    name: 'UpdateRSVPs'
+    name: 'UpdateRSVP'
 };

@@ -4,38 +4,32 @@ import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee
 import HostCreateEventButton from './host-create-event-button.jsx';
 
 
-class HostPoll extends React.Component {
+const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, handleConfirmEvent  }) => {
 
-    constructor (props) {
-        super(props);
-    }
+    let eventWhat = createVoteSection(event, tally, 'eventWhat', EventWhatSection, handleHostEventChoices, hostEventChoices);
+    let eventWhere = createVoteSection(event, tally, 'eventWhere', EventWhereSection, handleHostEventChoices, hostEventChoices);
+    let eventWhen = createVoteSection(event, tally, 'eventWhen', EventWhenSection, handleHostEventChoices, hostEventChoices);
 
-    render () {
-        let eventWhat = createVoteSection(this.props.event, this.props.tally, 'eventWhat', EventWhatSection, this.props.handleHostEventChoices, this.props.hostEventChoices);
-        let eventWhere = createVoteSection(this.props.event, this.props.tally, 'eventWhere', EventWhereSection, this.props.handleHostEventChoices, this.props.hostEventChoices);
-        let eventWhen = createVoteSection(this.props.event, this.props.tally, 'eventWhen', EventWhenSection, this.props.handleHostEventChoices, this.props.hostEventChoices);
+    return (
+        <div>
+            Here be the host poll page
 
-        return (
-            <div>
-                Here be the host poll page
+            <h4>What</h4>
+            { eventWhat }
 
-                <h4>What</h4>
-                { eventWhat }
+            <h4>Where</h4>
+            { eventWhere }
 
-                <h4>Where</h4>
-                { eventWhere }
+            <h4>When</h4>
+            { eventWhen }
 
-                <h4>When</h4>
-                { eventWhen }
+            <HostCreateEventButton hostEventChoices={ hostEventChoices }
+                                   handleConfirmEvent={ handleConfirmEvent }
+                                   eventID={ eventID } />
 
-                <HostCreateEventButton hostEventChoices={ this.props.hostEventChoices }
-                                       handleConfirmEvent={ this.props.handleConfirmEvent }
-                                       eventID={ this.props.eventID } />
-
-            </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 function createVoteSection (event, tally, eventType, EventTypeComponent, handleHostEventChoices, hostEventChoices) {
     return event[eventType].map((choice, i) => {
@@ -55,21 +49,20 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
         if (tally[eventType]) {
 
             return (
-                <div onClick={ () => handleHostEventChoices(eventType, choice, i) } className={ "" + eventType }  key={ eventType + '-' + i }>
-                    <EventTypeComponent text={ choice }
-                        tally={ tallyCount }
-                        classOptions={ classes }
-                        />
+                <div onClick={ () => handleHostEventChoices(eventType, choice, i) }
+                     className={ "" + eventType }
+                     key={ eventType + '-' + i } >
+                    <EventTypeComponent text={ choice } tally={ tallyCount } classOptions={ classes } />
                 </div>
             );
         } else {
 
             return (
                 <div key={ eventType + '-' + i }>
-                    <EventTypeComponent text={ choice }
+                    <EventTypeComponent
+                        text={ choice }
                         tally={ tallyCount }
-                        classOptions={ classes }
-                        />
+                        classOptions={ classes } />
                 </div>
             );
         }

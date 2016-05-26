@@ -25,7 +25,6 @@ class Event extends React.Component {
             .modal('hide');
         this.props.handleDeleteEvent(this.props.params.eventID);
         this.context.router.push('/feed');
-
     }
 
     handleCloseModal () {
@@ -40,47 +39,38 @@ class Event extends React.Component {
         if (this.props.userIsHost && this.props.isPoll) {
 
             return (
-                 <HostPoll tally= { this.props.tally }
-                           event= { this.props.event }
-                           eventID= { this.props.params.eventID }
-                           handleHostEventChoices= { this.props.handleHostEventChoices }
-                           hostEventChoices= { this.props.hostEventChoices }
-                           handleConfirmEvent= { this.props.handleConfirmEvent }/>
+                 <HostPoll tally={ this.props.tally }
+                           event={ this.props.event }
+                           eventID={ this.props.params.eventID }
+                           handleHostEventChoices={ this.props.handleHostEventChoices }
+                           hostEventChoices={ this.props.hostEventChoices }
+                           handleConfirmEvent={ this.props.handleConfirmEvent }/>
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {
             return (
-                <InviteePoll event= { this.props.event }
-                      toggleSelection= { this.props.toggleSelection }
-                      poll={ this.props.poll }
-                      handlePollConfirmation={ this.props.handlePollConfirmation }
-                      eventID={ this.props.params.eventID }
-                      isHost={ this.props.userIsHost }
-                />
+                <InviteePoll event={ this.props.event }
+                          toggleSelection={ this.props.toggleSelection }
+                          poll={ this.props.poll }
+                          handlePollConfirmation={ this.props.handlePollConfirmation }
+                          eventID={ this.props.params.eventID }
+                          isHost={ this.props.userIsHost } />
             );
-        }
-        if (this.props.userIsHost && !this.props.isPoll) {
+        } else {
             return (
-                     <ConfirmedEvent event={ this.props.event }
-                                     eventID={ this.props.params.eventID }
-                                     isHost={ this.props.userIsHost }
-                                     RSVPs={this.props.RSVPs}
-                                     invitees={this.props.invitees}/>
-            );
-        }
-        if (!this.props.isHost && !this.props.isPoll){
-            return (
-                <ConfirmedEvent event={ this.props.event }
-                                eventID={ this.props.params.eventID }
-                                isHost={ this.props.userIsHost }
-                                RSVPs={this.props.RSVPs}
-                                invitees={this.props.invitees}/>
+                 <ConfirmedEvent event={ this.props.event }
+                                 eventID={ this.props.params.eventID }
+                                 userIsHost={ this.props.userIsHost }
+                                 RSVPs={ this.props.RSVPs }
+                                 RSVPToEvent={ this.props.RSVPToEvent }
+                                 invitees={ this.props.invitees } />
             );
         }
     }
     render () {
 
         let headerTitle = this.props.isPoll ? "Poll" : "Event";
+        
         if (this.props.isFetching) {
             return (
                 <Spinner />
@@ -98,17 +88,18 @@ class Event extends React.Component {
                 <div>
 
                     <CancelConfirmedEventModal
-                        handleDeleteEvent={this.handleDeleteEvent}
-                        handleCloseModal={this.handleCloseModal} />
+                        handleDeleteEvent={ this.handleDeleteEvent }
+                        handleCloseModal={ this.handleCloseModal } />
 
                     <div className="event-header row">
-                        <Link onClick={ () => { this.props.handleEdit(this.props.event); } }to={ 'edit/' + this.props.params.eventID }>
-                        <p className="three columns back-button" > Edit </p>
+                        <Link onClick={ () => { this.props.handleEdit(this.props.event); } } to={ 'edit/' + this.props.params.eventID }>
+                            <p className="three columns back-button" > Edit </p>
                         </Link>
                         <h3 className=" six columns title"> { headerTitle }</h3>
                         <p className="three columns cancel-event-button"
-                            onClick={ this.cancelEventConfirmationModal }>
-                            Cancel </p>
+                           onClick={ this.cancelEventConfirmationModal }>
+                            Cancel
+                        </p>
                     </div>
 
                     <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
@@ -116,7 +107,7 @@ class Event extends React.Component {
                                         eventDescription={ this.props.event.eventDescription }
                                         hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
-                        {this.renderView()}
+                        { this.renderView() }
                     </div>
                 </div>
             );
@@ -125,15 +116,16 @@ class Event extends React.Component {
                 <div>
 
                     <CancelConfirmedEventModal
-                        handleDeleteEvent={this.handleDeleteEvent}
-                        handleCloseModal={this.handleCloseModal} />
+                        handleDeleteEvent={ this.handleDeleteEvent }
+                        handleCloseModal={ this.handleCloseModal } />
 
                     <div className="event-header row">
                         <p className="three columns back-button" > </p>
                         <h3 className=" six columns title"> { headerTitle }</h3>
                         <p className="three columns cancel-event-button"
                             onClick={ this.cancelEventConfirmationModal }>
-                            Cancel </p>
+                            Cancel
+                        </p>
                     </div>
 
                     <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
@@ -141,7 +133,7 @@ class Event extends React.Component {
                                         eventDescription={ this.props.event.eventDescription }
                                         hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
-                        {this.renderView()}
+                        { this.renderView() }
                     </div>
                 </div>
             );
@@ -158,7 +150,7 @@ class Event extends React.Component {
                                         eventDescription={ this.props.event.eventDescription }
                                         hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
-                        {this.renderView()}
+                        { this.renderView() }
                     </div>
                 </div>
             );

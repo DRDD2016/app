@@ -4,11 +4,13 @@ function addRSVP (userID, eventID, status, callback) {
 
     var setKey = 'RSVP' + ':' + eventID + '|' + status;
 
-    saddAsync(setKey, userID)
+    client.saddAsync(setKey, userID)
         .then((success) => {
+
             callback(null, true);
         })
         .catch((error) => {
+            
             callback(error);
         });
 }

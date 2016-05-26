@@ -1,7 +1,7 @@
 import test from 'tape';
 import reducer from '../../../src/js/reducers/event.js';
 import { event as state } from './fixtures.js';
-import * as fixtures from '../../utils/fixtures.js';
+import * as genericFixtures from '../../utils/fixtures.js';
 
 /********
 GET EVENT
@@ -28,10 +28,10 @@ test('Reducer handles GET_EVENT_SUCCESS as expected with isPoll set to true', (t
     let initialState = Object.assign({}, state);
     initialState.isFetching = true;
 
-    let event = fixtures.eventPollSohil;
+    let event = genericFixtures.eventPollSohil;
 
     const data = {
-        event: fixtures.eventPollSohil,
+        event: genericFixtures.eventPollSohil,
         poll: {
             eventWhat: [false, true],
             eventWhere: [true, false]
@@ -47,7 +47,7 @@ test('Reducer handles GET_EVENT_SUCCESS as expected with isPoll set to true', (t
     let expected = Object.assign({}, state);
 
     expected.isFetching = false;
-    expected.data = fixtures.eventPollSohil;
+    expected.data = genericFixtures.eventPollSohil;
     expected.poll = data.poll;
 
     t.deepEqual(actual, expected, "Event object and poll successfully merged into store");
@@ -60,10 +60,10 @@ test('Reducer handles GET_EVENT_SUCCESS when with a ConfirmedEvent', (t) => {
     initialState.isFetching = true;
 
     const data = {
-        event: fixtures.eventConfirmedHarry,
+        event: genericFixtures.eventConfirmedHarry,
         RSVPs: {
-            going: [fixtures.HARRY_ID],
-            notGoing: [fixtures.SOHIL_ID]
+            going: [genericFixtures.HARRY_ID],
+            notGoing: [genericFixtures.SOHIL_ID]
         }
     };
     const action = {
@@ -115,7 +115,7 @@ UPDATE POLL
 test('Reducer handles UPDATE_POLL as expected', (t) => {
 
     let initialState = state;
-    initialState.data = fixtures.pollToConfirmedEvent;
+    initialState.data = genericFixtures.pollToConfirmedEvent;
     initialState.poll = {
         eventWhere: [false, false],
         eventWhen: [false],
@@ -182,13 +182,15 @@ test('Reducer handles CONFIRM_POLL_FAILURE as expected', (t) => {
 
     const action = {
         type: "CONFIRM_POLL_FAILURE",
-        isFetching: false
+        isFetching: false,
+        error: genericFixtures.genericError
     };
 
     const actual = reducer(initialState, action);
 
     let expected = initialState;
     expected.isFetching = false;
+    expected.error = genericFixtures.genericError;
 
     t.deepEqual(actual, expected);
     t.end();
@@ -294,13 +296,15 @@ test('Reducer handles UPDATE_RSVP_FAILURE as expected', (t) => {
 
     const action = {
         type: "UPDATE_RSVP_FAILURE",
-        isFetching: false
+        isFetching: false,
+        error: genericFixtures.genericError
     };
 
     let actual = reducer(initialState, action);
 
     let expected = initialState;
-    initialState.isFetching = false;
+    expected.isFetching = false;
+    expected.error = genericFixtures.genericError;
 
     t.deepEqual(actual, expected);
     t.end();
