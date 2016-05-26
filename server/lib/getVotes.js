@@ -51,7 +51,7 @@ function iterateEventTypes (eventID, voteObject, list, recursor, callback) {
         if (error) {
             return callback(error);
         }
-        // console.log(eventType);
+    
         voteObject[eventType] = mappedArray;
         progressCount++;
 

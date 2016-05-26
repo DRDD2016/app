@@ -12,7 +12,7 @@ function getFBPhoto(id, token, callback) {
             if (response && !response.error) {
                 return callback(null, response.data.url);
             } else {
-                console.log(response.error);
+                console.error(response.error);
                 return callback(error);
             }
         }

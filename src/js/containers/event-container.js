@@ -52,7 +52,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(hydrateEditEvent(event));
         },
         RSVPToEvent: (status, eventID) => {
-            console.log(`DISPATCHING FOR ${eventID}, ${status}`);
+            
             dispatch(updateRSVP(status, eventID));
         }
     };

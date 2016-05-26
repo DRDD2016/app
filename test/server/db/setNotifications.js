@@ -23,7 +23,7 @@ test("setNotifications adds the sets correctly for all invitees", (t) => {
     setNotifications(invitees, notification.subjectID, notification, (error, result) => {
         t.ok(result, "both sets added for invitees");
 
-        client.smembers('notifications:12345678', (error, actual) => {
+        client.lrange('notifications:12345678', 0, 0, (error, actual) => {
             t.notOk(error, "Notification saves without error");
             t.deepEqual(actual, expected, "returned stringified notification");
             t.end();

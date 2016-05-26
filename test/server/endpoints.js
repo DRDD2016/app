@@ -71,7 +71,6 @@ server.init(9001, (error, server) => {
         server.inject(options, (response) => {
 
             const result = response.result;
-            console.log(result,'response-------');
 
             const expectedKeys = Object.keys(fixtures.eventConfirmedHarry);
 
@@ -105,7 +104,7 @@ server.init(9001, (error, server) => {
                 */
                 client.decr('eventKeys');
                 client.del('event:301');
-                client.spop('notifications:12345678');
+                client.lpop('notifications:12345678');
                 t.end();
             });
         });
@@ -216,26 +215,17 @@ server.init(9001, (error, server) => {
 
                     t.deepEqual(parseObjectValues(event), expected, 'Event is successfully confirmed');
 
-                    client.smembers('calendar:' + inviteeID, (error, calendar) => {
+                    client.lrange('calendar:' + inviteeID, 0, 0, (error, latestCalendarEntry) => {
 
-                        const latestCalendarEntry = calendar.filter((item) => {
-                            return item === 'event:400';
-                        });
                         t.equal(latestCalendarEntry[0], 'event:400', 'A calendar item was created');
 
-                        client.smembers("notifications:" + inviteeID, (error, notifications) => {
+                        client.lrange("notifications:" + inviteeID, 0, 0, (error, notifications) => {
 
-                            var latestNotification = notifications.map((item) => {
-
-                                return JSON.parse(item);
-                            }).filter((item) => {
-                                console.log(item.eventID);
-                                return item.eventID === 'event:400';
-                            });
-                            // t.equal(slatestNotification, 'event:400', 'A notification was created');
+                            var latestNotification = JSON.parse(notifications[0]).eventID;
+                            t.equal(latestNotification, 'event:400', 'A notification was created');
                             client.del('event:400');
-                            client.spop('calendar:' + inviteeID);
-                            client.spop("notifications:" + inviteeID);
+                            client.lpop('calendar:' + inviteeID);
+                            client.lpop("notifications:" + inviteeID);
                             t.end();
                         });
                     });

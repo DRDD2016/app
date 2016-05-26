@@ -12,8 +12,7 @@ exports.register = (server, options, next) => {
 
 
                 deleteEvent(request.query.eventID, (error, response) => {
-                    const verdict = error || response
-                    console.log(verdict,'response.....');
+                    const verdict = error || response;
                     reply(verdict);
                 });
             }

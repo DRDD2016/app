@@ -15,16 +15,19 @@ function setNotifications (recipients, subjectID, notification, callback) {
 
         // identify the person at whom this notification is aimed
         notification.subjectID = subjectID;
-        var setName = "notifications:" + recipientID;
+        var listName = "notifications:" + recipientID;
 
-        client.saddAsync(setName, JSON.stringify(notification))
+        client.lpushAsync(listName, JSON.stringify(notification))
 
         .then((response) => {
+
             if (index === recipients.length - 1) {
+
                 return callback(null, response);
             }
         })
         .catch((error) => {
+            console.error(error);
             return callback(error);
         });
     });

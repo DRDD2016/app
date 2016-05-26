@@ -19,5 +19,5 @@ const options = {
 const server = new WebpackDevServer(compiler, options);
 
 server.listen(8080, 'localhost', function () {
-    console.log('webpack-dev-server is running on 8080');
+    console.info('webpack-dev-server is running on 8080');
 });

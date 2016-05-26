@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         // missing the eventID!!!!
         fetchEvent: () => {
-            console.log("We need the eventID");
+            
             // dispatch(getEvent());
         }
     };
