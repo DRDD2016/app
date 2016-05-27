@@ -17,13 +17,9 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
             return (
                 <div className="twelve columns">
-
-                    <div className="item" key={ usersWithRSVP[0].id }>
-                        <img className="ui avatar image" src={ usersWithRSVP[0].photoURL } />
-
-                        <div className="content">
-                            <div className="header">{ usersWithRSVP[0].firstName }</div>
-                        </div>
+                    <div className="ui image label" key={ usersWithRSVP[0].id }>
+                        <img src={ usersWithRSVP[0].photoURL } />
+                        { usersWithRSVP[0].firstName }
                     </div>
                 </div>
             );
