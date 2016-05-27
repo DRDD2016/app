@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     const data = {
         eventName: state.createEvent.eventDetails.eventName,
         eventDescription: state.createEvent.eventDetails.eventDescription,
+        eventNote: state.createEvent.eventDetails.eventNote,
         eventWhat: state.createEvent.eventWhat,
         eventWhere: state.createEvent.eventWhere,
         eventWhen: state.createEvent.eventWhen,

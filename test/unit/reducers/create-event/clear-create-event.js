@@ -6,7 +6,9 @@ test('Reducer handles CLEAR_CREATE_EVENT as expected', (t) => {
     const initialState = {
         eventDetails: {
             eventName: 'An event',
-            eventDescription: 'an amazing event'
+            eventDescription: 'an amazing event',
+            eventNote: 'note'
+
         },
         eventWhat: ['Dancing in the street'],
         eventWhere: [
@@ -42,7 +44,8 @@ test('Reducer handles CLEAR_CREATE_EVENT as expected', (t) => {
     const expected = {
         eventDetails: {
             eventName: '',
-            eventDescription: ''
+            eventDescription: '',
+            eventNote: ''
         },
         eventWhat: [''],
         eventWhere: [
