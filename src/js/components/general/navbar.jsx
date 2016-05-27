@@ -4,43 +4,65 @@ import classnames from 'classnames';
 
 const Navbar = ({ currentLocation }) => {
     console.log(currentLocation);
-    let classes = classnames("navbar", {
+
+    let navbarClasses = classnames("navbar", {
         "display-none": currentLocation === "/"
     });
 
+    let albumsClasses = classnames("nav-button", {
+        "selected": currentLocation === "/albums"
+    });
+
+    let calendarClasses = classnames("nav-button", {
+        "selected": currentLocation === "/calendar"
+    });
+
+    let feedClasses = classnames("nav-button", {
+        "selected": currentLocation === "/feed"
+    });
+
+    let profileClasses = classnames("nav-button", {
+        "selected": currentLocation === "/profile"
+    });
+
+    let createEventClasses = classnames("nav-button", {
+        "selected": currentLocation === "/create-event"
+    });
+
+
     return (
-        <div className={ classes }>
-            <a className="nav-button" href="#">
+        <div className={ navbarClasses }>
+            <a className={ albumsClasses } href="#">
                 <div >
-                    <i className="photo big icon nav-icon "></i>
+                    <i className="fa fa-camera nav-icon "></i>
                     <label className="menu-label">Albums</label>
                 </div>
             </a>
 
-            <Link className="nav-button" to="calendar">
+            <Link className={ calendarClasses } to="calendar">
                 <div>
-                    <i className="calendar big icon nav-icon"></i>
+                    <i className="fa fa-calendar nav-icon"></i>
                     <label className="menu-label">Calendar</label>
                 </div>
             </Link>
 
-            <Link className="nav-button" to="feed">
+            <Link className={ feedClasses } to="feed">
                 <div >
-                    <i className="world big icon nav-icon"></i>
+                    <i className="fa fa-globe nav-icon"></i>
                     <label className="menu-label">Feed</label>
                 </div>
             </Link>
 
-            <a className="nav-button" href="#">
+            <a className={ profileClasses } href="#">
                 <div >
-                    <i className="user big icon nav-icon"></i>
+                    <i className="fa fa-user nav-icon"></i>
                     <label className="menu-label">Profile</label>
                 </div>
             </a>
 
-            <Link className="nav-button" to="create-event">
+            <Link className={ createEventClasses } to="create-event">
                 <div >
-                    <i className="write big icon nav-icon"></i>
+                    <i className="fa fa-pencil nav-icon"></i>
                     <label className="menu-label">Create</label>
                 </div>
             </Link>

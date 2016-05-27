@@ -1,0 +1,34 @@
+.modal-container {
+    display: none;
+    border: 1px solid black;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 2em;
+    color: aliceblue;
+    z-index: 10;
+    position: fixed;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+
+    i {
+        color: $white;
+        font-size: 2em;
+    }
+
+    div {
+        border: 3px solid white;
+        margin: 0.5em;
+
+        &.delete {
+            border-color: $red;
+            color: $red;
+        }
+
+        &.cancel {
+            border-color: white;
+            color: white;
+        }
+    }
+}
