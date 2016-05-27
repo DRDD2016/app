@@ -16,9 +16,9 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             });
 
             return (
-                <div className="twelve columns">
+                <div className="twelve columns" key={ usersWithRSVP[0].id }>
 
-                    <div className="item" key={ usersWithRSVP[0].id }>
+                    <div className="item" >
                         <img className="ui avatar image" src={ usersWithRSVP[0].photoURL } />
 
                         <div className="content">
@@ -28,6 +28,18 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 </div>
             );
         });
+    }
+
+    function eventNote (event) {
+
+        if (event.eventNote !== "") {
+            return (
+                <div>
+                <h4 className="twelve columns">Note</h4>
+                { event.eventNote }
+                </div>
+            );
+        }
     }
 
     let going = RSVPs.going;
@@ -53,6 +65,8 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
     return (
         <div>
+
+            { eventNote(event) }
             <div className="row">
                 <h4 className="twelve columns">
                     What

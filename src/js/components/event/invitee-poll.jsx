@@ -7,31 +7,50 @@ import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee
 const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost }) => {
 
     let eventWhat = createPollSelections(event, toggleSelection, poll, 'eventWhat', EventWhatSection);
-
     let eventWhere = createPollSelections(event, toggleSelection, poll, 'eventWhere', EventWhereSection);
-
     let eventWhen = createPollSelections(event, toggleSelection, poll, 'eventWhen', EventWhenSection);
 
-    return (
-        <div>
+    if (event.eventNote === "") {
+        return (
+            <div>
 
-            <div>This is poll page</div>
+                <h4>What</h4>
+                { eventWhat }
 
+                <h4>Where</h4>
+                { eventWhere }
 
-            { eventWhat }
-            <hr/>
+                <h4>When</h4>
+                { eventWhen }
 
-            { eventWhere }
-            <hr/>
+                <PollButton poll={ poll }
+                            handlePollConfirmation={ handlePollConfirmation }
+                            eventID={ eventID }/>
 
-            { eventWhen }
-            <hr/>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <h4>Note</h4>
+                { event.eventNote }
 
-            <PollButton poll={ poll }
-                        handlePollConfirmation={ handlePollConfirmation }
-                        eventID={ eventID }/>
-        </div>
-    );
+                <h4>What</h4>
+                { eventWhat }
+
+                <h4>Where</h4>
+                { eventWhere }
+
+                <h4>When</h4>
+                { eventWhen }
+
+                <PollButton poll={ poll }
+                            handlePollConfirmation={ handlePollConfirmation }
+                            eventID={ eventID }/>
+
+            </div>
+        );
+    }
 };
 
 function createPollSelections (event, toggleSelection, poll, eventType, EventTypeComponent) {
