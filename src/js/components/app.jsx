@@ -3,6 +3,11 @@ import Navbar from './general/navbar.jsx';
 
 const App = ({ location, children, error }) => {
 
+    let currentLocation;
+    if (!process.env.DEVELOPMENT) {
+        currentLocation = location.pathname;
+    }
+
     return (
         <div>
             {
@@ -10,7 +15,7 @@ const App = ({ location, children, error }) => {
                 <h3>Error { error.status } { error.data.error }: { error.data.message }</h3>
             }
             { children }
-            <Navbar currentLocation={ location.pathname } />
+            <Navbar currentLocation={ currentLocation } />
         </div>
     );
 };
