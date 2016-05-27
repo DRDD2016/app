@@ -65,7 +65,7 @@ const routes = (
                component={ requireAuthentication(EventContainer) }
                onEnter={ fetchEvent } />
 
-           <Route path='/edit/:eventID'
+        <Route path='/edit/:eventID'
               component={ requireAuthentication(EditEventContainer) }
               onEnter={ fetchEvent } />
 
@@ -73,7 +73,7 @@ const routes = (
                component={ requireAuthentication(CalendarContainer) }
                onEnter={ fetchCalendar } />
 
-           <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
+        <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />
             <Route path='what' component={ requireAuthentication(EventWhatContainer) } />
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />

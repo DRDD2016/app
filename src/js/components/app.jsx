@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './general/navbar.jsx';
 
-const App = ({ children, error }) => {
+const App = ({ location, children, error }) => {
 
     return (
         <div className="">
@@ -10,7 +10,7 @@ const App = ({ children, error }) => {
                 <h3>Error {error.status} {error.data.error}: {error.data.message}</h3>
             }
             { children }
-            <Navbar />
+            <Navbar currentLocation={ location.pathname } />
         </div>
     );
 };
