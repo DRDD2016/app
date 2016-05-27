@@ -4,7 +4,7 @@ import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee
 import HostCreateEventButton from './host-create-event-button.jsx';
 
 
-const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, handleConfirmEvent  }) => {
+const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, handleConfirmEvent, eventID  }) => {
 
     let eventWhat = createVoteSection(event, tally, 'eventWhat', EventWhatSection, handleHostEventChoices, hostEventChoices);
     let eventWhere = createVoteSection(event, tally, 'eventWhere', EventWhereSection, handleHostEventChoices, hostEventChoices);
