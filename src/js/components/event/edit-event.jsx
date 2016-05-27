@@ -18,7 +18,7 @@ const EditEvent = (props) => {
     let chosenTemplate = eventWhere.placeAddress === '' ? templateNoSpace : templateWithSpace;
     let fullAddress = (eventWhere.placeName ? chosenTemplate : "");
 
-    let hideButtonToggle = eventWhat.length === 0 || eventWhere.placeName === "" || eventWhen.date === "";
+    let hideButtonToggle = eventWhat.length === 0 || eventWhere.placeName === "" || eventWhen.date === "" || props.eventDetails.eventName === "" || props.eventDetails.eventDescription === "";
 
     let hideSaveButton = classnames("twelve columns", {
         "hide": hideButtonToggle
