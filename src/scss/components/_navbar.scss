@@ -9,6 +9,12 @@
     display: flex
 }
 
+@media only screen and (max-height: 400px) {
+    .navbar {
+        display: none;
+    }
+}
+
 .nav-button {
     width: 20%;
     color: white;
