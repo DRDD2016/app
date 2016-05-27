@@ -181,8 +181,14 @@ function removeInvitee (state, action) {
 
 function hydrateEditEvent (state, action) {
 
+    let eventDetails = {
+        eventName: action.data.eventName,
+        eventDescription: action.data.eventDescription,
+        eventNote: action.data.eventNote
+    };
+
     let newState = update(state, {
-        eventDetails: { $set: action.data.eventDetails },
+        eventDetails: { $set: eventDetails },
         eventWhat: { $set: action.data.eventWhat },
         eventWhere: { $set: action.data.eventWhere },
         eventWhen: { $set: action.data.eventWhen },

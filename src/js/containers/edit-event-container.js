@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import EditEvent from '../components/event/edit-event.jsx';
-import { setEventWhat, setEventWhere, setEventWhen } from '../actions/create-event.js';
+import { setEventDetails, setEventWhat, setEventWhere, setEventWhen } from '../actions/create-event.js';
 import { saveEditedEvent } from '../actions/event.js';
 
 
@@ -9,6 +9,7 @@ import { saveEditedEvent } from '../actions/event.js';
 const mapStateToProps = (state) => {
     return {
         event: state.event.data,
+        eventDetails: state.createEvent.eventDetails,
         eventWhat: state.createEvent.eventWhat,
         eventWhere: state.createEvent.eventWhere,
         eventWhen: state.createEvent.eventWhen
@@ -18,6 +19,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+
+        handleChange: (inputType, event) => {
+
+            dispatch(setEventDetails(event.target.value, inputType));
+        },
+
         handleEventWhat: (inputKey, event) => {
             dispatch(setEventWhat(event.target.value, inputKey));
         },
@@ -41,9 +48,9 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setEventWhen(event.target.value, inputKey, "time"));
         },
 
-        handleSaveEditedEvent: (eventWhat, eventWhere, eventWhen, eventID) => {
+        handleSaveEditedEvent: (eventName, eventDescription, eventNote, eventWhat, eventWhere, eventWhen, eventID) => {
 
-            dispatch(saveEditedEvent([eventWhat], [eventWhere], [eventWhen], eventID));
+            dispatch(saveEditedEvent(eventName, eventDescription, eventNote, [eventWhat], [eventWhere], [eventWhen], eventID));
         }
     };
 };

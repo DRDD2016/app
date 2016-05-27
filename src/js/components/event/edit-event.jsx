@@ -25,8 +25,36 @@ const EditEvent = (props) => {
     });
 
     return (
-            <div>
-                This is the Edit Event View
+            <div className="container">
+
+                <h2> Event Details </h2>
+                <div className="row">
+                    <input
+                        className="twelve columns"
+                        onChange={ props.handleChange.bind(this, 'eventName') }
+                        value={ props.eventDetails ? props.eventDetails.eventName : '' }
+                        type="text"
+                        placeholder="Event name" />
+
+                </div>
+
+                <div className="row">
+                    <input
+                        className="twelve columns"
+                        onChange={ props.handleChange.bind(this, 'eventDescription') }
+                        value={ props.eventDetails ? props.eventDetails.eventDescription : '' }
+                        type="text"
+                        placeholder="Event description" />
+                </div>
+
+                <div className="row">
+                    <input
+                        className="twelve columns event-note"
+                        onChange={ props.handleChange.bind(this, 'eventNote') }
+                        value={ props.eventDetails ? props.eventDetails.eventNote : '' }
+                        type="text"
+                        placeholder="Event Note" />
+                </div>
 
                 <h2> What </h2>
                 <Input
@@ -56,7 +84,7 @@ const EditEvent = (props) => {
                     removeInput=''
                 />
 
-            <button className={ hideSaveButton } onClick={ () => { props.handleSaveEditedEvent(eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
+            <button className={ hideSaveButton } onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
                     Save Edited Event
                 </button>
 

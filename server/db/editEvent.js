@@ -1,11 +1,14 @@
 var client = require('./init.js');
 
-function editEvent (eventWhat, eventWhere, eventWhen, eventID, callback) {
+function editEvent (eventName, eventDescription, eventNote, eventWhat, eventWhere, eventWhen, eventID, callback) {
 
     var editedEvent = {};
     editedEvent.eventWhat = JSON.stringify(eventWhat);
     editedEvent.eventWhere = JSON.stringify(eventWhere);
     editedEvent.eventWhen = JSON.stringify(eventWhen);
+    editedEvent.eventName = eventName;
+    editedEvent.eventDescription = eventDescription;
+    editedEvent.eventNote = eventNote;
 
 
     Object.keys(editedEvent).forEach((eventType, index) => {

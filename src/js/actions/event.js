@@ -287,12 +287,15 @@ export function deleteEventFailure (error) {
 SAVE_EDITED_EVENT ACTIONS
 ********/
 
-export function saveEditedEvent (eventWhat, eventWhere, eventWhen, eventID) {
+export function saveEditedEvent (eventName, eventDescription, eventNote, eventWhat, eventWhere, eventWhen, eventID) {
 
     return (dispatch) => {
 
         let payload = {
             eventID,
+            eventName,
+            eventDescription,
+            eventNote,
             eventWhat,
             eventWhere,
             eventWhen,
