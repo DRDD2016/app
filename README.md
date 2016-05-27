@@ -43,7 +43,7 @@ npm run coverage
 ## <a name='#env'></a>Environment variables
 ### For the main app
 ```bash
-REDIS_URL=*url for your main redis database*
+REDISCLOUD_ONYX_URL=*url for your main redis database*
 CLIENT_ID=*your facebook developer client id*
 CLIENT_SECRET=*your facebook developer client secret*
 ```
