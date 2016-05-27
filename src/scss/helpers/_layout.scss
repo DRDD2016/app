@@ -4,8 +4,15 @@
     margin-left: 4%;
 }
 
-// .invitee:after {
-//     content: "";
-//     display: table;
-//     clear: both; }
-// }
+.justify {
+    flex-direction: column;
+    align-content: space-around;
+}
+
+.flex {
+    display: flex;
+}
+
+.centre {
+    text-align: center;
+}

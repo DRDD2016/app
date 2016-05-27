@@ -20,8 +20,8 @@ test('App displays any errors in state', (t) => {
         }
     };
     const store = initStore(initialState);
-    const renderedApp = TestUtils.renderIntoDocument(<AppContainer store={store} />);
-    const textNode = TestUtils.findRenderedDOMComponentWithTag(renderedApp, 'h3');
+    const renderedApp = renderIntoDocument(<AppContainer store={ store } />);
+    const textNode = findRenderedDOMComponentWithTag(renderedApp, 'h3');
     const errorMessageExists = textNode.textContent.indexOf("Error") !== -1;
 
     t.ok(errorMessageExists, "Error from user state displays correctly");

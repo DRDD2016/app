@@ -1,11 +1,12 @@
 import React from 'react';
 
 const ConfirmEventWhat = ({ eventWhat }) => {
+
     const eventWhatIndividual = Object.keys(eventWhat).map((data) => {
         return (
-                <li key={data}>
-                    { eventWhat[data] }
-                </li>
+            <li key={data}>
+                { eventWhat[data] }
+            </li>
         );
     });
 

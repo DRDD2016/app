@@ -1,16 +1,21 @@
 import React from 'react';
 import Navbar from './general/navbar.jsx';
 
-const App = ({ children, error }) => {
+const App = ({ location, children, error }) => {
+
+    let currentLocation;
+    if (!process.env.DEVELOPMENT) {
+        currentLocation = location.pathname;
+    }
 
     return (
-        <div className="">
+        <div>
             {
                 error &&
-                <h3>Error {error.status} {error.data.error}: {error.data.message}</h3>
+                <h3>Error { error.status } { error.data.error }: { error.data.message }</h3>
             }
             { children }
-            <Navbar />
+            <Navbar currentLocation={ currentLocation } />
         </div>
     );
 };
