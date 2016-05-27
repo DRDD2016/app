@@ -5,7 +5,8 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
     const initialState = {
         eventDetails: {
             eventName: '',
-            eventDescription: ''
+            eventDescription: '',
+            eventNote: ''
         },
         eventWhat: [''],
         eventWhere: [
@@ -29,10 +30,10 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
     };
 
     const data = {
-        eventDetails: {
-            eventName: "name",
-            eventDescription: "description"
-        },
+
+        eventName: "name",
+        eventDescription: "description",
+        eventNote: "note",
         eventWhat: ["eventwhat"],
         eventWhere: [
             {
@@ -57,7 +58,8 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
     const expected = {
         eventDetails: {
             eventName: "name",
-            eventDescription: "description"
+            eventDescription: "description",
+            eventNote: "note"
         },
         eventWhat: ["eventwhat"],
         eventWhere: [
