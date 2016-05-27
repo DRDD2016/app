@@ -10,30 +10,21 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
     let eventWhere = createPollSelections(event, toggleSelection, poll, 'eventWhere', EventWhereSection);
     let eventWhen = createPollSelections(event, toggleSelection, poll, 'eventWhen', EventWhenSection);
 
-    if (event.eventNote === "") {
-        return (
-            <div>
+    function eventNote (event) {
 
-                <h4>What</h4>
-                { eventWhat }
-
-                <h4>Where</h4>
-                { eventWhere }
-
-                <h4>When</h4>
-                { eventWhen }
-
-                <PollButton poll={ poll }
-                            handlePollConfirmation={ handlePollConfirmation }
-                            eventID={ eventID }/>
-
-            </div>
-        );
-    } else {
-        return (
-            <div>
-                <h4>Note</h4>
+        if (event.eventNote !== "") {
+            return (
+                <div>
+                <h4 className="twelve columns">Note</h4>
                 { event.eventNote }
+                </div>
+            );
+        }
+    }
+
+    return (
+            <div>
+                { eventNote(event) }
 
                 <h4>What</h4>
                 { eventWhat }
@@ -49,8 +40,7 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
                             eventID={ eventID }/>
 
             </div>
-        );
-    }
+    );
 };
 
 function createPollSelections (event, toggleSelection, poll, eventType, EventTypeComponent) {
