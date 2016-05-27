@@ -213,7 +213,7 @@ export function removeInvitee (invitee, index) {
 HYDRATE EDIT EVENT ACTIONS
 ********/
 
-export function hydrateEditEvent (event) {
+export function hydrateCreateEvent (event) {
     return {
         type: HYDRATE_EDIT_EVENT,
         data: event

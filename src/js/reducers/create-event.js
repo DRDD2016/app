@@ -73,7 +73,7 @@ export default function createEvent  (state = initialState, action) {
         return removeInvitee(state, action);
 
     case HYDRATE_EDIT_EVENT:
-        return hydrateEditEvent(state, action);
+        return hydrateCreateEvent(state, action);
 
     default:
         return state;
@@ -179,7 +179,7 @@ function removeInvitee (state, action) {
     return newState;
 }
 
-function hydrateEditEvent (state, action) {
+function hydrateCreateEvent (state, action) {
 
     let eventDetails = {
         eventName: action.data.eventName,
