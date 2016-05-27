@@ -4,6 +4,20 @@
     margin-left: 4%;
 }
 
+.justify {
+    flex-direction: column;
+    align-content: space-around;
+}
+
+.flex {
+    display: flex;
+}
+
+.centre {
+    text-align: center;
+}
+
+
 // .invitee:after {
 //     content: "";
 //     display: table;

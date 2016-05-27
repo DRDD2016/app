@@ -1,3 +1,7 @@
+body {
+    height: 0 !important /*override semantic-ui default styles*/
+}
+
 .hide {
     visibility: hidden;
 }
@@ -20,15 +24,13 @@
     margin-top: 0.5em;
 }
 
-.title, .header, header {
+.title, header {
     padding: 0.5em 0em;
     margin-bottom: 0;
     font-size: 1.6em;
     text-align: center;
 }
 
-.justify {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+.title .large-title {
+    font-size: 2.6em;
 }

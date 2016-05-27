@@ -9,6 +9,7 @@
 @import 'base/skeleton.css';
 @import 'base/general';
 @import 'base/colours';
+@import 'components/banner';
 @import 'components/navbar';
 @import 'components/notification';
 @import 'components/spinner';
@@ -16,4 +17,5 @@
 @import 'components/special-buttons';
 @import 'views/create-event';
 @import 'views/poll-general';
+@import 'views/login';
 @import 'helpers/layout';
