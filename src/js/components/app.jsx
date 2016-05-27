@@ -4,10 +4,10 @@ import Navbar from './general/navbar.jsx';
 const App = ({ location, children, error }) => {
 
     return (
-        <div className="">
+        <div>
             {
                 error &&
-                <h3>Error {error.status} {error.data.error}: {error.data.message}</h3>
+                <h3>Error { error.status } { error.data.error }: { error.data.message }</h3>
             }
             { children }
             <Navbar currentLocation={ location.pathname } />
