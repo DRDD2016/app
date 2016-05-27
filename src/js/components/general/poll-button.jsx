@@ -19,8 +19,6 @@ const PollButton = ({ poll, handlePollConfirmation, eventID }) => {
         'hide': !userHasCompletedPoll,
     });
 
-
-
     return (
 
         <button onClick={ () => handlePollConfirmation(poll, eventID) } className={ classes }>Cast vote</button>

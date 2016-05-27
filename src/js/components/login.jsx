@@ -1,4 +1,5 @@
 import React from 'react';
+import Banner from './general/banner.jsx';
 
 class Login extends React.Component {
 
@@ -19,17 +20,24 @@ class Login extends React.Component {
     render () {
 
         return (
-            <div className="">
-                <div className="">
+            <div className="container login">
 
-                    <h1 className="">Welcome to Spark</h1>
-                </div>
-                <div className="">
+                <Banner />
+                    <div className="row">
+                        <h2 className="twelve columns centre">Welcome to Spark</h2>
+                    </div>
 
-                    <button className="" onClick={ (e) => this.props.login() }>
-                        Login with Facebook
-                    </button>
-                </div>
+                    <div className="row">
+                        <p className="text-snippet">
+                            The easy way to organise parties, events, share pictures and memories with friends, family and groups.
+                        </p>
+                    </div>
+
+                    <div className="row">
+                        <button className="twelve columns facebook" onClick={ (e) => this.props.login() }>
+                            Login with Facebook
+                        </button>
+                    </div>
 
             </div>
         );

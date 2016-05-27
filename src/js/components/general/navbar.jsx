@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router';
+import classnames from 'classnames';
 
-const Navbar = () => {
+const Navbar = ({ currentLocation }) => {
+
+    let classes = classnames("navbar", {
+        "display-none": currentLocation === "/"
+    });
 
     return (
-        <div className="navbar">
+        <div className={ classes }>
             <a className="nav-button" href="#">
                 <div >
                     <i className="photo big icon nav-icon "></i>

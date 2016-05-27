@@ -5,7 +5,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import AppContainer from '../../src/js/containers/app-container.js';
 
-import shallowRenderer from '../utils/shallow-renderer.js';
+import shallowRenderer from '../utils/shallowRenderer.js';
 
 test.skip('AppContainer contains an `h1`', (t) => {
 

@@ -1,9 +1,6 @@
 .event-header {
     background: url('https://cloud.githubusercontent.com/assets/2305591/15396821/a93118f0-1dd5-11e6-9dad-a3d5b1a6d796.png') top right no-repeat;
     background-size: cover;
-}
-
-.event-header {
     background: linear-gradient(135deg, $magenta, $lime);
     height: 4.5em;
 }
@@ -25,7 +22,7 @@
 }
 
 .event-detail-text-container{
-    margin-top: 1.5em;   
+    margin-top: 1.5em;
 }
 
 .event-detail-text {
