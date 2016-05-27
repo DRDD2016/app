@@ -12,6 +12,7 @@
 
 .text-snippet {
     text-align: center;
+    padding: 1em 0;
 }
 
 .container {
@@ -19,7 +20,7 @@
     margin-top: 0.5em;
 }
 
-.title {
+.title, .header, header {
     padding: 0.5em 0em;
     margin-bottom: 0;
     font-size: 1.6em;
