@@ -2,6 +2,10 @@ body {
     height: 0 !important /*override semantic-ui default styles*/
 }
 
+a {
+    text-decoration: none;
+}
+
 .hide {
     visibility: hidden;
 }
