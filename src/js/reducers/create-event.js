@@ -3,12 +3,13 @@ import { SET_EVENT_DETAILS, SET_EVENT_WHAT, SET_EVENT_WHERE, SET_EVENT_WHEN,
          ADD_INPUT, REMOVE_INPUT,
          NEW_EVENT_REQUEST, NEW_EVENT_SUCCESS, NEW_EVENT_FAILURE, CLEAR_CREATE_EVENT,
          GET_FB_FRIENDS_REQUEST, GET_FB_FRIENDS_SUCCESS, GET_FB_FRIENDS_FAILURE,
-         ADD_INVITEE, REMOVE_INVITEE, HYDRATE_EDIT_EVENT } from '../actions/create-event.js';
+         ADD_INVITEE, REMOVE_INVITEE, HYDRATE_CREATE_EVENT } from '../actions/create-event.js';
 
 const initialState = {
     eventDetails: {
         eventName: '',
-        eventDescription: ''
+        eventDescription: '',
+        eventNote: ''
     },
     eventWhat: [''],
     eventWhere: [
@@ -71,8 +72,8 @@ export default function createEvent  (state = initialState, action) {
     case REMOVE_INVITEE:
         return removeInvitee(state, action);
 
-    case HYDRATE_EDIT_EVENT:
-        return hydrateEditEvent(state, action);
+    case HYDRATE_CREATE_EVENT:
+        return hydrateCreateEvent(state, action);
 
     default:
         return state;
@@ -178,10 +179,16 @@ function removeInvitee (state, action) {
     return newState;
 }
 
-function hydrateEditEvent (state, action) {
+function hydrateCreateEvent (state, action) {
+
+    let eventDetails = {
+        eventName: action.data.eventName,
+        eventDescription: action.data.eventDescription,
+        eventNote: action.data.eventNote
+    };
 
     let newState = update(state, {
-        eventDetails: { $set: action.data.eventDetails },
+        eventDetails: { $set: eventDetails },
         eventWhat: { $set: action.data.eventWhat },
         eventWhere: { $set: action.data.eventWhere },
         eventWhen: { $set: action.data.eventWhen },

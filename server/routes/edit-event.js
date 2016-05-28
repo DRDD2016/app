@@ -15,14 +15,14 @@ exports.register = (server, options, next) => {
 
                 var eventID = request.payload.eventID;
 
-                editEvent(request.payload.eventWhat, request.payload.eventWhere, request.payload.eventWhen, eventID, (error, response) => {
+                editEvent(request.payload.eventName, request.payload.eventDescription, request.payload.eventNote, request.payload.eventWhat, request.payload.eventWhere, request.payload.eventWhen, eventID, (error, response) => {
 
                     if (error) {
                         reply(error);
                     }
 
                     getEvent(eventID, (error, event) => {
-                        
+
                         var subjectID = request.payload.userID;
                         var recipients = event.invitees.map((invitee) => {
                             return invitee.id;

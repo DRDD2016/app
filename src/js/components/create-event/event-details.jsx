@@ -48,6 +48,15 @@ class EventDetails extends React.Component {
                 </div>
 
                 <div className="row">
+                    <input
+                        className="twelve columns event-note"
+                        onChange={ this.props.handleChange.bind(this, 'eventNote') }
+                        value={ this.props.eventDetails ? this.props.eventDetails.eventNote : '' }
+                        type="text"
+                        placeholder="Event Note" />
+                </div>
+
+                <div className="row">
                     <Link to='/create-event/what'>
                         <button className={ nextButtonClasses }>
                             Next

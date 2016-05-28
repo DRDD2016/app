@@ -26,6 +26,18 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
         });
     }
 
+    function eventNote (event) {
+
+        if (event.eventNote !== "") {
+            return (
+                <div>
+                <h4 className="twelve columns">Note</h4>
+                { event.eventNote }
+                </div>
+            );
+        }
+    }
+
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
     let maybe = RSVPs.maybe;
@@ -49,6 +61,8 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
     return (
         <div>
+
+            { eventNote(event) }
             <div className="row">
                 <h4 className="twelve columns">
                     What

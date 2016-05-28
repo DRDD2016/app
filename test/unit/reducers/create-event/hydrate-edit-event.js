@@ -1,11 +1,12 @@
 import test from 'tape';
 import reducer from '../../../../src/js/reducers/create-event.js';
 
-test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
+test('Reducer handles HYDRATE_CREATE_EVENT as expected', (t) => {
     const initialState = {
         eventDetails: {
             eventName: '',
-            eventDescription: ''
+            eventDescription: '',
+            eventNote: ''
         },
         eventWhat: [''],
         eventWhere: [
@@ -29,10 +30,10 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
     };
 
     const data = {
-        eventDetails: {
-            eventName: "name",
-            eventDescription: "description"
-        },
+
+        eventName: "name",
+        eventDescription: "description",
+        eventNote: "note",
         eventWhat: ["eventwhat"],
         eventWhere: [
             {
@@ -49,7 +50,7 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
     };
 
     const action = {
-        type: "HYDRATE_EDIT_EVENT",
+        type: "HYDRATE_CREATE_EVENT",
         data: data
     };
 
@@ -57,7 +58,8 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
     const expected = {
         eventDetails: {
             eventName: "name",
-            eventDescription: "description"
+            eventDescription: "description",
+            eventNote: "note"
         },
         eventWhat: ["eventwhat"],
         eventWhere: [
@@ -80,6 +82,6 @@ test('Reducer handles HYDRATE_EDIT_EVENT as expected', (t) => {
         isPoll: undefined
     };
 
-    t.deepEqual(nextState, expected, 'HYDRATE_EDIT_EVENT sets state correctly');
+    t.deepEqual(nextState, expected, 'HYDRATE_CREATE_EVENT sets state correctly');
     t.end();
 });

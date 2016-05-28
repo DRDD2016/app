@@ -10,24 +10,36 @@ const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, hand
     let eventWhere = createVoteSection(event, tally, 'eventWhere', EventWhereSection, handleHostEventChoices, hostEventChoices);
     let eventWhen = createVoteSection(event, tally, 'eventWhen', EventWhenSection, handleHostEventChoices, hostEventChoices);
 
+    function eventNote (event) {
+
+        if (event.eventNote !== "") {
+            return (
+                <div>
+                <h4 className="twelve columns">Note</h4>
+                { event.eventNote }
+                </div>
+            );
+        }
+    }
+
     return (
-        <div>
-            Here be the host poll page
+            <div>
+                { eventNote(event) }
 
-            <h4>What</h4>
-            { eventWhat }
+                <h4>What</h4>
+                { eventWhat }
 
-            <h4>Where</h4>
-            { eventWhere }
+                <h4>Where</h4>
+                { eventWhere }
 
-            <h4>When</h4>
-            { eventWhen }
+                <h4>When</h4>
+                { eventWhen }
 
-            <HostCreateEventButton hostEventChoices={ hostEventChoices }
-                                   handleConfirmEvent={ handleConfirmEvent }
-                                   eventID={ eventID } />
+                <HostCreateEventButton hostEventChoices={ hostEventChoices }
+                    handleConfirmEvent={ handleConfirmEvent }
+                    eventID={ eventID } />
 
-        </div>
+            </div>
     );
 };
 

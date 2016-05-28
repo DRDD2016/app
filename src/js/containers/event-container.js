@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
-import { hydrateEditEvent } from '../actions/create-event.js';
+import { hydrateCreateEvent } from '../actions/create-event.js';
 
 
 const mapStateToProps = (state) => {
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleEdit: (event) => {
 
-            dispatch(hydrateEditEvent(event));
+            dispatch(hydrateCreateEvent(event));
         },
         RSVPToEvent: (status, eventID) => {
             
