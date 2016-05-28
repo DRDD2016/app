@@ -23,7 +23,7 @@ export const REMOVE_INPUT = "REMOVE_INPUT";
 export const ADD_INVITEE = "ADD_INVITEE";
 export const REMOVE_INVITEE = "REMOVE_INVITEE";
 
-export const HYDRATE_EDIT_EVENT = "HYDRATE_EDIT_EVENT";
+export const HYDRATE_CREATE_EVENT = "HYDRATE_CREATE_EVENT";
 
 
 /********
@@ -215,7 +215,7 @@ HYDRATE EDIT EVENT ACTIONS
 
 export function hydrateCreateEvent (event) {
     return {
-        type: HYDRATE_EDIT_EVENT,
+        type: HYDRATE_CREATE_EVENT,
         data: event
     };
 }
