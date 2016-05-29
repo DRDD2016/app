@@ -43,7 +43,7 @@ client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
                  "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:100");
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
-client.lpush("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
+client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
 
 /*
 SET DEFAULT POLL EVENT 300
@@ -58,7 +58,7 @@ client.hmsetAsync("event:300", "eventName", eventPollDefault.eventName,
 
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventPollSohilNotification));
-client.lpush("calendar:" + fixtures.HARRY_ID, fixtures.eventPollSohilEventID);
+client.sadd("calendar:" + fixtures.HARRY_ID, fixtures.eventPollSohilEventID);
 
 /****
 SET POLL TO CONFIRMED EVENT 400

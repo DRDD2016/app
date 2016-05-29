@@ -215,7 +215,11 @@ server.init(9001, (error, server) => {
 
                     t.deepEqual(parseObjectValues(event), expected, 'Event is successfully confirmed');
 
-                    client.lrange('calendar:' + inviteeID, 0, 0, (error, latestCalendarEntry) => {
+                    client.smembers('calendar:' + inviteeID, (error, calendar) => {
+
+                        const latestCalendarEntry = calendar.filter((item) => {
+                            return item === 'event:400';
+                        });
 
                         t.equal(latestCalendarEntry[0], 'event:400', 'A calendar item was created');
 
@@ -224,7 +228,7 @@ server.init(9001, (error, server) => {
                             var latestNotification = JSON.parse(notifications[0]).eventID;
                             t.equal(latestNotification, 'event:400', 'A notification was created');
                             client.del('event:400');
-                            client.lpop('calendar:' + inviteeID);
+                            client.spop('calendar:' + inviteeID);
                             client.lpop("notifications:" + inviteeID);
                             t.end();
                         });
