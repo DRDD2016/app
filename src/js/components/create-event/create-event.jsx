@@ -1,7 +1,9 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 
 class CreateEvent extends React.Component {
+
 
     constructor (props){
         super(props);
@@ -9,7 +11,7 @@ class CreateEvent extends React.Component {
 
     eventType () {
         let pathname = this.props.location.pathname.split('/').pop();
-        
+
         if (pathname === "create-event") {
             pathname = "Create an event";
         }
@@ -18,7 +20,8 @@ class CreateEvent extends React.Component {
 
     cancelEvent () {
         this.props.discardEvent();
-        this.context.router.push('/feed');
+        
+        browserHistory.push('/feed');
     }
 
 
@@ -27,7 +30,7 @@ class CreateEvent extends React.Component {
         return (
             <div>
                 <div className="event-header row">
-                    <p className="three columns back-button" onClick={ this.context.router.goBack }> Back </p>
+                    <p className="three columns back-button" onClick={ () => { browserHistory.goBack(); } }> Back </p>
                     <h3 className=" six columns title"> { this.eventType() }</h3>
                     <p className="three columns cancel-event-button" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
                 </div>
@@ -43,10 +46,5 @@ class CreateEvent extends React.Component {
         );
     }
 }
-
-
-CreateEvent.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
 
 export default CreateEvent;

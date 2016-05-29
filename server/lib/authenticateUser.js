@@ -16,7 +16,7 @@ function authenticateUser (request, reply) {
                 if (error) {
                     reply(new Error("Could not register user"));
                 } else {
-                    reply.redirect('/#/feed')
+                    reply.redirect('/feed')
                          .state('sparkID', request.auth.credentials.profile.id, { path: "/" });
                 }
             });

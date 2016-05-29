@@ -30,13 +30,15 @@ import { store } from './init-store.js';
 
 function initialiseAppState (nextState, replace, callback) {
 
+    // catch if user is not authenticated
+    // onEnter runs before requireAuthentication
     if (!validCookieExists()) {
+
         browserHistory.push('/');
-    }
-    else {
+    } else {
 
         if (!store.getState().user.id) {
-
+        
             store.dispatch(getUser());
         }
         store.dispatch(getNotifications());
@@ -47,9 +49,11 @@ function initialiseAppState (nextState, replace, callback) {
 
 function fetchCalendar (nextState, replace, callback) {
 
+    // catch if user is not authenticated
+    // onEnter runs before requireAuthentication
     if (!validCookieExists()) {
-        browserHistory.push('/');
 
+        browserHistory.push('/');
     } else {
 
         if (!store.getState().user.id) {
@@ -81,8 +85,8 @@ const routes = (
                onEnter={ fetchEvent } />
 
         <Route path='/edit/:eventID'
-              component={ requireAuthentication(EditEventContainer) }
-              onEnter={ fetchEvent } />
+               component={ requireAuthentication(EditEventContainer) }
+               onEnter={ fetchEvent } />
 
         <Route path='/calendar'
                component={ requireAuthentication(CalendarContainer) }
