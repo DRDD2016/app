@@ -1,4 +1,4 @@
-var deleteEvent = require('../db/delete-event.js');
+var deleteEvent = require('../db/deleteEvent.js');
 var getEvent = require('../db/getEvent.js');
 var deleteEventFromCalendar = require('../db/deleteEventFromCalendar.js');
 

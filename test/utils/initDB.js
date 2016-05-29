@@ -78,7 +78,7 @@ client.hmsetAsync("event:400", "eventName", pollToConfirmed.eventName,
 
 
 /*
-SET DEFAULT CONFIRMED EVENT 500
+EVENT 500 Created specifically to test with delete-event tests.
 */
 
 var eventConfirmedDefault = stringifyObjectValues(fixtures.eventConfirmedHarry);

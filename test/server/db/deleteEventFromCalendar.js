@@ -1,5 +1,5 @@
 import test from 'tape';
-import deleteEventFromCalendar from '../../../server/db/delete-event.js';
+import deleteEventFromCalendar from '../../../server/db/deleteEvent.js';
 import client from '../../../server/db/init.js';
 import * as fixtures from '../../utils/fixtures.js';
 
