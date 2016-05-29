@@ -74,3 +74,22 @@ client.hmsetAsync("event:400", "eventName", pollToConfirmed.eventName,
 
 // client.saddAsync("notifications:12345678", JSON.stringify(fixtures.pollToConfirmedNotification));
 // client.sadd("calendar:" + fixtures.HARRY_ID, fixtures.pollToConfirmedEventID);
+
+
+
+/*
+SET DEFAULT CONFIRMED EVENT 500
+*/
+
+var eventConfirmedDefault = stringifyObjectValues(fixtures.eventConfirmedHarry);
+
+client.hmsetAsync("event:500", "eventName", eventConfirmedDefault.eventName,
+                 "eventDescription", eventConfirmedDefault.eventDescription,
+                 "eventNote", '',
+                 "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
+                 "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
+                 "hostID", eventConfirmedDefault.hostID,
+                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:100");
+
+client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
+client.sadd("calendar:event:500", fixtures.eventConfirmedHarryEventID);

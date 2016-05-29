@@ -1,4 +1,6 @@
 var deleteEvent = require('../db/delete-event.js');
+var getEvent = require('../db/getEvent.js');
+var deleteEventFromCalendar = require('../db/deleteEventFromCalendar.js');
 
 exports.register = (server, options, next) => {
 
@@ -12,8 +14,31 @@ exports.register = (server, options, next) => {
 
 
                 deleteEvent(request.query.eventID, (error, response) => {
-                    const verdict = error || response;
-                    reply(verdict);
+
+                    if (error) {
+                        reply(error);
+                    }
+
+                    getEvent(eventID, (error, event) => {
+
+                        if (error) {
+                            reply(error);
+                        }
+
+                        var users = event.invitees.map((invitee) => {
+                            return invitee.id;
+                        }).concat([event.hostID]);
+
+                        deleteEventFromCalendar(users, request.query.eventID, (error, success) => {
+
+                            const verdict = error || response;
+                            reply(verdict);
+
+                        });
+                    });
+
+
+
                 });
             }
         }

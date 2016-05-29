@@ -270,4 +270,20 @@ server.init(9001, (error, server) => {
         });
     });
 
+    test('`delete-event` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/get-event?eventID=event:500'
+        };
+
+        server.inject(options, (response) => {
+
+            t.ok(1, 'Successful Get request');
+            t.end();
+
+
+        });
+    });
+
 });
