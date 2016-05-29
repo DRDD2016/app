@@ -279,11 +279,28 @@ server.init(9001, (error, server) => {
 
         server.inject(options, (response) => {
 
-            t.ok(1, 'Successful Get request');
-            t.end();
+            //checking if the event is deleted and then if the event is deleted from the users calendar set
+            client.exists('event:500', (error, actual) => {
 
+                t.deepEqual(actual, 0, "event has been deleted");
+
+                client.sismember('calendar:10154129575200996', 'event:500', (error, actual2) => {
+
+                    t.deepEqual(actual2, 0, "event has been deleted from the users calendar set");
+
+                    client.exists('RSVP:event:500|going', (error, actual3) => {
+
+                        t.deepEqual(actual3, 0, "RSVP has been deleted for the event");
+                        t.ok(1, 'Successful Get request');
+                        t.end();
+                    });
+
+                });
+
+            });
 
         });
+        
     });
 
 });

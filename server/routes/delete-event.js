@@ -1,6 +1,7 @@
 var deleteEvent = require('../db/deleteEvent.js');
 var getEvent = require('../db/getEvent.js');
-var deleteEventFromCalendar = require('../db/deleteEventFromCalendar.js');
+var deleteEventFromCalendar = require('../lib/deleteEventFromCalendar.js');
+var deleteRSVPs = require('../lib/deleteRSVPs.js');
 
 exports.register = (server, options, next) => {
 
@@ -13,33 +14,39 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
 
-                deleteEvent(request.query.eventID, (error, response) => {
+                getEvent(eventID, (error, event) => {
 
                     if (error) {
                         reply(error);
                     }
+                    var users = event.invitees.map((invitee) => {
+                        return invitee.id;
+                    }).concat([event.hostID]);
 
-                    getEvent(eventID, (error, event) => {
+                    deleteEvent(request.query.eventID, (error, response) => {
 
                         if (error) {
                             reply(error);
                         }
 
-                        var users = event.invitees.map((invitee) => {
-                            return invitee.id;
-                        }).concat([event.hostID]);
+                        deleteEventFromCalendar(users, request.query.eventID, (error, response) => {
 
-                        deleteEventFromCalendar(users, request.query.eventID, (error, success) => {
+                            if (error) {
+                                reply(error);
+                            }
 
-                            const verdict = error || response;
-                            reply(verdict);
+                            deleteRSVPs(request.query.eventID, (error, success) => {
+
+                                const verdict = error || response;
+                                reply(verdict);
+                            });
 
                         });
+
                     });
 
-
-
                 });
+
             }
         }
     }]);
