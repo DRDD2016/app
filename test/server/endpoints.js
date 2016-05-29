@@ -228,7 +228,7 @@ server.init(9001, (error, server) => {
                             var latestNotification = JSON.parse(notifications[0]).eventID;
                             t.equal(latestNotification, 'event:400', 'A notification was created');
                             client.del('event:400');
-                            client.spop('calendar:' + inviteeID);
+                            client.srem('calendar:' + inviteeID);
                             client.lpop("notifications:" + inviteeID);
                             t.end();
                         });
