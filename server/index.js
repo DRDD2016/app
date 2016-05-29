@@ -1,3 +1,4 @@
+var path = require('path');
 var Hapi  = require('hapi');
 var Bell = require('bell');
 var plugins = require('./plugins.js');
@@ -5,7 +6,15 @@ var authenticateUser = require('./lib/authenticateUser.js');
 
 exports.init = (port, callback) => {
 
-    var server = new Hapi.Server();
+    var server = new Hapi.Server({
+        connections: {
+            routes: {
+                files: {
+                    relativeTo: path.join(__dirname, '/../public')
+                }
+            }
+        }
+    });
     server.connection({
         host: "0.0.0.0",
         port: port,

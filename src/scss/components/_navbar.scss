@@ -9,6 +9,12 @@
     display: flex
 }
 
+@media only screen and (max-height: 400px) {
+    .navbar {
+        display: none;
+    }
+}
+
 .nav-button {
     width: 20%;
     color: white;
@@ -22,14 +28,19 @@ i.nav-icon {
     text-align: center;
     margin: 0 auto;
     padding-top: 0.4em;
+    font-size: 2em;
 }
 
 .menu-label {
-    padding-top: 1em;
+    padding-top: 0.5em;
     font-size: 1.4rem;
     font-weight: normal;
 }
 
-a:hover {
+.nav-button.selected {
     background-color: $grey;
+
+    i.nav-icon, .menu-label {
+        color: $blue;
+    }
 }
