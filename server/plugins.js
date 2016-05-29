@@ -1,5 +1,6 @@
 var Inert = require('inert');
 var Home  = require('./routes/home.js');
+var ForReactRouter = require('./routes/for-react-router.js');
 var GetUser = require('./routes/get-user.js');
 var GetNotifications = require('./routes/get-notifications.js');
 var GetCalendar = require('./routes/get-calendar.js');
@@ -15,6 +16,7 @@ var EditEvent = require('./routes/edit-event.js');
 var plugins = [
     Inert,
     Home,
+    ForReactRouter,
     GetUser,
     GetNotifications,
     GetCalendar,

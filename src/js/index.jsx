@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import initStore from './init-store.js';
 import { requireAuthentication } from './requireAuthentication.jsx';
@@ -88,7 +88,7 @@ const routes = (
 
 ReactDOM.render(
     <Provider store={ store } >
-        <Router history={ hashHistory }>
+        <Router history={ browserHistory }>
             { routes }
         </Router>
     </Provider>,

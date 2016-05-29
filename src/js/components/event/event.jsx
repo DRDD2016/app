@@ -4,7 +4,7 @@ import HostPoll from './host-poll.jsx';
 import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
-import CancelConfirmedEventModal from './cancel-confirmed-event-modal.jsx';
+import Modal from '../general/modal.jsx';
 import { Link } from 'react-router';
 
 
@@ -13,26 +13,24 @@ class Event extends React.Component {
     constructor (props) {
         super(props);
         this.handleDeleteEvent = this.handleDeleteEvent.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     cancelEventConfirmationModal () {
-        $('.ui.basic.modal')
-            .modal('show');
+        document.getElementsByClassName('modal-container')[0]
+            .style.display = "flex";
     }
 
     handleDeleteEvent () {
-        $('.ui.basic.modal')
-            .modal('hide');
         this.props.handleDeleteEvent(this.props.params.eventID);
         this.context.router.push('/feed');
+        this.handleCloseModal();
     }
 
     handleCloseModal () {
-        $('.ui.basic.modal')
-            .modal('hide');
+        document.getElementsByClassName('modal-container')[0]
+            .style.display = "none";
     }
-
-
 
     renderView () {
 
@@ -70,7 +68,7 @@ class Event extends React.Component {
     render () {
 
         let headerTitle = this.props.isPoll ? "Poll" : "Event";
-        
+
         if (this.props.isFetching) {
             return (
                 <Spinner />
@@ -87,9 +85,8 @@ class Event extends React.Component {
             return (
                 <div>
 
-                    <CancelConfirmedEventModal
-                        handleDeleteEvent={ this.handleDeleteEvent }
-                        handleCloseModal={ this.handleCloseModal } />
+                    <Modal deleteEvent={ this.handleDeleteEvent }
+                           closeModal={ this.handleCloseModal } />
 
                     <div className="event-header row">
                         <Link onClick={ () => { this.props.handleEdit(this.props.event); } } to={ 'edit/' + this.props.params.eventID }>
@@ -115,9 +112,8 @@ class Event extends React.Component {
             return (
                 <div>
 
-                    <CancelConfirmedEventModal
-                        handleDeleteEvent={ this.handleDeleteEvent }
-                        handleCloseModal={ this.handleCloseModal } />
+                    <Modal deleteEvent={ this.handleDeleteEvent }
+                           closeModal={ this.handleCloseModal } />
 
                     <div className="event-header row">
                         <p className="three columns back-button" > </p>
