@@ -215,7 +215,11 @@ server.init(9001, (error, server) => {
 
                     t.deepEqual(parseObjectValues(event), expected, 'Event is successfully confirmed');
 
-                    client.smembers('calendar:' + inviteeID, (error, latestCalendarEntry) => {
+                    client.smembers('calendar:' + inviteeID, (error, calendar) => {
+
+                        const latestCalendarEntry = calendar.filter((item) => {
+                            return item === 'event:400';
+                        });
 
                         t.equal(latestCalendarEntry[0], 'event:400', 'A calendar item was created');
 
@@ -264,6 +268,39 @@ server.init(9001, (error, server) => {
             t.ok(1, 'Successful POST request');
             t.end();
         });
+    });
+
+    test('`delete-event` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/delete-event?eventID=event:500'
+        };
+
+        server.inject(options, (response) => {
+
+            //checking if the event is deleted and then if the event is deleted from the users calendar set
+            client.exists('event:500', (error, actual) => {
+
+                t.equal(actual, 0, "event has been deleted");
+
+                client.sismember('calendar:10154129575200996', 'event:500', (error, actual2) => {
+
+                    t.equal(actual2, 0, "event has been deleted from the users calendar set");
+
+                    client.exists('RSVP:event:500|going', (error, actual3) => {
+
+                        t.equal(actual3, 0, "RSVP has been deleted for the event");
+                        t.equal(response.statusCode, 200, '200 status code');
+                        t.end();
+                    });
+
+                });
+
+            });
+
+        });
+
     });
 
 });

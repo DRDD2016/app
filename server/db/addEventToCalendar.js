@@ -9,9 +9,9 @@ function addEventToCalendar (users, eventID, callback) {
 
     users.forEach((id, index) => {
 
-        var setKey = "calendar:" + id;
+        var setName = "calendar:" + id;
 
-        client.saddAsync(setKey, eventID)
+        client.saddAsync(setName, eventID)
 
         .then((response) => {
             if (index === users.length - 1) {
