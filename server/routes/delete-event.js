@@ -20,14 +20,13 @@ exports.register = (server, options, next) => {
                     if (error) {
                         reply(error);
                     }
-                    console.log(error,'----errror');
-                    console.log(event,'--------event');
                     var users = event.invitees.map((invitee) => {
                         return invitee.id;
                     }).concat([event.hostID]);
 
-                    deleteEvent(eventID, (error, response) => {
+                    console.log(users,'----');
 
+                    deleteEvent(eventID, (error, response) => {
                         if (error) {
                             reply(error);
                         }

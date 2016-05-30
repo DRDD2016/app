@@ -270,7 +270,7 @@ server.init(9001, (error, server) => {
         });
     });
 
-    test.skip('`delete-event` works', (t) => {
+    test('`delete-event` works', (t) => {
 
         const options = {
             method: 'GET',

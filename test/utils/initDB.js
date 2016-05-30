@@ -83,7 +83,7 @@ EVENT 500 Created specifically to test with delete-event tests.
 
 var eventConfirmedDefault = stringifyObjectValues(fixtures.eventConfirmedHarry);
 
-client.hmsetAsync("event:500", "eventName", eventConfirmedDefault.eventName,
+client.hmset("event:500", "eventName", eventConfirmedDefault.eventName,
                  "eventDescription", eventConfirmedDefault.eventDescription,
                  "eventNote", '',
                  "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
@@ -92,4 +92,23 @@ client.hmsetAsync("event:500", "eventName", eventConfirmedDefault.eventName,
                  "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:500");
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
-client.sadd("calendar:event:500", fixtures.eventConfirmedHarryEventID);
+client.sadd("calendar:10154129575200996", "event:500");
+
+/*
+EVENT 600 Created specifically to test with deleteEventFromUserCalendars.
+*/
+
+var eventConfirmedDefault = stringifyObjectValues(fixtures.eventConfirmedHarry);
+
+client.hmset("event:600", "eventName", eventConfirmedDefault.eventName,
+                 "eventDescription", eventConfirmedDefault.eventDescription,
+                 "eventNote", '',
+                 "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
+                 "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
+                 "hostID", eventConfirmedDefault.hostID,
+                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:600");
+
+client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
+client.lpush("notifications:10154129575200996", JSON.stringify(fixtures.eventConfirmedHarryNotification));
+client.sadd("calendar:10154129575200996", "event:600");
+client.sadd("calendar:12345678", "event:600");
