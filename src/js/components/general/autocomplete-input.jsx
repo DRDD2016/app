@@ -22,7 +22,7 @@ class AutocompleteInput extends React.Component {
             this.props.handleChange(result.name, result.formatted_address);
         });
     }
-    
+
     render () {
         const { handleChange, value, placeholder, id, inputKey, removeInput } = this.props;
 
@@ -42,7 +42,7 @@ class AutocompleteInput extends React.Component {
                     placeholder={ placeholder } />
 
                 <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
-                    <i className="icon remove" />
+                    <i className="fa fa-times" ariaHidden="true" />
                 </div>
             </div>
         );

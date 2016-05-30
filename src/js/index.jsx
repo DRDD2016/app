@@ -4,6 +4,7 @@ import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import initStore from './init-store.js';
 import { requireAuthentication } from './requireAuthentication.jsx';
+import validCookieExists from './lib/validCookieExists.js';
 import { getUser } from './actions/user.js';
 import { getEvent } from './actions/event.js';
 import { getNotifications } from './actions/notifications.js';
@@ -29,21 +30,39 @@ import { store } from './init-store.js';
 
 function initialiseAppState (nextState, replace, callback) {
 
-    if (!store.getState().user.id) {
+    // catch if user is not authenticated
+    // onEnter runs before requireAuthentication
+    if (!validCookieExists()) {
 
-        store.dispatch(getUser());
+        browserHistory.push('/');
+    } else {
+
+        if (!store.getState().user.id) {
+        
+            store.dispatch(getUser());
+        }
+        store.dispatch(getNotifications());
     }
-    store.dispatch(getNotifications());
+
     callback();
 }
 
 function fetchCalendar (nextState, replace, callback) {
 
-    if (!store.getState().user.id) {
+    // catch if user is not authenticated
+    // onEnter runs before requireAuthentication
+    if (!validCookieExists()) {
 
-        store.dispatch(getUser());
+        browserHistory.push('/');
+    } else {
+
+        if (!store.getState().user.id) {
+
+            store.dispatch(getUser());
+        }
+        store.dispatch(getCalendar());
     }
-    store.dispatch(getCalendar());
+
     callback();
 }
 
@@ -66,8 +85,8 @@ const routes = (
                onEnter={ fetchEvent } />
 
         <Route path='/edit/:eventID'
-              component={ requireAuthentication(EditEventContainer) }
-              onEnter={ fetchEvent } />
+               component={ requireAuthentication(EditEventContainer) }
+               onEnter={ fetchEvent } />
 
         <Route path='/calendar'
                component={ requireAuthentication(CalendarContainer) }

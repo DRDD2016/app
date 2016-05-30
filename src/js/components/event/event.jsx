@@ -5,7 +5,7 @@ import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
 import Modal from '../general/modal.jsx';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 
 class Event extends React.Component {
@@ -23,7 +23,7 @@ class Event extends React.Component {
 
     handleDeleteEvent () {
         this.props.handleDeleteEvent(this.props.params.eventID);
-        this.context.router.push('/feed');
+        browserHistory.push('/feed');
         this.handleCloseModal();
     }
 
@@ -155,9 +155,5 @@ class Event extends React.Component {
     }
 }
 
-
-Event.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
 
 export default Event;

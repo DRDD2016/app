@@ -1,21 +1,19 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+import validCookieExists from './lib/validCookieExists.js';
 
 export function requireAuthentication (Component) {
 
     class AuthenticatedComponent extends React.Component {
 
         componentWillMount () {
-            this.checkAuth();
-        }
 
-        componentWillReceiveProps (nextProps) {
-            this.checkAuth();
-        }
+            if (!validCookieExists()) {
 
-        checkAuth () {
-            if (document.cookie.indexOf("sparkID") === -1) {
-
-                this.context.router.push('/');
+                browserHistory.push('/');
+                return false;
+            } else {
+                return true;
             }
         }
 
@@ -27,10 +25,6 @@ export function requireAuthentication (Component) {
             );
         }
     }
-
-    AuthenticatedComponent.contextTypes = {
-        router: React.PropTypes.object.isRequired
-    };
-
+    
     return AuthenticatedComponent;
 }

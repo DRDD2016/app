@@ -146,6 +146,13 @@ Login.contextTypes = {
 export default Login;
 ```
 
+### Update 29/5/2016
+* browserHistory is preferred over hashHistory in react router.
+Now using:
+```js
+browserHistory.push('/feed');
+``` 
+
 ### Getting Facebook photo
 
 **Problem**
