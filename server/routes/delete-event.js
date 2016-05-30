@@ -14,7 +14,7 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
                 var eventID = request.query.eventID;
-                console.log(eventID,'---eventid');
+
                 getEvent(eventID, (error, event) => {
 
                     if (error) {
@@ -24,7 +24,6 @@ exports.register = (server, options, next) => {
                         return invitee.id;
                     }).concat([event.hostID]);
 
-                    console.log(users,'----');
 
                     deleteEvent(eventID, (error, response) => {
                         if (error) {

@@ -4,7 +4,6 @@ var parseObjectValues = require('../lib/parseObjectValues.js');
 function getEvent (eventID, callback) {
 
     client.hgetall(eventID, (error, event) => {
-        console.log(event,'---insidegetEvent');
 
         if (error) {
 
