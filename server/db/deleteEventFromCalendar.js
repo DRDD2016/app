@@ -1,6 +1,6 @@
 var client = require('./init.js');
 
-function deleteEventsFromUsersCalendar (eventID, userID, callback) {
+function deleteEventFromCalendar (eventID, userID, callback) {
 
     var setName = "calendar:" + userID;
 
@@ -15,4 +15,4 @@ function deleteEventsFromUsersCalendar (eventID, userID, callback) {
 
 }
 
-module.exports = deleteEventsFromUsersCalendar;
+module.exports = deleteEventFromCalendar;

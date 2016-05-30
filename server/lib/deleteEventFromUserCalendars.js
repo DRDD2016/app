@@ -1,6 +1,6 @@
-var deleteEventFromUsersCalendar = require('../db/deleteEventFromUsersCalendar.js');
+var deleteEventFromCalendar = require('../db/deleteEventFromCalendar.js');
 
-function deleteEventFromCalendar (users, eventID, callback) {
+function deleteEventFromUserCalendars (users, eventID, callback) {
 
     if (!Array.isArray(users)) {
 
@@ -22,9 +22,9 @@ function deleteEventFromCalendar (users, eventID, callback) {
 
     users.forEach((userID, index) => {
 
-        deleteEventFromUserCalendar(eventID, userID, report);
+        deleteEventFromCalendar(eventID, userID, report);
 
     });
 }
 
-module.exports = deleteEventFromCalendar;
+module.exports = deleteEventFromUserCalendars;

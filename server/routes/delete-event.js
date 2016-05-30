@@ -1,6 +1,6 @@
 var deleteEvent = require('../db/deleteEvent.js');
 var getEvent = require('../db/getEvent.js');
-var deleteEventFromCalendar = require('../lib/deleteEventFromCalendar.js');
+var deleteEventFromUserCalendars = require('../lib/deleteEventFromUserCalendars.js');
 var deleteRSVPs = require('../lib/deleteRSVPs.js');
 
 exports.register = (server, options, next) => {
@@ -29,7 +29,7 @@ exports.register = (server, options, next) => {
                             reply(error);
                         }
 
-                        deleteEventFromCalendar(users, request.query.eventID, (error, response) => {
+                        deleteEventFromUserCalendars(users, request.query.eventID, (error, response) => {
 
                             if (error) {
                                 reply(error);
