@@ -15,7 +15,7 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput })
                 value={ value.date }
                 placeholder="Date"
                 onChange={ handleDate.bind(this, inputKey) } />
-            
+
             <input
                 step="300"
                 className="four columns"
@@ -25,7 +25,7 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput })
                 onChange={ (e) => handleTime(inputKey, e) } />
 
             <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
-                <i className="icon remove" />
+                <i className="fa fa-times" ariaHidden="true" />
             </div>
         </div>
     );
