@@ -12,7 +12,7 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
                 getCalendar(request.query.userID, (error, calendar) => {
-
+                    console.log(calendar);
                     if (error) {
                         reply(error);
                     }

@@ -1,4 +1,6 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+import validCookieExists from '../lib/validCookieExists.js';
 import Banner from './general/banner.jsx';
 
 class Login extends React.Component {
@@ -10,9 +12,9 @@ class Login extends React.Component {
 
     componentWillMount () {
 
-        if (document.cookie.indexOf("sparkID") !== -1) {
+        if (validCookieExists()) {
 
-            this.context.router.push('/feed');
+            browserHistory.push('/feed');
             return false;
         }
     }
@@ -43,9 +45,5 @@ class Login extends React.Component {
         );
     }
 }
-
-Login.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
 
 export default Login;

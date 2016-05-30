@@ -17,7 +17,7 @@ const Input = ({ handleChange, value, placeholder, removeInput, inputKey }) => {
                 type="text"
                 placeholder={ placeholder } />
             <div className={ removeInputClasses } onClick={ (e) => removeInput(inputKey) }>
-                <i className="icon remove" />
+                <i className="fa fa-times" ariaHidden="true" />
             </div>
         </div>
     );

@@ -1,14 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
+import validCookieExists from '../../lib/validCookieExists.js';
 
 class EventDetails extends React.Component {
+
     constructor (props){
         super(props);
     }
 
     componentDidMount () {
-        if (this.props.shouldGetFBFriends) {
+        
+        if (validCookieExists() && this.props.shouldGetFBFriends) {
+
             this.props.getFBFriends();
         }
     }
