@@ -89,7 +89,7 @@ client.hmsetAsync("event:500", "eventName", eventConfirmedDefault.eventName,
                  "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
                  "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
                  "hostID", eventConfirmedDefault.hostID,
-                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:100");
+                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:500");
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.sadd("calendar:event:500", fixtures.eventConfirmedHarryEventID);
