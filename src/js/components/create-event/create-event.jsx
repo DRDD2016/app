@@ -13,14 +13,16 @@ class CreateEvent extends React.Component {
         let pathname = this.props.location.pathname.split('/').pop();
 
         if (pathname === "create-event") {
-            pathname = "Create an event";
+            return "Create an event";
+        } else {
+
+            return pathname.charAt(0).toUpperCase() + pathname.slice(1) + "?";
         }
-        return pathname.charAt(0).toUpperCase() + pathname.slice(1);
     }
 
     cancelEvent () {
         this.props.discardEvent();
-        
+
         browserHistory.push('/feed');
     }
 
