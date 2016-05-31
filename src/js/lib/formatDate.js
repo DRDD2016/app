@@ -1,4 +1,10 @@
-export default function formatDate (date) {
+export default function formatDate (date, full) {
 
-    return moment(date).format('Do MMMM');
+    if (full ) {
+
+        return moment(date).format('LL');
+    } else {
+
+        return moment(date).format('Do MMMM');
+    }
 }

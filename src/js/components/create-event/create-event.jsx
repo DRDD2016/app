@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 
 class CreateEvent extends React.Component {
@@ -13,15 +13,17 @@ class CreateEvent extends React.Component {
         let pathname = this.props.location.pathname.split('/').pop();
 
         if (pathname === "create-event") {
-            pathname = "Create an event";
+            return "Create an event";
+        } else {
+
+            return pathname.charAt(0).toUpperCase() + pathname.slice(1) + "?";
         }
-        return pathname.charAt(0).toUpperCase() + pathname.slice(1);
     }
 
     cancelEvent () {
         this.props.discardEvent();
-        
-        browserHistory.push('/feed');
+
+        hashHistory.push('/feed');
     }
 
 
@@ -30,7 +32,7 @@ class CreateEvent extends React.Component {
         return (
             <div>
                 <div className="event-header row">
-                    <p className="three columns back-button" onClick={ () => { browserHistory.goBack(); } }> Back </p>
+                    <p className="three columns back-button" onClick={ () => { hashHistory.goBack(); } }> Back </p>
                     <h3 className=" six columns title"> { this.eventType() }</h3>
                     <p className="three columns cancel-event-button" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
                 </div>

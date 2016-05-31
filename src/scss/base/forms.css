@@ -37,7 +37,8 @@ textarea {
 textarea {
   min-height: 65px;
   padding-top: 6px;
-  padding-bottom: 6px; }
+  padding-bottom: 6px;
+  resize: none; }
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,

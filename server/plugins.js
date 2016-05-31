@@ -15,7 +15,6 @@ var EditEvent = require('./routes/edit-event.js');
 
 var plugins = [
     Inert,
-    Home,
     ForReactRouter,
     GetUser,
     GetNotifications,

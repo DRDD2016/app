@@ -10,7 +10,7 @@ class EventDetails extends React.Component {
     }
 
     componentDidMount () {
-        
+
         if (validCookieExists() && this.props.shouldGetFBFriends) {
 
             this.props.getFBFriends();
@@ -28,9 +28,10 @@ class EventDetails extends React.Component {
         return (
             <div className="justify">
 
-                <p className="text-snippet">
+                <p>
                     Enter the name of your event an a description.
                 </p>
+
 
                 <div className="row">
                     <input
@@ -52,12 +53,12 @@ class EventDetails extends React.Component {
                 </div>
 
                 <div className="row">
-                    <input
+                    <textarea
                         className="twelve columns event-note"
                         onChange={ this.props.handleChange.bind(this, 'eventNote') }
                         value={ this.props.eventDetails ? this.props.eventDetails.eventNote : '' }
-                        type="text"
-                        placeholder="Event Note" />
+                        rows="5"
+                        placeholder="Leave a note to your friends (optional)" />
                 </div>
 
                 <div className="row">

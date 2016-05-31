@@ -34,7 +34,7 @@ class AutocompleteInput extends React.Component {
             <div className="row">
                 <input
                     className="eleven columns"
-                    onChange={ (e) => handleChange(e.target.value, "")}
+                    onChange={ (e) => handleChange(e.target.value, "") }
                     ref="searchField"
                     id={ id }
                     value={ value }

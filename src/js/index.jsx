@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory, IndexRoute } from 'react-router';
+import { Router, Route, hashHistory, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import initStore from './init-store.js';
 import { requireAuthentication } from './requireAuthentication.jsx';
@@ -27,18 +27,18 @@ import EventConfirmContainer from './containers/create-event/event-confirm-conta
 import InviteFriendsContainer from './containers/create-event/invite-friends-container.js';
 
 import { store } from './init-store.js';
-
+console.log("hashHistory", hashHistory);
 function initialiseAppState (nextState, replace, callback) {
 
     // catch if user is not authenticated
     // onEnter runs before requireAuthentication
     if (!validCookieExists()) {
 
-        browserHistory.push('/');
+        hashHistory.push('/');
     } else {
 
         if (!store.getState().user.id) {
-        
+
             store.dispatch(getUser());
         }
         store.dispatch(getNotifications());
@@ -53,7 +53,7 @@ function fetchCalendar (nextState, replace, callback) {
     // onEnter runs before requireAuthentication
     if (!validCookieExists()) {
 
-        browserHistory.push('/');
+        hashHistory.push('/');
     } else {
 
         if (!store.getState().user.id) {
@@ -107,7 +107,7 @@ const routes = (
 
 ReactDOM.render(
     <Provider store={ store } >
-        <Router history={ browserHistory }>
+        <Router history={ hashHistory }>
             { routes }
         </Router>
     </Provider>,
