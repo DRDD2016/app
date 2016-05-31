@@ -33,7 +33,7 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
 
             <div className="row">
                 <button className={ addInputClasses } onClick={ (e) => addInput() }>
-                    Add input
+                    Add inputs
                 </button>
             </div>
 
