@@ -7,9 +7,10 @@ exports.register = (server, options, next) => {
             config: {
                 description: 'exists to configure React Router\'s browserHistory',
 
-                handler: function (request, reply) {
-                    
-                    reply.file('index.html');
+                handler: {
+                    directory: {
+                        path: "public"
+                    }
                 }
             }
         }

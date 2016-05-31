@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import validCookieExists from './lib/validCookieExists.js';
 
 export function requireAuthentication (Component) {
@@ -10,7 +10,7 @@ export function requireAuthentication (Component) {
 
             if (!validCookieExists()) {
 
-                browserHistory.push('/');
+                hashHistory.push('/');
                 return false;
             } else {
                 return true;
@@ -25,6 +25,6 @@ export function requireAuthentication (Component) {
             );
         }
     }
-    
+
     return AuthenticatedComponent;
 }
