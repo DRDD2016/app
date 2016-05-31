@@ -1,8 +1,9 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
-import ConfirmEventWhat from '../general/confirm-event-what.jsx';
-import ConfirmEventWhereorWhen from '../general/confirm-event-where-or-when.jsx';
+import ConfirmEventWhat from './confirmation/confirm-event-what.jsx';
+import ConfirmEventWhereorWhen from './confirmation/confirm-event-where-or-when.jsx';
+import formatDate from '../lib/formatDate.js';
 
 const EventConfirm = ({ data, saveEvent }) => {
 
@@ -14,24 +15,23 @@ const EventConfirm = ({ data, saveEvent }) => {
                     <a className="header">{ inviteeObject.firstName }</a>
                 </div>
             </div>
-
         );
     });
     return (
         <div>
-
+            <h4>What?</h4>
             <ConfirmEventWhat
                 eventWhat = { data.eventWhat }
             />
-
+            <h4>Where?</h4>
             <ConfirmEventWhereorWhen
                 eventWhereorWhen = { data.eventWhere }
             />
-
+            <h4>When?</h4>
             <ConfirmEventWhereorWhen
                     eventWhereorWhen = { data.eventWhen }
                 />
-
+            <h4>Invited</h4>
             <div className="ui very relaxed horizontal list">
                 {invitedFriends}
             </div>

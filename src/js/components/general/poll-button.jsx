@@ -16,7 +16,7 @@ const PollButton = ({ poll, handlePollConfirmation, eventID }) => {
     });
 
     let classes = classnames("twelve columns", {
-        'hide': !userHasCompletedPoll,
+        'display-none': !userHasCompletedPoll,
     });
 
     return (

@@ -43,7 +43,7 @@ class InviteFriends extends React.Component {
         });
 
         let classes = classnames("twelve columns", {
-            'hide': this.props.invitees.length === 0
+            'display-none': this.props.invitees.length === 0
         });
 
         return (
