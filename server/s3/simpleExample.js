@@ -26,28 +26,19 @@ var s3 = new AWS.S3({
     }
 });
 
-// s3.upload({ Body: 'THIS IS WHERE THE Second IMAGE WILL BE!!!!' }, (error, data) => {
-//     if (error) {
-//         console.log("ERROR", error);
-//     } else {
-//         console.log('SUCCESSS', data);
-//     }
-// });
-
-
-// var options = {
-//     Bucket: 'spark-app-demo',
-//     EncodingType: 'url',
-//     Prefix: 'event:1'
-// };
-// s3.listObjects(options, (err, data) => {
-//     if (err) {
-//         console.log(err);
-//     }
-//     else {
-//         console.log(data);
-//     }
-// });
+var options = {
+    Bucket: 'spark-app-demo',
+    EncodingType: 'url',
+    Prefix: 'event:1'
+};
+s3.listObjects(options, (err, data) => {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log(data);
+    }
+});
 
 // var readstream = fs.createReadStream(__dirname + '/../../public/big-image.JPG');
 // gm(readstream)
