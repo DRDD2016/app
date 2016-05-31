@@ -11,7 +11,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
         let templateNoSpace = `${value.placeName}${value.placeAddress}`;
         let templateWithSpace = `${value.placeName} ${value.placeAddress}`;
-        let chosenTemplate = value.placeAddress === '' ? templateNoSpace : templateWithSpace;
+        let chosenTemplate = (value.placeAddress === '') ? templateNoSpace : templateWithSpace;
         let fullAddress = (value.placeName ? chosenTemplate : "");
 
         let autocompleteID = 'autocomplete-' + i;
@@ -22,7 +22,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
                     inputKey={ i }
                     value={ fullAddress }
                     placeholder= "Where?"
-                    id = { autocompleteID }
+                    id={ autocompleteID }
                     removeInput={ removeInput }
                 />
         );

@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import { Link } from 'react-router';
 import ConfirmEventWhat from './confirmation/confirm-event-what.jsx';
 import ConfirmEventWhereorWhen from './confirmation/confirm-event-where-or-when.jsx';
-import formatDate from '../lib/formatDate.js';
+import formatDate from '../../lib/formatDate.js';
 
 const EventConfirm = ({ data, saveEvent }) => {
 
