@@ -21,7 +21,7 @@ const EditEvent = (props) => {
     let hideButtonToggle = eventWhat.length === 0 || eventWhere.placeName === "" || eventWhen.date === "" || props.eventDetails.eventName === "" || props.eventDetails.eventDescription === "";
 
     let hideSaveButton = classnames("twelve columns", {
-        "hide": hideButtonToggle
+        "display-none": hideButtonToggle
     });
 
     return (

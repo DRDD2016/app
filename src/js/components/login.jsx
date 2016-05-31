@@ -1,5 +1,5 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import validCookieExists from '../lib/validCookieExists.js';
 import Banner from './general/banner.jsx';
 
@@ -14,7 +14,7 @@ class Login extends React.Component {
 
         if (validCookieExists()) {
 
-            browserHistory.push('/feed');
+            hashHistory.push('/feed');
             return false;
         }
     }

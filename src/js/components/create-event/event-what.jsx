@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 import Input from '../general/input.jsx';
+import AddInput from '../general/add-input.jsx';
 
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
@@ -19,28 +20,30 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
     });
 
     let addInputClasses = classnames("twelve columns", {
-        "hide": eventWhatData.length >= 3
+        "display-none": eventWhatData.length >= 3
     });
 
     let nextButtonClasses = classnames("twelve columns", {
-        "hide": eventWhatData[0] === ""
+        "display-none": eventWhatData[0] === ""
     });
 
     return (
         <div>
-
+            <p>
+                Enter what your event will be (or leave blank to decide it later).
+            </p>
+            <p>
+                You can add more than one option to create a poll.
+            </p>
             { inputs }
 
-            <div className="row">
-                <button className={ addInputClasses } onClick={ (e) => addInput() }>
-                    Add inputs
-                </button>
-            </div>
+
+            <AddInput data={ eventWhatData } handler={ addInput } />
 
             <div className="row">
-                <Link className="twelve columns" to='/create-event/where'>
+                <Link to='/create-event/where'>
 
-                    <button className={ nextButtonClasses }>
+                    <button className="twelve columns">
                         Next
                     </button>
                 </Link>

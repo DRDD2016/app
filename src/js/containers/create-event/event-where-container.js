@@ -13,10 +13,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleEventWhere: (inputKey, placeName, placeAddress) => {
-
+            
             let address = {
                 placeName: placeName,
-                placeAddress: placeAddress
+                placeAddress: placeAddress || ""
             };
             dispatch(setEventWhere(address, inputKey));
         },

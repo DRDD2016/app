@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import classnames from 'classnames';
 import Input from '../general/input.jsx';
 import AutocompleteInput from '../general/autocomplete-input.jsx';
+import AddInput from '../general/add-input.jsx';
 
 const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere }) => {
 
@@ -10,7 +11,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
 
         let templateNoSpace = `${value.placeName}${value.placeAddress}`;
         let templateWithSpace = `${value.placeName} ${value.placeAddress}`;
-        let chosenTemplate = value.placeAddress === '' ? templateNoSpace : templateWithSpace;
+        let chosenTemplate = (value.placeAddress === '') ? templateNoSpace : templateWithSpace;
         let fullAddress = (value.placeName ? chosenTemplate : "");
 
         let autocompleteID = 'autocomplete-' + i;
@@ -21,38 +22,38 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
                     inputKey={ i }
                     value={ fullAddress }
                     placeholder= "Where?"
-                    id = { autocompleteID }
+                    id={ autocompleteID }
                     removeInput={ removeInput }
                 />
         );
     });
 
     let addInputClasses = classnames("twelve columns", {
-        "hide": eventWhereData.length >= 3
+        "display-none": eventWhereData.length >= 3
     });
 
     let nextButtonClasses = classnames("twelve columns", {
-        "hide": eventWhereData[0].placeName === ""
+        "display-none": eventWhereData[0].placeName === ""
     });
 
     return (
-        <div className="">
-
+        <div>
+            <p>
+                Enter where the event will take place (or leave blank to decide it later).
+            </p>
+            <p>
+                You can add more than one option to create a poll.
+            </p>
             { inputs }
-            <div className="">
-                <div className="">
-                    <button className={ addInputClasses } onClick={ (e) => addInput() }>
-                        Add input
-                    </button>
-                </div>
 
-                <div className="">
-                  <Link to='/create-event/when'>
-                    <button className={ nextButtonClasses }>
-                      Next
+            <AddInput data={ eventWhereData } handler={ addInput } />
+
+            <div className="row">
+                <Link to='/create-event/when'>
+                    <button className="twelve columns">
+                        Next
                     </button>
-                  </Link>
-                </div>
+                </Link>
             </div>
         </div>
     );

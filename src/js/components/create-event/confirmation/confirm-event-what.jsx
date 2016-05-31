@@ -4,17 +4,15 @@ const ConfirmEventWhat = ({ eventWhat }) => {
 
     const eventWhatIndividual = Object.keys(eventWhat).map((data) => {
         return (
-            <li key={data}>
+            <p key={ data }>
                 { eventWhat[data] }
-            </li>
+            </p>
         );
     });
 
     return (
         <div>
-            <ul>
             { eventWhatIndividual }
-            </ul>
         </div>
     );
 };
