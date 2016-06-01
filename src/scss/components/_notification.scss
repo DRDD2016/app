@@ -28,38 +28,24 @@
     color: $off-black;
 }
 
-label.eventWhat, label.eventWhere-placeName, label.eventWhen-date, label.eventWhen-time {
+.eventWhat, .eventWhere-placeName, .eventWhen-date, .eventWhen-time {
     position: relative;
 }
 
-// label.eventWhat::before {
-//     font-family: fontawesome;
-//     content: "\f041 ";
-//     font-style: normal;
-//     font-weight: normal;
-//     text-decoration: inherit;
-// }
-
-label.eventWhere-placeName::before {
-    font-family: fontawesome;
-    content: "\f041 ";
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
+.eventWhere-placeName {
+    @include icon("\f041 ");
+    font-size: 1.25rem;
 }
 
-label.eventWhen-date::before {
-    font-family: fontawesome;
-    content: "\f133 ";
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
+.eventWhere-placeAddress {
+    font-size: 1em;
 }
 
-label.eventWhen-time::before {
-    font-family: fontawesome;
-    content: "\f017 ";
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
+.eventWhen-date {
+    @include icon("\f133 ");
+    font-size: 1.25rem;
+}
+
+.eventWhen-time {
+    @include icon("\f017 ");
 }
