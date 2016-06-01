@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         handleUpdateNotification: (index) => {
 
-            console.log(index, 'handle update notification!!!');
+
             dispatch(updateNotification(index));
         }
     };

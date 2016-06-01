@@ -56,11 +56,9 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
-                console.log(response, 'getevent');
                 dispatch(getEventSuccess(response.data));
             })
             .catch((error) => {
-                console.log(error, 'getevent');
 
                 dispatch(getEventFailure(error));
             });
@@ -357,11 +355,9 @@ export function updateNotification (index) {
 
         axios.get('/update-notification?index=' + index + '&userID=' + getUserID())
             .then((response) => {
-                console.log(response);
                 dispatch(updateNotificationSuccess());
             })
             .catch((error) => {
-                console.log(error,'----error');
                 dispatch(updateNotificationFailure(error));
             });
     };

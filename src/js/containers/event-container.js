@@ -7,7 +7,7 @@ import { hydrateCreateEvent } from '../actions/create-event.js';
 
 
 const mapStateToProps = (state) => {
-    console.log(state);
+
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
