@@ -26,7 +26,8 @@ test('createNotification returns a valid notification object for a poll event', 
                 placeAddress: ""
             }
         ],
-        hostID: 12345678
+        hostID: 12345678,
+        viewed: false
     };
     const eventID = "event:100";
     const testUser = 10154129575200996;
@@ -90,7 +91,8 @@ test('createNotification returns a valid notification object for a confirmed eve
                 placeAddress: ""
             }
         ],
-        hostID: 12345678
+        hostID: 12345678,
+        viewed: false
     };
     const testUser = 10154129575200996;
     const eventID = "event:200";

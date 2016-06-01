@@ -12,6 +12,8 @@ var ConfirmEvent = require('./routes/confirm-event.js');
 var UpdateRSVP = require('./routes/update-rsvp.js');
 var DeleteEvent = require('./routes/delete-event.js');
 var EditEvent = require('./routes/edit-event.js');
+var UploadPhoto = require('./routes/upload-photo.js');
+var UpdateNotification = require('./routes/update-notification.js');
 
 var plugins = [
     Inert,
@@ -26,7 +28,9 @@ var plugins = [
     ConfirmEvent,
     UpdateRSVP,
     DeleteEvent,
-    EditEvent
+    EditEvent,
+    UploadPhoto,
+    UpdateNotification
 ];
 
 module.exports = plugins;
