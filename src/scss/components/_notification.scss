@@ -34,7 +34,7 @@
 
 .eventWhere-placeName {
     @include icon("\f041 ");
-    font-size: 1.2em;
+    font-size: 1.25rem;
 }
 
 .eventWhere-placeAddress {
@@ -43,6 +43,7 @@
 
 .eventWhen-date {
     @include icon("\f133 ");
+    font-size: 1.25rem;
 }
 
 .eventWhen-time {
