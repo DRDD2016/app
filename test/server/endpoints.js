@@ -329,11 +329,15 @@ server.init(9001, (error, server) => {
 
                 var actual = data.Contents[0].Key;
                 t.ok(actual.indexOf('fakeevent:100') !== -1, 'photo exists in S3');
-
-            })
-
-            t.equal(response.statusCode, 200, '200 status code');
-            t.end();
+                var deleteOptions = {
+                    Bucket: 'spark-app-demo',
+                    Key: actual
+                };
+                s3.deleteObject(deleteOptions, (error, data2) => {
+                    t.equal(response.statusCode, 200, '200 status code');
+                    t.end();
+                });
+            });
         });
     });
 
