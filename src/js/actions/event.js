@@ -35,6 +35,12 @@ export const SAVE_EDITED_EVENT_REQUEST = 'SAVE_EDITED_EVENT_REQUEST';
 export const SAVE_EDITED_EVENT_SUCCESS = 'SAVE_EDITED_EVENT_SUCCESS';
 export const SAVE_EDITED_EVENT_FAILURE = 'SAVE_EDITED_EVENT_FAILURE';
 
+export const UPDATE_NOTIFICATION = 'UPDATE_NOTIFICATION';
+export const UPDATE_NOTIFICATION_REQUEST = 'UPDATE_NOTIFICATION_REQUEST';
+export const UPDATE_NOTIFICATION_SUCCESS = 'UPDATE_NOTIFICATION_SUCCESS';
+export const UPDATE_NOTIFICATION_FAILURE = 'UPDATE_NOTIFICATION_FAILURE';
+
+
 
 
 
@@ -50,10 +56,12 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
-
+                console.log(response, 'getevent');
                 dispatch(getEventSuccess(response.data));
             })
             .catch((error) => {
+                console.log(error, 'getevent');
+
                 dispatch(getEventFailure(error));
             });
     };
@@ -332,6 +340,50 @@ export function saveEditedEventSuccess () {
 export function saveEditedEventFailure (error) {
     return {
         type: SAVE_EDITED_EVENT_FAILURE,
+        isFetching: false,
+        error: error
+    };
+}
+
+/********
+UPDATE NOTIFICATIONS ACTIONS
+********/
+
+export function updateNotification (index) {
+
+    return (dispatch) => {
+
+        dispatch(updateNotificationRequest());
+
+        axios.get('/update-notification?index=' + index + '&userID=' + getUserID())
+            .then((response) => {
+                console.log(response);
+                dispatch(updateNotificationSuccess());
+            })
+            .catch((error) => {
+                console.log(error,'----error');
+                dispatch(updateNotificationFailure(error));
+            });
+    };
+}
+
+export function updateNotificationRequest () {
+    return {
+        type: UPDATE_NOTIFICATION_REQUEST,
+        isFetching: true
+    };
+}
+
+export function updateNotificationSuccess (event) {
+    return {
+        type: UPDATE_NOTIFICATION_SUCCESS,
+        isFetching: false,
+    };
+}
+
+export function updateNotificationFailure (error) {
+    return {
+        type: UPDATE_NOTIFICATION_FAILURE,
         isFetching: false,
         error: error
     };
