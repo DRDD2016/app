@@ -1,4 +1,5 @@
 var uploadToS3 = require('../s3/uploadToS3.js');
+var savePhotoToDB = require('../db/savePhotoToDB');
 
 exports.register = (server, options, next) => {
 
@@ -10,17 +11,20 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
-                //GET EVENT ID AND PHOTO FROM THE REQUEST OBJECT
                 uploadToS3(request.payload.photo, request.payload.eventID, (error, data) => {
 
-                    reply('data has been uploaded to s3!');
+                    if (error) {
+                        reply(error);
+                    }
 
-                    //next step use the data.url to push to list item photos:eventID
+                    savePhotoToDB(request.payload.eventID, data.Location, request.payload.userID, (error, response) => {
+
+                        var verdict = error || response;
+                        reply(verdict);
+
+                    });
+
                 });
-
-                // push photo to S3
-                // Save URL for photo in DB list for that event - photos:event:1
-                // need to create lists for each of invitee.
 
             }
         }

@@ -22,7 +22,7 @@ AWS.config.update({
 var s3 = new AWS.S3({
     params: {
         Bucket: 'spark-app-demo',
-        Key: 'event:1/photo-17' //this will be fetched from the axios request
+        Key: 'event:1/photo-177' //this will be fetched from the axios request
     }
 });
 //
