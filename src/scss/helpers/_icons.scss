@@ -1,0 +1,9 @@
+@mixin icon ($code) {
+
+    &:before {
+        font-family: fontawesome;
+        content: $code;
+        font-style: normal;
+        font-weight: normal;
+    }
+}
