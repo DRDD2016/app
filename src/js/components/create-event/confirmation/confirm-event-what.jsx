@@ -2,9 +2,10 @@ import React from 'react';
 
 const ConfirmEventWhat = ({ eventWhat }) => {
 
-    const eventWhatIndividual = Object.keys(eventWhat).map((data) => {
+    const layout = Object.keys(eventWhat).map((data, i) => {
+
         return (
-            <p key={ data }>
+            <p className="option" key={ i }>
                 { eventWhat[data] }
             </p>
         );
@@ -12,7 +13,7 @@ const ConfirmEventWhat = ({ eventWhat }) => {
 
     return (
         <div>
-            { eventWhatIndividual }
+            { layout }
         </div>
     );
 };

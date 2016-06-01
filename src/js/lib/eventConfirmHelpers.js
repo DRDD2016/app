@@ -5,15 +5,16 @@ export function isPoll (data) {
 
 export function cleanEventData (event) {
 
-    event.eventWhat = event.eventWhat.filter((item) => {
+    event.eventWhat = event.eventWhat.filter((item, _, array) => {
 
-        return item !== "";
+        return array.length > 1 && item !== "";
     });
-    event.eventWhere = event.eventWhere.filter((item) => {
+    event.eventWhere = event.eventWhere.filter((item, _, array) => {
+    
+        return array.length > 1 && item !== "";
+    });
 
-        return item !== "";
-    });
-    event.eventWhen = event.eventWhen.filter((dateTimeObject) => {
+    event.eventWhen = event.eventWhen.filter((dateTimeObject, _, array) => {
 
         return dateTimeObject.date !== "";
     });
