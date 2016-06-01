@@ -7,8 +7,8 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
 
     let userIsSubject = subjectID === getUserID();
     return (
-        <Link to={ 'event/' + eventID } >
-            <div className="row notification">
+        <div className="row notification">
+            <Link to={ 'event/' + eventID } >
                 <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
                 <div className="six columns">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>
@@ -27,14 +27,8 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                     </span>
                     </p>
                 </div>
+
                 <div className="three columns event-type">
-                    <label className="eventWhere-placeName">
-                        {
-                            (eventWhere.length > 1 && "Vote") ||
-                            (eventWhere.length === 1 && eventWhere[0].placeName === "" && "TBC") ||
-                            eventWhere[0].placeName
-                        }
-                    </label>
                     <label className="eventWhen-date">
                         {
                             (eventWhen.length > 1 && "Vote") ||
@@ -42,12 +36,20 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                             formatDate(eventWhen[0].date)
                         }
                     </label>
+                    <label className="eventWhere-placeName">
+                        {
+                            (eventWhere.length > 1 && "Vote") ||
+                            (eventWhere.length === 1 && eventWhere[0].placeName === "" && "TBC") ||
+                            eventWhere[0].placeName
+                        }
+                    </label>
                 </div>
-            </div>
+            </Link>
+            
             <div className="row">
                 <hr className="twelve columns" />
             </div>
-        </Link>
+        </div>
     );
 };
 
