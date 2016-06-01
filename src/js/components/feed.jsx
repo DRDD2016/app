@@ -5,12 +5,13 @@ import getUserID from '../lib/getUserID.js';
 import Spinner from './general/spinner.jsx';
 
 
-const Feed = ({ notifications, isFetching }) => {
+const Feed = ({ notifications, isFetching, handleUpdateNotification }) => {
 
     let mappedNotifications = notifications.map((data, i) => {
         return (
             <Notification
                 key={ i }
+                index = { i }
                 eventID={ data.eventID }
                 timestamp={ data.timestamp }
                 isPoll={ data.isPoll }
@@ -22,7 +23,8 @@ const Feed = ({ notifications, isFetching }) => {
                 eventWhen={ data.eventWhen }
                 userIsHost={ data.hostID == getUserID() }
                 hostID={ data.hostID }
-                subjectID={ data.subjectID } />
+                subjectID={ data.subjectID }
+                handleUpdateNotification={ handleUpdateNotification } />
         );
     });
 
