@@ -71,7 +71,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
             <div className="row">
                 <div className="twelve columns">
-                    { event.eventWhat[0] }
+                    { event.eventWhat[0] || "TBC" }
                 </div>
             </div>
             <br />
@@ -84,7 +84,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
             <div className="row">
                 <div className="twelve columns">
-                    { event.eventWhere[0].placeName } { event.eventWhere[0].placeName }
+                    { event.eventWhere[0].placeName || "TBC" } { event.eventWhere[0].placeName }
                 </div>
             </div>
             <br />
@@ -97,7 +97,12 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
             <div className="row">
                 <div className="twelve columns">
-                    { event.eventWhen[0].date } { event.eventWhen[0].date }
+                    <span className="eventWhen-date">
+                        { event.eventWhen[0].date || "TBC" }
+                    </span>
+                    <span className="eventWhen-time">
+                        { event.eventWhen[0].time || "TBC" }
+                    </span>
                 </div>
             </div>
             <br />
