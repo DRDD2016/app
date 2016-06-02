@@ -3,6 +3,10 @@ import server from '../../server/index.js';
 import client from '../../server/db/init.js';
 import parseObjectValues from '../../server/lib/parseObjectValues.js';
 import * as fixtures from '../utils/fixtures.js';
+var AWS = require('aws-sdk');
+var fs = require('fs');
+
+var s3 = new AWS.S3();
 
 server.init(9001, (error, server) => {
 
@@ -158,6 +162,7 @@ server.init(9001, (error, server) => {
         eventObjectKeys.push('eventID');
         server.inject(options, (response) => {
 
+
             Object.keys(response.result.event).forEach((key) => {
 
                 t.ok(eventObjectKeys.indexOf(key) !== -1, `'${key}' exists in event object`);
@@ -302,5 +307,56 @@ server.init(9001, (error, server) => {
         });
 
     });
+
+
+    test('`upload-photo` works', (t) => {
+
+        const options = {
+            method: 'POST',
+            url: '/upload-photo',
+            payload: {
+                photo: __dirname + '/../../public/test-image.JPG',
+                eventID: 'fakeevent:100',
+            }
+        };
+
+        server.inject(options, (response) => {
+            var options = {
+                Bucket: 'spark-app-demo',
+                Prefix: 'fakeevent:100'
+            };
+
+            s3.listObjects(options, (error, data) => {
+
+                var actual = data.Contents[0].Key;
+                t.ok(actual.indexOf('fakeevent:100') !== -1, 'photo exists in S3');
+                var deleteOptions = {
+                    Bucket: 'spark-app-demo',
+                    Key: actual
+                };
+                s3.deleteObject(deleteOptions, (error, data2) => {
+                    t.equal(response.statusCode, 200, '200 status code');
+                    t.end();
+                });
+            });
+        });
+    });
+
+
+
+    test('`update-notification` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/update-notification?index=1&userID=12345678'
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
+
 
 });
