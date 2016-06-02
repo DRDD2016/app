@@ -6,17 +6,29 @@ export function isPoll (data) {
 export function cleanEventData (event) {
 
     event.eventWhat = event.eventWhat.filter((item, _, array) => {
-
-        return array.length > 1 && item !== "";
+        console.log("what", item);
+        if (array.length === 1) {
+            return true;
+        } else if (array.length > 1) {
+            return item !== "";
+        }
     });
     event.eventWhere = event.eventWhere.filter((item, _, array) => {
-    
-        return array.length > 1 && item !== "";
+        console.log("where", item);
+        if (array.length === 1) {
+            return true;
+        } else if (array.length > 1) {
+            return item.placeName !== "";
+        }
     });
 
-    event.eventWhen = event.eventWhen.filter((dateTimeObject, _, array) => {
+    event.eventWhen = event.eventWhen.filter((item, _, array) => {
 
-        return dateTimeObject.date !== "";
+        if (array.length === 1) {
+            return true;
+        } else if (array.length > 1) {
+            return item.date !== "";
+        }
     });
     return event;
 }

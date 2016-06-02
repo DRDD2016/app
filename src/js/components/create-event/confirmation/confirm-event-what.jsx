@@ -6,7 +6,7 @@ const ConfirmEventWhat = ({ eventWhat }) => {
 
         return (
             <p className="option" key={ i }>
-                { eventWhat[data] }
+                { eventWhat[data] || "TBC" }
             </p>
         );
     });

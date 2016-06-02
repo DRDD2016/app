@@ -4,11 +4,11 @@ import formatDate from '../../../lib/formatDate.js';
 const ConfirmEventWhen = ({ eventWhen }) => {
 
     const layout = eventWhen.map((data, i) => {
-        let dateTime = `${data.date}${data.time || ""}`;
+
         return (
             <p className="option" key={ i }>
                 <span className="eventWhen-date">
-                    { ` Date: ${formatDate(data.date, true)}` }
+                    { ` Date: ${formatDate(data.date, true) || "TBC"}` }
                 </span>
                 <br />
                 <span className="eventWhen-time">
