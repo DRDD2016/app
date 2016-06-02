@@ -7,11 +7,10 @@ const ConfirmEventWhere = ({ eventWhere }) => {
         return (
             <p className="option" key={ i }>
                 <span className="eventWhere-placeName">
-                    { data.placeName }
+                    { data.placeName || "TBC" }
                 </span>
                 <br />
                 <span className="eventWhere-placeAddress">
-
                     { data.placeAddress }
                 </span>
             </p>
