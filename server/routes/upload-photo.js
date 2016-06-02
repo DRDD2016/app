@@ -14,6 +14,7 @@ exports.register = (server, options, next) => {
                 uploadToS3(request.payload.photo, request.payload.eventID, (error, data) => {
 
                     if (error) {
+                        console.error(error);
                         reply(error);
                     }
 
