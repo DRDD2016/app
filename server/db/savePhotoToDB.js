@@ -8,14 +8,14 @@ function savePhotoToDB (eventID, photoURL, userID, callback) {
 
     var listName = 'photos:' + eventID;
 
-    client.lpushAsync(listName, photoObject)
+    client.lpushAsync(listName, JSON.stringify(photoObject))
         .then((response) => {
             callback(null, response);
         })
         .catch((error) => {
             callback(error);
         });
-        
+
 }
 
 module.exports = savePhotoToDB;

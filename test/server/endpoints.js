@@ -341,4 +341,21 @@ server.init(9001, (error, server) => {
         });
     });
 
+
+
+    test('`update-notification` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/update-notification?index=1&userID=12345678'
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
+
+
 });
