@@ -162,6 +162,7 @@ server.init(9001, (error, server) => {
         eventObjectKeys.push('eventID');
         server.inject(options, (response) => {
 
+
             Object.keys(response.result.event).forEach((key) => {
 
                 t.ok(eventObjectKeys.indexOf(key) !== -1, `'${key}' exists in event object`);
