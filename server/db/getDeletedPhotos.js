@@ -1,16 +1,15 @@
 var client = require('./init.js');
 
-function getEventPhotos (eventID, callback) {
-    var listName = 'photos:' + eventID;
+function getDeletedPhotos (eventID, userID, callback) {
+    var listName = "photos:" + eventID + "|" + userID;
+    console.log(listName);
     client.lrangeAsync(listName, 0, -1)
         .then((response) => {
-            
             callback(null, response);
         })
         .catch((error) => {
             callback(error);
         });
-        //WIP
 }
 
-module.exports = getEventPhotos;
+module.exports = getDeletedPhotos;

@@ -9,13 +9,11 @@ const mapStateToProps = (state) => {
 
     let filteredData = state.calendar.data.filter((event) => {
 
-        //filter out: date.now > eventtime + 1 day 6 hours
-        // if no date,
         if (event.eventWhen[0].date === "") {
             return false;
         } else {
             const end = getEndTime(event.eventWhen[0].date);
-            return !isNaN(end) && Date.now() < end;
+            return !isNaN(end) && Date.now() > end;
         }
     });
 
@@ -25,8 +23,8 @@ const mapStateToProps = (state) => {
     };
 };
 
-const CalendarContainer = connect(
+const AlbumsContainer = connect(
     mapStateToProps
 )(Calendar);
 
-export default CalendarContainer;
+export default AlbumsContainer;

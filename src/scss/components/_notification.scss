@@ -33,11 +33,12 @@
 
 .eventWhat, .eventWhere-placeName, .eventWhen-date, .eventWhen-time {
     position: relative;
+    display: block;
+    font-size: 1em;
 }
 
 .eventWhere-placeName {
     @include icon("\f041");
-    font-size: 1.2rem;
 }
 
 .eventWhere-placeAddress {
@@ -46,7 +47,6 @@
 
 .eventWhen-date {
     @include icon("\f133");
-    font-size: 1.25rem;
 }
 
 .eventWhen-time {
