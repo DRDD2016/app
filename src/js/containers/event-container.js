@@ -7,6 +7,7 @@ import { hydrateCreateEvent } from '../actions/create-event.js';
 
 
 const mapStateToProps = (state) => {
+
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
@@ -52,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(hydrateCreateEvent(event));
         },
         RSVPToEvent: (status, eventID) => {
-            
+
             dispatch(updateRSVP(status, eventID));
         }
     };
