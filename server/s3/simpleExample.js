@@ -22,23 +22,23 @@ AWS.config.update({
 var s3 = new AWS.S3({
     params: {
         Bucket: 'spark-app-demo',
-        Key: 'event:1/photo-17' //this will be fetched from the axios request
+        Key: 'event:1/photo-177' //this will be fetched from the axios request
     }
 });
-
-var options = {
-    Bucket: 'spark-app-demo',
-    EncodingType: 'url',
-    Prefix: 'event:1'
-};
-s3.listObjects(options, (err, data) => {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log(data);
-    }
-});
+//
+// var options = {
+//     Bucket: 'spark-app-demo',
+//     EncodingType: 'url',
+//     Prefix: 'event:1'
+// };
+// s3.listObjects(options, (err, data) => {
+//     if (err) {
+//         console.log(err);
+//     }
+//     else {
+//         console.log(data);
+//     }
+// });
 
 // var readstream = fs.createReadStream(__dirname + '/../../public/big-image.JPG');
 // gm(readstream)
