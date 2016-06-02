@@ -12,6 +12,7 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification }) => {
             <Notification
                 key={ i }
                 index = { i }
+                viewed = { data.viewed}
                 eventID={ data.eventID }
                 timestamp={ data.timestamp }
                 isPoll={ data.isPoll }
