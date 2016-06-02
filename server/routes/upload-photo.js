@@ -22,11 +22,8 @@ exports.register = (server, options, next) => {
 
                         var verdict = error || response;
                         reply(verdict);
-
                     });
-
                 });
-
             }
         }
     }]);
