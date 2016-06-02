@@ -7,7 +7,7 @@ import ConfirmEventWhen from './confirmation/confirm-event-when.jsx';
 import formatDate from '../../lib/formatDate.js';
 
 const EventConfirm = ({ data, saveEvent }) => {
-
+    console.log("THE DATA", data);
     const invitedFriends = data.invitees.map((inviteeObject) => {
         return (
             <div key={ inviteeObject.id } className="item">
