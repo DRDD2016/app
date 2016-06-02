@@ -14,6 +14,7 @@ exports.register = (server, options, next) => {
                 uploadToS3(request.payload.photo, request.payload.eventID, (error, data) => {
 
                     if (error) {
+                        console.error(error);
                         reply(error);
                     }
 
@@ -21,11 +22,8 @@ exports.register = (server, options, next) => {
 
                         var verdict = error || response;
                         reply(verdict);
-
                     });
-
                 });
-
             }
         }
     }]);
