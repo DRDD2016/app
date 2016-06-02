@@ -2,6 +2,7 @@
     font-weight: bolder;
     color: $off-black;
     padding-left: 1em;
+    margin-bottom: 0;
 }
 
 .subject-name > span {
@@ -20,7 +21,9 @@
 
 .notification {
     margin: 0.7em 0;
-    // border-bottom: 2px solid $grey;
+    padding:1em;
+    border-right: 0.3em solid rgb(0, 180, 72);
+
 }
 
 .event-type {
@@ -48,4 +51,8 @@
 
 .eventWhen-time {
     @include icon("\f017 ");
+}
+
+.viewed-notification {
+    border-right: 0.3em solid $grey;
 }

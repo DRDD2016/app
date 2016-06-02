@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router';
 import getUserID from '../lib/getUserID.js';
 import formatDate from '../lib/formatDate.js';
+import classnames from 'classnames';
 
-const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification }) => {
+const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed }) => {
 
     let userIsSubject = subjectID === getUserID();
+
+    let viewedNotification = classnames("row notification", {
+        "viewed-notification": viewed === true
+    });
     return (
-        <div className="row notification">
+        <div className={ viewedNotification }>
             <Link to={ 'event/' + eventID } onClick={ (e) => { handleUpdateNotification(index); } } >
                 <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
                 <div className="six columns">
@@ -46,9 +51,6 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                 </div>
             </Link>
 
-            <div className="row">
-                <hr className="twelve columns" />
-            </div>
         </div>
     );
 };
