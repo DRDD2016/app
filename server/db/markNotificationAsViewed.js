@@ -1,6 +1,7 @@
 var client = require('./init.js');
 
 function markNotificationAsViewed (index, userID, callback) {
+
     var listName = 'notifications:' + userID;
     client.lindex(listName, index, (error, response) => {
 
@@ -17,9 +18,7 @@ function markNotificationAsViewed (index, userID, callback) {
                 callback(null, response2);
             }
         });
-
     });
-
 }
 
 module.exports = markNotificationAsViewed;
