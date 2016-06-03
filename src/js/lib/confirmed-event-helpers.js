@@ -2,10 +2,10 @@
 export function RSVPUserList (RSVPs, invitees, status) {
 
     return RSVPs[status].map((id, index) => {
-
         let usersWithRSVP = invitees.filter((userObject) => {
             return id === userObject.id;
         });
+        console.log(usersWithRSVP, 'inside map', status);
 
         return (
             <div className="twelve columns">

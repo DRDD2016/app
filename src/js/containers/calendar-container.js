@@ -6,7 +6,6 @@ import { getEvent } from '../actions/event.js';
 
 
 const mapStateToProps = (state) => {
-
     let filteredData = state.calendar.data.filter((event) => {
 
         //filter out: date.now > eventtime + 1 day 6 hours

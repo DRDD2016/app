@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
-import { RSVPUserList, eventNote } from '../../lib/confirmed-event-helpers.js';
+import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto }) => {
@@ -15,16 +15,19 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
     let photo;
 
     function getPhoto (e) {
-        var file = e.target.files[0];
+        photo = e.target.files[0];
         var reader = new FileReader();
 
-        if (file) {
-            reader.onload = (event) => {
-                photo = event.target.result;
-            };
-        }
+        // if (file) {
+        //     reader.onload = (event) => {
+        //         photo = event.target.result;
+        //         console.log(event.target.result);
+        //     };
+        // }
 
-        reader.readAsDataURL(file);
+        // reader.readAsArrayBuffer(file);
+        // reader.readAsDataURL(file);
+
 
     }
 
@@ -46,7 +49,9 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
     return (
         <div>
+        <img id="photo">
 
+        </img>
             { eventNote(event) }
             <div className="row">
                 <h4 className="twelve columns">
@@ -131,15 +136,36 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 { RSVPUserList(RSVPs, invitees, 'notGoing') }
             </div>
 
-            <div className="row">
-            <input onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
-        <button onClick={ () => { handleUploadPhoto(photo, eventID); } } className="twelve columns">
-                    Upload a photo
-                </button>
-            </div>
+            <form className="row">
+
+                <input onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
+
+                <input type="button" onClick={ () => { handleUploadPhoto(photo, eventID); } } className="twelve columns" value="Upload a photo" />
+            </form>
         </div>
     );
 
 };
+
+
+export function RSVPUserList (RSVPs, invitees, status) {
+
+    return RSVPs[status].map((id, index) => {
+        let usersWithRSVP = invitees.filter((userObject) => {
+            return id === userObject.id;
+        });
+
+
+        return (
+            <div className="twelve columns">
+                <div className="ui image label" key={ index }>
+                    <img src={ usersWithRSVP[0].photoURL } />
+                    { usersWithRSVP[0].firstName }
+                </div>
+            </div>
+        );
+    });
+}
+
 
 export default ConfirmedEvent;

@@ -7,6 +7,10 @@ export const UPLOAD_PHOTO_REQUEST = "UPLOAD_PHOTO_REQUEST";
 export const UPLOAD_PHOTO_SUCCESS = "UPLOAD_PHOTO_SUCCESS";
 export const UPLOAD_PHOTO_FAILURE = "UPLOAD_PHOTO_FAILURE";
 
+const instance = axios.create({
+
+})
+
 export function uploadPhoto (photo, eventID) {
 
     return (dispatch) => {
@@ -18,6 +22,11 @@ export function uploadPhoto (photo, eventID) {
             eventID,
             userID: getUserID()
         };
+
+        let config = {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        };
+
         axios.post('/upload-photo', payload)
 
             .then((response) => {

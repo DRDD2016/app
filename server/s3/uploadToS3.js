@@ -9,12 +9,13 @@ AWS.config.update({
 var s3 = new AWS.S3();
 
 function uploadToS3 (photo, eventID, callback) {
-    var readStream = fs.createReadStream(photo);
 
-    gm(readStream)
-        .quality(50)
-        .stream((err, stdout, srderr) => {
-            var params = { Bucket: 'spark-app-demo', Key: eventID + '/' + Date.now(), Body: stdout };
+    // var readStream = fs.createReadStream(photo, { encoding: 'base64' } );
+
+    // gm(readStream)
+    //     .quality(50)
+    //     .stream((err, stdout, srderr) => {
+            var params = { Bucket: 'spark-app-demo', Key: eventID + '/' + Date.now(), Body: photo };
             s3.upload(params)
                 .on('httpUploadProgress', (event) => {
                         console.log(event, '----event');
@@ -26,7 +27,7 @@ function uploadToS3 (photo, eventID, callback) {
                         callback(null, data);
                     }
                 });
-        });
+        // });
 
 }
 
