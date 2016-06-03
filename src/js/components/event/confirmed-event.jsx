@@ -1,43 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
+import { RSVPUserList, eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent }) => {
 
     let handleClick = !userIsHost ? RSVPToEvent : '';
-
-    function RSVPUserList (RSVPs, invitees, status) {
-
-        return RSVPs[status].map((id, index) => {
-
-            let usersWithRSVP = invitees.filter((userObject) => {
-                return id === userObject.id;
-            });
-
-            return (
-                <div className="twelve columns">
-                    <div className="ui image label" key={ usersWithRSVP[0].id }>
-                        <img src={ usersWithRSVP[0].photoURL } />
-                        { usersWithRSVP[0].firstName }
-                    </div>
-                </div>
-            );
-        });
-    }
-
-    function eventNote (event) {
-
-        if (event.eventNote !== "") {
-            return (
-                <div>
-                <h4 className="twelve columns">Note</h4>
-                { event.eventNote }
-                </div>
-            );
-        }
-    }
-
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
     let maybe = RSVPs.maybe;
@@ -74,6 +43,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     { event.eventWhat[0] || "TBC" }
                 </div>
             </div>
+
             <br />
 
             <div className="row">
@@ -87,6 +57,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     { event.eventWhere[0].placeName || "TBC" } { event.eventWhere[0].placeName }
                 </div>
             </div>
+
             <br />
 
             <div className="row">
@@ -105,8 +76,8 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     </span>
                 </div>
             </div>
-            <br />
 
+            <br />
             <hr />
 
             <div className="row">
@@ -144,7 +115,11 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 { RSVPUserList(RSVPs, invitees, 'notGoing') }
             </div>
 
-
+            <div className="row">
+                <button className="twelve columns">
+                    Upload a photo
+                </button>
+            </div>
         </div>
     );
 
