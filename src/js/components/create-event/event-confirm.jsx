@@ -5,7 +5,7 @@ import ConfirmEventWhat from './confirmation/confirm-event-what.jsx';
 import ConfirmEventWhere from './confirmation/confirm-event-where.jsx';
 import ConfirmEventWhen from './confirmation/confirm-event-when.jsx';
 import formatDate from '../../lib/formatDate.js';
-import { isPoll } from '../../lib/eventConfirmHelpers.js';
+import { isPoll } from '../../lib/create-event-helpers.js';
 
 
 const EventConfirm = ({ data, saveEvent }) => {

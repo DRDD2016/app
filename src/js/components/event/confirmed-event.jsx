@@ -4,13 +4,29 @@ import EventDetailsHeader from '../general/event-details-header.jsx';
 import { RSVPUserList, eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
-const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent }) => {
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto }) => {
 
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
     let maybe = RSVPs.maybe;
     let responded = going.concat(maybe, notGoing);
+
+    let photo;
+
+    function getPhoto (e) {
+        var file = e.target.files[0];
+        var reader = new FileReader();
+
+        if (file) {
+            reader.onload = (event) => {
+                photo = event.target.result;
+            };
+        }
+
+        reader.readAsDataURL(file);
+
+    }
 
     let notRespondedList = (responded, invitees) => {
 
@@ -116,7 +132,8 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             </div>
 
             <div className="row">
-                <button className="twelve columns">
+            <input onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
+        <button onClick={ () => { handleUploadPhoto(photo, eventID); } } className="twelve columns">
                     Upload a photo
                 </button>
             </div>

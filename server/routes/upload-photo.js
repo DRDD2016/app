@@ -11,6 +11,7 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
 
+
                 uploadToS3(request.payload.photo, request.payload.eventID, (error, data) => {
 
                     if (error) {

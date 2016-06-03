@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
+import { uploadPhoto } from '../actions/photos.js';
 import { hydrateCreateEvent } from '../actions/create-event.js';
 
 
@@ -55,6 +56,11 @@ const mapDispatchToProps = (dispatch) => {
         RSVPToEvent: (status, eventID) => {
 
             dispatch(updateRSVP(status, eventID));
+        },
+        handleUploadPhoto: (photo, eventID) => {
+
+            console.log(photo, eventID);
+            dispatch(uploadPhoto(photo, eventID));
         }
     };
 };

@@ -18,7 +18,6 @@ export function uploadPhoto (photo, eventID) {
             eventID,
             userID: getUserID()
         };
-
         axios.post('/upload-photo', payload)
 
             .then((response) => {
