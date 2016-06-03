@@ -26,19 +26,19 @@ exports.register = (server, options, next) => {
                 //         } else {
                 //             console.log(fd,'after writefile');
 
-                            uploadToS3(request.payload.photo, request.payload.eventID, (error, data) => {
+                uploadToS3(request.payload.photo, request.payload.eventID, (error, data) => {
 
-                                if (error) {
-                                    console.error(error);
-                                    reply(error);
-                                }
+                    if (error) {
+                        console.error(error);
+                        reply(error);
+                    }
 
-                                savePhotoToDB(request.payload.eventID, data.Location, request.payload.userID, (error, response) => {
+                    savePhotoToDB(request.payload.eventID, data.Location, request.payload.userID, (error, response) => {
 
-                                    var verdict = error || response;
-                                    reply(verdict);
-                                });
-                            });
+                        var verdict = error || response;
+                        reply(verdict);
+                    });
+                });
                 //
                 //         }
                 //     });

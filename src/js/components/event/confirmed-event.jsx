@@ -136,7 +136,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 { RSVPUserList(RSVPs, invitees, 'notGoing') }
             </div>
 
-            <form className="row">
+            <form className="row" encType="multipart/form-data" method="post" action="/upload-photo">
 
                 <input onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
 
