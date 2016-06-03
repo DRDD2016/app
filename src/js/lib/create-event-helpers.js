@@ -6,7 +6,7 @@ export function isPoll (data) {
 export function cleanEventData (event) {
 
     event.eventWhat = event.eventWhat.filter((item, _, array) => {
-        console.log("what", item);
+
         if (array.length === 1) {
             return true;
         } else if (array.length > 1) {
@@ -14,7 +14,7 @@ export function cleanEventData (event) {
         }
     });
     event.eventWhere = event.eventWhere.filter((item, _, array) => {
-        console.log("where", item);
+        
         if (array.length === 1) {
             return true;
         } else if (array.length > 1) {
