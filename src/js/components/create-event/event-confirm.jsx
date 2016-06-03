@@ -47,7 +47,7 @@ const EventConfirm = ({ data, saveEvent }) => {
                 You need to enter a date before saving this event.
                 <Link to='/create-event/when'>
                 <button className="twelve columns">
-                Edit
+                Add a Date
                 </button>
                 </Link>
 
