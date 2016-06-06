@@ -3,6 +3,42 @@ import reducer from '../../../src/js/reducers/photos.js';
 
 
 /********
+SET PHOTO ACTIONS
+********/
+
+/********
+GET S3 SIGNED URL ACTIONS
+********/
+
+test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
+
+    let url = "http://url.com";
+    let initialState = {
+        isFetching: true,
+        error: undefined,
+    };
+
+    let action = {
+        type: "GET_S3_URL_SUCCESS",
+        isFetching: false,
+        signedURL: url
+    };
+
+    const actual = reducer(initialState, action);
+
+    let expected = {
+        isFetching: false,
+        error: undefined,
+        signedURL: url,
+    };
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+
+
+/********
 UPLOAD PHOTO ACTIONS
 ********/
 
@@ -85,33 +121,6 @@ test('Reducer handles UPLOAD_PHOTO_FAILURE as expected', (t) => {
     t.end();
 });
 
-
 /********
-GET S3 SIGNED URL ACTIONS
+SAVE PHOTO ACTIONS
 ********/
-
-test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
-
-    let url = "http://url.com";
-    let initialState = {
-        isFetching: true,
-        error: undefined,
-    };
-
-    let action = {
-        type: "GET_S3_URL_SUCCESS",
-        isFetching: false,
-        signedURL: url
-    };
-
-    const actual = reducer(initialState, action);
-
-    let expected = {
-        isFetching: false,
-        error: undefined,
-        signedURL: url,
-    };
-
-    t.deepEqual(actual, expected);
-    t.end();
-});

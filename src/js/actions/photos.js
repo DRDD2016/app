@@ -142,17 +142,17 @@ export function savePhotoURL (url, eventID) {
 
         dispatch(savePhotoURLRequest());
 
-        let config = {
+        let payload = {
             photoURL: url,
             userID: getUserID(),
             eventID
         };
 
-        axios.post(url, photo, config)
+        axios.post(url, eventID, payload)
 
             .then((response) => {
                 console.log("SAVED PHOTO URL", response);
-                // dispatch(savePhotoURLSuccess(response.data));
+                dispatch(savePhotoURLSuccess());
             })
             .catch((error) => {
                 dispatch(savePhotoURLFailure(error));
@@ -167,11 +167,10 @@ export function savePhotoURLRequest () {
     };
 }
 
-export function savePhotoURLSuccess (data) {
+export function savePhotoURLSuccess () {
     return {
         type: SAVE_PHOTO_URL_SUCCESS,
-        isFetching: false,
-        data
+        isFetching: false
     };
 }
 
