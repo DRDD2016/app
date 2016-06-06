@@ -4,6 +4,8 @@ import getUserID from '../lib/getUserID.js';
 
 export const SET_PHOTO = "SET_PHOTO";
 
+export const GET_PHOTOS = "GET_PHOTOS";
+
 export const GET_S3_URL = "GET_S3_URL";
 export const GET_S3_URL_REQUEST = "GET_S3_URL_REQUEST";
 export const GET_S3_URL_SUCCESS = "GET_S3_URL_SUCCESS";
@@ -28,6 +30,18 @@ export function setPhoto (file) {
     return {
         type: SET_PHOTO,
         data: file
+    };
+}
+
+
+/********
+GET PHOTOS ACTION
+********/
+
+export function getPhotos (photos) {
+    return {
+        type: GET_PHOTO,
+        data: photos
     };
 }
 

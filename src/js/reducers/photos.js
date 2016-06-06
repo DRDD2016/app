@@ -3,18 +3,24 @@ import { SET_PHOTO } from '../actions/photos.js';
 import { GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../actions/photos.js';
 import { UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../actions/photos.js';
 import { SAVE_PHOTO_URL_REQUEST, SAVE_PHOTO_URL_SUCCESS, SAVE_PHOTO_URL_FAILURE } from '../actions/photos.js';
+import { GET_PHOTOS } from '../actions/photos.js';
+
 
 const initialState = {
     isFetching: false,
     error: undefined,
     signedURL: undefined,
     photoURL: undefined,
-    file: undefined
+    file: undefined,
+    photos: undefined
 };
 
 export default function photos (state = initialState, action) {
 
     switch (action.type) {
+
+    case GET_PHOTOS:
+        return handleGetPhotos(state, action);
 
     case SET_PHOTO:
         return handleSetPhoto(state, action);
@@ -41,6 +47,15 @@ export default function photos (state = initialState, action) {
     default:
         return state;
     }
+}
+
+
+function handleGetPhotos (state, action) {
+
+    let newState = update(state, {
+        photos: { $set: action.data }
+    });
+    return newState;
 }
 
 function handleSetPhoto (state, action) {
