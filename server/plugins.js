@@ -12,7 +12,7 @@ var ConfirmEvent = require('./routes/confirm-event.js');
 var UpdateRSVP = require('./routes/update-rsvp.js');
 var DeleteEvent = require('./routes/delete-event.js');
 var EditEvent = require('./routes/edit-event.js');
-var UploadPhoto = require('./routes/upload-photo.js');
+var SavePhoto = require('./routes/save-photo.js');
 var UpdateNotification = require('./routes/update-notification.js');
 var GetS3URL = require('./routes/get-s3-url.js');
 
@@ -30,7 +30,7 @@ var plugins = [
     UpdateRSVP,
     DeleteEvent,
     EditEvent,
-    UploadPhoto,
+    SavePhoto,
     UpdateNotification,
     GetS3URL
 ];

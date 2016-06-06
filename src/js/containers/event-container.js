@@ -6,6 +6,8 @@ import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, de
 import { setPhoto, getS3URL } from '../actions/photos.js';
 import { hydrateCreateEvent } from '../actions/create-event.js';
 import { listenForS3URL } from '../lib/s3-helpers.js';
+import { listenForSavePhotoURL } from '../lib/save-photo-url-helper.js';
+
 import { store } from '../init-store.js';
 
 
@@ -62,7 +64,8 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleUploadPhoto: (file, eventID) => {
             listenForS3URL(store);
-            console.log(file);
+            listenForSavePhotoURL(store);
+
             dispatch(setPhoto(file));
             dispatch(getS3URL(file.name, file.type, eventID));
         }
