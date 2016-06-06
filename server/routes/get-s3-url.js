@@ -1,3 +1,5 @@
+var getSignedURL = require('../s3/getSignedURL.js');
+
 exports.register = (server, options, next) => {
 
     server.route([
@@ -9,7 +11,15 @@ exports.register = (server, options, next) => {
 
                 handler: (request, reply) => {
 
-                    reply("this is the s3 url");
+                    var filename = request.query.filename;
+                    var filetype = request.query.filetype;
+                    var eventID = request.query.eventID;
+
+                    getSignedURL(filename, filetype, eventID, (error, signedURL) => {
+
+                        var verdict = error || signedURL;
+                        reply(verdict);
+                    });
                 }
             }
         }
