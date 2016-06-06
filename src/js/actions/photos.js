@@ -184,7 +184,7 @@ export function savePhotoURLRequest () {
 export function savePhotoURLSuccess () {
     return {
         type: SAVE_PHOTO_URL_SUCCESS,
-        isFetching: false,
+        isFetching: false
     };
 }
 
