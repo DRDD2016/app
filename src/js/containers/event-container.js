@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
-import { uploadPhoto } from '../actions/photos.js';
+import { uploadPhoto, getS3URL } from '../actions/photos.js';
 import { hydrateCreateEvent } from '../actions/create-event.js';
+import { listenForS3URL } from '../lib/s3-helpers.js';
+import { store } from '../init-store.js';
 
+listenForS3URL(store);
 
 const mapStateToProps = (state) => {
 
@@ -59,7 +62,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleUploadPhoto: (file, eventID) => {
 
-            dispatch(getS3URL(file.name, file.type, eventID));
+            dispatch(getS3URL(file.name, file.type));
         }
     };
 };

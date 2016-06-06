@@ -73,22 +73,21 @@ GET S3 SIGNED URL ACTIONS
 ********/
 
 
-export function getS3URL (filename, filetype, eventID) {
+export function getS3URL (filename, filetype) {
 
     return (dispatch) => {
 
-        console.log(filename, filetype);
-        // dispatch(getS3URLRequest());
+        dispatch(getS3URLRequest());
 
-        // axios.get(`/get-s3-url?filename=${filename}&filetype=${filetype}`)
-        //     .then((response) => {
-        //
-        //         dispatch(getS3URLSuccess());
-        //     })
-        //     .catch((error) => {
-        //
-        //         dispatch(getS3URLFailure());
-        //     });
+        axios.get(`/get-s3-url?filename=${filename}&filetype=${filetype}`)
+            .then((response) => {
+
+                dispatch(getS3URLSuccess());
+            })
+            .catch((error) => {
+
+                dispatch(getS3URLFailure());
+            });
     };
 }
 
