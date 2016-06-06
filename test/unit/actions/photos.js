@@ -41,13 +41,14 @@ test('uploadPhotoRequest action creator returns expected action', (t) => {
 
 test('uploadPhotoSuccess action creator returns expected action', (t) => {
 
-
+var url = "https://url.com";
     const expected = {
         type: UPLOAD_PHOTO_SUCCESS,
-        isFetching: false
+        isFetching: false,
+        data: url
     };
 
-    const actual = uploadPhotoSuccess();
+    const actual = uploadPhotoSuccess(url);
 
     t.deepEqual(actual, expected);
     t.end();
@@ -110,7 +111,7 @@ test('getS3URLSuccess action creator returns expected action', (t) => {
     const expected = {
         type: GET_S3_URL_SUCCESS,
         isFetching: false,
-        url
+        signedURL: url
     };
 
     const actual = getS3URLSuccess(url);

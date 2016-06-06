@@ -40,7 +40,6 @@ test('Reducer handles UPLOAD_PHOTO_SUCCESS as expected', (t) => {
     const initialState = {
         isFetching: true,
         error: undefined,
-        url: undefined
     };
 
     const actual = reducer(initialState, action);
@@ -48,7 +47,8 @@ test('Reducer handles UPLOAD_PHOTO_SUCCESS as expected', (t) => {
     let expected = {
         isFetching: false,
         error: undefined,
-        url: undefined
+        signedURL: undefined,
+        photoURL: undefined
     };
 
     t.deepEqual(actual, expected, 'on UPLOAD_PHOTO_SUCCESS, isFetching is `false`');
@@ -96,13 +96,12 @@ test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
     let initialState = {
         isFetching: true,
         error: undefined,
-        url: undefined
     };
 
     let action = {
         type: "GET_S3_URL_SUCCESS",
         isFetching: false,
-        url
+        signedURL: url
     };
 
     const actual = reducer(initialState, action);
@@ -110,7 +109,7 @@ test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
     let expected = {
         isFetching: false,
         error: undefined,
-        url
+        signedURL: url,
     };
 
     t.deepEqual(actual, expected);

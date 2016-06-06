@@ -50,6 +50,7 @@ function handleUploadPhotoSuccess ( state, action ) {
 
     let newState = update(state, {
         photoURL: { $set: action.data },
+        isFetching: { $set: action.isFetching },
         signedURL: { $set: undefined }
     });
     return newState;
