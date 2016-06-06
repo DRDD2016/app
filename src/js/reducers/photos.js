@@ -3,7 +3,7 @@ import { UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from
 
 
 const initialState = {
-    uploadingPhoto: false,
+    isFetching: false,
     error: undefined
 };
 
@@ -27,7 +27,7 @@ export default function photos (state = initialState, action) {
 function handleRequest (state, action) {
 
     let newState = update(state, {
-        uploadingPhoto: { $set: action.uploadingPhoto }
+        isFetching: { $set: action.isFetching }
     });
     return newState;
 }
@@ -35,7 +35,7 @@ function handleRequest (state, action) {
 function handleFailure (state, action) {
 
     let newState = update(state, {
-        uploadingPhoto: { $set: action.uploadingPhoto },
+        isFetching: { $set: action.isFetching },
         error: { $set: action.error }
     });
     return newState;

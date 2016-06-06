@@ -57,10 +57,11 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(updateRSVP(status, eventID));
         },
-        handleUploadPhoto: (photo, eventID) => {
+        handleUploadPhoto: (file, eventID) => {
 
-            // console.log(photo, eventID);
-            dispatch(uploadPhoto(photo, eventID));
+            console.log(file, eventID);
+            console.log(file.type);
+            // dispatch(uploadPhoto(photo, eventID));
         }
     };
 };

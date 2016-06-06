@@ -7,6 +7,15 @@ export const UPLOAD_PHOTO_REQUEST = "UPLOAD_PHOTO_REQUEST";
 export const UPLOAD_PHOTO_SUCCESS = "UPLOAD_PHOTO_SUCCESS";
 export const UPLOAD_PHOTO_FAILURE = "UPLOAD_PHOTO_FAILURE";
 
+export const GET_S3_URL_REQUEST = "GET_S3_URL_REQUEST";
+export const GET_S3_URL_SUCCESS = "GET_S3_URL_SUCCESS";
+export const GET_S3_URL_FAILURE = "GET_S3_URL_FAILURE";
+
+
+
+/********
+UPLOAD PHOTO ACTIONS
+********/
 
 export function uploadPhoto (photo, eventID) {
 
@@ -39,21 +48,68 @@ export function uploadPhoto (photo, eventID) {
 export function uploadPhotoRequest () {
     return {
         type: UPLOAD_PHOTO_REQUEST,
-        uploadingPhoto: true
+        isFetching: true
     };
 }
 
 export function uploadPhotoSuccess () {
     return {
         type: UPLOAD_PHOTO_SUCCESS,
-        uploadingPhoto: false,
+        isFetching: false,
     };
 }
 
 export function uploadPhotoFailure (error) {
     return {
         type: UPLOAD_PHOTO_FAILURE,
-        uploadingPhoto: false,
+        isFetching: false,
         error: error
+    };
+}
+
+
+/********
+GET S3 SIGNED URL ACTIONS
+********/
+
+
+export function getS3URL (filename, filetype) {
+
+    return (dispatch) => {
+
+        dispatch(getS3URLRequest());
+
+        axios.get(`/get-s3-url?filename=${filename}&filetype=${filetype}`)
+            .then((response) => {
+
+                dispatch(getS3URLSuccess());
+            })
+            .catch((error) => {
+
+                dispatch(getS3URLFailure());
+            });
+    };
+}
+
+export function getS3URLRequest () {
+    return {
+        type: GET_S3_URL_REQUEST,
+        isFetching: true
+    };
+}
+
+export function getS3URLSuccess (url) {
+    return {
+        type: GET_S3_URL_SUCCESS,
+        isFetching: false,
+        url
+    };
+}
+
+export function getS3URLFailure (error) {
+    return {
+        type: GET_S3_URL_FAILURE,
+        isFetching: false,
+        error
     };
 }

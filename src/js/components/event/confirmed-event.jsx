@@ -16,19 +16,21 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
     function getPhoto (e) {
         photo = e.target.files[0];
-        var reader = new FileReader();
+
+
+    
+        // var reader = new FileReader();
 
         // if (file) {
         //     reader.onload = (event) => {
         //         photo = event.target.result;
+        //         // upload button should be hidden until this event is triggered
         //         console.log(event.target.result);
         //     };
         // }
 
         // reader.readAsArrayBuffer(file);
         // reader.readAsDataURL(file);
-
-
     }
 
     let notRespondedList = (responded, invitees) => {

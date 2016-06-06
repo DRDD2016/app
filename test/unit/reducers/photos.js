@@ -6,21 +6,21 @@ test('Reducer handles UPLOAD_PHOTO_REQUEST as expected', (t) => {
 
     const action = {
         type: "UPLOAD_PHOTO_REQUEST",
-        uploadingPhoto: true
+        isFetching: true
     };
     const initialState = {
-        uploadingPhoto: false,
+        isFetching: false,
         error: undefined
     };
 
     const actual = reducer(initialState, action);
 
     let expected = {
-        uploadingPhoto: true,
+        isFetching: true,
         error: undefined
     };
 
-    t.deepEqual(actual, expected, 'on UPLOAD_PHOTO_REQUEST, uploadingPhoto is `true`');
+    t.deepEqual(actual, expected, 'on UPLOAD_PHOTO_REQUEST, isFetching is `true`');
     t.end();
 });
 
@@ -28,29 +28,29 @@ test('Reducer handles UPLOAD_PHOTO_SUCCESS as expected', (t) => {
 
     const action = {
         type: "UPLOAD_PHOTO_SUCCESS",
-        uploadingPhoto: false
+        isFetching: false
     };
 
     const initialState = {
-        uploadingPhoto: true,
+        isFetching: true,
         error: undefined
     };
 
     const actual = reducer(initialState, action);
 
     let expected = {
-        uploadingPhoto: false,
+        isFetching: false,
         error: undefined
     };
 
-    t.deepEqual(actual, expected, 'on UPLOAD_PHOTO_SUCCESS, uploadingPhoto is `false`');
+    t.deepEqual(actual, expected, 'on UPLOAD_PHOTO_SUCCESS, isFetching is `false`');
     t.end();
 });
 
 test('Reducer handles UPLOAD_PHOTO_FAILURE as expected', (t) => {
 
     let initialState = {
-        uploadingPhoto: true,
+        isFetching: true,
         error: undefined
     };
 
@@ -60,14 +60,14 @@ test('Reducer handles UPLOAD_PHOTO_FAILURE as expected', (t) => {
 
     const action = {
         type: "UPLOAD_PHOTO_FAILURE",
-        uploadingPhoto: false,
+        isFetching: false,
         error: error
     };
 
     const actual = reducer(initialState, action);
 
     let expected = {
-        uploadingPhoto: false,
+        isFetching: false,
         error: error
     };
 

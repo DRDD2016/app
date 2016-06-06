@@ -342,8 +342,6 @@ server.init(9001, (error, server) => {
         });
     });
 
-
-
     test('`update-notification` works', (t) => {
 
         const options = {
@@ -358,5 +356,17 @@ server.init(9001, (error, server) => {
         });
     });
 
+    test('`/get-s3-url` works', (t) => {
 
+        const options = {
+            method: 'GET',
+            url: '/get-s3-url?filename=test_file&filetype=jpg'
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
 });

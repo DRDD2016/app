@@ -1,5 +1,6 @@
 import test from 'tape';
 import { UPLOAD_PHOTO, UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../../../src/js/actions/photos.js';
+import { GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../../../src/js/actions/photos.js';
 import { uploadPhoto, uploadPhotoRequest, uploadPhotoSuccess, uploadPhotoFailure } from '../../../src/js/actions/photos.js';
 import createThunk from '../../utils/mock-thunk.js';
 
@@ -14,7 +15,7 @@ test('uploadPhoto async action creator returns expected action', (t) => {
 
     const expected = {
         type: UPLOAD_PHOTO_REQUEST,
-        uploadingPhoto: true
+        isFetching: true
     };
     t.deepEqual(actual, expected, "uploadPhoto returns the UPLOAD_PHOTO_REQUEST action");
     t.end();
@@ -25,7 +26,7 @@ test('uploadPhotoRequest action creator returns expected action', (t) => {
 
     const expected = {
         type: UPLOAD_PHOTO_REQUEST,
-        uploadingPhoto: true
+        isFetching: true
     };
     const actual = uploadPhotoRequest();
 
@@ -38,7 +39,7 @@ test('uploadPhotoSuccess action creator returns expected action', (t) => {
 
     const expected = {
         type: UPLOAD_PHOTO_SUCCESS,
-        uploadingPhoto: false
+        isFetching: false
     };
 
     const actual = uploadPhotoSuccess();
@@ -54,7 +55,7 @@ test('uploadPhotoFailure action creator returns expected action', (t) => {
     };
     const expected = {
         type: UPLOAD_PHOTO_FAILURE,
-        uploadingPhoto: false,
+        isFetching: false,
         error
     };
 
