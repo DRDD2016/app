@@ -8,7 +8,7 @@ import { hydrateCreateEvent } from '../actions/create-event.js';
 
 
 const mapStateToProps = (state) => {
-    console.log(state);
+
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
@@ -59,9 +59,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         handleUploadPhoto: (file, eventID) => {
 
-            console.log(file, eventID);
-            console.log(file.type);
-            // dispatch(uploadPhoto(photo, eventID));
+            dispatch(getS3URL(file.name, file.type, eventID));
         }
     };
 };
