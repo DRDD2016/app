@@ -79,7 +79,8 @@ test('getS3URL async action creator returns expected action', (t) => {
     const { dispatch, queue } = createThunk();
     var filename = 'sohil.jpg';
     var filetype = 'jpg';
-    dispatch(getS3URL(filename, filetype));
+    var eventID = 'event:100';
+    dispatch(getS3URL(filename, filetype, eventID));
 
     [{ ...actual }] = queue;
 

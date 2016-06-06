@@ -15,10 +15,15 @@ export default function photos (state = initialState, action) {
 
     case UPLOAD_PHOTO_REQUEST:
     case UPLOAD_PHOTO_SUCCESS:
+    case GET_S3_URL_REQUEST:
         return handleRequest(state, action);
 
     case UPLOAD_PHOTO_FAILURE:
+    case GET_S3_URL_FAILURE:
         return handleFailure(state, action);
+
+    case GET_S3_URL_SUCCESS:
+        return handleGetS3URLSuccess(state, action);
 
     default:
         return state;
@@ -39,6 +44,15 @@ function handleFailure (state, action) {
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
         error: { $set: action.error }
+    });
+    return newState;
+}
+
+function handleGetS3URLSuccess (state, action) {
+
+    let newState = update(state, {
+        isFetching: { $set: action.isFetching },
+        url: { $set: action.url }
     });
     return newState;
 }
