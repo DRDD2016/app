@@ -1,10 +1,12 @@
 import update from 'react-addons-update';
 import { UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../actions/photos.js';
+import { GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../actions/photos.js';
 
 
 const initialState = {
     isFetching: false,
-    error: undefined
+    error: undefined,
+    url: undefined
 };
 
 export default function photos (state = initialState, action) {
