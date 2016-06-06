@@ -63,7 +63,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(updateRSVP(status, eventID));
         },
         handleUploadPhoto: (file, eventID) => {
-            listenForS3URL(store);
+            listenForS3URL(store)
             listenForSavePhotoURL(store);
 
             dispatch(setPhoto(file));

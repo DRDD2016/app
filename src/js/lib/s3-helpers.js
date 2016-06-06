@@ -5,7 +5,6 @@ export function listenForS3URL (store) {
 
     let unsubscribe = store.subscribe(listener);
 
-
     function listener () {
 
         let status = getS3URLStatus(store.getState());
@@ -13,7 +12,6 @@ export function listenForS3URL (store) {
         if (status) {
 
             unsubscribe();
-            console.log("NOW LET'S UPLOAD THE PHOTO!");
             const file = getPhotoFromStore(store.getState());
             const url = getURLFromStore(store.getState());
             store.dispatch(uploadPhoto(url, file));

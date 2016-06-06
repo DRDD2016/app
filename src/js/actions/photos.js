@@ -95,7 +95,6 @@ export function uploadPhoto (url, photo) {
                 'Content-Type': photo.type
             }
         };
-
         axios.put(url, photo, config)
 
             .then((response) => {
@@ -103,6 +102,7 @@ export function uploadPhoto (url, photo) {
                 dispatch(uploadPhotoSuccess(photoURL));
             })
             .catch((error) => {
+
                 dispatch(uploadPhotoFailure(error));
             });
     };
@@ -137,7 +137,6 @@ SAVE PHOTO URL ACTIONS
 ********/
 
 export function savePhotoURL (url, eventID) {
-
     return (dispatch) => {
 
         dispatch(savePhotoURLRequest());
@@ -152,11 +151,11 @@ export function savePhotoURL (url, eventID) {
 
             .then((response) => {
                 console.log("SAVED PHOTO URL", response);
-                // dispatch(savePhotoURLSuccess(response.data));
+                dispatch(savePhotoURLSuccess(response.data));
             })
             .catch((error) => {
                 console.log(error);
-                // dispatch(savePhotoURLFailure(error));
+                dispatch(savePhotoURLFailure(error));
             });
     };
 }

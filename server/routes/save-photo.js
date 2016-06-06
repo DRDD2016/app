@@ -10,7 +10,9 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
                 var eventID = request.payload.eventID;
-                savePhotoToDB(request.payload.eventID, data.Location, request.payload.userID, (error, response) => {
+                var photoURL = request.payload.photoURL;
+                var userID = request.payload.userID;
+                savePhotoToDB(eventID, photoURL, userID, (error, response) => {
 
                     var verdict = error || response;
                     reply(verdict);

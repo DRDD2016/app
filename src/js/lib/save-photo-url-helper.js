@@ -13,10 +13,9 @@ export function listenForSavePhotoURL (store) {
         if (status) {
 
             unsubscribe();
-            console.log("Send URL to Server");
             const eventID = getEventIDFromStore(store.getState());
             const photoURL = getPhotoURLFromStore(store.getState());
-            store.dispatch(savePhotoURL(url, eventID));
+            store.dispatch(savePhotoURL(photoURL, eventID));
         }
     }
 
