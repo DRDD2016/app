@@ -42,3 +42,14 @@ export const event = {
     invitees: undefined,
     RSVPs: undefined
 };
+
+
+export const photos = {
+    isFetching: false,
+    error: undefined,
+    signedURL: undefined,
+    photoURL: undefined,
+    file: undefined,
+    photo: undefined,
+    deletedPhotos: undefined
+};

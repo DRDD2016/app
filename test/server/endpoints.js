@@ -3,6 +3,10 @@ import server from '../../server/index.js';
 import client from '../../server/db/init.js';
 import parseObjectValues from '../../server/lib/parseObjectValues.js';
 import * as fixtures from '../utils/fixtures.js';
+var AWS = require('aws-sdk');
+var fs = require('fs');
+
+var s3 = new AWS.S3();
 
 server.init(9001, (error, server) => {
 
@@ -158,6 +162,7 @@ server.init(9001, (error, server) => {
         eventObjectKeys.push('eventID');
         server.inject(options, (response) => {
 
+
             Object.keys(response.result.event).forEach((key) => {
 
                 t.ok(eventObjectKeys.indexOf(key) !== -1, `'${key}' exists in event object`);
@@ -302,5 +307,57 @@ server.init(9001, (error, server) => {
         });
 
     });
+
+
+
+    test('`update-notification` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/update-notification?index=1&userID=12345678'
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
+
+    test('`/get-s3-url` works', (t) => {
+
+        const options = {
+            method: 'GET',
+            url: '/get-s3-url?filename=test_file&filetype=jpg'
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
+
+    test('`/delete-photo` works', (t) => {
+
+        const options = {
+            method: 'POST',
+            url: '/delete-photo',
+            payload: {
+                photo: {
+                    photoURL: "www.photourl.com",
+                    timestamp: 12345678,
+                    userID: 12345678
+                }
+            }
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
+
 
 });
