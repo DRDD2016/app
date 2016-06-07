@@ -10,7 +10,7 @@ exports.register = (server, options, next) => {
 
             handler: (request, reply) => {
                 markNotificationAsViewed(request.query.index, request.query.userID, (error, response) => {
-                    console.log(error, response, 'inside route update notification');
+                    
                     var verdict = error || response;
 
                     reply(verdict);

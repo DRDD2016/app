@@ -67,7 +67,9 @@ class Event extends React.Component {
                                  userIsHost={ this.props.userIsHost }
                                  RSVPs={ this.props.RSVPs }
                                  RSVPToEvent={ this.props.RSVPToEvent }
-                                 invitees={ this.props.invitees } />
+                                 invitees={ this.props.invitees }
+                                 handleUploadPhoto={ this.props.handleUploadPhoto }
+                                 photos={ this.props.photos } />
             );
         }
     }
