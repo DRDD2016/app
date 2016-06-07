@@ -2,7 +2,7 @@ import React from 'react';
 import { store } from '../../../init-store';
 
 const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList }) => {
-
+    
     function RSVPUserList (RSVPs, invitees, status) {
 
         return RSVPs[status].map((id, index) => {

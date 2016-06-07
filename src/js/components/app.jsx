@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './general/navbar.jsx';
 
 const App = ({ location, children, error }) => {
-
+    console.log("ERRORRRR", error);
     let currentLocation;
     if (!process.env.DEVELOPMENT) {
         currentLocation = location.pathname;

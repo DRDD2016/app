@@ -12,7 +12,7 @@ const initialState = {
     signedURL: undefined,
     photoURL: undefined,
     file: undefined,
-    photos: undefined
+    photos: []
 };
 
 export default function photos (state = initialState, action) {

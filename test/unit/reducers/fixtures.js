@@ -49,5 +49,6 @@ export const photos = {
     error: undefined,
     signedURL: undefined,
     photoURL: undefined,
-    file: undefined
+    file: undefined,
+    photos: []
 };
