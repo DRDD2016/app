@@ -2,7 +2,7 @@ import React from 'react';
 import { store } from '../../../init-store';
 
 const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList }) => {
-    
+
     function RSVPUserList (RSVPs, invitees, status) {
 
         return RSVPs[status].map((id, index) => {
@@ -59,6 +59,11 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList }
             <div className="four columns ui middle aligned selection list verticalise">
                 { RSVPUserList(RSVPs, invitees, 'notGoing') }
             </div>
+
+            <div className="row">
+                <hr className="twelve columns" />
+            </div>
+
         </div>
     );
 };

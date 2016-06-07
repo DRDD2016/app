@@ -5,13 +5,13 @@ const PhotoStream = ({ photos }) => {
     let stream = photos.map((photo, i) => {
 
         return (
-            <div>
-                <img className="photo" src={ photo.photoURL } key={ i } />
+            <div key={ i }>
+                <img className="photo" src={ photo.photoURL } />
+
                 <div className="row">
                     <label className="six columns photo-button">Delete</label>
                     <label className="six columns photo-button share">Share</label>
                 </div>
-                <hr />
             </div>
         );
     });
@@ -19,6 +19,9 @@ const PhotoStream = ({ photos }) => {
     return (
         <div>
             { photos && stream }
+            <div className="row">
+                <hr className="twelve columns" />
+            </div>
         </div>
     );
 };

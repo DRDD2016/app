@@ -1,13 +1,14 @@
 import React from 'react';
 import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
-import RSVPsArea from './confirmed-event/RSVPsArea.jsx';
+import RSVPsArea from './confirmed-event/RSVPs-area.jsx';
+import UploadPanel from './confirmed-event/upload-panel.jsx';
 import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos }) => {
-    
+
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
@@ -88,12 +89,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                        handleClick={ handleClick }
                        RSVPs={ RSVPs } />
 
-            <form className="row" encType="multipart/form-data" method="post" action="/upload-photo">
-
-                <input onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
-
-                <input type="button" onClick={ () => { handleUploadPhoto(photo, eventID); } } className="twelve columns" value="Upload a photo" />
-            </form>
+            <UploadPanel getPhoto={ getPhoto } handleUploadPhoto={ handleUploadPhoto } />
 
             <PhotoStream photos={ photos } />
 
