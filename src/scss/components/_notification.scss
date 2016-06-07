@@ -2,7 +2,6 @@
     font-weight: bolder;
     color: $off-black;
     padding-left: 1em;
-    margin-bottom: 0;
 }
 
 .subject-name > span {
@@ -21,9 +20,7 @@
 
 .notification {
     margin: 0.7em 0;
-    padding:1em;
-    border-right: 0.3em solid rgb(0, 180, 72);
-
+    // border-bottom: 2px solid $grey;
 }
 
 .event-type {
@@ -31,28 +28,38 @@
     color: $off-black;
 }
 
-.eventWhat, .eventWhere-placeName, .eventWhen-date, .eventWhen-time {
+label.eventWhat, label.eventWhere-placeName, label.eventWhen-date, label.eventWhen-time {
     position: relative;
-    display: inline-block;
-    font-size: 1.3rem;
 }
 
-.eventWhere-placeName {
-    @include icon("\f041");
+// label.eventWhat::before {
+//     font-family: fontawesome;
+//     content: "\f041 ";
+//     font-style: normal;
+//     font-weight: normal;
+//     text-decoration: inherit;
+// }
+
+label.eventWhere-placeName::before {
+    font-family: fontawesome;
+    content: "\f041 ";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
 }
 
-.eventWhere-placeAddress {
-    font-size: 1em;
+label.eventWhen-date::before {
+    font-family: fontawesome;
+    content: "\f133 ";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
 }
 
-.eventWhen-date {
-    @include icon("\f133");
-}
-
-.eventWhen-time {
-    @include icon("\f017");
-}
-
-.viewed-notification {
-    border-right: 0.3em solid $grey;
+label.eventWhen-time::before {
+    font-family: fontawesome;
+    content: "\f017 ";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
 }
