@@ -1,24 +1,20 @@
 import React from 'react';
 import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
+import RSVPsArea from './confirmed-event/RSVPs-area.jsx';
+import UploadPanel from './confirmed-event/upload-panel.jsx';
+import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
-const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos }) => {
-    console.log(photos, 'photos from db in component');
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, handleDeletePhoto, handleSharePhoto }) => {
+
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
     let maybe = RSVPs.maybe;
-    let responded = going.concat(maybe, notGoing);
-
     let photo;
-
-    function getPhoto (e) {
-        photo = e.target.files[0];
-
-    }
-
+    let respondedList = going.concat(maybe, notGoing);
     let notRespondedList = (responded, invitees) => {
 
         let notResponded = invitees.filter((invitedUser, index) => {
@@ -34,8 +30,6 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             );
         });
     };
-
-
 
     return (
         <div>
@@ -88,71 +82,27 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             <br />
             <hr />
 
-            <div className="row">
-                <div className="twelve columns">
-                    <div>Not responded</div>
-                    { notRespondedList(responded, invitees) }
-                </div>
-            </div>
+            <RSVPsArea eventID={ eventID }
+                       respondedList={ respondedList }
+                       notRespondedList={ notRespondedList }
+                       invitees={ invitees }
+                       handleClick={ handleClick }
+                       RSVPs={ RSVPs } />
 
-            <hr />
+            <UploadPanel getPhoto={ getPhoto } handleUploadPhoto={ handleUploadPhoto } />
 
-            <div className="row">
-                <div className="four columns">
-                    <div onClick={ () => handleClick('going', eventID) }> Going </div>
-                </div>
+            <PhotoStream photos={ photos }
+                         handleDeletePhoto={ handleDeletePhoto }
+                         handleSharePhoto={ handleSharePhoto }
+                         eventID={ eventID }/>
 
-                <div className="four columns">
-                    <div onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
-                </div>
-
-                <div className="four columns">
-                    <div onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
-                </div>
-            </div>
-
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'going') }
-            </div>
-
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'maybe') }
-            </div>
-
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'notGoing') }
-            </div>
-
-            <form className="row" encType="multipart/form-data" method="post" action="/upload-photo">
-
-                <input onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
-
-                <input type="button" onClick={ () => { handleUploadPhoto(photo, eventID); } } className="twelve columns" value="Upload a photo" />
-            </form>
         </div>
     );
 
 };
 
-
-export function RSVPUserList (RSVPs, invitees, status) {
-
-    return RSVPs[status].map((id, index) => {
-        let usersWithRSVP = invitees.filter((userObject) => {
-            return id === userObject.id;
-        });
-
-
-        return (
-            <div className="twelve columns">
-                <div className="ui image label" key={ index }>
-                    <img src={ usersWithRSVP[0].photoURL } />
-                    { usersWithRSVP[0].firstName }
-                </div>
-            </div>
-        );
-    });
+function getPhoto (e) {
+    photo = e.target.files[0];
 }
-
 
 export default ConfirmedEvent;

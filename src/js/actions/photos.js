@@ -1,11 +1,9 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 
-
 export const SET_PHOTO = "SET_PHOTO";
 
 export const GET_PHOTOS = "GET_PHOTOS";
-
 
 export const GET_S3_URL = "GET_S3_URL";
 export const GET_S3_URL_REQUEST = "GET_S3_URL_REQUEST";
@@ -22,12 +20,19 @@ export const SAVE_PHOTO_URL_REQUEST = "SAVE_PHOTO_URL_REQUEST";
 export const SAVE_PHOTO_URL_SUCCESS = "SAVE_PHOTO_URL_SUCCESS";
 export const SAVE_PHOTO_URL_FAILURE = "SAVE_PHOTO_URL_FAILURE";
 
+export const SELECT_PHOTO = "SELECT_PHOTO";
+
 export const GET_DELETED_PHOTOS = "GET_DELETED_PHOTOS";
 
 export const DELETE_PHOTO = "DELETE_PHOTO";
 export const DELETE_PHOTO_REQUEST = "DELETE_PHOTO_REQUEST";
 export const DELETE_PHOTO_SUCCESS = "DELETE_PHOTO_SUCCESS";
 export const DELETE_PHOTO_FAILURE = "DELETE_PHOTO_FAILURE";
+
+export const SHARE_PHOTO = "SHARE_PHOTO";
+export const SHARE_PHOTO_REQUEST = "SHARE_PHOTO_REQUEST";
+export const SHARE_PHOTO_SUCCESS = "SHARE_PHOTO_SUCCESS";
+export const SHARE_PHOTO_FAILURE = "SHARE_PHOTO_FAILURE";
 
 
 /********
@@ -205,7 +210,18 @@ export function savePhotoURLFailure (error) {
 }
 
 /********
-GET PHOTOS ACTION
+SELECT PHOTO ACTION
+********/
+
+export function selectPhoto (url) {
+    return {
+        type: SELECT_PHOTO,
+        url
+    };
+}
+
+/********
+GET DELETED PHOTOS ACTION
 ********/
 
 export function getDeletedPhotos (photos) {
@@ -220,7 +236,7 @@ export function getDeletedPhotos (photos) {
 DELETE PHOTO ACTION
 ********/
 
-export function deletePhoto (photo, eventID, userID) {
+export function deletePhoto (photo, eventID) {
 
     return (dispatch) => {
 
@@ -228,18 +244,16 @@ export function deletePhoto (photo, eventID, userID) {
         var payload = {
             photo,
             eventID,
-            userID
+            userID: getUserID()
         };
 
         axios.post(`/delete-photo`, payload)
         .then((response) => {
-            console.log(response.data);
-            //dispatch(deletePhotoSuccess());
-            //dispatch(getDeletedPhotos(photos));
+            dispatch(deletePhotoSuccess());
+            dispatch(getDeletedPhotos(response.data));
         })
         .catch((error) => {
-            console.log(error);
-            //dispatch(deletePhotoFailure(error));
+            dispatch(deletePhotoFailure(error));
         });
     };
 }
@@ -261,6 +275,54 @@ export function deletePhotoSuccess () {
 export function deletePhotoFailure (error) {
     return {
         type: DELETE_PHOTO_FAILURE,
+        isFetching: false,
+        error
+    };
+}
+
+/********
+SHARE PHOTO ACTION
+********/
+
+export function sharePhoto (photoURL) {
+
+    return (dispatch) => {
+
+        dispatch(sharePhotoRequest());
+        var payload = {
+            photoURL,
+            userID: getUserID()
+        };
+
+        axios.post(`/share-photo`, payload)
+        .then((response) => {
+            console.log(response.data, 'from share photo server reply');
+            dispatch(sharePhotoSuccess());
+        })
+        .catch((error) => {
+
+            dispatch(sharePhotoFailure(error));
+        });
+    };
+}
+
+export function sharePhotoRequest () {
+    return {
+        type: SHARE_PHOTO_REQUEST,
+        isFetching: true
+    };
+}
+
+export function sharePhotoSuccess () {
+    return {
+        type: SHARE_PHOTO_SUCCESS,
+        isFetching: false
+    };
+}
+
+export function sharePhotoFailure (error) {
+    return {
+        type: SHARE_PHOTO_FAILURE,
         isFetching: false,
         error
     };

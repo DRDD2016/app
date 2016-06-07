@@ -1,7 +1,7 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 import { clearCreateEvent } from './create-event.js';
-import { getPhotos } from './photos.js';
+import { getPhotos, getDeletedPhotos } from './photos.js';
 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_REQUEST = 'GET_EVENT_REQUEST';
@@ -60,6 +60,7 @@ export function getEvent (eventID) {
             .then((response) => {
                 dispatch(getEventSuccess(response.data));
                 dispatch(getPhotos(response.data.photos));
+                dispatch(getDeletedPhotos(response.data.deletedPhotos));
             })
             .catch((error) => {
                 dispatch(getEventFailure(error));
