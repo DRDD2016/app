@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
+import RSVPsArea from './confirmed-event/RSVPsArea.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
@@ -10,14 +11,9 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
     let maybe = RSVPs.maybe;
-    let responded = going.concat(maybe, notGoing);
+    let respondedList = going.concat(maybe, notGoing);
 
     let photo;
-
-    function getPhoto (e) {
-        photo = e.target.files[0];
-
-    }
 
     let notRespondedList = (responded, invitees) => {
 
@@ -34,8 +30,6 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             );
         });
     };
-
-
 
     return (
         <div>
@@ -88,40 +82,12 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             <br />
             <hr />
 
-            <div className="row">
-                <div className="twelve columns">
-                    <div>Not responded</div>
-                    { notRespondedList(responded, invitees) }
-                </div>
-            </div>
-
-            <hr />
-
-            <div className="row">
-                <div className="four columns">
-                    <div onClick={ () => handleClick('going', eventID) }> Going </div>
-                </div>
-
-                <div className="four columns">
-                    <div onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
-                </div>
-
-                <div className="four columns">
-                    <div onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
-                </div>
-            </div>
-
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'going') }
-            </div>
-
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'maybe') }
-            </div>
-
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'notGoing') }
-            </div>
+            <RSVPsArea eventID={ eventID }
+                       respondedList={ respondedList }
+                       notRespondedList={ notRespondedList }
+                       invitees={ invitees }
+                       handleClick={ handleClick }
+                       RSVPs={ RSVPs } />
 
             <form className="row" encType="multipart/form-data" method="post" action="/upload-photo">
 
@@ -134,25 +100,12 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
 };
 
-
-export function RSVPUserList (RSVPs, invitees, status) {
-
-    return RSVPs[status].map((id, index) => {
-        let usersWithRSVP = invitees.filter((userObject) => {
-            return id === userObject.id;
-        });
-
-
-        return (
-            <div className="twelve columns">
-                <div className="ui image label" key={ index }>
-                    <img src={ usersWithRSVP[0].photoURL } />
-                    { usersWithRSVP[0].firstName }
-                </div>
-            </div>
-        );
-    });
+function getPhoto (e) {
+    photo = e.target.files[0];
 }
+
+
+
 
 
 export default ConfirmedEvent;

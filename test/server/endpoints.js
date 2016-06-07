@@ -308,8 +308,6 @@ server.init(9001, (error, server) => {
 
     });
 
-
-
     test('`update-notification` works', (t) => {
 
         const options = {
