@@ -51,7 +51,6 @@ test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
     let url = "http://url.com";
     let state = Object.assign({}, initialState);
     state.isFetching = true;
-    state.signedURL = url;
 
     let action = {
         type: "GET_S3_URL_SUCCESS",
@@ -59,7 +58,7 @@ test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
         signedURL: url
     };
 
-    const actual = reducer(initialState, action);
+    const actual = reducer(state, action);
 
     let expected = Object.assign({}, state);
     expected.isFetching = false;
@@ -72,7 +71,6 @@ test('Reducer handles GET_S3_URL_SUCCESS as expected', (t) => {
 test('Reducer handles GET_S3_URL_FAILURE as expected', (t) => {
 
     let state = Object.assign({}, initialState);
-    state.signedURL = "http://url.com";
 
     const error = {
         message: "There was an error..."
@@ -84,9 +82,9 @@ test('Reducer handles GET_S3_URL_FAILURE as expected', (t) => {
         error: error
     };
 
-    const actual = reducer(initialState, action);
+    const actual = reducer(state, action);
 
-    let expected = Object.assign({}, initialState);
+    let expected = Object.assign({}, state);
     expected.error = error;
 
     t.deepEqual(actual, expected);
@@ -101,7 +99,7 @@ UPLOAD PHOTO ACTIONS
 test('Reducer handles UPLOAD_PHOTO_REQUEST as expected', (t) => {
 
     let state = Object.assign({}, initialState);
-    state.photoURL = "https://aws.com/photolocation.jpg";
+    state.signedURL = "http://url.com";
 
     const action = {
         type: "UPLOAD_PHOTO_REQUEST",
@@ -119,25 +117,31 @@ test('Reducer handles UPLOAD_PHOTO_REQUEST as expected', (t) => {
 
 test('Reducer handles UPLOAD_PHOTO_SUCCESS as expected', (t) => {
 
+    let photoURL = "https://aws.com/photolocation.jpg";
     let state = Object.assign({}, initialState);
-    state.photoURL = "https://aws.com/photolocation.jpg";
+    state.signedURL = "http://url.com";
 
     const action = {
         type: "UPLOAD_PHOTO_SUCCESS",
-        isFetching: false
+        isFetching: false,
+        data: photoURL
     };
 
     const actual = reducer(state, action);
 
-    let expected = Object.assign({}, initialState);
+    let expected = Object.assign({}, state);
     expected.isFetching = false;
-    expected.photoURL = undefined;
+    expected.photoURL = photoURL;
+    expected.signedURL = undefined;
 
-    t.deepEqual(actual, expected, 'on UPLOAD_PHOTO_SUCCESS, isFetching is `false`');
+    t.deepEqual(actual, expected, 'isFetching is `false`, photoURL is set, signedURL is unset');
     t.end();
 });
 
 test('Reducer handles UPLOAD_PHOTO_FAILURE as expected', (t) => {
+
+    let state = Object.assign({}, initialState);
+    state.signedURL = "http://url.com";
 
     const error = {
         message: "There was an error..."
@@ -149,15 +153,81 @@ test('Reducer handles UPLOAD_PHOTO_FAILURE as expected', (t) => {
         error: error
     };
 
-    const actual = reducer(initialState, action);
+    const actual = reducer(state, action);
 
-    let expected = Object.assign({}, initialState);
+    let expected = Object.assign({}, state);
+    expected.isFetching = false;
     expected.error = error;
+    state.signedURL = undefined;
 
-    t.deepEqual(actual, expected);
+    t.deepEqual(actual, expected, 'isFetching is `false`, error is set, signedURL is unset');
     t.end();
 });
 
 /********
 SAVE PHOTO ACTIONS
 ********/
+
+test('Reducer handles SAVE_PHOTO_URL_REQUEST as expected', (t) => {
+
+    let state = initialState;
+    state.photoURL = "https://aws.com/photolocation.jpg";
+
+    const action = {
+        type: "SAVE_PHOTO_URL_REQUEST",
+        isFetching: true
+    };
+    const actual = reducer(state, action);
+
+    let expected = Object.assign({}, state);
+    expected.isFetching = true;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles SAVE_PHOTO_URL_SUCCESS as expected', (t) => {
+
+    const state = initialState;
+    state.isFetching = true;
+    state.photoURL = "https://aws.com/photolocation.jpg";
+
+    const action = {
+        type: "SAVE_PHOTO_URL_SUCCESS",
+        isFetching: false
+    };
+
+    const actual = reducer(state, action);
+
+    let expected = Object.assign({}, state);
+    expected.isFetching = false;
+    expected.photoURL = undefined;
+
+    t.deepEqual(actual, expected, 'isFetching is `false`, photoURL is unset');
+    t.end();
+});
+
+test('Reducer handles SAVE_PHOTO_URL_FAILURE as expected', (t) => {
+
+    const state = initialState;
+    state.isFetching = true;
+    state.photoURL = "https://aws.com/photolocation.jpg";
+
+    const error = {
+        message: "There was an error..."
+    };
+
+    const action = {
+        type: "SAVE_PHOTO_URL_FAILURE",
+        isFetching: false,
+        error: error
+    };
+
+    const actual = reducer(state, action);
+    let expected = Object.assign({}, state);
+    expected.error = error;
+    expected.photoURL = undefined;
+
+    t.deepEqual(actual, expected, 'isFetching is `false`, error is set, photoURL is unset');
+    t.end();
+});
