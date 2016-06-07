@@ -357,5 +357,23 @@ server.init(9001, (error, server) => {
         });
     });
 
+    test.skip('`/share-photo` works', (t) => {
+
+        const options = {
+            method: 'POST',
+            url: '/share-photo',
+            payload: {
+                photoURL: "www.photourl.com",
+                userID: 12345678
+            }
+        };
+
+        server.inject(options, (response) => {
+
+            t.equal(response.statusCode, 200, '200 status code');
+            t.end();
+        });
+    });
+
 
 });

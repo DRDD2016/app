@@ -70,7 +70,8 @@ class Event extends React.Component {
                                  invitees={ this.props.invitees }
                                  handleUploadPhoto={ this.props.handleUploadPhoto }
                                  photos={ this.props.photos }
-                                 handleDeletePhoto={ this.props.handleDeletePhoto } />
+                                 handleDeletePhoto={ this.props.handleDeletePhoto }
+                                 handleSharePhoto={ this.props.handleSharePhoto }/>
             );
         }
     }

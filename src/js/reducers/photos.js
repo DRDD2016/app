@@ -7,6 +7,8 @@ import { SAVE_PHOTO_URL_REQUEST, SAVE_PHOTO_URL_SUCCESS, SAVE_PHOTO_URL_FAILURE 
 import { SELECT_PHOTO } from '../actions/photos.js';
 import { GET_DELETED_PHOTOS } from '../actions/photos.js';
 import { DELETE_PHOTO_REQUEST, DELETE_PHOTO_SUCCESS, DELETE_PHOTO_FAILURE } from '../actions/photos.js';
+import { SHARE_PHOTO_REQUEST, SHARE_PHOTO_SUCCESS, SHARE_PHOTO_FAILURE } from '../actions/photos.js';
+
 
 
 const initialState = {
@@ -38,6 +40,8 @@ export default function photos (state = initialState, action) {
     case SAVE_PHOTO_URL_REQUEST:
     case DELETE_PHOTO_REQUEST:
     case DELETE_PHOTO_SUCCESS:
+    case SHARE_PHOTO_REQUEST:
+    case SHARE_PHOTO_SUCCESS:
         return handleRequest(state, action);
 
     case SAVE_PHOTO_URL_SUCCESS:
@@ -50,6 +54,7 @@ export default function photos (state = initialState, action) {
     case GET_S3_URL_FAILURE:
     case SAVE_PHOTO_URL_FAILURE:
     case DELETE_PHOTO_FAILURE:
+    case SHARE_PHOTO_FAILURE:
         return handleFailure(state, action);
 
     case GET_S3_URL_SUCCESS:

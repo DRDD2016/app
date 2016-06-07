@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PhotoStream = ({ photos, handleDeletePhoto, eventID }) => {
+const PhotoStream = ({ photos, handleDeletePhoto, handleSharePhoto, eventID }) => {
 
     let stream = photos.map((photo, i) => {
 
@@ -10,7 +10,7 @@ const PhotoStream = ({ photos, handleDeletePhoto, eventID }) => {
 
                 <div className="row">
                     <label onClick={ () => { handleDeletePhoto(photo, eventID); } } className="six columns photo-button">Delete</label>
-                    <label className="six columns photo-button share">Share</label>
+                    <label onClick={ () => { handleSharePhoto(photo.photoURL); } } className="six columns photo-button share">Share</label>
                 </div>
             </div>
         );

@@ -29,6 +29,11 @@ export const DELETE_PHOTO_REQUEST = "DELETE_PHOTO_REQUEST";
 export const DELETE_PHOTO_SUCCESS = "DELETE_PHOTO_SUCCESS";
 export const DELETE_PHOTO_FAILURE = "DELETE_PHOTO_FAILURE";
 
+export const SHARE_PHOTO = "SHARE_PHOTO";
+export const SHARE_PHOTO_REQUEST = "SHARE_PHOTO_REQUEST";
+export const SHARE_PHOTO_SUCCESS = "SHARE_PHOTO_SUCCESS";
+export const SHARE_PHOTO_FAILURE = "SHARE_PHOTO_FAILURE";
+
 
 /********
 SET PHOTO ACTION
@@ -270,6 +275,54 @@ export function deletePhotoSuccess () {
 export function deletePhotoFailure (error) {
     return {
         type: DELETE_PHOTO_FAILURE,
+        isFetching: false,
+        error
+    };
+}
+
+/********
+SHARE PHOTO ACTION
+********/
+
+export function sharePhoto (photoURL) {
+
+    return (dispatch) => {
+
+        dispatch(sharePhotoRequest());
+        var payload = {
+            photoURL,
+            userID: getUserID()
+        };
+
+        axios.post(`/share-photo`, payload)
+        .then((response) => {
+            console.log(response.data, 'from share photo server reply');
+            dispatch(sharePhotoSuccess());
+        })
+        .catch((error) => {
+
+            dispatch(sharePhotoFailure(error));
+        });
+    };
+}
+
+export function sharePhotoRequest () {
+    return {
+        type: SHARE_PHOTO_REQUEST,
+        isFetching: true
+    };
+}
+
+export function sharePhotoSuccess () {
+    return {
+        type: SHARE_PHOTO_SUCCESS,
+        isFetching: false
+    };
+}
+
+export function sharePhotoFailure (error) {
+    return {
+        type: SHARE_PHOTO_FAILURE,
         isFetching: false,
         error
     };
