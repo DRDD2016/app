@@ -17,6 +17,5 @@ test.skip('Navbar renders onto DOM correctly', (t) => {
 
     const rendered = renderIntoDocument(<Navbar />);
     const buttons = scryRenderedDOMComponentsWithClass('nav-button');
-    // console.log(buttons);
     t.end();
 });

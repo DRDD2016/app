@@ -1,10 +1,12 @@
 import update from 'react-addons-update';
 import { SET_PHOTO } from '../actions/photos.js';
+import { GET_PHOTOS } from '../actions/photos.js';
 import { GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../actions/photos.js';
 import { UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../actions/photos.js';
 import { SAVE_PHOTO_URL_REQUEST, SAVE_PHOTO_URL_SUCCESS, SAVE_PHOTO_URL_FAILURE } from '../actions/photos.js';
+import { SELECT_PHOTO } from '../actions/photos.js';
+import { GET_DELETED_PHOTOS } from '../actions/photos.js';
 import { DELETE_PHOTO_REQUEST, DELETE_PHOTO_SUCCESS, DELETE_PHOTO_FAILURE } from '../actions/photos.js';
-import { GET_PHOTOS, GET_DELETED_PHOTOS } from '../actions/photos.js';
 
 
 const initialState = {
@@ -13,8 +15,9 @@ const initialState = {
     signedURL: undefined,
     photoURL: undefined,
     file: undefined,
-    photos: undefined,
-    deletedPhotos: undefined
+    photos: [],
+    toShare: undefined,
+    deletedPhotos: []
 };
 
 export default function photos (state = initialState, action) {
@@ -51,6 +54,9 @@ export default function photos (state = initialState, action) {
 
     case GET_S3_URL_SUCCESS:
         return handleGetS3URLSuccess(state, action);
+
+    case SELECT_PHOTO:
+        return handleSelectPhoto(state, action);
 
     default:
         return state;
@@ -125,6 +131,14 @@ function handleGetS3URLSuccess (state, action) {
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
         signedURL: { $set: action.signedURL }
+    });
+    return newState;
+}
+
+function handleSelectPhoto (state, action) {
+
+    let newState = update(state, {
+        toShare: { $set: action.url }
     });
     return newState;
 }
