@@ -5,7 +5,7 @@ import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos }) => {
-    console.log(photos,'photos from db in component');
+    console.log (photos,'photos from db in component');
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
