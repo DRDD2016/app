@@ -5,6 +5,8 @@ import calendar from './calendar.js';
 import event from './event.js';
 import notifications from './notifications.js';
 import createEvent from './create-event.js';
+import photos from './photos.js';
+
 
 export default combineReducers({
     auth,
@@ -13,4 +15,5 @@ export default combineReducers({
     event,
     notifications,
     createEvent,
+    photos
 });

@@ -8,7 +8,7 @@ exports.register = (server, options, next) => {
                 description: 'return the home page',
 
                 handler: (request, reply) => {
-                    console.log("INDEX");
+
                     reply.file('index.html');
                 }
             }
@@ -20,7 +20,7 @@ exports.register = (server, options, next) => {
                 description: 'return the javascript bundle',
 
                 handler: (request, reply) => {
-                    console.log("BUNDLE");
+                    
                     reply.file('bundle.js');
                 }
             }
