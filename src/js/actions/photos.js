@@ -4,6 +4,8 @@ import getUserID from '../lib/getUserID.js';
 
 export const SET_PHOTO = "SET_PHOTO";
 
+export const GET_PHOTOS = "GET_PHOTOS";
+
 export const GET_S3_URL = "GET_S3_URL";
 export const GET_S3_URL_REQUEST = "GET_S3_URL_REQUEST";
 export const GET_S3_URL_SUCCESS = "GET_S3_URL_SUCCESS";
@@ -28,6 +30,18 @@ export function setPhoto (file) {
     return {
         type: SET_PHOTO,
         data: file
+    };
+}
+
+
+/********
+GET PHOTOS ACTION
+********/
+
+export function getPhotos (photos) {
+    return {
+        type: GET_PHOTOS,
+        data: photos
     };
 }
 
@@ -95,7 +109,6 @@ export function uploadPhoto (url, photo) {
                 'Content-Type': photo.type
             }
         };
-
         axios.put(url, photo, config)
 
             .then((response) => {
@@ -103,6 +116,7 @@ export function uploadPhoto (url, photo) {
                 dispatch(uploadPhotoSuccess(photoURL));
             })
             .catch((error) => {
+
                 dispatch(uploadPhotoFailure(error));
             });
     };
@@ -137,7 +151,6 @@ SAVE PHOTO URL ACTIONS
 ********/
 
 export function savePhotoURL (url, eventID) {
-
     return (dispatch) => {
 
         dispatch(savePhotoURLRequest());
@@ -148,11 +161,12 @@ export function savePhotoURL (url, eventID) {
             eventID
         };
 
-        axios.post(url, eventID, payload)
+        axios.post('/save-photo', payload)
 
             .then((response) => {
-                console.log("SAVED PHOTO URL", response);
-                dispatch(savePhotoURLSuccess());
+                dispatch(savePhotoURLSuccess(response.data));
+                dispatch(getPhotos(response.data));
+                //ALSO NEED TO DISPATCH THE PHOTOS FROM BACKEND TO HERE.
             })
             .catch((error) => {
                 dispatch(savePhotoURLFailure(error));

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 import { clearCreateEvent } from './create-event.js';
+import { getPhotos } from './photos.js';
 
 export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_REQUEST = 'GET_EVENT_REQUEST';
@@ -44,6 +45,7 @@ export const UPDATE_NOTIFICATION_FAILURE = 'UPDATE_NOTIFICATION_FAILURE';
 
 
 
+
 /********
 GET EVENT ACTIONS
 ********/
@@ -57,9 +59,9 @@ export function getEvent (eventID) {
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
                 dispatch(getEventSuccess(response.data));
+                dispatch(getPhotos(response.data.photos));
             })
             .catch((error) => {
-
                 dispatch(getEventFailure(error));
             });
     };

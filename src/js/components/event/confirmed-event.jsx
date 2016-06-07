@@ -4,8 +4,8 @@ import EventDetailsHeader from '../general/event-details-header.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
-const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto }) => {
-
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos }) => {
+    console.log(photos, 'photos from db in component');
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
@@ -17,20 +17,6 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
     function getPhoto (e) {
         photo = e.target.files[0];
 
-
-    
-        // var reader = new FileReader();
-
-        // if (file) {
-        //     reader.onload = (event) => {
-        //         photo = event.target.result;
-        //         // upload button should be hidden until this event is triggered
-        //         console.log(event.target.result);
-        //     };
-        // }
-
-        // reader.readAsArrayBuffer(file);
-        // reader.readAsDataURL(file);
     }
 
     let notRespondedList = (responded, invitees) => {
@@ -49,11 +35,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
         });
     };
 
+
+
     return (
         <div>
-        <img id="photo">
-
-        </img>
             { eventNote(event) }
             <div className="row">
                 <h4 className="twelve columns">

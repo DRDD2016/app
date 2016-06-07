@@ -309,38 +309,6 @@ server.init(9001, (error, server) => {
     });
 
 
-    test('`upload-photo` works', (t) => {
-
-        const options = {
-            method: 'POST',
-            url: '/upload-photo',
-            payload: {
-                photo: __dirname + '/../../public/test-image.JPG',
-                eventID: 'fakeevent:100',
-            }
-        };
-
-        server.inject(options, (response) => {
-            var options = {
-                Bucket: 'spark-app-demo',
-                Prefix: 'fakeevent:100'
-            };
-
-            s3.listObjects(options, (error, data) => {
-
-                var actual = data.Contents[0].Key;
-                t.ok(actual.indexOf('fakeevent:100') !== -1, 'photo exists in S3');
-                var deleteOptions = {
-                    Bucket: 'spark-app-demo',
-                    Key: actual
-                };
-                s3.deleteObject(deleteOptions, (error, data2) => {
-                    t.equal(response.statusCode, 200, '200 status code');
-                    t.end();
-                });
-            });
-        });
-    });
 
     test('`update-notification` works', (t) => {
 
