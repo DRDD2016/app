@@ -3,5 +3,15 @@
     max-width: 80%;
     max-height: 250px;
     border: 1px solid $off-black;
-    margin: 1em auto;
+    margin: 2em auto;
+}
+
+.photo-button {
+    font-size: 1.6rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    line-height: 3rem;
+    &.share {
+        @include icon("\f230");
+    }
 }
