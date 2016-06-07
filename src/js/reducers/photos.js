@@ -113,7 +113,9 @@ function handleFailure (state, action) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
-        error: { $set: action.error }
+        error: { $set: action.error },
+        photoURL: { $set: undefined },
+        signedURL: { $set: undefined }
     });
     return newState;
 }
