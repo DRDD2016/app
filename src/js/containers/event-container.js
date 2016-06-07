@@ -23,7 +23,8 @@ const mapStateToProps = (state) => {
         invitees: state.event.invitees,
         hostEventChoices: state.event.hostEventChoices,
         isFetching: state.event.isFetching,
-        userIsHost: state.event.data.hostID == getUserID()
+        userIsHost: state.event.data.hostID == getUserID(),
+        photos: state.photos.photos
     };
 };
 
