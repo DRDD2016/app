@@ -32,12 +32,12 @@ const Navbar = ({ currentLocation }) => {
 
     return (
         <div className={ navbarClasses }>
-            <a className={ albumsClasses } href="#">
+            <Link className={ albumsClasses } to="albums">
                 <div >
                     <i className="fa fa-camera nav-icon "></i>
                     <label className="menu-label">Albums</label>
                 </div>
-            </a>
+            </Link>
 
             <Link className={ calendarClasses } to="calendar">
                 <div>
