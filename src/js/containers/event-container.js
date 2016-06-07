@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
-import { setPhoto, getS3URL } from '../actions/photos.js';
+import { setPhoto, getS3URL, deletePhoto } from '../actions/photos.js';
 import { hydrateCreateEvent } from '../actions/create-event.js';
 import { listenForS3URL } from '../lib/s3-helpers.js';
 import { listenForSavePhotoURL } from '../lib/save-photo-url-helper.js';
@@ -69,6 +69,10 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(setPhoto(file));
             dispatch(getS3URL(file.name, file.type, eventID));
+        },
+        handleDeletePhoto: (photo, eventID) => {
+            console.log(photo, eventID, 'handleDeletePhoto');
+            dispatch(deletePhoto(photo, eventID));
         }
     };
 };

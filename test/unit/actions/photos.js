@@ -259,8 +259,7 @@ test('deletePhoto async action creator returns expected action', (t) => {
     const { dispatch, queue } = createThunk();
     var photoURL = 'http://www.aws.com/photolocation.jpg';
     var eventID = 'event:100';
-    var userID = 12345678;
-    dispatch(deletePhoto(photoURL, eventID, userID));
+    dispatch(deletePhoto(photoURL, eventID));
 
     [{ ...actual }] = queue;
 

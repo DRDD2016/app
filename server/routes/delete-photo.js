@@ -1,4 +1,5 @@
 var deletePhoto = require('../db/deletePhoto.js');
+var getDeletedPhotos = require('../db/getDeletedPhotos.js');
 
 exports.register = (server, options, next) => {
 
@@ -15,8 +16,15 @@ exports.register = (server, options, next) => {
 
                 deletePhoto(photo, eventID, userID, (error, response) => {
 
-                    var verdict = error || response;
-                    reply(verdict);
+                    if (error) {
+                        reply(error);
+                    }
+
+                    getDeletedPhotos(eventID, userID, (error, deletedPhotos) => {
+
+                        var verdict = error || deletedPhotos;
+                        reply(verdict);
+                    });
                 });
             }
         }

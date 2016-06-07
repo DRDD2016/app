@@ -231,7 +231,7 @@ export function getDeletedPhotos (photos) {
 DELETE PHOTO ACTION
 ********/
 
-export function deletePhoto (photo, eventID, userID) {
+export function deletePhoto (photo, eventID) {
 
     return (dispatch) => {
 
@@ -239,18 +239,16 @@ export function deletePhoto (photo, eventID, userID) {
         var payload = {
             photo,
             eventID,
-            userID
+            userID: getUserID()
         };
 
         axios.post(`/delete-photo`, payload)
         .then((response) => {
-            console.log(response.data);
-            //dispatch(deletePhotoSuccess());
-            //dispatch(getDeletedPhotos(photos));
+            dispatch(deletePhotoSuccess());
+            dispatch(getDeletedPhotos(response.data));
         })
         .catch((error) => {
-            console.log(error);
-            //dispatch(deletePhotoFailure(error));
+            dispatch(deletePhotoFailure(error));
         });
     };
 }
