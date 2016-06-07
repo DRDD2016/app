@@ -22,7 +22,8 @@ function createNotification (subjectID, eventID, eventInfo, callback) {
             eventWhen: eventInfo.eventWhen,
             isPoll: eventInfo.isPoll,
             hostID: eventInfo.hostID,
-            subjectID: undefined
+            subjectID: undefined,
+            viewed: false
         };
 
         return callback(error, notification);
