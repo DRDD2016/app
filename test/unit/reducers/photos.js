@@ -236,3 +236,19 @@ test('Reducer handles SAVE_PHOTO_URL_FAILURE as expected', (t) => {
     t.deepEqual(actual, expected, 'isFetching is `false`, error is set, photoURL is unset');
     t.end();
 });
+
+test('Reducer handles SELECT_PHOTO as expected', (t) => {
+
+    const url = "https://aws.com/photolocation.jpg";
+    const action = {
+        type: "SELECT_PHOTO",
+        url
+    };
+
+    const actual = reducer(initialState, action);
+    let expected = initialState;
+    expected.toShare = url;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});

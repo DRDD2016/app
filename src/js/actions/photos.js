@@ -21,6 +21,7 @@ export const SAVE_PHOTO_URL_REQUEST = "SAVE_PHOTO_URL_REQUEST";
 export const SAVE_PHOTO_URL_SUCCESS = "SAVE_PHOTO_URL_SUCCESS";
 export const SAVE_PHOTO_URL_FAILURE = "SAVE_PHOTO_URL_FAILURE";
 
+export const SELECT_PHOTO = "SELECT_PHOTO";
 
 /********
 SET PHOTO ACTION
@@ -193,5 +194,16 @@ export function savePhotoURLFailure (error) {
         type: SAVE_PHOTO_URL_FAILURE,
         isFetching: false,
         error: error
+    };
+}
+
+/********
+SELECT PHOTO ACTION
+********/
+
+export function selectPhoto (url) {
+    return {
+        type: SELECT_PHOTO,
+        url
     };
 }

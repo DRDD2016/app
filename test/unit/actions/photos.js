@@ -6,6 +6,7 @@ import { UPLOAD_PHOTO, UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_
 import { uploadPhoto, uploadPhotoRequest, uploadPhotoSuccess, uploadPhotoFailure } from '../../../src/js/actions/photos.js';
 import { SAVE_PHOTO_URL, SAVE_PHOTO_URL_REQUEST, SAVE_PHOTO_URL_SUCCESS, SAVE_PHOTO_URL_FAILURE } from '../../../src/js/actions/photos.js';
 import { savePhotoURL, savePhotoURLRequest, savePhotoURLSuccess, savePhotoURLFailure } from '../../../src/js/actions/photos.js';
+import { SELECT_PHOTO, selectPhoto } from '../../../src/js/actions/photos.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 
@@ -224,6 +225,25 @@ test('savePhotoURLFailure action creator returns expected action', (t) => {
     };
 
     const actual = savePhotoURLFailure(error);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+
+/********
+SELECT PHOTO ACTIONS
+********/
+
+test('selectPhoto action creator returns expected action', (t) => {
+
+    const url = "https://aws.com/photolocation.jpg";
+    const expected = {
+        type: SELECT_PHOTO,
+        url
+    };
+
+    const actual = selectPhoto(url);
 
     t.deepEqual(actual, expected);
     t.end();
