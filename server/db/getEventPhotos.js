@@ -2,7 +2,6 @@ var client = require('./init.js');
 
 function getEventPhotos (eventID, callback) {
     var listName = 'photos:' + eventID;
-    console.log(listName);
     client.lrangeAsync(listName, 0, -1)
         .then((response) => {
             return response.map((object, index) => {
