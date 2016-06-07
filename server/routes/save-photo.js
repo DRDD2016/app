@@ -1,4 +1,6 @@
 var savePhotoToDB = require('../db/savePhotoToDB');
+var getEventPhotos = require('../db/getEventPhotos.js');
+
 
 exports.register = (server, options, next) => {
 
@@ -14,8 +16,15 @@ exports.register = (server, options, next) => {
                 var userID = request.payload.userID;
                 savePhotoToDB(eventID, photoURL, userID, (error, response) => {
 
-                    var verdict = error || response;
-                    reply(verdict);
+                    if (error) {
+                        reply(error);
+                    }
+
+                    getEventPhotos(eventID, (error, photos) => {
+
+                        var verdict = error || photos;
+                        reply(verdict);
+                    });
                 });
             }
         }

@@ -45,6 +45,7 @@ export const UPDATE_NOTIFICATION_FAILURE = 'UPDATE_NOTIFICATION_FAILURE';
 
 
 
+
 /********
 GET EVENT ACTIONS
 ********/
@@ -61,7 +62,6 @@ export function getEvent (eventID) {
                 dispatch(getPhotos(response.data.photos));
             })
             .catch((error) => {
-
                 dispatch(getEventFailure(error));
             });
     };

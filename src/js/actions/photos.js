@@ -40,7 +40,7 @@ GET PHOTOS ACTION
 
 export function getPhotos (photos) {
     return {
-        type: GET_PHOTO,
+        type: GET_PHOTOS,
         data: photos
     };
 }
@@ -164,11 +164,11 @@ export function savePhotoURL (url, eventID) {
         axios.post('/save-photo', payload)
 
             .then((response) => {
-                console.log("SAVED PHOTO URL", response);
                 dispatch(savePhotoURLSuccess(response.data));
+                dispatch(getPhotos(response.data));
+                //ALSO NEED TO DISPATCH THE PHOTOS FROM BACKEND TO HERE.
             })
             .catch((error) => {
-                console.log(error);
                 dispatch(savePhotoURLFailure(error));
             });
     };
