@@ -34,11 +34,6 @@ class Event extends React.Component {
 
     renderView () {
 
-        if (this.props.isPoll === undefined || this.props.userIsHost === undefined) {
-            return (
-                <Spinner />
-            );
-        }
         if (this.props.userIsHost && this.props.isPoll) {
 
             return (
@@ -59,17 +54,14 @@ class Event extends React.Component {
                           eventID={ this.props.params.eventID }
                           isHost={ this.props.userIsHost } />
             );
-        }
-        if (!this.props.isPoll) {
+        } else {
             return (
                  <ConfirmedEvent event={ this.props.event }
                                  eventID={ this.props.params.eventID }
                                  userIsHost={ this.props.userIsHost }
                                  RSVPs={ this.props.RSVPs }
                                  RSVPToEvent={ this.props.RSVPToEvent }
-                                 invitees={ this.props.invitees }
-                                 handleUploadPhoto={ this.props.handleUploadPhoto }
-                                 photos={ this.props.photos } />
+                                 invitees={ this.props.invitees } />
             );
         }
     }

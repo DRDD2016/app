@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Feed from '../components/feed.jsx';
 import { getUser } from '../actions/user.js';
 import { getNotifications } from '../actions/notifications.js';
-import { updateNotification } from '../actions/event.js';
 
 const mapStateToProps = (state) => {
+
     return {
         user: state.user,
         notifications: state.notifications.data,
@@ -13,21 +13,9 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-
-    return {
-        handleUpdateNotification: (index) => {
-
-
-            dispatch(updateNotification(index));
-        }
-    };
-};
-
 
 const FeedContainer = connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Feed);
 
 export default FeedContainer;
