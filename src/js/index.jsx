@@ -18,7 +18,6 @@ import FeedContainer from './containers/feed-container.js';
 import EventContainer from './containers/event-container.js';
 import EditEventContainer from './containers/edit-event-container.js';
 import CalendarContainer from './containers/calendar-container.js';
-import AlbumsContainer from './containers/albums-container.js';
 import CreateEventContainer from './containers/create-event/create-event-container.js';
 import EventDetailsContainer from './containers/create-event/event-details-container.js';
 import EventWhatContainer from './containers/create-event/event-what-container.js';
@@ -28,7 +27,7 @@ import EventConfirmContainer from './containers/create-event/event-confirm-conta
 import InviteFriendsContainer from './containers/create-event/invite-friends-container.js';
 
 import { store } from './init-store.js';
-
+console.log("hashHistory", hashHistory);
 function initialiseAppState (nextState, replace, callback) {
 
     // catch if user is not authenticated
@@ -91,10 +90,6 @@ const routes = (
 
         <Route path='/calendar'
                component={ requireAuthentication(CalendarContainer) }
-               onEnter={ fetchCalendar } />
-
-        <Route path='/albums'
-               component={ requireAuthentication(AlbumsContainer) }
                onEnter={ fetchCalendar } />
 
         <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { newEvent, clearCreateEvent } from '../../actions/create-event.js';
 import EventConfirm from '../../components/create-event/event-confirm.jsx';
-import { isPoll, cleanEventData } from '../../lib/create-event-helpers.js';
+import { isPoll, cleanEventData } from '../../lib/eventConfirmHelpers.js';
 import { store } from '../../init-store.js';
 
 const mapStateToProps = (state) => {

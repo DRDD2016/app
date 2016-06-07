@@ -4,8 +4,7 @@ import { GET_EVENT_REQUEST, GET_EVENT_SUCCESS, GET_EVENT_FAILURE, UPDATE_POLL,
          CONFIRM_EVENT_REQUEST, CONFIRM_EVENT_SUCCESS, CONFIRM_EVENT_FAILURE,
          UPDATE_RSVP_REQUEST, UPDATE_RSVP_SUCCESS, UPDATE_RSVP_FAILURE,
          DELETE_EVENT_REQUEST, DELETE_EVENT_SUCCESS, DELETE_EVENT_FAILURE,
-         SAVE_EDITED_EVENT_REQUEST, SAVE_EDITED_EVENT_SUCCESS, SAVE_EDITED_EVENT_FAILURE,
-         UPDATE_NOTIFICATION_REQUEST, UPDATE_NOTIFICATION_SUCCESS, UPDATE_NOTIFICATION_FAILURE } from '../actions/event.js';
+         SAVE_EDITED_EVENT_REQUEST, SAVE_EDITED_EVENT_SUCCESS, SAVE_EDITED_EVENT_FAILURE } from '../actions/event.js';
 
 const initialState = {
     data: {},
@@ -28,7 +27,6 @@ export default function event (state = initialState, action) {
     case DELETE_EVENT_REQUEST:
     case SAVE_EDITED_EVENT_REQUEST:
     case UPDATE_RSVP_REQUEST:
-    case UPDATE_NOTIFICATION_REQUEST:
         return handleRequest(state, action);
 
     case GET_EVENT_SUCCESS:
@@ -38,7 +36,6 @@ export default function event (state = initialState, action) {
     case CONFIRM_EVENT_SUCCESS:
     case DELETE_EVENT_SUCCESS:
     case SAVE_EDITED_EVENT_SUCCESS:
-    case UPDATE_NOTIFICATION_SUCCESS:
         return handleRequest(state, action);
 
     case UPDATE_RSVP_SUCCESS:
@@ -50,7 +47,6 @@ export default function event (state = initialState, action) {
     case DELETE_EVENT_FAILURE:
     case SAVE_EDITED_EVENT_FAILURE:
     case UPDATE_RSVP_FAILURE:
-    case UPDATE_NOTIFICATION_FAILURE:
         return handleFailure(state, action);
 
     case UPDATE_POLL:

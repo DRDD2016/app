@@ -2,18 +2,17 @@ import React from 'react';
 
 const ConfirmEventWhat = ({ eventWhat }) => {
 
-    const layout = Object.keys(eventWhat).map((data, i) => {
-
+    const eventWhatIndividual = Object.keys(eventWhat).map((data) => {
         return (
-            <p className="option" key={ i }>
-                { eventWhat[data] || "TBC" }
+            <p key={ data }>
+                { eventWhat[data] }
             </p>
         );
     });
 
     return (
         <div>
-            { layout }
+            { eventWhatIndividual }
         </div>
     );
 };
