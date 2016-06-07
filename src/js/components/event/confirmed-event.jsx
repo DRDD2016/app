@@ -2,19 +2,18 @@ import React from 'react';
 import classnames from 'classnames';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import RSVPsArea from './confirmed-event/RSVPsArea.jsx';
+import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos }) => {
-    console.log(photos, 'photos from db in component');
+
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
     let maybe = RSVPs.maybe;
-    let respondedList = going.concat(maybe, notGoing);
-
     let photo;
-
+    let respondedList = going.concat(maybe, notGoing);
     let notRespondedList = (responded, invitees) => {
 
         let notResponded = invitees.filter((invitedUser, index) => {
@@ -95,6 +94,9 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
                 <input type="button" onClick={ () => { handleUploadPhoto(photo, eventID); } } className="twelve columns" value="Upload a photo" />
             </form>
+
+            <PhotoStream photos={ photos } />
+
         </div>
     );
 
@@ -103,9 +105,5 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 function getPhoto (e) {
     photo = e.target.files[0];
 }
-
-
-
-
 
 export default ConfirmedEvent;
