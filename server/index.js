@@ -1,6 +1,8 @@
 var path = require('path');
 var Hapi  = require('hapi');
 var Bell = require('bell');
+var socket = require('socket.io');
+var socketRouter = require('./routes/socketRouter.js');
 var plugins = require('./plugins.js');
 var authenticateUser = require('./lib/authenticateUser.js');
 
@@ -53,5 +55,10 @@ exports.init = (port, callback) => {
             }
         }]);
     });
+
+    const io = socket.listen(server.listener);
+
+    io.on('connection', socketRouter);
+
     callback(null, server);
 };
