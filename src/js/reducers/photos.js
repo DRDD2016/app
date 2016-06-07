@@ -5,6 +5,9 @@ import { GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../a
 import { UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../actions/photos.js';
 import { SAVE_PHOTO_URL_REQUEST, SAVE_PHOTO_URL_SUCCESS, SAVE_PHOTO_URL_FAILURE } from '../actions/photos.js';
 import { SELECT_PHOTO } from '../actions/photos.js';
+import { GET_DELETED_PHOTOS } from '../actions/photos.js';
+import { DELETE_PHOTO_REQUEST, DELETE_PHOTO_SUCCESS, DELETE_PHOTO_FAILURE } from '../actions/photos.js';
+
 
 const initialState = {
     isFetching: false,
@@ -13,7 +16,8 @@ const initialState = {
     photoURL: undefined,
     file: undefined,
     photos: [],
-    toShare: undefined
+    toShare: undefined,
+    deletedPhotos: []
 };
 
 export default function photos (state = initialState, action) {
@@ -26,9 +30,14 @@ export default function photos (state = initialState, action) {
     case SET_PHOTO:
         return handleSetPhoto(state, action);
 
+    case GET_DELETED_PHOTOS:
+        return handleGetDeletedPhotos(state, action);
+
     case UPLOAD_PHOTO_REQUEST:
     case GET_S3_URL_REQUEST:
     case SAVE_PHOTO_URL_REQUEST:
+    case DELETE_PHOTO_REQUEST:
+    case DELETE_PHOTO_SUCCESS:
         return handleRequest(state, action);
 
     case SAVE_PHOTO_URL_SUCCESS:
@@ -40,6 +49,7 @@ export default function photos (state = initialState, action) {
     case UPLOAD_PHOTO_FAILURE:
     case GET_S3_URL_FAILURE:
     case SAVE_PHOTO_URL_FAILURE:
+    case DELETE_PHOTO_FAILURE:
         return handleFailure(state, action);
 
     case GET_S3_URL_SUCCESS:
@@ -70,6 +80,13 @@ function handleSetPhoto (state, action) {
     return newState;
 }
 
+function handleGetDeletedPhotos (state, action) {
+
+    let newState = update(state, {
+        deletedPhotos: { $set: action.data }
+    });
+    return newState;
+}
 
 function handleUploadPhotoSuccess ( state, action ) {
 

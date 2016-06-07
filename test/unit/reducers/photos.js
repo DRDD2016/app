@@ -252,3 +252,69 @@ test('Reducer handles SELECT_PHOTO as expected', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+/********
+DELETE PHOTO ACTIONS
+********/
+
+
+test('Reducer handles DELETE_PHOTO_REQUEST as expected', (t) => {
+
+    let state = initialState;
+
+    const action = {
+        type: "DELETE_PHOTO_REQUEST",
+        isFetching: true
+    };
+    const actual = reducer(state, action);
+
+    let expected = Object.assign({}, state);
+    expected.isFetching = true;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles DELETE_PHOTO_SUCCESS as expected', (t) => {
+
+    const state = initialState;
+    state.isFetching = true;
+
+    const action = {
+        type: "DELETE_PHOTO_SUCCESS",
+        isFetching: false
+    };
+
+    const actual = reducer(state, action);
+
+    let expected = Object.assign({}, state);
+    expected.isFetching = false;
+
+    t.deepEqual(actual, expected, 'isFetching is `false` in reducer DELETE_PHOTO_SUCCESS');
+    t.end();
+});
+
+test('Reducer handles DELETE_PHOTO_FAILURE as expected', (t) => {
+
+    const state = initialState;
+    state.isFetching = true;
+    state.photoURL = undefined;
+
+    const error = {
+        message: "There was an error..."
+    };
+
+    const action = {
+        type: "DELETE_PHOTO_FAILURE",
+        isFetching: false,
+        error: error
+    };
+
+    const actual = reducer(state, action);
+    let expected = Object.assign({}, state);
+    expected.isFetching = false;
+    expected.error = error;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});

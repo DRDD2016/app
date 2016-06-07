@@ -7,6 +7,8 @@ import { uploadPhoto, uploadPhotoRequest, uploadPhotoSuccess, uploadPhotoFailure
 import { SAVE_PHOTO_URL, SAVE_PHOTO_URL_REQUEST, SAVE_PHOTO_URL_SUCCESS, SAVE_PHOTO_URL_FAILURE } from '../../../src/js/actions/photos.js';
 import { savePhotoURL, savePhotoURLRequest, savePhotoURLSuccess, savePhotoURLFailure } from '../../../src/js/actions/photos.js';
 import { SELECT_PHOTO, selectPhoto } from '../../../src/js/actions/photos.js';
+import { DELETE_PHOTO, DELETE_PHOTO_REQUEST, DELETE_PHOTO_SUCCESS, DELETE_PHOTO_FAILURE } from '../../../src/js/actions/photos.js';
+import { deletePhoto, deletePhotoRequest, deletePhotoSuccess, deletePhotoFailure } from '../../../src/js/actions/photos.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 
@@ -230,7 +232,6 @@ test('savePhotoURLFailure action creator returns expected action', (t) => {
     t.end();
 });
 
-
 /********
 SELECT PHOTO ACTIONS
 ********/
@@ -244,6 +245,71 @@ test('selectPhoto action creator returns expected action', (t) => {
     };
 
     const actual = selectPhoto(url);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+/********
+DELETE PHOTO ACTIONS
+********/
+
+test('deletePhoto async action creator returns expected action', (t) => {
+    let actual;
+    const { dispatch, queue } = createThunk();
+    var photoURL = 'http://www.aws.com/photolocation.jpg';
+    var eventID = 'event:100';
+    var userID = 12345678;
+    dispatch(deletePhoto(photoURL, eventID, userID));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: DELETE_PHOTO_REQUEST,
+        isFetching: true
+    };
+    t.deepEqual(actual, expected, "deletePhoto returns the DELETE_PHOTO_REQUEST action");
+    t.end();
+});
+
+
+test('deletePhotoRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: DELETE_PHOTO_REQUEST,
+        isFetching: true
+    };
+    const actual = deletePhotoRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('deletePhotoSuccess action creator returns expected action', (t) => {
+
+    const expected = {
+        type: DELETE_PHOTO_SUCCESS,
+        isFetching: false
+    };
+
+    const actual = deletePhotoSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('deletePhotoFailure action creator returns expected action', (t) => {
+
+    const error = {
+        message: "Whoops"
+    };
+    const expected = {
+        type: DELETE_PHOTO_FAILURE,
+        isFetching: false,
+        error
+    };
+
+    const actual = deletePhotoFailure(error);
 
     t.deepEqual(actual, expected);
     t.end();

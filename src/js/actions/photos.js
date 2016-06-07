@@ -1,7 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 
-
 export const SET_PHOTO = "SET_PHOTO";
 
 export const GET_PHOTOS = "GET_PHOTOS";
@@ -22,6 +21,14 @@ export const SAVE_PHOTO_URL_SUCCESS = "SAVE_PHOTO_URL_SUCCESS";
 export const SAVE_PHOTO_URL_FAILURE = "SAVE_PHOTO_URL_FAILURE";
 
 export const SELECT_PHOTO = "SELECT_PHOTO";
+
+export const GET_DELETED_PHOTOS = "GET_DELETED_PHOTOS";
+
+export const DELETE_PHOTO = "DELETE_PHOTO";
+export const DELETE_PHOTO_REQUEST = "DELETE_PHOTO_REQUEST";
+export const DELETE_PHOTO_SUCCESS = "DELETE_PHOTO_SUCCESS";
+export const DELETE_PHOTO_FAILURE = "DELETE_PHOTO_FAILURE";
+
 
 /********
 SET PHOTO ACTION
@@ -99,7 +106,7 @@ UPLOAD PHOTO ACTIONS
 ********/
 
 export function uploadPhoto (url, photo) {
-    console.log(photo);
+
     return (dispatch) => {
 
         dispatch(uploadPhotoRequest());
@@ -205,5 +212,67 @@ export function selectPhoto (url) {
     return {
         type: SELECT_PHOTO,
         url
+    };
+}
+
+/********
+GET DELETED PHOTOS ACTION
+********/
+
+export function getDeletedPhotos (photos) {
+    return {
+        type: GET_DELETED_PHOTOS,
+        data: photos
+    };
+}
+
+
+/********
+DELETE PHOTO ACTION
+********/
+
+export function deletePhoto (photo, eventID, userID) {
+
+    return (dispatch) => {
+
+        dispatch(deletePhotoRequest());
+        var payload = {
+            photo,
+            eventID,
+            userID
+        };
+
+        axios.post(`/delete-photo`, payload)
+        .then((response) => {
+            console.log(response.data);
+            //dispatch(deletePhotoSuccess());
+            //dispatch(getDeletedPhotos(photos));
+        })
+        .catch((error) => {
+            console.log(error);
+            //dispatch(deletePhotoFailure(error));
+        });
+    };
+}
+
+export function deletePhotoRequest () {
+    return {
+        type: DELETE_PHOTO_REQUEST,
+        isFetching: true
+    };
+}
+
+export function deletePhotoSuccess () {
+    return {
+        type: DELETE_PHOTO_SUCCESS,
+        isFetching: false
+    };
+}
+
+export function deletePhotoFailure (error) {
+    return {
+        type: DELETE_PHOTO_FAILURE,
+        isFetching: false,
+        error
     };
 }

@@ -25,7 +25,7 @@ function getSignedURL (filename, filetype, eventID, callback) {
             console.error(error);
             callback(error);
         } else {
-            console.log(signedURL);
+            
             callback(null, signedURL);
         }
     });

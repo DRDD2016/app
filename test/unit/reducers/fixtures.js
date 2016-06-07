@@ -51,5 +51,6 @@ export const photos = {
     photoURL: undefined,
     file: undefined,
     photos: [],
-    toShare: undefined
+    toShare: undefined,
+    deletedPhotos: []
 };

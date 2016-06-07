@@ -15,6 +15,7 @@ var EditEvent = require('./routes/edit-event.js');
 var SavePhoto = require('./routes/save-photo.js');
 var UpdateNotification = require('./routes/update-notification.js');
 var GetS3URL = require('./routes/get-s3-url.js');
+var DeletePhoto = require('./routes/delete-photo.js');
 
 var plugins = [
     Inert,
@@ -32,7 +33,8 @@ var plugins = [
     EditEvent,
     SavePhoto,
     UpdateNotification,
-    GetS3URL
+    GetS3URL,
+    DeletePhoto
 ];
 
 module.exports = plugins;
