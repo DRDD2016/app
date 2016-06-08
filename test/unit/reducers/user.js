@@ -104,6 +104,7 @@ test('FINAL TEST TEARDOWN: test/unit/reducers/user.js', (t) => {
     - delete event
     - delete notification
     */
+
     client.del("vote:event:300|eventWhat:0");
     client.del("vote:event:300|eventWhat:2");
     client.del('notifications:12345678');
