@@ -36,9 +36,12 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification }) => {
             {
                 isFetching && <Spinner />
             }
-            <div className="event-header row">
-                <h3 className=" twelve columns title">Feed</h3>
-            </div>
+            {
+                !isFetching &&
+                <div className="event-header row">
+                    <h3 className=" twelve columns title">Feed</h3>
+                </div>
+            }
             {
                 notifications.length === 0 && !isFetching &&
                     <p>Nothing to see here</p>
@@ -48,6 +51,7 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification }) => {
                     mappedNotifications
             }
             </div>
+
         </div>
     );
 };
