@@ -25,7 +25,9 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification }) => {
                 userIsHost={ data.hostID == getUserID() }
                 hostID={ data.hostID }
                 subjectID={ data.subjectID }
-                handleUpdateNotification={ handleUpdateNotification } />
+                handleUpdateNotification={ handleUpdateNotification }
+                inviteesNumber={ data.inviteesNumber }
+                eventName={ data.eventName } />
         );
     });
 
