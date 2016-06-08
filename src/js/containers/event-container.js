@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
-import { setPhoto, getS3URL } from '../actions/photos.js';
+import { setPhoto, getS3URL, deletePhoto, sharePhoto } from '../actions/photos.js';
 import { hydrateCreateEvent } from '../actions/create-event.js';
 import { listenForS3URL } from '../lib/s3-helpers.js';
 import { listenForSavePhotoURL } from '../lib/save-photo-url-helper.js';
@@ -24,7 +24,8 @@ const mapStateToProps = (state) => {
         hostEventChoices: state.event.hostEventChoices,
         isFetching: state.event.isFetching,
         userIsHost: state.event.data.hostID == getUserID(),
-        photos: state.photos.photos
+        photos: state.photos.photos,
+        deletedPhotos: state.photos.deletedPhotos
     };
 };
 
@@ -66,9 +67,16 @@ const mapDispatchToProps = (dispatch) => {
         handleUploadPhoto: (file, eventID) => {
             listenForS3URL(store);
             listenForSavePhotoURL(store);
-
             dispatch(setPhoto(file));
             dispatch(getS3URL(file.name, file.type, eventID));
+        },
+        handleDeletePhoto: (photo, eventID) => {
+            dispatch(deletePhoto(photo, eventID));
+        },
+        handleSharePhoto: (photoURL) => {
+            console.log(photoURL, "handleSharePhoto");
+
+            dispatch(sharePhoto(photoURL));
         }
     };
 };

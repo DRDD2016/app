@@ -31,6 +31,7 @@ test('getEventPhotos returns the correct data', (t) => {
                 userID: 1234567878
             }
         ];
+        t.ok(typeof response[0] === 'object', "returned data is parsed from getEventPhotos");
         t.deepEqual(response, expected, "array returned is as expected for getEventPhotos");
         t.end();
     });

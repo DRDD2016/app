@@ -2,10 +2,17 @@ var client = require('./init.js');
 
 function getDeletedPhotos (eventID, userID, callback) {
     var listName = "photos:" + eventID + "|" + userID;
-    
+
     client.lrangeAsync(listName, 0, -1)
         .then((response) => {
-            callback(null, response);
+
+            return response.map((object, index) => {
+                return JSON.parse(object);
+            });
+        })
+        .then((parsedObject) => {
+
+            callback(null, parsedObject);
         })
         .catch((error) => {
             callback(error);
