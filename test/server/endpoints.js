@@ -3,10 +3,6 @@ import { server } from '../utils/initDB.js';
 import client from '../../server/db/init.js';
 import parseObjectValues from '../../server/lib/parseObjectValues.js';
 import * as fixtures from '../utils/fixtures.js';
-var AWS = require('aws-sdk');
-var fs = require('fs');
-
-var s3 = new AWS.S3();
 
 
 test('`/` endpoint works', (t) => {
@@ -346,6 +342,24 @@ test('`/delete-photo` works', (t) => {
                 timestamp: 12345678,
                 userID: 12345678
             }
+        }
+    };
+
+    server.inject(options, (response) => {
+
+        t.equal(response.statusCode, 200, '200 status code');
+        t.end();
+    });
+});
+
+test.skip('`/share-photo` works', (t) => {
+
+    const options = {
+        method: 'POST',
+        url: '/share-photo',
+        payload: {
+            photoURL: "www.photourl.com",
+            userID: 12345678
         }
     };
 

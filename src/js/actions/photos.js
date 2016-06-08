@@ -276,3 +276,50 @@ export function deletePhotoFailure (error) {
         error
     };
 }
+
+/********
+SHARE PHOTO ACTION
+********/
+
+export function sharePhoto (photoURL) {
+
+    return (dispatch) => {
+
+        dispatch(sharePhotoRequest());
+        var payload = {
+            photoURL,
+            userID: getUserID()
+        };
+
+        axios.post(`/share-photo`, payload)
+        .then((response) => {
+            dispatch(sharePhotoSuccess());
+        })
+        .catch((error) => {
+
+            dispatch(sharePhotoFailure(error));
+        });
+    };
+}
+
+export function sharePhotoRequest () {
+    return {
+        type: SHARE_PHOTO_REQUEST,
+        isFetching: true
+    };
+}
+
+export function sharePhotoSuccess () {
+    return {
+        type: SHARE_PHOTO_SUCCESS,
+        isFetching: false
+    };
+}
+
+export function sharePhotoFailure (error) {
+    return {
+        type: SHARE_PHOTO_FAILURE,
+        isFetching: false,
+        error
+    };
+}

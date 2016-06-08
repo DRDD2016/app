@@ -111,4 +111,5 @@ test('FINAL TEST TEARDOWN: test/unit/reducers/user.js', (t) => {
     client.del('notifications:12345678');
     server.stop();
     client.quit(t.end);
+    console.log("end");
 });
