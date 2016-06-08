@@ -1,6 +1,7 @@
 import test from 'tape';
 import client from '../../../server/db/init.js';
 import reducer from '../../../src/js/reducers/user.js';
+import { server } from '../../utils/initDB.js';
 
 test('Reducer handles GET_USER_REQUEST as expected', (t) => {
 
@@ -108,5 +109,6 @@ test('FINAL TEST TEARDOWN: test/unit/reducers/user.js', (t) => {
     client.del("vote:event:300|eventWhat:0");
     client.del("vote:event:300|eventWhat:2");
     client.del('notifications:12345678');
+    server.stop();
     client.quit(t.end);
 });

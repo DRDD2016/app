@@ -2,7 +2,7 @@ var client = require('./init.js');
 
 function getNotifications (id, callback) {
 
-    var notificationID = "notifications:" + id;
+    const notificationID = "notifications:" + id;
 
     client.lrangeAsync(notificationID, 0, -1)
         .then((response) => {
