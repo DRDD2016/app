@@ -1,6 +1,12 @@
 import React from 'react';
 
-const UploadPanel = ({ getPhoto, handleUploadPhoto }) => {
+const UploadPanel = ({ eventID, handleUploadPhoto }) => {
+
+    let photo;
+
+    function getPhoto (e) {
+        photo = e.target.files[0];
+    }
 
     return (
         <div className="upload-panel">

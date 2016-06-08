@@ -1,8 +1,16 @@
 import React from 'react';
 
-const PhotoStream = ({ photos, handleDeletePhoto, handleSharePhoto, eventID }) => {
+const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, eventID }) => {
 
-    let stream = photos.map((photo, i) => {
+    let deletedPhotosURL = deletedPhotos.map((photo, index) => {
+        return photo.photoURL;
+    });
+
+    let filteredPhotos = photos.filter((individualPhoto, index) => {
+        return deletedPhotosURL.indexOf(individualPhoto.photoURL) === -1;
+    });
+
+    let stream = filteredPhotos.map((photo, i) => {
 
         return (
             <div key={ i }>
