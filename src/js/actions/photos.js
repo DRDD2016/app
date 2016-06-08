@@ -244,13 +244,11 @@ export function deletePhoto (photo, eventID, userID) {
 
         axios.post(`/delete-photo`, payload)
         .then((response) => {
-            console.log(response.data);
-            //dispatch(deletePhotoSuccess());
-            //dispatch(getDeletedPhotos(photos));
+            dispatch(deletePhotoSuccess());
+            dispatch(getDeletedPhotos(photos));
         })
         .catch((error) => {
-            console.log(error);
-            //dispatch(deletePhotoFailure(error));
+            dispatch(deletePhotoFailure(error));
         });
     };
 }
