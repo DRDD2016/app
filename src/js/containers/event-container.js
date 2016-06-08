@@ -24,7 +24,8 @@ const mapStateToProps = (state) => {
         hostEventChoices: state.event.hostEventChoices,
         isFetching: state.event.isFetching,
         userIsHost: state.event.data.hostID == getUserID(),
-        photos: state.photos.photos
+        photos: state.photos.photos,
+        deletedPhotos: state.photos.deletedPhotos
     };
 };
 
@@ -66,7 +67,6 @@ const mapDispatchToProps = (dispatch) => {
         handleUploadPhoto: (file, eventID) => {
             listenForS3URL(store);
             listenForSavePhotoURL(store);
-
             dispatch(setPhoto(file));
             dispatch(getS3URL(file.name, file.type, eventID));
         },
