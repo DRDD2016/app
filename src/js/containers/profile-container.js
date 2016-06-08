@@ -14,10 +14,8 @@ const mapDispatchToProps = (dispatch) => {
 
     return {
         handleLogOut: () => {
-            console.log('running handle log out');
             removeCookie();
-            // remove cookie for the user
-            hashHistory.push('/')
+            hashHistory.push('/');
         }
     };
 };
