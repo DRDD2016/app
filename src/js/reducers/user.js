@@ -7,7 +7,9 @@ const initialState = {
     lastName: '',
     photoURL: '',
     id: '',
-    error: undefined
+    error: undefined,
+    editedfirstName: '',
+    editedlastName: ''
 };
 
 export default function user (state = initialState, action) {

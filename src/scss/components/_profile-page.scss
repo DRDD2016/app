@@ -9,7 +9,12 @@
 
 .user-name, {
     margin: 0.5em 0;
+
+    @include icon-after("\f040");
+
 }
+
+
 
 .logout-button {
     margin: 1em 0;
