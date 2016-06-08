@@ -27,7 +27,9 @@ test('createNotification returns a valid notification object for a poll event', 
             }
         ],
         hostID: 12345678,
-        viewed: false
+        viewed: false,
+        inviteesNumber: 3,
+        eventName: "Sohil's bowling"
     };
     const eventID = "event:100";
     const testUser = 10154129575200996;
@@ -51,6 +53,11 @@ test('createNotification returns a valid notification object for a poll event', 
                 placeName: "TBC",
                 placeAddress: ""
             }
+        ],
+        invitees: [
+            { user: 1 },
+            { user: 2 },
+            { user: 3 }
         ]
     };
     createNotification(testUser, eventID, eventInfo, (error, result) => {
@@ -92,7 +99,9 @@ test('createNotification returns a valid notification object for a confirmed eve
             }
         ],
         hostID: 12345678,
-        viewed: false
+        viewed: false,
+        inviteesNumber: 3,
+        eventName: "Sohil's bowling"
     };
     const testUser = 10154129575200996;
     const eventID = "event:200";
@@ -116,6 +125,11 @@ test('createNotification returns a valid notification object for a confirmed eve
                 placeName: "TBC",
                 placeAddress: ""
             }
+        ],
+        invitees: [
+            { user: 1 },
+            { user: 2 },
+            { user: 3 }
         ]
     };
     createNotification(testUser, eventID, eventInfo, (error, result) => {

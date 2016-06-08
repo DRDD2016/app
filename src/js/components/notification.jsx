@@ -4,7 +4,7 @@ import getUserID from '../lib/getUserID.js';
 import formatDate from '../lib/formatDate.js';
 import classnames from 'classnames';
 
-const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed }) => {
+const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed, inviteesNumber, eventName }) => {
 
     let userIsSubject = subjectID === getUserID();
 
@@ -30,6 +30,15 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { !userIsSubject && !userIsHost && isPoll && " wants you to vote on their poll" }
                         { !userIsSubject && !userIsHost && !isPoll && " has invited you to their event" }
                     </span>
+                    </p>
+                    <p className="event-name" >
+                        { eventName }
+                    </p>
+
+                    <p className="subject-name">
+                        <span>
+                        { userIsSubject && userIsHost && " invitation sent to " + inviteesNumber + " friends" }
+                        </span>
                     </p>
                 </div>
 

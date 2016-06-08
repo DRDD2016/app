@@ -53,12 +53,12 @@ const Navbar = ({ currentLocation }) => {
                 </div>
             </Link>
 
-            <a className={ profileClasses } href="#">
+            <Link className={ profileClasses } to="profile">
                 <div >
                     <i className="fa fa-user nav-icon"></i>
                     <label className="menu-label">Profile</label>
                 </div>
-            </a>
+            </Link>
 
             <Link className={ createEventClasses } to="create-event">
                 <div >

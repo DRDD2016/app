@@ -6,14 +6,17 @@ import { isPoll, cleanEventData } from '../../lib/create-event-helpers.js';
 import { store } from '../../init-store.js';
 
 const mapStateToProps = (state) => {
-
+    const sortedDates = state.createEvent.eventWhen.sort((a, b) => {
+        
+        return (a.date + a.time) > (b.date + b.time);
+    });
     const data = {
         eventName: state.createEvent.eventDetails.eventName,
         eventDescription: state.createEvent.eventDetails.eventDescription,
         eventNote: state.createEvent.eventDetails.eventNote,
         eventWhat: state.createEvent.eventWhat,
         eventWhere: state.createEvent.eventWhere,
-        eventWhen: state.createEvent.eventWhen,
+        eventWhen: sortedDates,
         invitees: state.createEvent.invitees
     };
 
