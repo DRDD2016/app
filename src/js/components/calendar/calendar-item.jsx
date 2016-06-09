@@ -5,19 +5,17 @@ import formatDate from '../../lib/formatDate.js';
 const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, hostPhotoURL }) => {
 
     return (
-        <div>
+        <div className="calendar-item">
             <Link to={ 'event/' + eventID }>
                 <div className="row">
-                    <img className="three columns ui profile-photo circular image" src={ hostPhotoURL } alt="Host photo" />
 
-                    <div className="five columns">
+                    <div className="eight columns">
                         <h5>{ eventName }</h5>
-                        <h6 className="eventWhen-date">{ ` ${formatDate(eventWhen[0].date)}` }</h6>
+                        <label className="date">{ ` ${formatDate(eventWhen[0].date)}` }</label>
+                        <label className="placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
                     </div>
 
-                    <div className="four columns">
-                        <label className="eventWhere-placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
-                    </div>
+                    <img className="four columns ui profile-photo  image" src={ hostPhotoURL } alt="Host photo" />
                 </div>
             </Link>
             <div className="row">

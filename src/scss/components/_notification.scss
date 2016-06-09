@@ -1,70 +1,94 @@
-.subject-name {
-    font-weight: bolder;
-    color: $off-black;
-    padding-left: 0.3em;
-    margin-bottom: 0;
-    font-size: 0.9em;
-    span {
-        font-size: 0.8em;
-        color: $dark-grey;
-        font-weight: 100;
-    }
-
-}
-
-.event-name {
-    font-size: 0.9em;
-    font-weight: 400;
-    color: $off-black;
-    padding-left: 0.3em;
-    margin-bottom: 0;
-}
-
-
-.timestamp {
-    font-size: 0.7em;
-    color: $dark-grey;
-    font-weight: 100;
-    padding-left: 1em;
-    margin-bottom: 0.5em;
-}
-
 .notification {
     margin: 0.7em 0;
     padding:0.5em;
+
     border-right: 0.3em solid rgb(0, 180, 72);
+
+    .viewed-notification {
+        border-right: 0.3em solid $grey;
+    }
+
+
+    .timestamp {
+        font-size: 0.7em;
+        color: $dark-grey;
+        font-weight: 100;
+        padding-left: 1em;
+        margin-bottom: 0.5em;
+    }
+
+    .subject-name {
+        font-weight: bolder;
+        color: $off-black;
+        padding-left: 0.3em;
+        margin-bottom: 0;
+        font-size: 0.9em;
+        span {
+            font-size: 0.8em;
+            color: $dark-grey;
+            font-weight: 100;
+        }
+    }
+
+    .event-name {
+        font-size: 0.9em;
+        font-weight: 400;
+        color: $off-black;
+        padding-left: 0.3em;
+        margin-bottom: 0;
+    }
+
+    .date {
+        margin-top: 2em;
+    }
+
+    .date, .placeName {
+        width: 100%;
+        text-align: center;
+    }
 }
 
-.notification a p {
-    line-height: 1.2em;
-}
-.event-type {
-    text-align: center;
-    color: $off-black;
+.notification a, .calendar-item a {
+
+    .eventWhat, .placeName, .date, .time {
+        line-height: 1.2em;
+        position: relative;
+        display: inline-block;
+        font-size: 1.2rem;
+        color: $off-black;
+    }
 }
 
-.eventWhat, .eventWhere-placeName, .eventWhen-date, .eventWhen-time {
-    position: relative;
-    display: inline-block;
-    font-size: 1.3rem;
+.calendar-item {
+
+    h5 {
+        color: $off-black;
+        margin-bottom: 0.4em;
+    }
+
+    a {
+        .date, .placeName {
+            color: $dark-grey;
+            text-align: left;
+            margin: 0 1em 1em 0;
+            font-size: 1.4rem;
+            font-weight: normal;
+        }
+    }
 }
 
-.eventWhere-placeName {
+.placeName {
     @include icon("\f041");
 }
 
-.eventWhere-placeAddress {
+.placeAddress {
     font-size: 1em;
 }
 
-.eventWhen-date {
+.date {
     @include icon("\f133");
 }
 
-.eventWhen-time {
+.time {
     @include icon("\f017");
-}
-
-.viewed-notification {
-    border-right: 0.3em solid $grey;
 }

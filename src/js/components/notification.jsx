@@ -42,15 +42,15 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                     </p>
                 </div>
 
-                <div className="three columns event-type">
-                    <label className="eventWhen-date">
+                <div className="three columns">
+                    <label className="date">
                         {
                             (eventWhen.length > 1 && "Vote") ||
                             (eventWhen.length === 1 && eventWhen[0].date === "" && "TBC") ||
                             formatDate(eventWhen[0].date)
                         }
                     </label>
-                    <label className="eventWhere-placeName">
+                    <label className="placeName">
                         {
                             (eventWhere.length > 1 && "Vote") ||
                             (eventWhere.length === 1 && eventWhere[0].placeName === "" && "TBC") ||
