@@ -13,7 +13,7 @@ const HostCreateEventButton = ({ hostEventChoices, handleConfirmEvent, eventID }
     });
 
     return (
-        <button className={ classes } onClick={ () => handleConfirmEvent(hostEventChoices, eventID) }> Create Event </button>
+        <button className={ classes } onClick={ () => handleConfirmEvent(hostEventChoices, eventID) }> CONFIRM & SEND INVITES </button>
     );
 
 };
