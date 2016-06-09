@@ -28,9 +28,9 @@ exports.register = (server, options, next) => {
 
                         notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
-                            if (!error) {
-                                emitter.emit('new-notifications');
-                            }
+                            // if (!error) {
+                            //     emitter.emit('new-notifications');
+                            // }
 
                             var verdict = error || success;
                             reply(verdict);

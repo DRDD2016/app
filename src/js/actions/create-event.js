@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
+import { socket } from '../init-socket.js';
 
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
 export const SET_EVENT_WHAT = "SET_EVENT_WHAT";

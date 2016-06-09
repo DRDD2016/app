@@ -1,9 +1,10 @@
 var Server = require('./index.js');
-var Hoek   = require('hoek');
 var socket = require('socket.io');
 var server = Server.init(process.env.PORT || 9000);
+var socketRouter = require('./socketRouter.js');
 
 var io = socket(server.listener);
+io.on('connection', socketRouter);
 
 server.start((error) => {
     if (error) {
@@ -11,5 +12,3 @@ server.start((error) => {
     }
     console.info('🌍 The server is running on: ', server.info.uri);
 });
-
-module.exports = io;
