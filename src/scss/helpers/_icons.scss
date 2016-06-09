@@ -7,3 +7,14 @@
         font-weight: normal;
     }
 }
+
+@mixin icon-after ($code) {
+
+    &:after {
+        font-family: fontawesome;
+        content: $code + " ";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 0.7em;
+    }
+}

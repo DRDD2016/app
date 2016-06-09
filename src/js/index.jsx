@@ -9,8 +9,8 @@ import { getUser } from './actions/user.js';
 import { getEvent } from './actions/event.js';
 import { getNotifications } from './actions/notifications.js';
 import { getCalendar } from './actions/calendar.js';
+import { clearCreateEvent } from './actions/create-event.js';
 
-require('../scss/main.scss');
 
 import AppContainer from './containers/app-container.js';
 import LoginContainer from './containers/login-container.js';
@@ -26,8 +26,10 @@ import EventWhereContainer from './containers/create-event/event-where-container
 import EventWhenContainer from './containers/create-event/event-when-container.js';
 import EventConfirmContainer from './containers/create-event/event-confirm-container.js';
 import InviteFriendsContainer from './containers/create-event/invite-friends-container.js';
-
 import ProfileContainer from './containers/profile-container.js';
+
+require('../scss/main.scss');
+
 
 import { store } from './init-store.js';
 
@@ -75,17 +77,32 @@ function fetchEvent (nextState, replace, callback) {
     callback();
 }
 
+function wipeCreateEvent (nextState, replace, callback) {
+
+    store.dispatch(clearCreateEvent());
+    callback();
+}
+
 const routes = (
     <Route path='/' component={ AppContainer }>
 
         <IndexRoute component={ LoginContainer } />
+
+        <Route path='/albums'
+               component={ requireAuthentication(AlbumsContainer) }
+               onEnter={ fetchCalendar } />
+
+        <Route path='/calendar'
+               component={ requireAuthentication(CalendarContainer) }
+               onEnter={ fetchCalendar } />
+
         <Route path='/feed'
                component={ requireAuthentication(FeedContainer) }
                onEnter={ initialiseAppState } />
 
-           <Route path='/profile'
-              component={ requireAuthentication(ProfileContainer) }
-              onEnter={ initialiseAppState } />
+        <Route path='/profile'
+               component={ requireAuthentication(ProfileContainer) }
+               onEnter={ initialiseAppState } />
 
         <Route path='/event/:eventID'
                component={ requireAuthentication(EventContainer) }
@@ -95,16 +112,13 @@ const routes = (
                component={ requireAuthentication(EditEventContainer) }
                onEnter={ fetchEvent } />
 
-        <Route path='/calendar'
-               component={ requireAuthentication(CalendarContainer) }
-               onEnter={ fetchCalendar } />
 
-        <Route path='/albums'
-               component={ requireAuthentication(AlbumsContainer) }
-               onEnter={ fetchCalendar } />
+
 
         <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
-            <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />
+            <IndexRoute component={ requireAuthentication(EventDetailsContainer) }
+                        onEnter={ wipeCreateEvent } />
+
             <Route path='what' component={ requireAuthentication(EventWhatContainer) } />
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />
             <Route path='when' component={ requireAuthentication(EventWhenContainer) } />
@@ -115,10 +129,10 @@ const routes = (
     </Route>
 );
 
-
 ReactDOM.render(
     <Provider store={ store } >
-        <Router history={ hashHistory }>
+        <Router onUpdate={() => window.scrollTo(0, 0)}
+                history={ hashHistory }>
             { routes }
         </Router>
     </Provider>,

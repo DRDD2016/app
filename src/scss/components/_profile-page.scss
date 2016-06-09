@@ -1,6 +1,6 @@
 .profile-page-photo {
     width: 10em;
-    margin: auto;
+    margin: 0.5em auto;
 }
 
 .profile-page {
@@ -8,9 +8,19 @@
 }
 
 .user-name, {
-    margin: 0.5em 0;
+    margin: 0.25em 0;
 }
+
+
 
 .logout-button {
     margin: 1em 0;
+    background-color: $logout;
+    color: white;
+}
+
+.edit-name-title {
+    margin: 0.5em auto;
+    text-align: left;
+    font-size: 1.4em;
 }

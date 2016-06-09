@@ -15,7 +15,8 @@ const initialState = {
     tally: undefined,
     hostEventChoices: undefined,
     invitees: undefined,
-    RSVPs: undefined
+    RSVPs: undefined,
+    hasVoted: undefined
 };
 
 export default function event (state = initialState, action) {
@@ -107,7 +108,8 @@ function handleGetEventSuccess (state, action) {
         poll: { $set: action.data.poll },
         hostEventChoices: { $set: hostEventChoices },
         RSVPs: { $set: action.data.RSVPs },
-        invitees: { $set: action.data.invitees }
+        invitees: { $set: action.data.invitees },
+        hasVoted: { $set: action.data.hasVoted }
     });
     return newState;
 }

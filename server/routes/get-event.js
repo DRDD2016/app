@@ -4,6 +4,7 @@ var getPoll = require('../lib/getPoll.js');
 var getRSVPs = require('../lib/getRSVPs.js');
 var getEventPhotos = require('../db/getEventPhotos.js');
 var getDeletedPhotos = require('../db/getDeletedPhotos.js');
+var hasVoted = require('../lib/hasVoted.js');
 
 exports.register = (server, options, next) => {
 
@@ -63,9 +64,16 @@ exports.register = (server, options, next) => {
 
                         getPoll(event, request.query.eventID, request.query.userID, (error, pollObject) => {
 
-                            var response = error || { event: event, poll: pollObject };
+                            if (error) {
+                                reply(error);
+                            }
 
-                            reply( response );
+                            hasVoted(pollObject, (value) => {
+
+                                var response = { event: event, poll: pollObject, hasVoted: value };
+                                reply( response );
+
+                            });
                         });
                     }
                 });

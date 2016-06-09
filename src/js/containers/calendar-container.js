@@ -1,31 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Calendar from '../components/calendar/calendar.jsx';
-import getEndTime from '../lib/getEndTime.js';
+import { applyFilter, clearFilter } from '../actions/calendar.js';
+import filterNotifications from '../lib/filterNotifications.js';
+import getFutureEvents from '../lib/getFutureEvents.js';
 import { getEvent } from '../actions/event.js';
 
 
 const mapStateToProps = (state) => {
-    let filteredData = state.calendar.data.filter((event) => {
 
-        //filter out: date.now > eventtime + 1 day 6 hours
-        // if no date,
-        if (event.eventWhen[0].date === "") {
-            return false;
-        } else {
-            const end = getEndTime(event.eventWhen[0].date);
-            return !isNaN(end) && Date.now() < end;
-        }
-    });
+    let futureEvents = state.calendar.data.filter(getFutureEvents);
+    let data = state.calendar.data;
+    let isFilter = state.calendar.filter;
+    let isShowHosting = state.calendar.showHosting;
+
+    let filteredEvents = filterNotifications(futureEvents, isFilter, isShowHosting);
 
     return {
-        data: filteredData,
+        data: filteredEvents,
         isFetching: state.calendar.isFetching
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+
+    return {
+
+        displaySome: (filterChoice) => {
+            console.log("filtering");
+            dispatch(applyFilter(filterChoice));
+        },
+        displayAll: () => {
+            console.log("displaying all");
+            dispatch(clearFilter());
+        }
+    };
+};
+
 const CalendarContainer = connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Calendar);
 
 export default CalendarContainer;

@@ -118,6 +118,7 @@ export function confirmPoll (poll, eventID) {
         axios.post('/confirm-poll', payload)
             .then((response) => {
                 dispatch(confirmPollSuccess(response.data));
+                dispatch(getEvent(eventID));
             })
             .catch((error) => {
                 dispatch(confirmPollFailure(error));

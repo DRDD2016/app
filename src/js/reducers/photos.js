@@ -86,7 +86,6 @@ function handleSetPhoto (state, action) {
 }
 
 function handleGetDeletedPhotos (state, action) {
-    console.log('----inside handleGetDeletedPhotos', action);
     let newState = update(state, {
         deletedPhotos: { $set: action.data }
     });

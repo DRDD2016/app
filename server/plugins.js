@@ -2,7 +2,7 @@ var Inert = require('inert');
 var Home  = require('./routes/home.js');
 var ForReactRouter = require('./routes/for-react-router.js');
 var GetUser = require('./routes/get-user.js');
-var GetNotifications = require('./routes/get-notifications.js');
+// var GetNotifications = require('./routes/get-notifications.js');
 var GetCalendar = require('./routes/get-calendar.js');
 var NewEvent = require('./routes/new-event.js');
 var NewEventFriends = require('./routes/new-event-friends.js');
@@ -17,12 +17,13 @@ var UpdateNotification = require('./routes/update-notification.js');
 var GetS3URL = require('./routes/get-s3-url.js');
 var DeletePhoto = require('./routes/delete-photo.js');
 var SharePhoto = require('./routes/share-photo.js');
+var EditName = require('./routes/edit-name.js');
 
 var plugins = [
     Inert,
     ForReactRouter,
     GetUser,
-    GetNotifications,
+    // GetNotifications,
     GetCalendar,
     NewEvent,
     NewEventFriends,
@@ -36,7 +37,8 @@ var plugins = [
     UpdateNotification,
     GetS3URL,
     DeletePhoto,
-    SharePhoto
+    SharePhoto,
+    EditName
 ];
 
 module.exports = plugins;

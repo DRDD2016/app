@@ -13,11 +13,11 @@ import { store } from '../init-store.js';
 
 
 const mapStateToProps = (state) => {
-
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
         poll: state.event.poll,
+        hasVoted: state.event.hasVoted,
         tally: state.event.tally,
         RSVPs: state.event.RSVPs,
         invitees: state.event.invitees,
@@ -25,7 +25,8 @@ const mapStateToProps = (state) => {
         isFetching: state.event.isFetching,
         userIsHost: state.event.data.hostID == getUserID(),
         photos: state.photos.photos,
-        deletedPhotos: state.photos.deletedPhotos
+        deletedPhotos: state.photos.deletedPhotos,
+        file: state.photos.file
     };
 };
 
@@ -67,16 +68,18 @@ const mapDispatchToProps = (dispatch) => {
         handleUploadPhoto: (file, eventID) => {
             listenForS3URL(store);
             listenForSavePhotoURL(store);
-            dispatch(setPhoto(file));
             dispatch(getS3URL(file.name, file.type, eventID));
         },
         handleDeletePhoto: (photo, eventID) => {
             dispatch(deletePhoto(photo, eventID));
         },
         handleSharePhoto: (photoURL) => {
-            console.log(photoURL, "handleSharePhoto");
 
             dispatch(sharePhoto(photoURL));
+        },
+        handleSetPhoto: (file) => {
+            console.log(file);
+            dispatch(setPhoto(file));
         }
     };
 };

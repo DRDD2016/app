@@ -14,7 +14,6 @@ function getEventPhotos (eventID, callback) {
         .catch((error) => {
             callback(error);
         });
-        //WIP
 }
 
 module.exports = getEventPhotos;
