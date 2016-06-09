@@ -24,8 +24,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(changeName(e.target.value, inputType));
         },
         handleEditName: (firstName, lastName) => {
-                console.log(firstName, lastName);
-                dispatch(editName(firstName, lastName));
+            dispatch(editName(firstName, lastName));
         }
     };
 };
