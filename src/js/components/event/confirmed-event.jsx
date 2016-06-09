@@ -7,8 +7,7 @@ import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
-const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto }) => {
-
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetPhoto }) => {
     let handleClick = !userIsHost ? RSVPToEvent : '';
     let going = RSVPs.going;
     let notGoing = RSVPs.notGoing;
@@ -89,7 +88,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                        handleClick={ handleClick }
                        RSVPs={ RSVPs } />
 
-            <UploadPanel eventID={ eventID } handleUploadPhoto={ handleUploadPhoto } />
+            <UploadPanel eventID={ eventID }
+                         handleUploadPhoto={ handleUploadPhoto }
+                         file={ file }
+                         handleSetPhoto={ handleSetPhoto }/>
 
             <PhotoStream photos={ photos }
                          deletedPhotos={ deletedPhotos }

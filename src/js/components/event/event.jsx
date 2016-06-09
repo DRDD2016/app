@@ -72,7 +72,9 @@ class Event extends React.Component {
                                  photos={ this.props.photos }
                                  deletedPhotos={ this.props.deletedPhotos }
                                  handleDeletePhoto={ this.props.handleDeletePhoto }
-                                 handleSharePhoto={ this.props.handleSharePhoto }/>
+                                 handleSharePhoto={ this.props.handleSharePhoto }
+                                 file={ this.props.file }
+                                 handleSetPhoto={ this.props.handleSetPhoto }/>
             );
         }
     }

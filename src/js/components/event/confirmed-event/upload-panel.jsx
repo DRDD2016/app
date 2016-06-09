@@ -1,21 +1,21 @@
 import React from 'react';
+import classnames from 'classnames';
 
-const UploadPanel = ({ eventID, handleUploadPhoto }) => {
 
-    let photo;
+const UploadPanel = ({ eventID, handleUploadPhoto, file, handleSetPhoto }) => {
 
-    function getPhoto (e) {
-        photo = e.target.files[0];
-    }
+    let hideUploadPhotoButton = classnames("row", {
+        "display-none": file === undefined
+    });
 
     return (
         <div className="upload-panel">
 
            <div className="row">
-               <input className="twelve columns" onChange={ getPhoto } type="file" accept="image/*;capture=camera" />
+               <input className="twelve columns" onChange={ (e) => handleSetPhoto(e.target.files[0]) } type="file" accept="image/*;capture=camera" />
            </div>
-           <div className="row">
-               <input className="twelve columns" type="button" onClick={ () => { handleUploadPhoto(photo, eventID); } }  value="Upload a photo" />
+           <div className={ hideUploadPhotoButton }>
+               <input className="twelve columns" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload a photo" />
            </div>
            <div className="row">
                <hr className="twelve columns" />
