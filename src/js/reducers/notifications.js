@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import { GET_NOTIFICATIONS_REQUEST, GET_NOTIFICATIONS_SUCCESS, GET_NOTIFICATIONS_FAILURE, APPLY_FILTER } from '../actions/notifications.js';
+import { GET_NOTIFICATIONS_REQUEST, GET_NOTIFICATIONS_SUCCESS, GET_NOTIFICATIONS_FAILURE, APPLY_FILTER, CLEAR_FILTER } from '../actions/notifications.js';
 
 const initialState = {
     data: [],
@@ -23,7 +23,9 @@ export default function notifications (state = initialState, action) {
         return handleGetNotificationsFailure(state, action);
 
     case APPLY_FILTER:
-        return handleApplyFilter(state, action);
+    case CLEAR_FILTER:
+        return handleFilter(state, action);
+        
     default:
         return state;
     }
@@ -55,10 +57,11 @@ function handleGetNotificationsFailure (state, action) {
     return newState;
 }
 
-function handleApplyFilter (state, action) {
-    console.log("applying filter");
+
+function handleFilter (state, action) {
+
     let newState = update(state, {
-        filter: { $set: true },
+        filter: { $set: action.filter },
         showHosting: { $set: action.showHosting }
     });
     return newState;

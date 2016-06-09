@@ -1,6 +1,6 @@
 import test from 'tape';
-import { GET_NOTIFICATIONS, GET_NOTIFICATIONS_REQUEST, GET_NOTIFICATIONS_SUCCESS, GET_NOTIFICATIONS_FAILURE, APPLY_FILTER } from '../../../src/js/actions/notifications.js';
-import { getNotifications, getNotificationsRequest, getNotificationsSuccess, getNotificationsFailure, applyFilter } from '../../../src/js/actions/notifications.js';
+import { GET_NOTIFICATIONS, GET_NOTIFICATIONS_REQUEST, GET_NOTIFICATIONS_SUCCESS, GET_NOTIFICATIONS_FAILURE, APPLY_FILTER, CLEAR_FILTER } from '../../../src/js/actions/notifications.js';
+import { getNotifications, getNotificationsRequest, getNotificationsSuccess, getNotificationsFailure, applyFilter, clearFilter } from '../../../src/js/actions/notifications.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 test('getNotifications async action creator returns expected action', (t) => {
@@ -77,10 +77,26 @@ test('applyFilter creates the correct action', (t) => {
 
     const expected = {
         type: APPLY_FILTER,
+        filter: true,
         showHosting: true
     };
 
     const actual = applyFilter(true);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+
+test('clearFilter creates the correct action', (t) => {
+
+    const expected = {
+        type: CLEAR_FILTER,
+        filter: false,
+        showHosting: undefined
+    };
+
+    const actual = clearFilter(true);
 
     t.deepEqual(actual, expected);
     t.end();
