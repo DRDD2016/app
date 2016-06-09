@@ -17,6 +17,7 @@ var UpdateNotification = require('./routes/update-notification.js');
 var GetS3URL = require('./routes/get-s3-url.js');
 var DeletePhoto = require('./routes/delete-photo.js');
 var SharePhoto = require('./routes/share-photo.js');
+var EditName = require('./routes/edit-name.js');
 
 var plugins = [
     Inert,
@@ -36,7 +37,8 @@ var plugins = [
     UpdateNotification,
     GetS3URL,
     DeletePhoto,
-    SharePhoto
+    SharePhoto,
+    EditName
 ];
 
 module.exports = plugins;
