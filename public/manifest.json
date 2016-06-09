@@ -4,7 +4,9 @@
   "version": "1.0",
   "manifest_version": 2,
   "icons": {
-    "128": "icon_128.png"
+    "src": "icon_128.png",
+    "sizes": "128x128",
+    "type": "image/png"
   },
   "app": {
     "urls": [
@@ -13,5 +15,9 @@
     "launch": {
       "web_url": "http://drdd2016.herokuapp.com/"
     }
-  }
+},
+"display": "standalone",
+"orientation": "potrait",
+"theme_color": "#276AB4",
+"background_color": "#963779"
 }
