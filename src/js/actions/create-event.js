@@ -87,6 +87,7 @@ export function newEvent (eventData) {
             .then((response) => {
                 dispatch(newEventSuccess());
                 hashHistory.push('/feed');
+                dispatch(clearCreateEvent());
             })
             .catch((error) => {
                 dispatch(newEventFailure(error));
