@@ -5,6 +5,7 @@ export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 export const GET_NOTIFICATIONS_REQUEST = "GET_NOTIFICATIONS_REQUEST";
 export const GET_NOTIFICATIONS_SUCCESS = "GET_NOTIFICATIONS_SUCCESS";
 export const GET_NOTIFICATIONS_FAILURE = "GET_NOTIFICATIONS_FAILURE";
+export const APPLY_FILTER = "APPLY_FILTER";
 
 import { socket } from '../init-socket.js';
 
@@ -49,5 +50,12 @@ export function getNotificationsFailure (error) {
         type: GET_NOTIFICATIONS_FAILURE,
         isFetching: false,
         error
+    };
+}
+
+export function applyFilter (filter) {
+    return {
+        type: APPLY_FILTER,
+        showHosting: filter
     };
 }

@@ -4,8 +4,12 @@ import Feed from '../components/feed.jsx';
 import { getUser } from '../actions/user.js';
 import { getNotifications } from '../actions/notifications.js';
 import { updateNotification } from '../actions/event.js';
+import filterNotifications from '../lib/filterNotifications.js';
 
 const mapStateToProps = (state) => {
+
+    
+
     return {
         user: state.user,
         notifications: state.notifications.data,
