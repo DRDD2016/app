@@ -2,17 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Feed from '../components/feed.jsx';
 import { getUser } from '../actions/user.js';
-import { getNotifications, applyFilter } from '../actions/notifications.js';
+import { getNotifications, applyFilter, clearFilter } from '../actions/notifications.js';
 import { updateNotification } from '../actions/event.js';
 import filterNotifications from '../lib/filterNotifications.js';
 
 const mapStateToProps = (state) => {
 
+    let data = state.notifications.data;
+    let isFilter = state.notifications.filter;
+    let isShowHosting = state.notifications.showHosting;
 
+    let notifications = filterNotifications(data, isFilter, isShowHosting);
 
     return {
         user: state.user,
-        notifications: state.notifications.data,
+        notifications,
         isFetching: state.notifications.isFetching
     };
 };
@@ -24,12 +28,12 @@ const mapDispatchToProps = (dispatch) => {
 
             dispatch(updateNotification(index));
         },
-        displayFilters: (filterChoice) => {
+        displaySome: (filterChoice) => {
 
             dispatch(applyFilter(filterChoice));
         },
         displayAll: () => {
-
+            
             dispatch(clearFilter());
         }
     };

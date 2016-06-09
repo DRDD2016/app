@@ -1,0 +1,22 @@
+.filter {
+
+    text-align: center;
+    line-height: 2.3em;
+    border: 1px solid $facebook-blue;
+    color: $facebook-blue;
+    background-color: $grey;
+    // margin: 20px auto;
+
+    &:nth-child(1) {
+        border-radius: 10px 0 0 10px;
+    }
+
+    &:nth-child(2) {
+    }
+
+    &:nth-child(3) {
+        border-radius: 0 10px 10px 0;
+    }
+
+
+}
