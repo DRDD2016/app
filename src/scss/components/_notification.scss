@@ -1,15 +1,25 @@
 .subject-name {
     font-weight: bolder;
     color: $off-black;
-    padding-left: 1em;
+    padding-left: 0.3em;
+    margin-bottom: 0;
+    font-size: 0.9em;
+    span {
+        font-size: 0.8em;
+        color: $dark-grey;
+        font-weight: 100;
+    }
+
+}
+
+.event-name {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: $off-black;
+    padding-left: 0.3em;
     margin-bottom: 0;
 }
 
-.subject-name > span {
-    font-size: 0.8em;
-    color: $dark-grey;
-    font-weight: 100;
-}
 
 .timestamp {
     font-size: 0.7em;
@@ -21,11 +31,13 @@
 
 .notification {
     margin: 0.7em 0;
-    padding:1em;
+    padding:0.5em;
     border-right: 0.3em solid rgb(0, 180, 72);
-
 }
 
+.notification a p {
+    line-height: 1.2em;
+}
 .event-type {
     text-align: center;
     color: $off-black;

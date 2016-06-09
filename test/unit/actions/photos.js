@@ -9,6 +9,8 @@ import { savePhotoURL, savePhotoURLRequest, savePhotoURLSuccess, savePhotoURLFai
 import { SELECT_PHOTO, selectPhoto } from '../../../src/js/actions/photos.js';
 import { DELETE_PHOTO, DELETE_PHOTO_REQUEST, DELETE_PHOTO_SUCCESS, DELETE_PHOTO_FAILURE } from '../../../src/js/actions/photos.js';
 import { deletePhoto, deletePhotoRequest, deletePhotoSuccess, deletePhotoFailure } from '../../../src/js/actions/photos.js';
+import { SHARE_PHOTO, SHARE_PHOTO_REQUEST, SHARE_PHOTO_SUCCESS, SHARE_PHOTO_FAILURE } from '../../../src/js/actions/photos.js';
+import { sharePhoto, sharePhotoRequest, sharePhotoSuccess, sharePhotoFailure } from '../../../src/js/actions/photos.js';
 import createThunk from '../../utils/mock-thunk.js';
 
 
@@ -259,8 +261,7 @@ test('deletePhoto async action creator returns expected action', (t) => {
     const { dispatch, queue } = createThunk();
     var photoURL = 'http://www.aws.com/photolocation.jpg';
     var eventID = 'event:100';
-    var userID = 12345678;
-    dispatch(deletePhoto(photoURL, eventID, userID));
+    dispatch(deletePhoto(photoURL, eventID));
 
     [{ ...actual }] = queue;
 
@@ -310,6 +311,70 @@ test('deletePhotoFailure action creator returns expected action', (t) => {
     };
 
     const actual = deletePhotoFailure(error);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+
+/********
+SHARE PHOTO ACTIONS
+********/
+
+test('sharePhoto async action creator returns expected action', (t) => {
+    let actual;
+    const { dispatch, queue } = createThunk();
+    var photoURL = 'http://www.aws.com/photolocation.jpg';
+    dispatch(sharePhoto(photoURL));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: SHARE_PHOTO_REQUEST,
+        isFetching: true
+    };
+    t.deepEqual(actual, expected, "sharePhoto returns the SHARE_PHOTO_REQUEST action");
+    t.end();
+});
+
+
+test('sharePhotoRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: SHARE_PHOTO_REQUEST,
+        isFetching: true
+    };
+    const actual = sharePhotoRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('sharePhotoSuccess action creator returns expected action', (t) => {
+
+    const expected = {
+        type: SHARE_PHOTO_SUCCESS,
+        isFetching: false
+    };
+
+    const actual = sharePhotoSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('sharePhotoFailure action creator returns expected action', (t) => {
+
+    const error = {
+        message: "Whoops"
+    };
+    const expected = {
+        type: SHARE_PHOTO_FAILURE,
+        isFetching: false,
+        error
+    };
+
+    const actual = sharePhotoFailure(error);
 
     t.deepEqual(actual, expected);
     t.end();

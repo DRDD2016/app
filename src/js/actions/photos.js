@@ -29,6 +29,11 @@ export const DELETE_PHOTO_REQUEST = "DELETE_PHOTO_REQUEST";
 export const DELETE_PHOTO_SUCCESS = "DELETE_PHOTO_SUCCESS";
 export const DELETE_PHOTO_FAILURE = "DELETE_PHOTO_FAILURE";
 
+export const SHARE_PHOTO = "SHARE_PHOTO";
+export const SHARE_PHOTO_REQUEST = "SHARE_PHOTO_REQUEST";
+export const SHARE_PHOTO_SUCCESS = "SHARE_PHOTO_SUCCESS";
+export const SHARE_PHOTO_FAILURE = "SHARE_PHOTO_FAILURE";
+
 
 /********
 SET PHOTO ACTION
@@ -231,7 +236,7 @@ export function getDeletedPhotos (photos) {
 DELETE PHOTO ACTION
 ********/
 
-export function deletePhoto (photo, eventID, userID) {
+export function deletePhoto (photo, eventID) {
 
     return (dispatch) => {
 
@@ -239,13 +244,13 @@ export function deletePhoto (photo, eventID, userID) {
         var payload = {
             photo,
             eventID,
-            userID
+            userID: getUserID()
         };
 
         axios.post(`/delete-photo`, payload)
         .then((response) => {
             dispatch(deletePhotoSuccess());
-            dispatch(getDeletedPhotos(photos));
+            dispatch(getDeletedPhotos(response.data));
         })
         .catch((error) => {
             dispatch(deletePhotoFailure(error));
@@ -291,6 +296,7 @@ export function sharePhoto (photoURL) {
 
         axios.post(`/share-photo`, payload)
         .then((response) => {
+
             dispatch(sharePhotoSuccess());
         })
         .catch((error) => {

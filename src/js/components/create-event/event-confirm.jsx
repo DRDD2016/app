@@ -12,6 +12,8 @@ const EventConfirm = ({ data, saveEvent }) => {
 
     let SaveButtonIsHidden = data.eventWhen[0].date === "" && isPoll(data) === false;
 
+    let SaveButtonText = isPoll(data) === true ? "SEND POLL" : "CONFIRM & SEND INVITES";
+
     const invitedFriends = data.invitees.map((inviteeObject) => {
         return (
             <div key={ inviteeObject.id } className="item">
@@ -61,7 +63,7 @@ const EventConfirm = ({ data, saveEvent }) => {
             </div>
 
             <button className={ saveEventButton } onClick={ (e) => saveEvent(data) }>
-                Save event
+                { SaveButtonText }
             </button>
         </div>
     );

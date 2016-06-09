@@ -24,8 +24,11 @@ import EventWhereContainer from './containers/create-event/event-where-container
 import EventWhenContainer from './containers/create-event/event-when-container.js';
 import EventConfirmContainer from './containers/create-event/event-confirm-container.js';
 import InviteFriendsContainer from './containers/create-event/invite-friends-container.js';
+import ProfileContainer from './containers/profile-container.js';
 
 require('../scss/main.scss');
+
+
 import { store } from './init-store.js';
 
 function initialiseAppState (nextState, replace, callback) {
@@ -79,6 +82,10 @@ const routes = (
         <Route path='/feed'
                component={ requireAuthentication(FeedContainer) }
                onEnter={ initialiseAppState } />
+
+           <Route path='/profile'
+              component={ requireAuthentication(ProfileContainer) }
+              onEnter={ initialiseAppState } />
 
         <Route path='/event/:eventID'
                component={ requireAuthentication(EventContainer) }
