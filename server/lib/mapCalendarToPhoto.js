@@ -1,12 +1,12 @@
 var getLatestEventPhoto = require('../db/getLatestEventPhoto.js');
 
 function mapCalendarToPhoto (eventIDArray, callback, index) {
-    console.log(eventIDArray.length);
+
     if (!index) {
         index = 0;
     }
     if (index === eventIDArray.length) {
-        // console.log(eventIDArray);
+
         return callback(null, eventIDArray);
     }
 

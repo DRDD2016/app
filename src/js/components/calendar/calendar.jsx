@@ -1,7 +1,8 @@
 import React from 'react';
 import CalendarItem from './calendar-item.jsx';
+import FilterPanel from '../general/filter-panel.jsx';
 
-const Calendar = ({ location, data, isFetching, fetchEvent }) => {
+const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, displayAll }) => {
 
     let sortedData = data.sort((a, b) => {
         a = a.eventWhen[0].date;
@@ -18,7 +19,10 @@ const Calendar = ({ location, data, isFetching, fetchEvent }) => {
                 </h4>
             </div>
             {
-                sortedData.map((item, i) => {
+                !isFetching && <FilterPanel displaySome={ displaySome } displayAll={ displayAll } />
+            }
+            {
+                !isFetching && sortedData.map((item, i) => {
 
                     return <CalendarItem key={ i }
                                          eventName={ item.eventName }

@@ -6,7 +6,9 @@ test('Reducer handles GET_NOTIFICATIONS_REQUEST as expected', (t) => {
     const initialState = {
         data: [],
         isFetching: false,
-        error: undefined
+        error: undefined,
+        showHosting: undefined,
+        filter: false
     };
     const action = {
         type: "GET_NOTIFICATIONS_REQUEST",
@@ -16,7 +18,9 @@ test('Reducer handles GET_NOTIFICATIONS_REQUEST as expected', (t) => {
     const expected = {
         data: [],
         isFetching: true,
-        error: undefined
+        error: undefined,
+        showHosting: undefined,
+        filter: false
     };
 
     t.deepEqual(actual, expected);
@@ -27,7 +31,9 @@ test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
     const initialState = {
         data: [],
         isFetching: true,
-        error: undefined
+        error: undefined,
+        showHosting: undefined,
+        filter: false
     };
     const data = [{
         isPoll: true,
@@ -59,7 +65,9 @@ test('Reducer handles GET_NOTIFICATIONS_SUCCESS as expected', (t) => {
             }
         ],
         isFetching: false,
-        error: undefined
+        error: undefined,
+        showHosting: undefined,
+        filter: false
     };
 
     t.deepEqual(actual, expected, "Notification is fetched successfully");
@@ -73,7 +81,9 @@ test('Reducer handles GET_NOTIFICATIONS_FAILURE as expected', (t) => {
     const initialState = {
         data: [],
         isFetching: true,
-        error: undefined
+        error: undefined,
+        showHosting: undefined,
+        filter: false
     };
     const error = {
         message: "There was an error..."
@@ -87,10 +97,64 @@ test('Reducer handles GET_NOTIFICATIONS_FAILURE as expected', (t) => {
     const expected = {
         data: [],
         isFetching: false,
+        showHosting: undefined,
+        filter: false,
         error: {
             message: "There was an error..."
         }
     };
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles APPLY_FILTER as expected', (t) => {
+
+    const initialState = {
+        data: [],
+        isFetching: false,
+        error: undefined,
+        showHosting: undefined,
+        filter: false
+    };
+
+    const action = {
+        type: "APPLY_FILTER",
+        filter: true,
+        showHosting: true
+    };
+
+    const actual = reducer(initialState, action);
+
+    let expected = Object.assign({}, initialState);
+    expected.filter = true;
+    expected.showHosting = true;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('Reducer handles CLEAR_FILTER as expected', (t) => {
+
+    const initialState = {
+        data: [],
+        isFetching: false,
+        error: undefined,
+        showHosting: true,
+        filter: true
+    };
+
+    const action = {
+        type: "CLEAR_FILTER",
+        filter: false,
+        showHosting: undefined
+    };
+
+    const actual = reducer(initialState, action);
+
+    let expected = Object.assign({}, initialState);
+    expected.filter = false;
+    expected.showHosting = undefined;
 
     t.deepEqual(actual, expected);
     t.end();
