@@ -9,6 +9,8 @@ import { getUser } from './actions/user.js';
 import { getEvent } from './actions/event.js';
 import { getNotifications } from './actions/notifications.js';
 import { getCalendar } from './actions/calendar.js';
+import { clearCreateEvent } from './actions/create-event.js';
+
 
 import AppContainer from './containers/app-container.js';
 import LoginContainer from './containers/login-container.js';
@@ -75,6 +77,12 @@ function fetchEvent (nextState, replace, callback) {
     callback();
 }
 
+function wipeCreateEvent (nextState, replace, callback) {
+
+    store.dispatch(clearCreateEvent());
+    callback();
+}
+
 const routes = (
     <Route path='/' component={ AppContainer }>
 
@@ -108,7 +116,9 @@ const routes = (
 
 
         <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
-            <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />
+            <IndexRoute component={ requireAuthentication(EventDetailsContainer) }
+                        onEnter={ wipeCreateEvent } />
+
             <Route path='what' component={ requireAuthentication(EventWhatContainer) } />
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />
             <Route path='when' component={ requireAuthentication(EventWhenContainer) } />
@@ -121,7 +131,8 @@ const routes = (
 
 ReactDOM.render(
     <Provider store={ store } >
-        <Router history={ hashHistory }>
+        <Router onUpdate={() => window.scrollTo(0, 0)}
+                history={ hashHistory }>
             { routes }
         </Router>
     </Provider>,

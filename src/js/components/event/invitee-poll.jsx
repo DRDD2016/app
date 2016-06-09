@@ -4,11 +4,13 @@ import classnames from 'classnames';
 import PollButton from '../general/poll-button.jsx';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
 
-const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost }) => {
+const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost, hasVoted }) => {
 
     let eventWhat = createPollSelections(event, toggleSelection, poll, 'eventWhat', EventWhatSection);
     let eventWhere = createPollSelections(event, toggleSelection, poll, 'eventWhere', EventWhereSection);
     let eventWhen = createPollSelections(event, toggleSelection, poll, 'eventWhen', EventWhenSection);
+
+    let voteButtonText = hasVoted ? "VOTE AGAIN" : "VOTE";
 
     function eventNote (event) {
 
@@ -37,7 +39,8 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
 
                 <PollButton poll={ poll }
                             handlePollConfirmation={ handlePollConfirmation }
-                            eventID={ eventID }/>
+                            eventID={ eventID }
+                            voteButtonText={ voteButtonText }/>
 
             </div>
     );

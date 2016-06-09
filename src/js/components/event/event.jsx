@@ -57,7 +57,8 @@ class Event extends React.Component {
                           poll={ this.props.poll }
                           handlePollConfirmation={ this.props.handlePollConfirmation }
                           eventID={ this.props.params.eventID }
-                          isHost={ this.props.userIsHost } />
+                          isHost={ this.props.userIsHost }
+                          hasVoted={ this.props.hasVoted }/>
             );
         }
         if (!this.props.isPoll) {
@@ -72,7 +73,9 @@ class Event extends React.Component {
                                  photos={ this.props.photos }
                                  deletedPhotos={ this.props.deletedPhotos }
                                  handleDeletePhoto={ this.props.handleDeletePhoto }
-                                 handleSharePhoto={ this.props.handleSharePhoto }/>
+                                 handleSharePhoto={ this.props.handleSharePhoto }
+                                 file={ this.props.file }
+                                 handleSetPhoto={ this.props.handleSetPhoto }/>
             );
         }
     }

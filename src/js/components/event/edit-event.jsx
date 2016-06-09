@@ -84,7 +84,7 @@ const EditEvent = (props) => {
                     removeInput=''
                 />
 
-            <button className={ hideSaveButton } onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
+            <button className="twelve columns" onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
                     Save Edited Event
                 </button>
 

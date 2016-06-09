@@ -1,5 +1,7 @@
 import update from 'react-addons-update';
-import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE } from '../actions/user.js';
+import { GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE, CHANGE_NAME } from '../actions/user.js';
+import { EDIT_NAME_REQUEST, EDIT_NAME_SUCCESS, EDIT_NAME_FAILURE } from '../actions/user.js';
+
 
 const initialState = {
     isFetching: false,
@@ -13,18 +15,23 @@ const initialState = {
 export default function user (state = initialState, action) {
     switch (action.type) {
     case GET_USER_REQUEST:
-        return handleGetUserRequest(state, action);
+    case EDIT_NAME_REQUEST:
+    case EDIT_NAME_SUCCESS:
+        return handleRequest(state, action);
     case GET_USER_SUCCESS:
         return handleGetUserSuccess(state, action);
     case GET_USER_FAILURE:
-        return handleGetUserFailure(state, action);
+    case EDIT_NAME_FAILURE:
+        return handleFailure(state, action);
+    case CHANGE_NAME:
+        return handleChangeName(state, action);
 
     default:
         return state;
     }
 }
 
-function handleGetUserRequest (state, action) {
+function handleRequest (state, action) {
 
     return update(state, {
         isFetching: { $set: true }
@@ -42,10 +49,25 @@ function handleGetUserSuccess (state, action) {
     });
 }
 
-function handleGetUserFailure (state, action) {
+function handleFailure (state, action) {
 
     return update(state, {
         isFetching: { $set: false },
         error: { $set: action.error }
     });
+}
+
+function handleChangeName (state, action) {
+    if (action.inputType === "firstName") {
+        let newState = update(state, {
+            firstName: { $set: action.value }
+        });
+        return newState;
+    }
+    if (action.inputType === "lastName") {
+        let newState = update(state, {
+            lastName: { $set: action.value }
+        });
+        return newState;
+    }
 }

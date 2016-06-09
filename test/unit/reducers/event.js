@@ -35,7 +35,8 @@ test('Reducer handles GET_EVENT_SUCCESS as expected with isPoll set to true', (t
         poll: {
             eventWhat: [false, true],
             eventWhere: [true, false]
-        }
+        },
+        hasVoted: true
     };
     const action = {
         type: "GET_EVENT_SUCCESS",
@@ -49,6 +50,7 @@ test('Reducer handles GET_EVENT_SUCCESS as expected with isPoll set to true', (t
     expected.isFetching = false;
     expected.data = genericFixtures.eventPollSohil;
     expected.poll = data.poll;
+    expected.hasVoted = true;
 
     t.deepEqual(actual, expected, "Event object and poll successfully merged into store");
     t.end();
@@ -78,6 +80,7 @@ test('Reducer handles GET_EVENT_SUCCESS when with a ConfirmedEvent', (t) => {
     expected.isFetching = false;
     expected.data = data.event;
     expected.RSVPs = data.RSVPs;
+    expected.hasVoted = undefined;
 
     t.deepEqual(actual, expected, "Event info and RSVPs successfully merged into store");
     t.end();
