@@ -2,7 +2,7 @@ import React from 'react';
 import CalendarItem from './calendar-item.jsx';
 
 const Calendar = ({ location, data, isFetching, fetchEvent }) => {
-    
+
     let sortedData = data.sort((a, b) => {
         a = a.eventWhen[0].date;
         b = b.eventWhen[0].date;
@@ -25,7 +25,7 @@ const Calendar = ({ location, data, isFetching, fetchEvent }) => {
                                          eventWhat={ item.eventWhat }
                                          eventWhere={ item.eventWhere }
                                          eventWhen={ item.eventWhen }
-                                         hostPhotoURL={ item.hostPhotoURL }
+                                         coverPhoto={ item.coverPhoto }
                                          eventID={ item.eventID } />;
                 })
             }

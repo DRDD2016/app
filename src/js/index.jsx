@@ -79,13 +79,22 @@ const routes = (
     <Route path='/' component={ AppContainer }>
 
         <IndexRoute component={ LoginContainer } />
+
+        <Route path='/albums'
+               component={ requireAuthentication(AlbumsContainer) }
+               onEnter={ fetchCalendar } />
+
+        <Route path='/calendar'
+               component={ requireAuthentication(CalendarContainer) }
+               onEnter={ fetchCalendar } />
+
         <Route path='/feed'
                component={ requireAuthentication(FeedContainer) }
                onEnter={ initialiseAppState } />
 
-           <Route path='/profile'
-              component={ requireAuthentication(ProfileContainer) }
-              onEnter={ initialiseAppState } />
+        <Route path='/profile'
+               component={ requireAuthentication(ProfileContainer) }
+               onEnter={ initialiseAppState } />
 
         <Route path='/event/:eventID'
                component={ requireAuthentication(EventContainer) }
@@ -95,13 +104,8 @@ const routes = (
                component={ requireAuthentication(EditEventContainer) }
                onEnter={ fetchEvent } />
 
-        <Route path='/calendar'
-               component={ requireAuthentication(CalendarContainer) }
-               onEnter={ fetchCalendar } />
 
-        <Route path='/albums'
-               component={ requireAuthentication(AlbumsContainer) }
-               onEnter={ fetchCalendar } />
+
 
         <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) } />

@@ -8,6 +8,6 @@ export default function formatDate (date, full) {
         return moment(date).format('dddd Do MMMM YYYY');
     } else {
 
-        return moment(date).format('Do MMMM');
+        return moment(date).format('Do MMM');
     }
 }

@@ -2,22 +2,20 @@ import React from 'react';
 import { Link } from 'react-router';
 import formatDate from '../../lib/formatDate.js';
 
-const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, hostPhotoURL }) => {
+const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto }) => {
 
     return (
-        <div>
+        <div className="calendar-item">
             <Link to={ 'event/' + eventID }>
                 <div className="row">
-                    <img className="three columns ui profile-photo circular image" src={ hostPhotoURL } alt="Host photo" />
 
-                    <div className="five columns">
+                    <div className="seven columns">
                         <h5>{ eventName }</h5>
-                        <h6 className="eventWhen-date">{ ` ${formatDate(eventWhen[0].date)}` }</h6>
+                        <label className="date">{ ` ${formatDate(eventWhen[0].date)}` }</label>
+                        <label className="placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
                     </div>
 
-                    <div className="four columns">
-                        <label className="eventWhere-placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
-                    </div>
+                    <img className="five columns image" src={ coverPhoto ? coverPhoto.photoURL : 'http://www.escoumins.ca/wp-content/themes/adventure-tours/assets/images/placeholder.png' } alt="Latest photo" />
                 </div>
             </Link>
             <div className="row">

@@ -46,6 +46,7 @@ client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
+client.lpush("photos:event:100", JSON.stringify(fixtures.eventConfirmedHarryPhotos));
 
 /*
 SET DEFAULT POLL EVENT 300
