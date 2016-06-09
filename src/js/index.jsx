@@ -128,7 +128,8 @@ const routes = (
 
 ReactDOM.render(
     <Provider store={ store } >
-        <Router history={ hashHistory }>
+        <Router onUpdate={() => window.scrollTo(0, 0)}
+                history={ hashHistory }>
             { routes }
         </Router>
     </Provider>,

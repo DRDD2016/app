@@ -13,11 +13,11 @@ import { store } from '../init-store.js';
 
 
 const mapStateToProps = (state) => {
-    console.log(state.photos.file);
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,
         poll: state.event.poll,
+        hasVoted: state.event.hasVoted,
         tally: state.event.tally,
         RSVPs: state.event.RSVPs,
         invitees: state.event.invitees,

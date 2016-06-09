@@ -8,18 +8,19 @@ class AutocompleteInput extends React.Component {
 
         const inputDOMElement = document.getElementById(this.props.id);
 
-        const options = {
-            componentRestrictions: {
-                country: 'uk'
-            }
-        };
-        let autocomplete = new google.maps.places.Autocomplete(inputDOMElement, options);
+
+        let autocomplete = new google.maps.places.Autocomplete(inputDOMElement);
 
         autocomplete.addListener('place_changed', () => {
 
             let result = autocomplete.getPlace();
 
-            this.props.handleChange(result.name, result.formatted_address);
+            let formattedAddress;
+            if (result.types.indexOf('street_address') === 0){
+                formattedAddress = result.address_components[0].long_name + result.address_components[1].long_name + result.address_components[4].long_name + result.address_components[6].long_name;
+            }
+
+            this.props.handleChange(result.name, result.formatted);
         });
     }
 
