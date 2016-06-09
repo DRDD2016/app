@@ -1,5 +1,7 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
+import { hashHistory } from 'react-router';
+
 
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
 export const SET_EVENT_WHAT = "SET_EVENT_WHAT";
@@ -84,6 +86,7 @@ export function newEvent (eventData) {
         return axios.post('/new-event', eventData)
             .then((response) => {
                 dispatch(newEventSuccess());
+                hashHistory.push('/feed');
             })
             .catch((error) => {
                 dispatch(newEventFailure(error));
