@@ -1,6 +1,8 @@
 var client = require('../../server/db/init.js');
 var stringifyObjectValues = require('../../server/lib/stringifyObjectValues.js');
 var fixtures = require('./fixtures');
+import Server from '../../server/index.js';
+export const server = Server.init(9001);
 
 console.info("Initialising database for testing");
 /*
@@ -44,6 +46,7 @@ client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
+client.lpush("photos:event:100", JSON.stringify(fixtures.eventConfirmedHarryPhotos));
 
 /*
 SET DEFAULT POLL EVENT 300

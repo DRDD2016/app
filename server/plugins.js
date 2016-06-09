@@ -2,7 +2,7 @@ var Inert = require('inert');
 var Home  = require('./routes/home.js');
 var ForReactRouter = require('./routes/for-react-router.js');
 var GetUser = require('./routes/get-user.js');
-var GetNotifications = require('./routes/get-notifications.js');
+// var GetNotifications = require('./routes/get-notifications.js');
 var GetCalendar = require('./routes/get-calendar.js');
 var NewEvent = require('./routes/new-event.js');
 var NewEventFriends = require('./routes/new-event-friends.js');
@@ -23,7 +23,7 @@ var plugins = [
     Inert,
     ForReactRouter,
     GetUser,
-    GetNotifications,
+    // GetNotifications,
     GetCalendar,
     NewEvent,
     NewEventFriends,

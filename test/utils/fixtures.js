@@ -59,6 +59,16 @@ export const eventConfirmedHarryNotification = {
     hostID: Harry.id
 };
 
+export const eventConfirmedHarryPhotos = [
+    {
+        photoURL: 'https://spark-app-demo.s3-eu-west-1.amazonaws.com/event%3A117/1465480961130Screen%20Shot%202016-05-17%20at%2021.38.58.png',
+        userID: '10154129575200996',
+        timestamp: 1465480961379
+    }
+];
+
+export const photoToAdd = 'https://spark-app-demo.s3-eu-west-1.amazonaws.com/event%3A117/1465480858781Screen%20Shot%202016-05-17%20at%2011.17.48.png';
+
 /*
 EVENT:300 - poll
 */

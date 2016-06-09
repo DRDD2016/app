@@ -2,7 +2,6 @@ import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 import { hashHistory } from 'react-router';
 
-
 export const SET_EVENT_DETAILS = "SET_EVENT_DETAILS";
 export const SET_EVENT_WHAT = "SET_EVENT_WHAT";
 export const SET_EVENT_WHERE = "SET_EVENT_WHERE";

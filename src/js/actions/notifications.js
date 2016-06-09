@@ -5,6 +5,10 @@ export const GET_NOTIFICATIONS = "GET_NOTIFICATIONS";
 export const GET_NOTIFICATIONS_REQUEST = "GET_NOTIFICATIONS_REQUEST";
 export const GET_NOTIFICATIONS_SUCCESS = "GET_NOTIFICATIONS_SUCCESS";
 export const GET_NOTIFICATIONS_FAILURE = "GET_NOTIFICATIONS_FAILURE";
+export const APPLY_FILTER = "APPLY_FILTER";
+export const CLEAR_FILTER = "CLEAR_FILTER";
+
+import { socket } from '../init-socket.js';
 
 export function getNotifications () {
 
@@ -14,15 +18,16 @@ export function getNotifications () {
 
         dispatch(getNotificationsRequest());
 
-        axios.get('/get-notifications?userID=' + id)
-            .then((response) => {
+        socket.emit('get-notifications', { userID: id });
 
-                dispatch(getNotificationsSuccess(response.data));
-            })
-            .catch((error) => {
+        socket.on('get-notifications-success', (data) => {
 
-                dispatch(getNotificationsFailure(error));
-            });
+            dispatch(getNotificationsSuccess(data));
+        });
+        socket.on('get-notifications-failure', (error) => {
+
+            dispatch(getNotificationsFailure(error));
+        });
     };
 }
 
@@ -46,5 +51,22 @@ export function getNotificationsFailure (error) {
         type: GET_NOTIFICATIONS_FAILURE,
         isFetching: false,
         error
+    };
+}
+
+export function applyFilter (filter) {
+    return {
+        type: APPLY_FILTER,
+        filter: true,
+        showHosting: filter
+    };
+}
+
+
+export function clearFilter () {
+    return {
+        type: CLEAR_FILTER,
+        filter: false,
+        showHosting: undefined
     };
 }

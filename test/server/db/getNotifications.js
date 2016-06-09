@@ -20,10 +20,3 @@ test("getNotifications retrieves the notifications", (t) => {
         t.end();
     });
 });
-
-// test('Deleting added notification set', (t) => {
-//
-//     client.del("notifications:12345678");
-//
-//     t.end();
-// });
