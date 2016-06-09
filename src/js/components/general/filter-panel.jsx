@@ -1,9 +1,9 @@
 import React from 'react';
 
 const FilterPanel = ({ displaySome, displayAll }) => {
-    console.log(displayAll);
+
     return (
-        <div className="row">
+        <div className="row filter-panel">
             <div className="four columns filter" onClick={ displayAll }>
                 All
             </div>

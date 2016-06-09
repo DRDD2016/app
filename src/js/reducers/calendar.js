@@ -1,10 +1,12 @@
 import update from 'react-addons-update';
-import { GET_CALENDAR_REQUEST, GET_CALENDAR_SUCCESS, GET_CALENDAR_FAILURE } from '../actions/calendar.js';
+import { GET_CALENDAR_REQUEST, GET_CALENDAR_SUCCESS, GET_CALENDAR_FAILURE, APPLY_FILTER, CLEAR_FILTER } from '../actions/calendar.js';
 
 const initialState = {
     data: [],
     isFetching: false,
-    error: undefined
+    error: undefined,
+    showHosting: false,
+    filter: false
 };
 
 export default function calendar (state = initialState, action) {
@@ -19,6 +21,10 @@ export default function calendar (state = initialState, action) {
 
     case GET_CALENDAR_FAILURE:
         return handleCalendarFailure(state, action);
+
+    case APPLY_FILTER:
+    case CLEAR_FILTER:
+        return handleFilter(state, action);
 
     default:
         return state;
@@ -47,6 +53,15 @@ function handleCalendarFailure (state, action) {
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
         error: { $set: action.error }
+    });
+    return newState;
+}
+
+function handleFilter (state, action) {
+
+    let newState = update(state, {
+        filter: { $set: action.filter },
+        showHosting: { $set: action.showHosting }
     });
     return newState;
 }
