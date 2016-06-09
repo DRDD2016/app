@@ -16,11 +16,8 @@ export function getCalendar () {
 
         axios.get('/get-calendar?userID=' + id)
             .then((response) => {
-                var actual = response.data.filter((item) =>  {
-                    return item.coverPhoto !== undefined;
-                });
-                console.log("ACTUAL", actual);
-                dispatch(getCalendarSuccess(actual));
+
+                dispatch(getCalendarSuccess(response.data));
             })
             .catch((error) => {
 

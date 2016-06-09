@@ -9,7 +9,7 @@ const Calendar = ({ location, data, isFetching, fetchEvent }) => {
 
         return new Date(a).getTime() > new Date(b).getTime();
     });
-    console.log("SORTED", sortedData);
+
     return (
         <div className="container">
             <div className="row">

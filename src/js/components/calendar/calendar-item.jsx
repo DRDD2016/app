@@ -15,7 +15,7 @@ const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, co
                         <label className="placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
                     </div>
 
-                    <img className="five columns image" src={ coverPhoto ? coverPhoto.photoURL : 'http://community.childlife.org/media/qxbrwxqy.jpg' } alt="Latest photo" />
+                    <img className="five columns image" src={ coverPhoto ? coverPhoto.photoURL : 'http://www.escoumins.ca/wp-content/themes/adventure-tours/assets/images/placeholder.png' } alt="Latest photo" />
                 </div>
             </Link>
             <div className="row">
