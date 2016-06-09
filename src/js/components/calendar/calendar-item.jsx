@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import formatDate from '../../lib/formatDate.js';
 
-const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, hostPhotoURL }) => {
+const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto }) => {
 
     return (
         <div className="calendar-item">
@@ -15,7 +15,7 @@ const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, ho
                         <label className="placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
                     </div>
 
-                    <img className="four columns ui profile-photo  image" src={ hostPhotoURL } alt="Host photo" />
+                    <img className="four columns ui profile-photo image" src={ coverPhoto ? coverPhoto.photoURL : 'http://community.childlife.org/media/qxbrwxqy.jpg' } alt="Latest photo" />
                 </div>
             </Link>
             <div className="row">

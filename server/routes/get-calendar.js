@@ -1,5 +1,6 @@
 var getCalendar = require('../db/getCalendar.js');
 var mapCalendarToEvents = require('../lib/mapCalendarToEvents.js');
+var mapCalendarToPhoto = require('../lib/mapCalendarToPhoto.js');
 
 exports.register = (server, options, next) => {
 
@@ -12,14 +13,20 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
                 getCalendar(request.query.userID, (error, calendar) => {
-                
+
                     if (error) {
                         reply(error);
                     }
                     mapCalendarToEvents(calendar, (error, mappedCalendar) => {
 
-                        var verdict = error || mappedCalendar;
-                        reply(verdict);
+                        if (error) {
+                            reply(error);
+                        }
+                        mapCalendarToPhoto(mappedCalendar, (error, calendarWithPhoto) => {
+                            
+                            var verdict = error || calendarWithPhoto;
+                            reply(verdict);
+                        });
                     });
                 });
             }
