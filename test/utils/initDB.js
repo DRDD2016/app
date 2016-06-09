@@ -1,6 +1,8 @@
 var client = require('../../server/db/init.js');
 var stringifyObjectValues = require('../../server/lib/stringifyObjectValues.js');
 var fixtures = require('./fixtures');
+import Server from '../../server/index.js';
+export const server = Server.init(9001);
 
 console.info("Initialising database for testing");
 /*

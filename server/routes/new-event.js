@@ -1,5 +1,6 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
+var emitter = require('../event-emitter.js');
 
 exports.register = (server, options, next) => {
 
@@ -26,7 +27,11 @@ exports.register = (server, options, next) => {
                         var subjectID = event.hostID;
 
                         notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
-                            
+
+                            // if (!error) {
+                            //     emitter.emit('new-notifications');
+                            // }
+
                             var verdict = error || success;
                             reply(verdict);
                         });

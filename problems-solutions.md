@@ -151,7 +151,7 @@ export default Login;
 Now using:
 ```js
 browserHistory.push('/feed');
-``` 
+```
 
 ### Getting Facebook photo
 
@@ -214,4 +214,13 @@ const options = {
 
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>', options);
 /* ... rest of code */
+```
+### Socket.io and Testing
+**Problem**
+* Tests Hanging
+
+**Solution**
+* Client-side socket was not disconnecting.  Running the following closed the client socket:
+```js
+socket.disconnect();
 ```

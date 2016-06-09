@@ -30,6 +30,7 @@ test.skip('`getUser` retrieves user information from database EXCLUDING token', 
 
             t.deepEqual(response.result, expected, "Correct user information retrieved");
         });
+        
         server.stop(t.end);
     });
 });

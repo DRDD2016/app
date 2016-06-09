@@ -18,9 +18,6 @@ test("deleteRSVPs deletes all the status sets for the given event", (t) => {
                 t.equal(actual2, 0, 'event has been deleted from calendar:12345678');
                 t.end();
             });
-
         });
-
     });
-
 });

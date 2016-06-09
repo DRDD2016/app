@@ -1,25 +1,17 @@
+require('babel-register');
 var getNotifications = require('../db/getNotifications.js');
 
-exports.register = (server, options, next) => {
+function getNotificationsHandler (io, userID) {
 
-    server.route([{
-        method: 'GET',
-        path: '/get-notifications',
-        config: {
-            description: 'get user notifications from the db and push to front end',
+    getNotifications(userID, (error, notifications) => {
 
-            handler: (request, reply) => {
+        if (error) {
+            io.emit('get-notifications-failure', error);
+        } else {
 
-                getNotifications(request.query.userID, (error, notifications) => {
-                    var response = error || notifications;
-                    reply(response);
-                });
-            }
+            io.emit('get-notifications-success', notifications);
         }
-    }]);
-    return next();
-};
+    });
+}
 
-exports.register.attributes = {
-    name: 'GetNotifications'
-};
+module.exports = getNotificationsHandler;

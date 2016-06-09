@@ -296,7 +296,7 @@ export function sharePhoto (photoURL) {
 
         axios.post(`/share-photo`, payload)
         .then((response) => {
-            console.log(response.data, 'from share photo server reply');
+
             dispatch(sharePhotoSuccess());
         })
         .catch((error) => {

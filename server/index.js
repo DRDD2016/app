@@ -4,6 +4,10 @@ var Bell = require('bell');
 var plugins = require('./plugins.js');
 var authenticateUser = require('./lib/authenticateUser.js');
 
+// init server, pass server along
+// init io, pass server into io, pass server along
+// server.start
+
 exports.init = (port, callback) => {
 
     var server = new Hapi.Server({
@@ -53,5 +57,6 @@ exports.init = (port, callback) => {
             }
         }]);
     });
-    callback(null, server);
+
+    return server;
 };

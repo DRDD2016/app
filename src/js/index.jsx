@@ -10,8 +10,6 @@ import { getEvent } from './actions/event.js';
 import { getNotifications } from './actions/notifications.js';
 import { getCalendar } from './actions/calendar.js';
 
-require('../scss/main.scss');
-
 import AppContainer from './containers/app-container.js';
 import LoginContainer from './containers/login-container.js';
 import FeedContainer from './containers/feed-container.js';
@@ -26,8 +24,10 @@ import EventWhereContainer from './containers/create-event/event-where-container
 import EventWhenContainer from './containers/create-event/event-when-container.js';
 import EventConfirmContainer from './containers/create-event/event-confirm-container.js';
 import InviteFriendsContainer from './containers/create-event/invite-friends-container.js';
-
 import ProfileContainer from './containers/profile-container.js';
+
+require('../scss/main.scss');
+
 
 import { store } from './init-store.js';
 
@@ -114,7 +114,6 @@ const routes = (
 
     </Route>
 );
-
 
 ReactDOM.render(
     <Provider store={ store } >

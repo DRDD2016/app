@@ -19,11 +19,8 @@ test("deleteEventFromUserCalendars deleted the event from users calendar set", (
                 t.equal(actual2, 0, 'event has been deleted from calendar:12345678');
                 t.end();
             });
-
         });
-
     });
-
 });
 
 test('TEST TEARDOWN deleting the notification sets that are created in event 500 and 600', (t) => {
