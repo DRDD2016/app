@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import classnames from 'classnames';
 
 const Navbar = ({ currentLocation }) => {
-    console.log(currentLocation);
 
     let navbarClasses = classnames("navbar", {
         "display-none": currentLocation === "/"
