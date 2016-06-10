@@ -8,7 +8,7 @@ export const GET_NOTIFICATIONS_FAILURE = "GET_NOTIFICATIONS_FAILURE";
 export const APPLY_FILTER = "APPLY_FILTER";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 
-import { socket } from '../init-socket.js';
+// import { socket } from '../init-socket.js';
 
 export function getNotifications () {
 
@@ -18,16 +18,15 @@ export function getNotifications () {
 
         dispatch(getNotificationsRequest());
 
-        socket.emit('get-notifications', { userID: id });
+        axios.get('/get-notifications?userID=' + id)
+            .then((response) => {
 
-        socket.on('get-notifications-success', (data) => {
+                dispatch(getNotificationsSuccess(response.data));
+            })
+            .catch((error) => {
 
-            dispatch(getNotificationsSuccess(data));
-        });
-        socket.on('get-notifications-failure', (error) => {
-
-            dispatch(getNotificationsFailure(error));
-        });
+                dispatch(getNotificationsFailure(error));
+            });
     };
 }
 
