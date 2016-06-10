@@ -13,7 +13,7 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
     });
     return (
         <div className={ viewedNotification }>
-            <Link to={ 'event/' + eventID } onClick={ (e) => { handleUpdateNotification(index); } } >
+            <Link to={ 'event/' + eventID } >
                 <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
                 <div className="six columns">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>

@@ -11,8 +11,8 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
             });
 
             return (
-                <div className="twelve columns RSVP-user-list">
-                    <div className="ui image label" key={ index }>
+                <div className="twelve columns RSVP-user-list" key={ index }>
+                    <div className="ui image label" >
                         <img src={ usersWithRSVP[0].photoURL } />
                         { usersWithRSVP[0].firstName }
                     </div>

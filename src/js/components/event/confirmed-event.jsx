@@ -8,6 +8,8 @@ import { eventNote } from '../../lib/confirmed-event-helpers.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetPhoto }) => {
+
+
     let handleClick = !userIsHost ? RSVPToEvent : '';
 
     let going = RSVPs.going;

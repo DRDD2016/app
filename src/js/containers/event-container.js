@@ -13,7 +13,7 @@ import { store } from '../init-store.js';
 
 
 const mapStateToProps = (state) => {
-    console.log(state,'confirmed event??');
+
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,

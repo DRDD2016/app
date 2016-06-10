@@ -41,6 +41,7 @@ export const UPDATE_NOTIFICATION_REQUEST = 'UPDATE_NOTIFICATION_REQUEST';
 export const UPDATE_NOTIFICATION_SUCCESS = 'UPDATE_NOTIFICATION_SUCCESS';
 export const UPDATE_NOTIFICATION_FAILURE = 'UPDATE_NOTIFICATION_FAILURE';
 
+export const RESET_EVENT_STATE = 'RESET_EVENT_STATE';
 
 
 
@@ -58,6 +59,7 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
+                console.log(response,'response from get event');
                 dispatch(getEventSuccess(response.data));
                 dispatch(getPhotos(response.data.photos));
                 dispatch(getDeletedPhotos(response.data.deletedPhotos));
@@ -363,6 +365,7 @@ export function updateNotification (index) {
                 dispatch(updateNotificationSuccess());
             })
             .catch((error) => {
+                console.log(error);
                 dispatch(updateNotificationFailure(error));
             });
     };
@@ -387,5 +390,12 @@ export function updateNotificationFailure (error) {
         type: UPDATE_NOTIFICATION_FAILURE,
         isFetching: false,
         error: error
+    };
+}
+
+
+export function resetEventState () {
+    return {
+        type: RESET_EVENT_STATE
     };
 }

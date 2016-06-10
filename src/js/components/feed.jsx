@@ -7,7 +7,6 @@ import FilterPanel from './general/filter-panel.jsx';
 
 
 const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll }) => {
-
     let mappedNotifications = notifications.map((data, i) => {
         return (
             <Notification
