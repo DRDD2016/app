@@ -6,15 +6,15 @@ import Spinner from './general/spinner.jsx';
 import FilterPanel from './general/filter-panel.jsx';
 
 
-const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll }) => {
+
+const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, isFilter, isShowHosting }) => {
+
     let mappedNotifications = notifications.map((data, i) => {
         return (
             <Notification
                 key={ i }
                 index={ i }
                 viewed={ data.viewed }
-                displaySome={ displaySome }
-                displayAll={ displayAll }
                 eventID={ data.eventID }
                 timestamp={ data.timestamp }
                 isPoll={ data.isPoll }
@@ -50,7 +50,10 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
         }
             <div className="container">
             {
-                !isFetching && <FilterPanel displayAll={ displayAll } displaySome={ displaySome } />
+                !isFetching && <FilterPanel displayAll={ displayAll }
+                                            displaySome={ displaySome }
+                                            isFilter={ isFilter }
+                                            isShowHosting={ isShowHosting } />
             }
             {
                 !isFetching && mappedNotifications

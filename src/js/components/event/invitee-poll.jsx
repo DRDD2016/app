@@ -25,7 +25,7 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
     }
 
     return (
-            <div>
+            <div className="poll">
                 { eventNote(event) }
 
                 <h4>What</h4>

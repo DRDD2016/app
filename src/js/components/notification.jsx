@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 import getUserID from '../lib/getUserID.js';
 import formatDate from '../lib/formatDate.js';
 import classnames from 'classnames';
+import moment from 'moment';
+
+moment.locale('en-gb');
 
 const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed, inviteesNumber, eventName }) => {
 

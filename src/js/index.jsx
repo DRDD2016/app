@@ -29,6 +29,7 @@ import InviteFriendsContainer from './containers/create-event/invite-friends-con
 import ProfileContainer from './containers/profile-container.js';
 
 require('../scss/main.scss');
+require('../scss/font-awesome/font-awesome.scss');
 
 
 import { store } from './init-store.js';

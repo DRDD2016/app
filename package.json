@@ -62,11 +62,13 @@
     "css-loader": "^0.23.1",
     "eslint": "^2.8.0",
     "fb": "^1.0.2",
+    "file-loader": "^0.8.5",
     "ghooks": "^1.2.1",
     "hapi": "^13.3.0",
     "hoek": "^3.0.4",
     "inert": "^3.2.0",
     "jsdom": "^8.4.0",
+    "moment": "^2.13.0",
     "node-sass": "^3.6.0",
     "postcss-loader": "^0.8.2",
     "react": "^15.0.1",
@@ -83,6 +85,7 @@
     "socket.io": "^1.4.6",
     "socket.io-client": "^1.4.6",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.0"
   }
 }
