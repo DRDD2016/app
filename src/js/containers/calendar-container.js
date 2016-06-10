@@ -15,10 +15,12 @@ const mapStateToProps = (state) => {
     let isShowHosting = state.calendar.showHosting;
 
     let filteredEvents = filterNotifications(futureEvents, isFilter, isShowHosting);
-
+    
     return {
         data: filteredEvents,
-        isFetching: state.calendar.isFetching
+        isFetching: state.calendar.isFetching,
+        isFilter,
+        isShowHosting
     };
 };
 

@@ -17,7 +17,9 @@ const mapStateToProps = (state) => {
     return {
         user: state.user,
         notifications,
-        isFetching: state.notifications.isFetching
+        isFetching: state.notifications.isFetching,
+        isFilter,
+        isShowHosting
     };
 };
 
@@ -33,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(applyFilter(filterChoice));
         },
         displayAll: () => {
-            
+
             dispatch(clearFilter());
         }
     };
