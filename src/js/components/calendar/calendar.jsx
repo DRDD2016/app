@@ -1,6 +1,7 @@
 import React from 'react';
 import CalendarItem from './calendar-item.jsx';
 import FilterPanel from '../general/filter-panel.jsx';
+import Spinner from '../general/spinner.jsx';
 
 const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, displayAll, isFilter, isShowHosting }) => {
 
@@ -18,6 +19,9 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                     { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
                 </h4>
             </div>
+            {
+                isFetching && <Spinner />
+            }
             {
                 !isFetching && <FilterPanel displaySome={ displaySome }
                                             displayAll={ displayAll }
