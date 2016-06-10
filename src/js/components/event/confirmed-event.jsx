@@ -5,6 +5,7 @@ import RSVPsArea from './confirmed-event/RSVPs-area.jsx';
 import UploadPanel from './confirmed-event/upload-panel.jsx';
 import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
+import formatDate from '../../lib/formatDate.js';
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetPhoto }) => {
@@ -31,7 +32,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
     };
 
     return (
-        <div>
+        <div className="confirmed-event">
             { eventNote(event) }
             <div className="row">
                 <h4 className="twelve columns">
@@ -69,10 +70,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
             <div className="row">
                 <div className="twelve columns">
-                    <span className="eventWhen-date">
-                        { event.eventWhen[0].date || "TBC" }
+                    <span className="date">
+                        { formatDate(event.eventWhen[0].date, true) || "TBC" }
                     </span>
-                    <span className="eventWhen-time">
+                    <span className="time">
                         { event.eventWhen[0].time || "TBC" }
                     </span>
                 </div>

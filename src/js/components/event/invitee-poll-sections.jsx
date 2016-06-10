@@ -4,9 +4,9 @@ import formatDate from '../../lib/formatDate.js';
 export const EventWhatSection = ({ text, tally, classOptions }) => {
     return (
         <div className="row">
-            <label className={ classOptions }>
+            <div className={ classOptions }>
                 { text || "TBC" }
-            </label>
+            </div>
              <span className="tally three columns">{ tally }</span>
         </div>
     );
@@ -15,9 +15,9 @@ export const EventWhatSection = ({ text, tally, classOptions }) => {
 export const EventWhereSection = ({ text, tally, classOptions }) => {
     return (
         <div className="row">
-            <label className={ classOptions }>
+            <div className={ classOptions }>
                 { text.placeName || "TBC" } <span className="placeAddress"><br/>{ text.placeAddress }</span>
-            </label>
+        </div>
             <span className="tally three columns">{ tally }</span>
         </div>
     );
@@ -26,9 +26,10 @@ export const EventWhereSection = ({ text, tally, classOptions }) => {
 export const EventWhenSection = ({ text, tally, classOptions }) => {
     return (
         <div className="row">
-            <label className={ classOptions }>
-                { formatDate(text.date) || "TBC" } { text.time }
-            </label>
+            <div className={ classOptions }>
+                <span className="date">{ formatDate(text.date, true) || "TBC" }</span>
+                <span className="time">{ text.time }</span>
+            </div>
             <span className="tally three columns">{ tally }</span>
         </div>
     );

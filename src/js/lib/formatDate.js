@@ -1,3 +1,6 @@
+import moment from 'moment';
+moment.locale('en-gb');
+
 export default function formatDate (date, full) {
 
     if (date === "") {

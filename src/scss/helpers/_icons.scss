@@ -12,9 +12,9 @@
 
     &:after {
         font-family: fontawesome;
-        content: $code + " ";
+        content: " " + $code;
         font-style: normal;
         font-weight: normal;
-        font-size: 0.7em;
+        font-size: 1.2em;
     }
 }

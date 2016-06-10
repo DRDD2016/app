@@ -1,11 +1,14 @@
 import React from 'react';
 import Navbar from './general/navbar.jsx';
+import Message from './general/message.jsx';
 
 const App = ({ location, children, error }) => {
 
     let currentLocation;
     if (!process.env.DEVELOPMENT) {
         currentLocation = location.pathname;
+    } else {
+        currentLocation = 'test';
     }
 
     let online = window.navigator.onLine;
@@ -13,10 +16,7 @@ const App = ({ location, children, error }) => {
         <div>
             {
                 !online &&
-                <div>
-                    <p> You are Offline, please connect to the interet to access Spark </p>
-                </div>
-
+                <Message text="Oops! No internet connection..." />
             }
             {
                 error &&

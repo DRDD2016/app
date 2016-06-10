@@ -22,7 +22,7 @@ const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, hand
     }
 
     return (
-            <div>
+            <div className="poll">
                 { eventNote(event) }
 
                 <h4>What</h4>
