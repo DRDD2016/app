@@ -63,6 +63,7 @@ export function getEvent (eventID) {
                 dispatch(getDeletedPhotos(response.data.deletedPhotos));
             })
             .catch((error) => {
+                console.log(error, 'error from get event');
                 dispatch(getEventFailure(error));
             });
     };

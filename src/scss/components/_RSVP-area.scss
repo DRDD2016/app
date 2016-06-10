@@ -1,5 +1,29 @@
-.RSVP-button {
+.RSVP-button-going {
     text-align: center;
+    border-radius: 30px;
+    background-color: rgb(140, 198, 68);
+    color: white;
+    padding: 0.4em;
+    margin-bottom: 0.5em;
+
+}
+
+.RSVP-button-not-going {
+    text-align: center;
+    border-radius: 30px;
+    background-color: rgb(226, 33, 33);
+    color: white;
+    padding: 0.4em;
+    margin-bottom: 0.5em;
+}
+
+.RSVP-button-maybe {
+    text-align: center;
+    border-radius: 30px;
+    background-color: rgb(244, 176, 25);
+    color: white;
+    padding: 0.4em;
+    margin-bottom: 0.5em;
 }
 
 .RSVP-flex-container {
@@ -16,4 +40,42 @@
 
 .RSVP-user-list {
     padding-left: 15px;
+}
+
+.confirm-event-what {
+    text-align: center;
+    border-radius: 30px;
+    background-color: $what;
+    color: white;
+    padding: 0.4em;
+    margin-bottom: 0.5em;
+}
+
+.confirm-event-where {
+    text-align: center;
+    border-radius: 30px;
+    background-color: $where;
+    color: white;
+    padding: 0.4em;
+    margin-bottom: 0.5em;
+}
+
+.confirm-event-when {
+    text-align: center;
+    border-radius: 30px;
+    background-color: $when;
+    color: white;
+    padding: 0.4em;
+    margin-bottom: 0.5em;
+}
+
+.confirm-event-title-what {
+    color: $what;
+}
+
+.confirm-event-title-where {
+    color: $where;
+}
+.confirm-event-title-when {
+    color: $when;
 }

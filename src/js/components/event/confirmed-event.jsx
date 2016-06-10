@@ -35,13 +35,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
         <div>
             { eventNote(event) }
             <div className="row">
-                <h4 className="twelve columns">
+                <p className="three columns confirm-event-title-what">
                     What
-                </h4>
-            </div>
-
-            <div className="row">
-                <div className="twelve columns">
+                </p>
+                <div className="nine columns confirm-event-what">
                     { event.eventWhat[0] || "TBC" }
                 </div>
             </div>
@@ -49,13 +46,11 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             <br />
 
             <div className="row">
-                <h4 className="twelve columns">
+                <p className="three columns confirm-event-title-where">
                     Where
-                </h4>
-            </div>
+                </p>
 
-            <div className="row">
-                <div className="twelve columns">
+                <div className="nine columns confirm-event-where">
                     { event.eventWhere[0].placeName || "TBC" } { event.eventWhere[0].placeName }
                 </div>
             </div>
@@ -63,13 +58,11 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             <br />
 
             <div className="row">
-                <h4 className="twelve columns">
+                <p className="three columns confirm-event-title-when">
                     When
-                </h4>
-            </div>
+                </p>
 
-            <div className="row">
-                <div className="twelve columns">
+                <div className="nine columns confirm-event-when">
                     <span className="eventWhen-date">
                         { event.eventWhen[0].date || "TBC" }
                     </span>

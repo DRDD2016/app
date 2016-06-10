@@ -34,15 +34,15 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
             <hr />
 
             <div className="row">
-                <div className="four columns RSVP-button">
+                <div className="four columns RSVP-button-going">
                     <div onClick={ () => handleClick('going', eventID) }> Going </div>
                 </div>
 
-                <div className="four columns RSVP-button">
+                <div className="four columns RSVP-button-maybe">
                     <div onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
                 </div>
 
-                <div className="four columns RSVP-button">
+                <div className="four columns RSVP-button-not-going">
                     <div onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
                 </div>
             </div>
