@@ -10,23 +10,23 @@ const Navbar = ({ currentLocation }) => {
     });
 
     let albumsClasses = classnames("nav-button", {
-        "selected": currentLocation === "/albums"
+        "selected": currentLocation.indexOf("/albums") > -1
     });
 
     let calendarClasses = classnames("nav-button", {
-        "selected": currentLocation === "/calendar"
+        "selected": currentLocation.indexOf("/calendar") > -1
     });
 
     let feedClasses = classnames("nav-button", {
-        "selected": currentLocation === "/feed"
+        "selected": currentLocation.indexOf("/feed") > -1
     });
 
     let profileClasses = classnames("nav-button", {
-        "selected": currentLocation === "/profile"
+        "selected": currentLocation.indexOf("/profile") > -1
     });
 
     let createEventClasses = classnames("nav-button", {
-        "selected": currentLocation === "/create-event"
+        "selected": currentLocation.indexOf("/create-event") > -1
     });
 
 
