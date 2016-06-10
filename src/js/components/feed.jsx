@@ -6,6 +6,7 @@ import Spinner from './general/spinner.jsx';
 import FilterPanel from './general/filter-panel.jsx';
 
 
+
 const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, isFilter, isShowHosting }) => {
 
     let mappedNotifications = notifications.map((data, i) => {

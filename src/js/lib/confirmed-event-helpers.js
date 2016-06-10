@@ -1,3 +1,4 @@
+import React from 'react';
 
 export function RSVPUserList (RSVPs, invitees, status) {
 

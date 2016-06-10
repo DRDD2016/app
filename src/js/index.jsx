@@ -6,7 +6,7 @@ import initStore from './init-store.js';
 import { requireAuthentication } from './requireAuthentication.jsx';
 import validCookieExists from './lib/validCookieExists.js';
 import { getUser } from './actions/user.js';
-import { getEvent } from './actions/event.js';
+import { getEvent, resetEventState } from './actions/event.js';
 import { getNotifications } from './actions/notifications.js';
 import { getCalendar } from './actions/calendar.js';
 import { clearCreateEvent } from './actions/create-event.js';
@@ -73,7 +73,7 @@ function fetchCalendar (nextState, replace, callback) {
 }
 
 function fetchEvent (nextState, replace, callback) {
-
+    store.dispatch(resetEventState());
     store.dispatch(getEvent(nextState.params.eventID));
     callback();
 }

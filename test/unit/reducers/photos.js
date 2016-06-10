@@ -3,6 +3,48 @@ import reducer from '../../../src/js/reducers/photos.js';
 import { photos as initialState } from './fixtures.js';
 
 /********
+GET PHOTOS ACTIONS
+********/
+
+test('Reducer handles GET_PHOTOS as expected', (t) => {
+
+    let photo = undefined;
+
+    let action = {
+        type: "GET_PHOTOS",
+        data: photo
+    };
+    const actual = reducer(initialState, action);
+
+    let expected = Object.assign({}, initialState);
+
+    t.deepEqual(actual, expected, 'State photos is set to []');
+    t.end();
+});
+
+test('Reducer handles GET_DELETED_PHOTOS as expected', (t) => {
+
+    let photo = undefined;
+
+    let action = {
+        type: "GET_DELETED_PHOTOS",
+        data: photo
+    };
+    const actual = reducer(initialState, action);
+
+    let expected = Object.assign({}, initialState);
+
+    t.deepEqual(actual, expected, 'State photos is set to []');
+    t.end();
+});
+
+
+/********
+GET DELETED PHOTO ACTIONS
+********/
+
+
+/********
 SET PHOTO ACTIONS
 ********/
 
