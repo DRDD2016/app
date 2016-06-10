@@ -59,7 +59,7 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
-                console.log(response,'response from get event');
+                console.log(response, 'response from get event');
                 dispatch(getEventSuccess(response.data));
                 dispatch(getPhotos(response.data.photos));
                 dispatch(getDeletedPhotos(response.data.deletedPhotos));
