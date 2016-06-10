@@ -5,6 +5,7 @@ import Spinner from '../general/spinner.jsx';
 import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
 import Modal from '../general/modal.jsx';
+import TopBar from './top-bar.jsx';
 import { Link, hashHistory } from 'react-router';
 
 
@@ -33,138 +34,111 @@ class Event extends React.Component {
     }
 
     renderView () {
+        console.log(this.props.isFetching, 'isfetching');
 
-        if (this.props.isPoll === undefined || this.props.userIsHost === undefined) {
-            return (
-                <Spinner />
-            );
-        }
         if (this.props.userIsHost && this.props.isPoll) {
-
-            return (
-                 <HostPoll tally={ this.props.tally }
-                           event={ this.props.event }
-                           eventID={ this.props.params.eventID }
-                           handleHostEventChoices={ this.props.handleHostEventChoices }
-                           hostEventChoices={ this.props.hostEventChoices }
-                           handleConfirmEvent={ this.props.handleConfirmEvent }/>
-            );
-        }
-        if (!this.props.userIsHost && this.props.isPoll) {
-            return (
-                <InviteePoll event={ this.props.event }
-                          toggleSelection={ this.props.toggleSelection }
-                          poll={ this.props.poll }
-                          handlePollConfirmation={ this.props.handlePollConfirmation }
-                          eventID={ this.props.params.eventID }
-                          isHost={ this.props.userIsHost }
-                          hasVoted={ this.props.hasVoted }/>
-            );
-        }
-        if (!this.props.isPoll) {
-            return (
-                 <ConfirmedEvent event={ this.props.event }
-                                 eventID={ this.props.params.eventID }
-                                 userIsHost={ this.props.userIsHost }
-                                 RSVPs={ this.props.RSVPs }
-                                 RSVPToEvent={ this.props.RSVPToEvent }
-                                 invitees={ this.props.invitees }
-                                 handleUploadPhoto={ this.props.handleUploadPhoto }
-                                 photos={ this.props.photos }
-                                 deletedPhotos={ this.props.deletedPhotos }
-                                 handleDeletePhoto={ this.props.handleDeletePhoto }
-                                 handleSharePhoto={ this.props.handleSharePhoto }
-                                 file={ this.props.file }
-                                 handleSetPhoto={ this.props.handleSetPhoto }/>
-            );
-        }
-    }
-    render () {
-
-        let headerTitle = this.props.isPoll ? "Poll" : "Event";
-
-        if (this.props.isFetching) {
-            return (
-                <Spinner />
-            );
-        }
-        if (this.props.event === false) {
-            return (
-                <div>
-                    The Event has been deleted
-                </div>
-            );
-        }
-        if (this.props.userIsHost && !this.props.isPoll) {
+            console.log('you are a host viewing poll', this.props.isPoll);
             return (
                 <div>
 
-                    <Modal deleteEvent={ this.handleDeleteEvent }
-                           closeModal={ this.handleCloseModal } />
-
-                    <div className="event-header row">
-                        <Link onClick={ () => { this.props.handleEdit(this.props.event); } } to={ 'edit/' + this.props.params.eventID }>
-                            <p className="three columns back-button" > Edit </p>
-                        </Link>
-                        <h3 className=" six columns title"> { headerTitle }</h3>
-                        <p className="three columns cancel-event-button"
-                           onClick={ this.cancelEventConfirmationModal }>
-                            Cancel
-                        </p>
-                    </div>
-
-                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
-                                        eventName={ this.props.event.eventName }
-                                        eventDescription={ this.props.event.eventDescription }
-                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
-                        { this.renderView() }
+                        <HostPoll tally={ this.props.tally }
+                                  event={ this.props.event }
+                                  eventID={ this.props.params.eventID }
+                                  handleHostEventChoices={ this.props.handleHostEventChoices }
+                                  hostEventChoices={ this.props.hostEventChoices }
+                                  handleConfirmEvent={ this.props.handleConfirmEvent }/>
                     </div>
                 </div>
+
             );
-        } if (this.props.userIsHost && this.props.isPoll) {
+        } else if (!this.props.userIsHost && this.props.isPoll) {
+            console.log('you are a invitee viewing poll');
+
             return (
                 <div>
 
-                    <Modal deleteEvent={ this.handleDeleteEvent }
-                           closeModal={ this.handleCloseModal } />
 
-                    <div className="event-header row">
-                        <p className="three columns back-button" > </p>
-                        <h3 className=" six columns title"> { headerTitle }</h3>
-                        <p className="three columns cancel-event-button"
-                            onClick={ this.cancelEventConfirmationModal }>
-                            Cancel
-                        </p>
-                    </div>
-
-                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
-                                        eventName={ this.props.event.eventName }
-                                        eventDescription={ this.props.event.eventDescription }
-                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
-                        { this.renderView() }
+                        <InviteePoll event={ this.props.event }
+                                  toggleSelection={ this.props.toggleSelection }
+                                  poll={ this.props.poll }
+                                  handlePollConfirmation={ this.props.handlePollConfirmation }
+                                  eventID={ this.props.params.eventID }
+                                  isHost={ this.props.userIsHost }
+                                  hasVoted={ this.props.hasVoted }/>
                     </div>
                 </div>
             );
         } else {
+            console.log('you are a host/invittee viewing an event');
+
             return (
                 <div>
 
-                    <div className="event-header row">
-                        <h3 className=" twelve columns title"> { headerTitle }</h3>
-                    </div>
-
-                    <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
-                                        eventName={ this.props.event.eventName }
-                                        eventDescription={ this.props.event.eventDescription }
-                                        hostPhotoURL={ this.props.event.hostPhotoURL } />
                     <div className="container">
-                        { this.renderView() }
+                        <ConfirmedEvent event={ this.props.event }
+                                        eventID={ this.props.params.eventID }
+                                        userIsHost={ this.props.userIsHost }
+                                        RSVPs={ this.props.RSVPs }
+                                        RSVPToEvent={ this.props.RSVPToEvent }
+                                        invitees={ this.props.invitees }
+                                        handleUploadPhoto={ this.props.handleUploadPhoto }
+                                        photos={ this.props.photos }
+                                        deletedPhotos={ this.props.deletedPhotos }
+                                        handleDeletePhoto={ this.props.handleDeletePhoto }
+                                        handleSharePhoto={ this.props.handleSharePhoto }
+                                        file={ this.props.file }
+                                        handleSetPhoto={ this.props.handleSetPhoto }/>
                     </div>
                 </div>
+
             );
         }
+    }
+
+
+    render () {
+
+        return (
+            <div>
+                {
+                    (this.props.isFetching || this.props.isPoll === undefined || this.props.userIsHost === undefined ) && <Spinner />
+                }
+
+                {
+                    !this.props.isFetching && (this.props.event === false) &&
+                    <div>
+                        The Event has been deleted
+                    </div>
+                }
+                {
+                    !this.props.isFetching && this.props.event &&
+                    <div>
+                        <Modal deleteEvent={ this.handleDeleteEvent }
+                               closeModal={ this.handleCloseModal } />
+
+                        <TopBar eventID={ this.props.event.eventID }
+                            userIsHost={ this.props.event.isHost }
+                            isPoll={ this.props.event.isPoll }
+                            handleEdit={ this.props.handleEdit }
+                            displayCancelModal={ this.cancelEventConfirmationModal } />
+
+
+                        <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                            eventName={ this.props.event.eventName }
+                            eventDescription={ this.props.event.eventDescription }
+                            hostPhotoURL={ this.props.event.hostPhotoURL }
+                            eventID={ this.props.event.eventID }
+                            isPoll={ this.props.event.isPoll }
+                            userIsHost={ this.props.event.isHost } />
+                    </div>
+                }
+                {
+                    !this.props.isFetching && this.props.event && this.renderView()
+                }
+            </div>
+        );
 
     }
 }
