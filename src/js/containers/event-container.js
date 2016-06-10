@@ -13,6 +13,7 @@ import { store } from '../init-store.js';
 
 
 const mapStateToProps = (state) => {
+
     return {
         isPoll: state.event.data.isPoll,
         event: state.event.data,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { store } from '../../../init-store';
 
-const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList }) => {
+const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, handleClick }) => {
 
     function RSVPUserList (RSVPs, invitees, status) {
 
@@ -11,8 +11,8 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList }
             });
 
             return (
-                <div className="twelve columns">
-                    <div className="ui image label" key={ index }>
+                <div className="twelve columns RSVP-user-list" key={ index }>
+                    <div className="ui image label" >
                         <img src={ usersWithRSVP[0].photoURL } />
                         { usersWithRSVP[0].firstName }
                     </div>
@@ -34,30 +34,32 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList }
             <hr />
 
             <div className="row">
-                <div className="four columns">
+                <div className="four columns RSVP-button-going">
                     <div onClick={ () => handleClick('going', eventID) }> Going </div>
                 </div>
 
-                <div className="four columns">
+                <div className="four columns RSVP-button-maybe">
                     <div onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
                 </div>
 
-                <div className="four columns">
+                <div className="four columns RSVP-button-not-going">
                     <div onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
                 </div>
             </div>
 
-            <div className="four columns ui middle aligned selection list verticalise">
+            <div className="row RSVP-flex-container">
+                <div className="four columns ui middle aligned selection list verticalise going">
 
-                { RSVPUserList(RSVPs, invitees, 'going') }
-            </div>
+                    { RSVPUserList(RSVPs, invitees, 'going') }
+                </div>
 
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'maybe') }
-            </div>
+                <div className="four columns ui middle aligned selection list verticalise maybe">
+                    { RSVPUserList(RSVPs, invitees, 'maybe') }
+                </div>
 
-            <div className="four columns ui middle aligned selection list verticalise">
-                { RSVPUserList(RSVPs, invitees, 'notGoing') }
+                <div className="four columns ui middle aligned selection list verticalise not-going">
+                    { RSVPUserList(RSVPs, invitees, 'notGoing') }
+                </div>
             </div>
 
             <div className="row">

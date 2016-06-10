@@ -18,7 +18,9 @@ const mapStateToProps = (state) => {
 
     return {
         data: filteredEvents,
-        isFetching: state.calendar.isFetching
+        isFetching: state.calendar.isFetching,
+        isFilter,
+        isShowHosting
     };
 };
 

@@ -5,13 +5,14 @@
     border: 1px solid $facebook-blue;
     color: $facebook-blue;
     background-color: $grey;
-    // margin: 20px auto;
+
+    &.selected {
+        background-color: $facebook-blue;
+        color: $grey;
+    }
 
     &:nth-child(1) {
         border-radius: 10px 0 0 10px;
-    }
-
-    &:nth-child(2) {
     }
 
     &:nth-child(3) {

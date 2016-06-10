@@ -72,7 +72,7 @@ export default function photos (state = initialState, action) {
 function handleGetPhotos (state, action) {
 
     let newState = update(state, {
-        photos: { $set: action.data }
+        photos: { $set: action.data || [] }
     });
     return newState;
 }
@@ -87,7 +87,7 @@ function handleSetPhoto (state, action) {
 
 function handleGetDeletedPhotos (state, action) {
     let newState = update(state, {
-        deletedPhotos: { $set: action.data }
+        deletedPhotos: { $set: action.data || [] }
     });
     return newState;
 }

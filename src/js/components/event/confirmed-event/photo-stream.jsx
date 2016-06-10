@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, eventID }) => {
-
+    console.log("deleted photos", deletedPhotos);
     let deletedPhotosURL = deletedPhotos.map((photo, index) => {
         return photo.photoURL;
     });

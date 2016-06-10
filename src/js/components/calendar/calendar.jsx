@@ -1,8 +1,9 @@
 import React from 'react';
 import CalendarItem from './calendar-item.jsx';
 import FilterPanel from '../general/filter-panel.jsx';
+import Spinner from '../general/spinner.jsx';
 
-const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, displayAll }) => {
+const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, displayAll, isFilter, isShowHosting }) => {
 
     let sortedData = data.sort((a, b) => {
         a = a.eventWhen[0].date;
@@ -19,7 +20,13 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                 </h4>
             </div>
             {
-                !isFetching && <FilterPanel displaySome={ displaySome } displayAll={ displayAll } />
+                isFetching && <Spinner />
+            }
+            {
+                !isFetching && <FilterPanel displaySome={ displaySome }
+                                            displayAll={ displayAll }
+                                            isFilter={ isFilter }
+                                            isShowHosting={ isShowHosting } />
             }
             {
                 !isFetching && sortedData.map((item, i) => {

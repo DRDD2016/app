@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 import getUserID from '../lib/getUserID.js';
 import formatDate from '../lib/formatDate.js';
 import classnames from 'classnames';
+import moment from 'moment';
+
+moment.locale('en-gb');
 
 const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed, inviteesNumber, eventName }) => {
 
@@ -13,7 +16,7 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
     });
     return (
         <div className={ viewedNotification }>
-            <Link to={ 'event/' + eventID } onClick={ (e) => { handleUpdateNotification(index); } } >
+            <Link to={ 'event/' + eventID } >
                 <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
                 <div className="six columns">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>
