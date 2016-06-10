@@ -13,6 +13,7 @@
         color: $where;
         border: 1px solid $where;
         line-height: 20px;
+        text-align: center;
     }
 
     &.poll-eventWhen {
@@ -35,6 +36,7 @@
         color: white;
     }
 }
+
 
 .tally {
     color: $off-black;
