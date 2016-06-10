@@ -51,6 +51,7 @@ class Event extends React.Component {
             );
         }
         if (!this.props.userIsHost && this.props.isPoll) {
+
             return (
                 <InviteePoll event={ this.props.event }
                           toggleSelection={ this.props.toggleSelection }
