@@ -7,6 +7,8 @@ const App = ({ location, children, error }) => {
     let currentLocation;
     if (!process.env.DEVELOPMENT) {
         currentLocation = location.pathname;
+    } else {
+        currentLocation = 'test'
     }
 
     let online = window.navigator.onLine;
