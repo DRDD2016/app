@@ -23,10 +23,16 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                 isFetching && <Spinner />
             }
             {
-                !isFetching && <FilterPanel displaySome={ displaySome }
-                                            displayAll={ displayAll }
-                                            isFilter={ isFilter }
-                                            isShowHosting={ isShowHosting } />
+                data.length === 0 && !isFetching &&
+                    <div className="no-events-message">
+                        You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
+                    </div>
+            }
+            {
+                !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
+                                                               displayAll={ displayAll }
+                                                               isFilter={ isFilter }
+                                                               isShowHosting={ isShowHosting } />
             }
             {
                 !isFetching && sortedData.map((item, i) => {
