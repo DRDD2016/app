@@ -8,14 +8,14 @@ export const GET_NOTIFICATIONS_FAILURE = "GET_NOTIFICATIONS_FAILURE";
 export const APPLY_FILTER = "APPLY_FILTER";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 
-// import { socket } from '../init-socket.js';
+import { socket } from '../init-socket.js';
 
 export function getNotifications () {
 
     var id = getUserID();
 
     return (dispatch) => {
-
+        socket.emit('initialising', getUserID());
         dispatch(getNotificationsRequest());
 
         axios.get('/get-notifications?userID=' + id)

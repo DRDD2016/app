@@ -33,7 +33,7 @@ exports.register = (server, options, next) => {
                             // }
 
                             var verdict = error || success;
-                            reply(verdict);
+                            reply(recipients);
                         });
                     }
                 });

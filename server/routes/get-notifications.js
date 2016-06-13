@@ -1,4 +1,5 @@
 var getNotifications = require('../db/getNotifications.js');
+var ioEmitter = require('socket.io-emitter')({ host: 'localhost', port: 6379 });
 
 exports.register = (server, options, next) => {
 
@@ -11,6 +12,7 @@ exports.register = (server, options, next) => {
             handler: (request, reply) => {
 
                 getNotifications(request.query.userID, (error, notifications) => {
+                    console.log("IO EMITTER:", Object.keys(ioEmitter));
                     var response = error || notifications;
                     reply(response);
                 });

@@ -37,7 +37,7 @@ exports.register = (server, options, next) => {
                                 reply(error);
                             }
 
-                            reply(response);
+                            reply(recipients);
                         });
 
                     });
