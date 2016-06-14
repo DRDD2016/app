@@ -1,6 +1,7 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
 var emitter = require('../event-emitter.js');
+var pub = require('../init-socket.js').pub;
 
 exports.register = (server, options, next) => {
 
@@ -28,12 +29,13 @@ exports.register = (server, options, next) => {
 
                         notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
-                            // if (!error) {
-                            //     emitter.emit('new-notifications');
-                            // }
+                            if (!error) {
+                                console.log("Prepare to notify everyone");
+                                pub.publish('notify', JSON.stringify(recipients));
+                            }
 
                             var verdict = error || success;
-                            reply(recipients);
+                            reply(success);
                         });
                     }
                 });

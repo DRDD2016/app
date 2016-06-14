@@ -11,30 +11,15 @@ export const CLEAR_FILTER = "CLEAR_FILTER";
 import { feedSocket } from '../socket.js';
 import { store } from '../init-store.js';
 
-feedSocket.on('notifications', (data) => {
+feedSocket.on('notifications:' + getUserID(), (data) => {
     console.log("WE GOT IT:", data);
     store.dispatch(getNotificationsSuccess(data));
 });
 
-export function getNotifications () {
+feedSocket.on('failure', (error) => {
+    store.dispatch(getNotificationsFailure(error));
+});
 
-    // var id = getUserID();
-    //
-    // return (dispatch) => {
-    //
-    //     dispatch(getNotificationsRequest());
-    //
-    //     axios.get('/get-notifications?userID=' + id)
-    //         .then((response) => {
-    //
-    //             dispatch(getNotificationsSuccess(response.data));
-    //         })
-    //         .catch((error) => {
-    //
-    //             dispatch(getNotificationsFailure(error));
-    //         });
-    // };
-}
 
 export function getNotificationsRequest () {
     return {

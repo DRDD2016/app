@@ -84,9 +84,7 @@ export function newEvent (eventData) {
 
         return axios.post('/new-event', eventData)
             .then((response) => {
-                if (response.data.indexOf(getUserID()) > -1) {
-                    
-                }
+    
                 dispatch(newEventSuccess());
                 hashHistory.push('/feed');
                 dispatch(clearCreateEvent());

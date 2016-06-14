@@ -1,20 +1,18 @@
 // var getNotificationsHandler = require('./routes/get-notifications-socket.js');
 var getNotifications = require('./db/getNotifications.js');
-var redis = require('redis');
-var pub, sub;
+var pub = require('./init-socket.js').pub;
+var sub = require('./init-socket.js').sub;
 
 function socketRouter (io) {
 
-    pub = redis.createClient(),
-    sub = redis.createClient();
     console.log("We made a connection!!!");
     io.emit('connected');
 
-    io.on('join', (userID) => {
-
-        sub.subscribe("notify");
-        pub.publish("notify", userID);
-        console.log("subscribed user " + userID + " to notify");
+    io.on('join', (data) => {
+        var userIDArray = JSON.parse(data);
+        userIDArray.push("stuff");
+        console.log(Array.isArray(userIDArray));
+        pub.publish("notify", JSON.stringify(userIDArray));
     });
 
     sub.on('message', (channel, message) => {
@@ -23,27 +21,36 @@ function socketRouter (io) {
 
             io.emit('failure', message);
         } else if (channel === 'notify') {
-            console.log("time to notify");
-            getNotifications(message, (error, notifications) => {
+            console.log(">>>", message);
+            console.log("time to notify", Array.isArray(message));
 
-                if (error) {
+            JSON.parse(message).forEach((userID) => {
 
-                    pub.publish('failure', error);
-                } else {
+                getNotifications(userID, (error, notifications) => {
 
-                    io.emit('notifications', notifications);
-                }
+                    if (error) {
+
+                        pub.publish('failure', error);
+                    } else {
+
+                        io.emit('notifications:' + userID, notifications);
+                    }
+                });
             });
         }
     });
 
     io.on('disconnect', (socket) => {
 
-        pub.quit();
-        sub.unsubscribe();
-        sub.quit();
+        // pub.quit();
+        // sub.unsubscribe();
+        // sub.quit();
         console.log("DISCONNECTED");
     });
 }
 
-module.exports = socketRouter;
+module.exports = {
+    socketRouter: socketRouter,
+    pub: pub,
+    sub: sub
+};

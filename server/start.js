@@ -1,7 +1,7 @@
 var Server = require('./index.js');
 var socket = require('socket.io');
 var server = Server.init(process.env.PORT || 9000);
-var socketRouter = require('./socketRouter.js');
+var socketRouter = require('./socketRouter.js').socketRouter;
 
 var io = socket(server.listener);
 io.of('/feed').on('connection', socketRouter);
