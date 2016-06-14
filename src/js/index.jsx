@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
-import initStore from './init-store.js';
 import { requireAuthentication } from './requireAuthentication.jsx';
 import validCookieExists from './lib/validCookieExists.js';
 import { getUser } from './actions/user.js';

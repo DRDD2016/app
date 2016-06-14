@@ -1,4 +1,5 @@
 import { uploadPhoto } from '../actions/photos.js';
+import { getNotifications } from '../actions/notifications.js';
 import { store } from '../init-store.js';
 
 export function listenForS3URL (store) {

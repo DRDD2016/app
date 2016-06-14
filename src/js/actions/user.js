@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
+import { feedSocket } from '../socket.js';
 
 export const GET_USER = "GET_USER";
 export const GET_USER_REQUEST = "GET_USER_REQUEST";
@@ -13,6 +14,7 @@ export const EDIT_NAME_FAILURE = "EDIT_NAME_FAILURE";
 
 export const CHANGE_NAME = 'CHANGE_NAME';
 
+console.log(feedSocket);
 /*
 GET USER ACTIONS
 */
