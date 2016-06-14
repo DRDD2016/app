@@ -14,7 +14,6 @@ export const EDIT_NAME_FAILURE = "EDIT_NAME_FAILURE";
 
 export const CHANGE_NAME = 'CHANGE_NAME';
 
-console.log(feedSocket);
 /*
 GET USER ACTIONS
 */

@@ -46,7 +46,6 @@ function initialiseAppState (nextState, replace, callback) {
 
             store.dispatch(getUser());
         }
-        store.dispatch(getNotifications());
     }
 
     callback();

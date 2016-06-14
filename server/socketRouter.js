@@ -1,4 +1,5 @@
-var getNotificationsHandler = require('./routes/get-notifications.js');
+// var getNotificationsHandler = require('./routes/get-notifications-socket.js');
+var getNotifications = require('./db/getNotifications.js');
 var redis = require('redis');
 var pub, sub;
 
@@ -9,10 +10,31 @@ function socketRouter (io) {
     console.log("We made a connection!!!");
     io.emit('connected');
 
-    io.on('join', () => {
+    io.on('join', (userID) => {
 
         sub.subscribe("notify");
-        console.log("subscribed to notify");
+        pub.publish("notify", userID);
+        console.log("subscribed user " + userID + " to notify");
+    });
+
+    sub.on('message', (channel, message) => {
+
+        if (channel === 'failure') {
+
+            io.emit('failure', message);
+        } else if (channel === 'notify') {
+            console.log("time to notify");
+            getNotifications(message, (error, notifications) => {
+
+                if (error) {
+
+                    pub.publish('failure', error);
+                } else {
+
+                    io.emit('notifications', notifications);
+                }
+            });
+        }
     });
 
     io.on('disconnect', (socket) => {

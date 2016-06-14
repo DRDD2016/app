@@ -1,15 +1,14 @@
 require('babel-register');
 var getNotifications = require('../db/getNotifications.js');
 
-function getNotificationsHandler (io, userID) {
+function getNotificationsHandler (userID) {
 
     getNotifications(userID, (error, notifications) => {
 
         if (error) {
-            io.emit('get-notifications-failure', error);
+            callback(error);
         } else {
-
-            io.emit('get-notifications-success', notifications);
+            callback(null, notifications);
         }
     });
 }
