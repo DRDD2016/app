@@ -5,9 +5,10 @@ function getUser (id, callback) {
     var hashKey = 'user:' + id;
     client.hgetallAsync(hashKey)
         .then((response) => {
-
+        
             if (response === null) {
-                callback(new Error("User does not exist."));
+                console.error(new Error("User does not exist: " + hashKey));
+                callback(null, null);
             } else {
 
                 delete response.token;

@@ -10,12 +10,21 @@ function getFBFriends (token, callback) {
         {},
         (response) => {
             if (response && !response.error) {
-                mapFriendsToUsers(response.data, (error, result) => {
 
-                    callback(error, result);
+                mapFriendsToUsers(response.data, (error, result) => {
+                    if (error) {
+                        callback(error);
+                    } else {
+                        /* prevents errors if a friend is missing */
+                        var filtered = result.filter((user) => {
+                            return user !== null;
+                        });
+                        callback(error, filtered);
+                    }
                 });
 
             } else {
+
                 callback(new Error(response.error));
             }
         }
