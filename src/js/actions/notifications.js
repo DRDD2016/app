@@ -16,12 +16,11 @@ export function getNotifications (userID) {
 
     return (dispatch) => {
 
+        dispatch(getNotificationsRequest());
         feedSocket.on('connected', (thing) => {
-
 
             if (userID) {
 
-                dispatch(getNotificationsRequest());
                 feedSocket.emit('join', JSON.stringify([userID]));
             }
         });
