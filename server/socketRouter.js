@@ -37,10 +37,7 @@ function socketRouter (io) {
 
     io.on('disconnect', (socket) => {
 
-        // pub.quit();
-        // sub.unsubscribe();
-        // sub.quit();
-        console.log("DISCONNECTED");
+        console.info("DISCONNECTED");
     });
 }
 

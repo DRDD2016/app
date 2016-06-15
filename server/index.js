@@ -4,9 +4,6 @@ var Bell = require('bell');
 var plugins = require('./plugins.js');
 var authenticateUser = require('./lib/authenticateUser.js');
 
-// init server, pass server along
-// init io, pass server into io, pass server along
-// server.start
 
 exports.init = (port) => {
 

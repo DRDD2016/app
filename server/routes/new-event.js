@@ -1,6 +1,5 @@
 var saveNewEvent = require('../db/saveNewEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
-var emitter = require('../event-emitter.js');
 var pub = require('../init-socket.js').pub;
 
 exports.register = (server, options, next) => {

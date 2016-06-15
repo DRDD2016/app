@@ -17,12 +17,9 @@ export function getNotifications (userID) {
     return (dispatch) => {
 
         dispatch(getNotificationsRequest());
-        feedSocket.on('connected', (thing) => {
+        feedSocket.on('connected', () => {
 
-            if (userID) {
-
-                feedSocket.emit('join', JSON.stringify([userID]));
-            }
+            feedSocket.emit('join', JSON.stringify([userID]));
         });
 
         feedSocket.on('notifications:' + userID, (data) => {

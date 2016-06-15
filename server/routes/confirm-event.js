@@ -47,7 +47,7 @@ exports.register = (server, options, next) => {
                             notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
                                 var verdict = error || success;
-                                reply(recipients);
+                                reply(success);
                             });
                         });
                     });
