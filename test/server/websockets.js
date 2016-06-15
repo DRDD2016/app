@@ -1,10 +1,18 @@
 import test from 'tape';
+import { feedSocket } from '../../src/js/socket.js';
+import { server } from '../utils/initDB.js';
 
+test('A socket is created under `/feed` namespace', (t) => {
 
-test('On initial sign in, a socket namespace is created for that user', (t) => {
+    t.ok(feedSocket.nsp.indexOf('/feed') > -1, '`/feed` namespace exists');
+    t.end();
+});
 
-    // when you sign up, you get a personal namespace for your notifications.
-    // that namespace will be connected to a myEvents object in redis
+test('Socket port matches the server port', (t) => {
+    
+    const socketPort = feedSocket.nsp.match(/(?:)\d{2,4}/)[0];
+    const serverPort = server.info.uri.match(/(?:)\d{2,4}/)[0];
 
+    t.equal(socketPort, serverPort, 'socket connected to the correct server port');
     t.end();
 });
