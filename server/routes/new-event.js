@@ -29,7 +29,6 @@ exports.register = (server, options, next) => {
                         notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
                             if (!error) {
-                                console.log("Prepare to notify everyone");
                                 pub.publish('notify', JSON.stringify(recipients));
                             }
 

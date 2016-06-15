@@ -2,6 +2,7 @@ var setHostEventChoices = require('../lib/setHostEventChoices.js');
 var convertPollToConfirmedEvent = require('../db/convertPollToConfirmedEvent.js');
 var getEvent = require('../db/getEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
+var pub = require('../init-socket.js').pub;
 
 
 exports.register = (server, options, next) => {
@@ -46,6 +47,9 @@ exports.register = (server, options, next) => {
 
                             notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
+                                if (!error) {
+                                    pub.publish('notify', JSON.stringify(recipients));
+                                }
                                 var verdict = error || success;
                                 reply(success);
                             });
