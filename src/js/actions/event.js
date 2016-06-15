@@ -362,7 +362,7 @@ export function updateNotification (index) {
                 dispatch(updateNotificationSuccess());
             })
             .catch((error) => {
-                console.log(error);
+                console.error(error);
                 dispatch(updateNotificationFailure(error));
             });
     };

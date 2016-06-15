@@ -79,7 +79,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(sharePhoto(photoURL));
         },
         handleSetPhoto: (file) => {
-            console.log(file);
+            
             dispatch(setPhoto(file));
         }
     };
