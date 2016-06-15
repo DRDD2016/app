@@ -1,7 +1,9 @@
 import io from 'socket.io-client';
 import getUserID from './lib/getUserID.js';
 
-export const feedSocket = io(`${location.protocol}//${location.hostname}:9000/feed`);
+let port = process.env.PORT || 9000;
+
+export const feedSocket = io(`${location.protocol}//${location.hostname}:${port}/feed`);
 
 feedSocket.on('connected', (thing) => {
 
