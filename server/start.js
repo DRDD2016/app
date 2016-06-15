@@ -12,3 +12,7 @@ server.start((error) => {
     }
     console.info('🌍 The server is running on: ', server.info.uri);
 });
+
+// module.exports = {
+//     io: io
+// };

@@ -7,6 +7,7 @@ export const GET_EVENT = 'GET_EVENT';
 export const GET_EVENT_REQUEST = 'GET_EVENT_REQUEST';
 export const GET_EVENT_SUCCESS = 'GET_EVENT_SUCCESS';
 export const GET_EVENT_FAILURE = 'GET_EVENT_FAILURE';
+
 export const UPDATE_POLL = 'UPDATE_POLL';
 
 export const CONFIRM_POLL = 'CONFIRM_POLL';
@@ -44,9 +45,6 @@ export const UPDATE_NOTIFICATION_FAILURE = 'UPDATE_NOTIFICATION_FAILURE';
 export const RESET_EVENT_STATE = 'RESET_EVENT_STATE';
 
 
-
-
-
 /********
 GET EVENT ACTIONS
 ********/
@@ -59,7 +57,6 @@ export function getEvent (eventID) {
 
         axios.get('/get-event?eventID=' + eventID + '&userID=' + getUserID())
             .then((response) => {
-                console.log(response, 'response from get event');
                 dispatch(getEventSuccess(response.data));
                 dispatch(getPhotos(response.data.photos));
                 dispatch(getDeletedPhotos(response.data.deletedPhotos));
@@ -254,7 +251,7 @@ export function updateRSVPFailure (error) {
 
 
 /********
-CANCEL CONFIRMED EVENT ACTIONS
+DELETE EVENT ACTIONS
 ********/
 
 
@@ -393,6 +390,9 @@ export function updateNotificationFailure (error) {
     };
 }
 
+/********
+RESET_EVENT_STATE ACTION
+********/
 
 export function resetEventState () {
     return {

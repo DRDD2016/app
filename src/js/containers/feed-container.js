@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Feed from '../components/feed.jsx';
-import { getUser } from '../actions/user.js';
-import { getNotifications, applyFilter, clearFilter } from '../actions/notifications.js';
+import { applyFilter, clearFilter } from '../actions/notifications.js';
 import { updateNotification } from '../actions/event.js';
+import { listenForUserID } from '../lib/action-listeners.js';
 import filterNotifications from '../lib/filterNotifications.js';
+import { store } from '../init-store.js';
+
+/* Wait for userID to be defined before dispatching getNotifications */
+listenForUserID(store);
 
 const mapStateToProps = (state) => {
 

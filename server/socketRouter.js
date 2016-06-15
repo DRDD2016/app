@@ -1,4 +1,3 @@
-// var getNotificationsHandler = require('./routes/get-notifications-socket.js');
 var getNotifications = require('./db/getNotifications.js');
 var pub = require('./init-socket.js').pub;
 var sub = require('./init-socket.js').sub;
@@ -8,10 +7,8 @@ function socketRouter (io) {
     console.log("We made a connection!!!");
     io.emit('connected');
 
-    io.on('join', (data) => {
-        var userIDArray = JSON.parse(data);
-        userIDArray.push("stuff");
-        console.log(Array.isArray(userIDArray));
+    io.on('join', (userID) => {
+        var userIDArray = JSON.parse(userID);
         pub.publish("notify", JSON.stringify(userIDArray));
     });
 
@@ -21,8 +18,6 @@ function socketRouter (io) {
 
             io.emit('failure', message);
         } else if (channel === 'notify') {
-            console.log(">>>", message);
-            console.log("time to notify", Array.isArray(message));
 
             JSON.parse(message).forEach((userID) => {
 

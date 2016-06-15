@@ -11,15 +11,32 @@ export const CLEAR_FILTER = "CLEAR_FILTER";
 import { feedSocket } from '../socket.js';
 import { store } from '../init-store.js';
 
-feedSocket.on('notifications:' + getUserID(), (data) => {
-    console.log("WE GOT IT:", data);
-    store.dispatch(getNotificationsSuccess(data));
-});
 
-feedSocket.on('failure', (error) => {
-    store.dispatch(getNotificationsFailure(error));
-});
+export function getNotifications (userID) {
 
+    return (dispatch) => {
+
+        feedSocket.on('connected', (thing) => {
+
+
+            if (userID) {
+
+                dispatch(getNotificationsRequest());
+                feedSocket.emit('join', JSON.stringify([userID]));
+            }
+        });
+
+        feedSocket.on('notifications:' + userID, (data) => {
+
+            store.dispatch(getNotificationsSuccess(data));
+        });
+
+        feedSocket.on('failure', (error) => {
+
+            store.dispatch(getNotificationsFailure(error));
+        });
+    };
+}
 
 export function getNotificationsRequest () {
     return {

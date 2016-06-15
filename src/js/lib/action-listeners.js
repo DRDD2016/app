@@ -8,26 +8,29 @@ export function listenForS3URL (store) {
 
     function listener () {
 
-        let status = getS3URLStatus(store.getState());
+        let status = store.getState().photos.signedURL;
 
         if (status) {
 
             unsubscribe();
-            const file = getPhotoFromStore(store.getState());
-            const url = getURLFromStore(store.getState());
+            const file = store.getState().photos.file;
+            const url = store.getState().photos.signedURL;
             store.dispatch(uploadPhoto(url, file));
         }
     }
+}
 
-    function getURLFromStore (state) {
-        return state.photos.signedURL;
-    }
+export function listenForUserID (store) {
 
-    function getPhotoFromStore (state) {
-        return state.photos.file;
-    }
+    let unsubscribe = store.subscribe(listener);
 
-    function getS3URLStatus (state) {
-        return state.photos.signedURL;
+    function listener () {
+
+        let userID = store.getState().user.id;
+
+        if (userID) {
+            unsubscribe();
+            store.dispatch(getNotifications(userID));
+        }
     }
 }

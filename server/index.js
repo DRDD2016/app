@@ -8,7 +8,7 @@ var authenticateUser = require('./lib/authenticateUser.js');
 // init io, pass server into io, pass server along
 // server.start
 
-exports.init = (port, callback) => {
+exports.init = (port) => {
 
     var server = new Hapi.Server({
         // connections: {
@@ -28,6 +28,7 @@ exports.init = (port, callback) => {
     server.register([Bell], (err) => {
 
         if (err) {
+            console.error(err);
             throw new Error(err);
         }
 
@@ -44,6 +45,7 @@ exports.init = (port, callback) => {
     server.register(plugins, (err) => {
 
         if (err) {
+            console.error(err);
             throw new Error(err);
         }
         server.route([{
