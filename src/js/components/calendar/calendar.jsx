@@ -24,9 +24,12 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
             }
             {
                 data.length === 0 && !isFetching &&
-                    <div className="no-events-message">
+                <div className="row">
+
+                    <p className="twelve columns no-events-message">
                         You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
-                    </div>
+                    </p>
+                </div>
             }
             {
                 !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
