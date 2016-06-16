@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, eventID }) => {
-    console.log("deleted photos", deletedPhotos);
+
     let deletedPhotosURL = deletedPhotos.map((photo, index) => {
         return photo.photoURL;
     });
@@ -14,7 +14,7 @@ const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhot
 
         return (
             <div key={ i }>
-                <img className="photo" src={ photo.photoURL } />
+                <img  className="photo" src={ photo.photoURL } />
 
                 <div className="row">
                     <label onClick={ () => { handleDeletePhoto(photo, eventID); } } className="six columns photo-button">Delete</label>

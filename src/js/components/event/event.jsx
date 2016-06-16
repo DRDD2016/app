@@ -119,10 +119,11 @@ class Event extends React.Component {
                                closeModal={ this.handleCloseModal } />
 
                         <TopBar eventID={ this.props.event.eventID }
-                            userIsHost={ this.props.event.isHost }
+                            userIsHost={ this.props.userIsHost }
                             isPoll={ this.props.event.isPoll }
                             handleEdit={ this.props.handleEdit }
-                            displayCancelModal={ this.cancelEventConfirmationModal } />
+                            displayCancelModal={ this.cancelEventConfirmationModal }
+                            event={ this.props.event } />
 
 
                         <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
