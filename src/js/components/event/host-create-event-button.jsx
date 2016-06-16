@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { Link } from 'react-router';
+import { Link, hashHistory } from 'react-router';
 
 const HostCreateEventButton = ({ hostEventChoices, handleConfirmEvent, eventID }) => {
     let hostHasSelectedEventOptions =
@@ -13,7 +13,7 @@ const HostCreateEventButton = ({ hostEventChoices, handleConfirmEvent, eventID }
     });
 
     return (
-        <button className={ classes } onClick={ () => handleConfirmEvent(hostEventChoices, eventID) }> CONFIRM & SEND INVITES </button>
+        <button className={ classes } onClick={ () => { handleConfirmEvent(hostEventChoices, eventID);                 hashHistory.push('/feed'); } }> CONFIRM & SEND INVITES </button>
     );
 
 };

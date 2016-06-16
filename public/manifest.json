@@ -4,8 +4,8 @@
   "version": "1.0",
   "manifest_version": 2,
   "icons": {
-    "src": "final-icon.png",
-    "sizes": "256x256",
+    "src": "spark-128.png",
+    "sizes": "128x128",
     "type": "image/png"
   },
   "app": {
