@@ -38,10 +38,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
         <div className="confirmed-event">
             { eventNote(event) }
             <div className="row">
-                <p className="three columns confirm-event-title-what">
+                <p className="three columns confirm-event-title what">
                     What
                 </p>
-                <div className="nine columns confirm-event-what">
+                <div className="nine columns confirm-event what">
                     { event.eventWhat[0] || "TBC" }
                 </div>
             </div>
@@ -49,31 +49,31 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             <br />
 
             <div className="row">
-                <p className="three columns confirm-event-title-where">
+                <p className="three columns confirm-event-title where">
                     Where
                 </p>
 
-                <div className="nine columns confirm-event-where">
-                    { event.eventWhere[0].placeName || "TBC" } { event.eventWhere[0].placeName }
+                <div className="nine columns confirm-event where">
+
+                    <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
+                    <span className="placeAddress">{ event.eventWhere[0].placeName }</span>
                 </div>
             </div>
 
             <br />
 
             <div className="row">
-                <p className="three columns confirm-event-title-when">
+                <p className="three columns confirm-event-title when">
                     When
                 </p>
 
-
-            <div className="row">
-                <div className="twelve columns">
-                    <span className="date">
+                <div className="nine columns confirm-event when">
+                    <div className="date">
                         { formatDate(event.eventWhen[0].date, true) || "TBC" }
-                    </span>
-                    <span className="time">
+                    </div>
+                    <div className="time">
                         { event.eventWhen[0].time || "TBC" }
-                    </span>
+                    </div>
                 </div>
             </div>
 
@@ -99,7 +99,6 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                          eventID={ eventID }/>
 
         </div>
-    </div>
     );
 
 };
