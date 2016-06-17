@@ -34,16 +34,15 @@
 }
 
 .photo-modal-container {
-    display: flex;
+    display: none;
     border: 1px solid black;
     height: 30%;
     width: 90%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
     font-size: 2em;
-    color: aliceblue;
     z-index: 20;
     position: fixed;
-    top: 40%;
+    top: 35%;
     text-align: center;
     flex-direction: column;
     justify-content: center;
@@ -54,10 +53,11 @@
         font-size: 1em;
         display: block;
         margin-bottom: 0.5em;
+        color: $off-black;
     }
 
     div {
-        border: 3px solid white;
+        border: 3px solid $off-black;
         margin: 0.5em;
 
         &.delete {
@@ -66,8 +66,8 @@
         }
 
         &.share {
-            border-color: white;
-            color: white;
+            border-color: $off-black;
+            color: $off-black;
         }
     }
 
