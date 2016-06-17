@@ -1,7 +1,12 @@
 import React from 'react';
 
 const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, eventID }) => {
-    console.log("deleted photos", deletedPhotos);
+
+    const togglePhotoModal = (e) => {
+        alert(e);
+    };
+
+
     let deletedPhotosURL = deletedPhotos.map((photo, index) => {
         return photo.photoURL;
     });
@@ -13,13 +18,9 @@ const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhot
     let stream = filteredPhotos.map((photo, i) => {
 
         return (
-            <div key={ i }>
-                <img className="photo" src={ photo.photoURL } />
-
-                <div className="row">
-                    <label onClick={ () => { handleDeletePhoto(photo, eventID); } } className="six columns photo-button">Delete</label>
-                    <label onClick={ () => { handleSharePhoto(photo.photoURL); } } className="six columns photo-button share">Share</label>
-                </div>
+            <div className="row photo" key={ i }>
+                <img className="eleven columns" src={ photo.photoURL } />
+                <i className="one column fa fa-ellipsis-v" onClick={ togglePhotoModal } ariaHidden="true" />
             </div>
         );
     });
