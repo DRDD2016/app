@@ -32,3 +32,43 @@
         }
     }
 }
+
+.photo-modal-container {
+    display: flex;
+    border: 1px solid black;
+    height: 30%;
+    width: 90%;
+    background-color: rgba(0, 0, 0, 0.8);
+    font-size: 2em;
+    color: aliceblue;
+    z-index: 20;
+    position: fixed;
+    top: 40%;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .fa-times:before {
+        position: relative;
+        left: 45%;
+        font-size: 1em;
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    div {
+        border: 3px solid white;
+        margin: 0.5em;
+
+        &.delete {
+            border-color: $red;
+            color: $red;
+        }
+
+        &.share {
+            border-color: white;
+            color: white;
+        }
+    }
+
+}

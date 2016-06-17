@@ -1,4 +1,5 @@
 import React from 'react';
+import PhotoModal from '../../general/photo-modal.jsx';
 
 const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, eventID }) => {
 
@@ -27,6 +28,7 @@ const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhot
 
     return (
         <div>
+            <PhotoModal handleDeletePhoto={ handleDeletePhoto } handleSharePhoto={ handleSharePhoto } />
             { photos && stream }
             <div className="row">
                 <hr className="twelve columns" />
