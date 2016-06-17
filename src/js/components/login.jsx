@@ -24,21 +24,26 @@ class Login extends React.Component {
         return (
             <div className="container login">
 
-                <Banner />
                     <div className="row">
-                        <h2 className="twelve columns centre">Welcome to Spark</h2>
+                        <img className="twelve columns centre" src="https://cloud.githubusercontent.com/assets/17908724/15935061/e9521806-2e5d-11e6-8078-1c520b50b956.png" />
                     </div>
 
                     <div className="row">
-                        <p className="text-snippet">
+                        <h4 className="text-snippet">
                             The easy way to organise parties, events, share pictures and memories with friends, family and groups.
-                        </p>
+                        </h4>
                     </div>
 
                     <div className="row">
                         <button className="twelve columns facebook" onClick={ (e) => this.props.login() }>
                             Login with Facebook
                         </button>
+                    </div>
+
+                    <div className="row save-to-homescreen">
+                        <h5>
+                            Save the web-app to homescreen for the best experience
+                        </h5>
                     </div>
 
             </div>
