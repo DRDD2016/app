@@ -56,7 +56,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 <div className="nine columns confirm-event where">
 
                     <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
-                    <span className="placeAddress">{ event.eventWhere[0].placeName }</span>
+                    <span className="placeAddress">{ event.eventWhere[0].placeAddress }</span>
                 </div>
             </div>
 
