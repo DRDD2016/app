@@ -239,7 +239,7 @@ DELETE PHOTO ACTION
 export function deletePhoto (photo, eventID) {
 
     return (dispatch) => {
-
+        
         dispatch(deletePhotoRequest());
         let payload = {
             photo,

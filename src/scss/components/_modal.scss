@@ -35,22 +35,24 @@
 
 .photo-modal-container {
     display: none;
-    border: 1px solid $off-black;
-    height: 30%;
+    // border: 1px solid $off-black;
+    height: 35%;
     width: 90%;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(250, 244, 242, 0.9);
+    box-shadow: 2px 2px 10px 5px rgba(0, 0, 0, 0.2);
     z-index: 20;
     position: fixed;
     top: 35%;
     text-align: center;
     flex-direction: column;
     justify-content: center;
+    font-size: 1.5em;
 
     .fa-times {
         position: relative;
         left: 45%;
         // top: -5%;
-        font-size: 1.2em;
+        font-size: 1em;
         display: block;
         margin-bottom: 0.5em;
         color: $off-black;
@@ -58,7 +60,7 @@
 
     div {
         position: relative;
-        border: 3px solid $off-black;
+        border: 2px solid $off-black;
         margin: 0.5em;
         line-height: 2em;
 

@@ -4,6 +4,10 @@ import classnames from 'classnames';
 
 const Navbar = ({ currentLocation }) => {
 
+    if (process.env.DEVELOPMENT) {
+        currentLocation = '/feed';
+    }
+
     let navbarClasses = classnames("navbar", {
         "display-none": currentLocation === "/"
     });

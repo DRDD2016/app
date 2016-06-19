@@ -13,12 +13,17 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
     });
 
     return (
-        <div className="container">
-            <div className="row">
-                <h4 className="twelve columns">
-                    { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
-                </h4>
+        <div>
+            <div className="event-header row">
+                <div>
+                    <p className="three columns back-button" > </p>
+                    <h3 className=" six columns title">
+                        { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
+                    </h3>
+                    <p className="three columns cancel-event-button"></p>
+                </div>
             </div>
+            <div className="container">
             {
                 isFetching && <Spinner />
             }
@@ -37,6 +42,7 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                                                                isFilter={ isFilter }
                                                                isShowHosting={ isShowHosting } />
             }
+
             {
                 !isFetching && sortedData.map((item, i) => {
 
@@ -49,6 +55,7 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                                          eventID={ item.eventID } />;
                 })
             }
+            </div>
         </div>
     );
 };

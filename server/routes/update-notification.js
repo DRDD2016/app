@@ -1,4 +1,6 @@
 var markNotificationAsViewed = require('../db/markNotificationAsViewed.js');
+var pub = require('../init-socket.js').pub;
+
 
 exports.register = (server, options, next) => {
 
@@ -9,8 +11,11 @@ exports.register = (server, options, next) => {
             description: 'update an existing notification as the user has now clicked it.',
 
             handler: (request, reply) => {
+                var recipients = [request.query.userID];
                 markNotificationAsViewed(request.query.index, request.query.userID, (error, response) => {
-                    
+                    if (!error) {
+                        pub.publish('notify', JSON.stringify(recipients));
+                    }
                     var verdict = error || response;
 
                     reply(verdict);
