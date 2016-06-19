@@ -32,3 +32,47 @@
         }
     }
 }
+
+.photo-modal-container {
+    display: none;
+    border: 1px solid $off-black;
+    height: 30%;
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 20;
+    position: fixed;
+    top: 35%;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+
+    .fa-times {
+        position: relative;
+        left: 45%;
+        // top: -5%;
+        font-size: 1.2em;
+        display: block;
+        margin-bottom: 0.5em;
+        color: $off-black;
+    }
+
+    div {
+        position: relative;
+        border: 3px solid $off-black;
+        margin: 0.5em;
+        line-height: 2em;
+
+        &.delete {
+            position: relative;
+            border-color: $red;
+            color: $red;
+        }
+
+        &.share {
+            position: relative;
+            border-color: $off-black;
+            color: $off-black;
+        }
+    }
+
+}

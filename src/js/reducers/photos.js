@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import { SET_PHOTO } from '../actions/photos.js';
+import { SET_FILE } from '../actions/photos.js';
 import { GET_PHOTOS } from '../actions/photos.js';
 import { GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../actions/photos.js';
 import { UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../actions/photos.js';
@@ -18,7 +18,7 @@ const initialState = {
     photoURL: undefined,
     file: undefined,
     photos: [],
-    toShare: undefined,
+    selectedPhoto: undefined,
     deletedPhotos: []
 };
 
@@ -29,8 +29,8 @@ export default function photos (state = initialState, action) {
     case GET_PHOTOS:
         return handleGetPhotos(state, action);
 
-    case SET_PHOTO:
-        return handleSetPhoto(state, action);
+    case SET_FILE:
+        return handleSetFile(state, action);
 
     case GET_DELETED_PHOTOS:
         return handleGetDeletedPhotos(state, action);
@@ -77,7 +77,7 @@ function handleGetPhotos (state, action) {
     return newState;
 }
 
-function handleSetPhoto (state, action) {
+function handleSetFile (state, action) {
 
     let newState = update(state, {
         file: { $set: action.data }
@@ -142,7 +142,7 @@ function handleGetS3URLSuccess (state, action) {
 function handleSelectPhoto (state, action) {
 
     let newState = update(state, {
-        toShare: { $set: action.url }
+        selectedPhoto: { $set: action.url }
     });
     return newState;
 }

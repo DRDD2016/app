@@ -228,7 +228,7 @@ test('`confirm-event` works', (t) => {
                         var latestNotification = JSON.parse(notifications[0]).eventID;
                         t.equal(latestNotification, 'event:400', 'A notification was created');
                         client.del('event:400');
-                        client.srem('calendar:' + inviteeID);
+                        client.srem('calendar:' + inviteeID, 'event:400');
                         client.lpop("notifications:" + inviteeID);
                         t.end();
                     });

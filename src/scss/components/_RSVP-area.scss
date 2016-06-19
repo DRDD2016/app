@@ -1,84 +1,64 @@
-.RSVP-button-going {
+.RSVP-button {
     text-align: center;
     border-radius: 30px;
-    background-color: rgb(140, 198, 68);
     color: white;
     padding: 0.4em;
     margin-bottom: 0.5em;
 
-}
+    &.going {
+        background-color: rgb(140, 198, 68);
+    }
 
-.RSVP-button-not-going {
-    text-align: center;
-    border-radius: 30px;
-    background-color: rgb(226, 33, 33);
-    color: white;
-    padding: 0.4em;
-    margin-bottom: 0.5em;
-}
+    &.maybe {
+        background-color: rgb(244, 176, 25);
+    }
 
-.RSVP-button-maybe {
-    text-align: center;
-    border-radius: 30px;
-    background-color: rgb(244, 176, 25);
-    color: white;
-    padding: 0.4em;
-    margin-bottom: 0.5em;
+    &.not-going {
+        background-color: rgb(226, 33, 33);
+    }
 }
 
 .RSVP-flex-container {
     margin-left: 1em;
 }
 
-.not-going {
-    text-align: right;
-}
-
-.maybe {
-    text-align: center;
-}
 
 .RSVP-user-list {
     padding-left: 15px;
 }
 
-.confirm-event-what {
+.confirm-event {
     text-align: center;
     border-radius: 5px;
-    background-color: $what;
     color: white;
     padding: 0.7em;
     margin-bottom: 0.5em;
+
+    &.what {
+        background-color: $what;
+    }
+    &.where {
+        background-color: $where;
+    }
+    &.when {
+        background-color: $when;
+    }
 }
 
-.confirm-event-where {
-    text-align: center;
-    border-radius: 5px;
-    background-color: $where;
-    color: white;
-    padding: 0.7em;
-    margin-bottom: 0.5em;
+.confirm-event-title {
+
+    &.what {
+        color: $what;
+    }
+    &.where {
+        color: $where;
+    }
+    &.when {
+        color: $when;
+    }
 }
 
-.confirm-event-when {
-    text-align: center;
-    border-radius: 5px;
-    background-color: $when;
-    color: white;
-    padding: 0.7em;
-    margin-bottom: 0.5em;
-}
-
-.confirm-event-title-what {
-    color: $what;
-}
-
-.confirm-event-title-where {
-    color: $where;
-}
-.confirm-event-title-when {
-    color: $when;
-}
+/* Semantic UI override */
 
 .ui.list, ol.ui.list, ul.ui.list {
     margin: 0.1em 0 !important;

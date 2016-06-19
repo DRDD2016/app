@@ -8,25 +8,29 @@ export const GET_NOTIFICATIONS_FAILURE = "GET_NOTIFICATIONS_FAILURE";
 export const APPLY_FILTER = "APPLY_FILTER";
 export const CLEAR_FILTER = "CLEAR_FILTER";
 
-// import { socket } from '../init-socket.js';
+import { feedSocket } from '../socket.js';
+import { store } from '../init-store.js';
 
-export function getNotifications () {
 
-    var id = getUserID();
+export function getNotifications (userID) {
 
     return (dispatch) => {
 
         dispatch(getNotificationsRequest());
+        feedSocket.on('connected', () => {
 
-        axios.get('/get-notifications?userID=' + id)
-            .then((response) => {
+            feedSocket.emit('join', JSON.stringify([userID]));
+        });
 
-                dispatch(getNotificationsSuccess(response.data));
-            })
-            .catch((error) => {
+        feedSocket.on('notifications:' + userID, (data) => {
 
-                dispatch(getNotificationsFailure(error));
-            });
+            store.dispatch(getNotificationsSuccess(data));
+        });
+
+        feedSocket.on('failure', (error) => {
+
+            store.dispatch(getNotificationsFailure(error));
+        });
     };
 }
 

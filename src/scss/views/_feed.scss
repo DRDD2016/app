@@ -1,0 +1,12 @@
+.no-events-message {
+    text-align: center;
+    color: $off-black;
+    z-index: 10;
+    line-height: 3;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    display: block;
+    // width: 100%;
+    font-size: 1.2em;
+}

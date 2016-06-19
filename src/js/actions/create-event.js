@@ -84,6 +84,7 @@ export function newEvent (eventData) {
 
         return axios.post('/new-event', eventData)
             .then((response) => {
+    
                 dispatch(newEventSuccess());
                 hashHistory.push('/feed');
                 dispatch(clearCreateEvent());

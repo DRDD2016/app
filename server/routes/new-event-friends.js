@@ -36,5 +36,5 @@ exports.register = (server, options, next) => {
 };
 
 exports.register.attributes = {
-    name: 'NewEventInvitees'
+    name: 'NewEventFriends'
 };

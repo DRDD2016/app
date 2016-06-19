@@ -1,5 +1,5 @@
 import test from 'tape';
-import { SET_PHOTO, setPhoto } from '../../../src/js/actions/photos.js';
+import { SET_FILE, setFile } from '../../../src/js/actions/photos.js';
 import { GET_S3_URL, GET_S3_URL_REQUEST, GET_S3_URL_SUCCESS, GET_S3_URL_FAILURE } from '../../../src/js/actions/photos.js';
 import { getS3URL, getS3URLRequest, getS3URLSuccess, getS3URLFailure } from '../../../src/js/actions/photos.js';
 import { UPLOAD_PHOTO, UPLOAD_PHOTO_REQUEST, UPLOAD_PHOTO_SUCCESS, UPLOAD_PHOTO_FAILURE } from '../../../src/js/actions/photos.js';
@@ -18,18 +18,18 @@ import createThunk from '../../utils/mock-thunk.js';
 SET PHOTO ACTIONS
 ********/
 
-test('setPhoto action creator returns expected action', (t) => {
+test('setFile action creator returns expected action', (t) => {
 
     const data = {
         filename: "photo.jpg"
     };
     const expected = {
-        type: SET_PHOTO,
+        type: SET_FILE,
         data
     };
-    const actual = setPhoto(data);
+    const actual = setFile(data);
 
-    t.deepEqual(actual, expected, 'setPhoto returns the SET_PHOTO action');
+    t.deepEqual(actual, expected, 'setFile returns the SET_FILE action');
     t.end();
 });
 

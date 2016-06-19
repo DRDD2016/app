@@ -15,7 +15,7 @@ const PollButton = ({ poll, handlePollConfirmation, eventID, voteButtonText }) =
         return category === true;
     });
 
-    let classes = classnames("twelve columns", {
+    let classes = classnames("twelve columns button-primary", {
         'display-none': !userHasCompletedPoll,
     });
 

@@ -46,14 +46,18 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
         }
         {
             notifications.length === 0 && !isFetching &&
-            <p>Nothing to see here</p>
+                <div className="no-events-message">
+                    You have no events. <br />
+                    (Why not create some?)
+                </div>
         }
             <div className="container">
             {
-                !isFetching && <FilterPanel displayAll={ displayAll }
-                                            displaySome={ displaySome }
-                                            isFilter={ isFilter }
-                                            isShowHosting={ isShowHosting } />
+                !isFetching && notifications.length > 0 &&
+                    <FilterPanel displayAll={ displayAll }
+                                 displaySome={ displaySome }
+                                 isFilter={ isFilter }
+                                 isShowHosting={ isShowHosting } />
             }
             {
                 !isFetching && mappedNotifications
