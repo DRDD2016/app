@@ -38,7 +38,7 @@ test('`get-user` retrieves user information from database EXCLUDING token', (t) 
 });
 
 test.skip('`/get-notifications` works', (t) => {
-
+/* convert to socket test */
     const options = {
         method: 'GET',
         url: '/get-notifications?userID=12345678'
@@ -134,7 +134,7 @@ test('`new-event` adds a confirmed event', (t) => {
     });
 });
 
-test.skip('`new-event-invitees` works', (t) => {
+test.skip('`new-event-friends` works', (t) => {
     /* ADD REAL FRIENDS TO DB */
     const options = {
         method: 'GET',
