@@ -10,7 +10,7 @@ import TopBar from './top-bar.jsx';
 
 
 const EditEvent = (props) => {
-    console.log(props);
+    
     let eventWhat = props.eventWhat[0];
     let eventWhere = props.eventWhere[0];
     let eventWhen = props.eventWhen[0];

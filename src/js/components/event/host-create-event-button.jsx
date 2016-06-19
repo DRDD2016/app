@@ -8,7 +8,7 @@ const HostCreateEventButton = ({ hostEventChoices, handleConfirmEvent, eventID }
         return hostEventChoices[categoryName] !== "";
     });
 
-    let classes = classnames("twelve columns", {
+    let classes = classnames("twelve columns button-primary", {
         "display-none": !hostHasSelectedEventOptions
     });
 

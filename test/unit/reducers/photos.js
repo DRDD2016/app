@@ -48,14 +48,14 @@ GET DELETED PHOTO ACTIONS
 SET PHOTO ACTIONS
 ********/
 
-test('Reducer handles SET_PHOTO as expected', (t) => {
+test('Reducer handles SET_FILE as expected', (t) => {
 
     let photo = {
         filetype: 'jpg'
     };
 
     let action = {
-        type: "SET_PHOTO",
+        type: "SET_FILE",
         data: photo
     };
 
@@ -289,7 +289,7 @@ test('Reducer handles SELECT_PHOTO as expected', (t) => {
 
     const actual = reducer(initialState, action);
     let expected = initialState;
-    expected.toShare = url;
+    expected.selectedPhoto = url;
 
     t.deepEqual(actual, expected);
     t.end();

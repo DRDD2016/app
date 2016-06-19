@@ -26,7 +26,7 @@ const EventConfirm = ({ data, saveEvent }) => {
     });
 
 
-    let saveEventButton = classnames("twelve columns", {
+    let saveEventButton = classnames("twelve columns button-primary", {
         "display-none": SaveButtonIsHidden
     });
 
