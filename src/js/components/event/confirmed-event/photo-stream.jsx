@@ -16,7 +16,7 @@ const PhotoStream = ({ photos, deletedPhotos, getSelectedPhoto, handleDeletePhot
 
 
     let filteredPhotos = photos.filter((individualPhoto, index) => {
-        console.log(individualPhoto.photoURL);
+
         return deletedPhotos.indexOf(individualPhoto.photoURL) === -1;
     });
 
