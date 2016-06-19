@@ -15,7 +15,7 @@ test('getNotifications async action creator returns expected action', (t) => {
         type: GET_NOTIFICATIONS_REQUEST,
         isFetching: true
     };
-    t.deepEqual(actual, expected, "getNotifications return the GET_NOTIFICATIONS_REQUEST action");
+    t.deepEqual(actual, expected, "getNotifications returns the GET_NOTIFICATIONS_REQUEST action");
     t.end();
 });
 

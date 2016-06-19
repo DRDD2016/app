@@ -40,7 +40,8 @@ export const event = {
     tally: undefined,
     hostEventChoices: undefined,
     invitees: undefined,
-    RSVPs: undefined
+    RSVPs: undefined,
+    updateNotification: false
 };
 
 
@@ -51,6 +52,6 @@ export const photos = {
     photoURL: undefined,
     file: undefined,
     photos: [],
-    toShare: undefined,
+    selectedPhoto: undefined,
     deletedPhotos: []
 };

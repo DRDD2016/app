@@ -11,7 +11,9 @@
 @import 'base/general';
 @import 'base/colours';
 @import 'components/banner';
+@import 'components/event-note';
 @import 'components/filter-panel';
+@import 'components/invited-label';
 @import 'components/message';
 @import 'components/modal';
 @import 'components/navbar';
@@ -23,6 +25,7 @@
 @import 'components/RSVP-area';
 @import 'views/confirmed-event';
 @import 'views/create-event';
+@import 'views/feed';
 @import 'views/poll';
 @import 'views/poll-general';
 @import 'views/login';

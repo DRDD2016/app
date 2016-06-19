@@ -20,6 +20,10 @@ import { deleteEvent, deleteEventRequest, deleteEventSuccess, deleteEventFailure
 import { SAVE_EDITED_EVENT, SAVE_EDITED_EVENT_REQUEST, SAVE_EDITED_EVENT_SUCCESS, SAVE_EDITED_EVENT_FAILURE } from '../../../src/js/actions/event.js';
 import { saveEditedEvent, saveEditedEventRequest, saveEditedEventSuccess, saveEditedEventFailure } from '../../../src/js/actions/event.js';
 
+import { UPDATE_NOTIFICATION, UPDATE_NOTIFICATION_REQUEST, UPDATE_NOTIFICATION_SUCCESS, UPDATE_NOTIFICATION_FAILURE } from '../../../src/js/actions/event.js';
+import { updateNotification, updateNotificationRequest, updateNotificationSuccess, updateNotificationFailure } from '../../../src/js/actions/event.js';
+
+
 import createThunk from '../../utils/mock-thunk.js';
 
 import { event as eventFixtures } from './fixtures.js';
@@ -469,6 +473,74 @@ test('saveEditedEventFailure action creator returns expected action', (t) => {
     };
 
     const actual = saveEditedEventFailure(error);
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+
+/********
+UPDATE_NOTIFICATION ACTIONS
+********/
+
+
+test('updateNotification async action creator returns expected action', (t) => {
+
+    let actual;
+    const { dispatch, queue } = createThunk();
+    let index = 1;
+
+    dispatch(updateNotification(index));
+
+    [{ ...actual }] = queue;
+
+    const expected = {
+        type: UPDATE_NOTIFICATION_REQUEST,
+        updateNotification: true
+    };
+
+    t.deepEqual(actual, expected, "updateNotification returns UPDATE_NOTIFICATION_REQUEST action");
+    t.end();
+});
+
+test('updateNotificationRequest action creator returns expected action', (t) => {
+
+    const expected = {
+        type: UPDATE_NOTIFICATION_REQUEST,
+        updateNotification: true
+    };
+    const actual = updateNotificationRequest();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('updateNotificationSuccess action creator returns expected action', (t) => {
+
+
+    const expected = {
+        type: UPDATE_NOTIFICATION_SUCCESS,
+        updateNotification: false
+    };
+
+    const actual = updateNotificationSuccess();
+
+    t.deepEqual(actual, expected);
+    t.end();
+});
+
+test('updateNotificationFailure action creator returns expected action', (t) => {
+
+    const error = {
+        message: "Whoops"
+    };
+    const expected = {
+        type: UPDATE_NOTIFICATION_FAILURE,
+        updateNotification: false,
+        error
+    };
+
+    const actual = updateNotificationFailure(error);
 
     t.deepEqual(actual, expected);
     t.end();

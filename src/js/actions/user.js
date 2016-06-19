@@ -1,5 +1,6 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
+import { feedSocket } from '../socket.js';
 
 export const GET_USER = "GET_USER";
 export const GET_USER_REQUEST = "GET_USER_REQUEST";

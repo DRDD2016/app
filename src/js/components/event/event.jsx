@@ -6,6 +6,7 @@ import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
 import Modal from '../general/modal.jsx';
 import TopBar from './top-bar.jsx';
+import DeletedEvent from './deleted-event.jsx';
 import { Link, hashHistory } from 'react-router';
 
 
@@ -89,7 +90,8 @@ class Event extends React.Component {
                                         handleDeletePhoto={ this.props.handleDeletePhoto }
                                         handleSharePhoto={ this.props.handleSharePhoto }
                                         file={ this.props.file }
-                                        handleSetPhoto={ this.props.handleSetPhoto }/>
+                                        handleSetFile={ this.props.handleSetFile }
+                                        getSelectedPhoto={ this.props.getSelectedPhoto }/>
                     </div>
                 </div>
 
@@ -103,14 +105,11 @@ class Event extends React.Component {
         return (
             <div>
                 {
-                    (this.props.isFetching || this.props.isPoll === undefined || this.props.userIsHost === undefined ) && <Spinner />
+                    this.props.isFetching && <Spinner />
                 }
 
                 {
-                    !this.props.isFetching && (this.props.event === false) &&
-                    <div>
-                        The Event has been deleted
-                    </div>
+                    !this.props.isFetching && (this.props.event === false) && <DeletedEvent />
                 }
                 {
                     !this.props.isFetching && this.props.event &&
@@ -119,10 +118,11 @@ class Event extends React.Component {
                                closeModal={ this.handleCloseModal } />
 
                         <TopBar eventID={ this.props.event.eventID }
-                            userIsHost={ this.props.event.isHost }
+                            userIsHost={ this.props.userIsHost }
                             isPoll={ this.props.event.isPoll }
                             handleEdit={ this.props.handleEdit }
-                            displayCancelModal={ this.cancelEventConfirmationModal } />
+                            displayCancelModal={ this.cancelEventConfirmationModal }
+                            event={ this.props.event } />
 
 
                         <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }

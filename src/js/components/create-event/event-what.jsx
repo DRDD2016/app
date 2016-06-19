@@ -6,12 +6,20 @@ import AddInput from '../general/add-input.jsx';
 
 const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) => {
 
+    let inputCount = eventWhatData.length;
+
     let inputs = eventWhatData.map( (value, i) => {
 
         return (
             <Input
+                ref={ (input) => {
+                    if (input !== null && i === inputCount - 1) {
+                        input.focus();
+                    }
+                }}
                 handleChange={ handleEventWhat.bind(this, i) }
                 key={ i }
+                inputCount={ inputCount }
                 value={ value }
                 inputKey={ i }
                 removeInput={ removeInput }

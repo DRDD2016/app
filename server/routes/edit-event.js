@@ -2,6 +2,8 @@ var editEvent = require('../db/editEvent.js');
 var stringifyObjectValues = require('../lib/stringifyObjectValues.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
 var getEvent = require('../db/getEvent.js');
+var pub = require('../init-socket.js').pub;
+
 
 exports.register = (server, options, next) => {
 
@@ -33,11 +35,12 @@ exports.register = (server, options, next) => {
                         }
 
                         notifyEveryone(recipients, subjectID, eventID, event, (error, response) => {
-                            if (error) {
-                                reply(error);
-                            }
 
-                            reply(response);
+                            if (!error) {
+                                pub.publish('notify', JSON.stringify(recipients));
+                            }
+                            var verdict = error || response;
+                            reply(verdict);
                         });
 
                     });

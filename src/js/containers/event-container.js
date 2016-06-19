@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import Event from '../components/event/event.jsx';
 import getUserID from '../lib/getUserID.js';
 import { getEvent, updatePoll, confirmPoll, addHostEventChoice, confirmEvent, deleteEvent, updateRSVP } from '../actions/event.js';
-import { setPhoto, getS3URL, deletePhoto, sharePhoto } from '../actions/photos.js';
+import { setFile, selectPhoto, getS3URL, deletePhoto, sharePhoto } from '../actions/photos.js';
 import { hydrateCreateEvent } from '../actions/create-event.js';
-import { listenForS3URL } from '../lib/s3-helpers.js';
+import { listenForS3URL } from '../lib/action-listeners.js';
 import { listenForSavePhotoURL } from '../lib/save-photo-url-helper.js';
 
 import { store } from '../init-store.js';
@@ -71,16 +71,23 @@ const mapDispatchToProps = (dispatch) => {
             listenForSavePhotoURL(store);
             dispatch(getS3URL(file.name, file.type, eventID));
         },
-        handleDeletePhoto: (photo, eventID) => {
-            dispatch(deletePhoto(photo, eventID));
-        },
-        handleSharePhoto: (photoURL) => {
+        handleDeletePhoto: (eventID) => {
 
-            dispatch(sharePhoto(photoURL));
+            let selectedPhoto = store.getState().photos.selectedPhoto;
+            dispatch(deletePhoto(selectedPhoto, eventID));
         },
-        handleSetPhoto: (file) => {
-            console.log(file);
-            dispatch(setPhoto(file));
+        handleSharePhoto: () => {
+
+            let selectedPhoto = store.getState().photos.selectedPhoto;
+            dispatch(sharePhoto(selectedPhoto));
+        },
+        getSelectedPhoto: (photoURL) => {
+
+            dispatch(selectPhoto(photoURL));
+        },
+        handleSetFile: (file) => {
+
+            dispatch(setFile(file));
         }
     };
 };

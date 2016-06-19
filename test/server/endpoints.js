@@ -38,7 +38,7 @@ test('`get-user` retrieves user information from database EXCLUDING token', (t) 
 });
 
 test.skip('`/get-notifications` works', (t) => {
-
+/* convert to socket test */
     const options = {
         method: 'GET',
         url: '/get-notifications?userID=12345678'
@@ -134,7 +134,7 @@ test('`new-event` adds a confirmed event', (t) => {
     });
 });
 
-test.skip('`new-event-invitees` works', (t) => {
+test.skip('`new-event-friends` works', (t) => {
     /* ADD REAL FRIENDS TO DB */
     const options = {
         method: 'GET',
@@ -228,7 +228,7 @@ test('`confirm-event` works', (t) => {
                         var latestNotification = JSON.parse(notifications[0]).eventID;
                         t.equal(latestNotification, 'event:400', 'A notification was created');
                         client.del('event:400');
-                        client.srem('calendar:' + inviteeID);
+                        client.srem('calendar:' + inviteeID, 'event:400');
                         client.lpop("notifications:" + inviteeID);
                         t.end();
                     });

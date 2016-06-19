@@ -1,7 +1,7 @@
 import axios from 'axios';
 import getUserID from '../lib/getUserID.js';
 
-export const SET_PHOTO = "SET_PHOTO";
+export const SET_FILE = "SET_FILE";
 
 export const GET_PHOTOS = "GET_PHOTOS";
 
@@ -39,9 +39,9 @@ export const SHARE_PHOTO_FAILURE = "SHARE_PHOTO_FAILURE";
 SET PHOTO ACTION
 ********/
 
-export function setPhoto (file) {
+export function setFile (file) {
     return {
-        type: SET_PHOTO,
+        type: SET_FILE,
         data: file
     };
 }
@@ -239,14 +239,13 @@ DELETE PHOTO ACTION
 export function deletePhoto (photo, eventID) {
 
     return (dispatch) => {
-
+        
         dispatch(deletePhotoRequest());
-        var payload = {
+        let payload = {
             photo,
             eventID,
             userID: getUserID()
         };
-
         axios.post(`/delete-photo`, payload)
         .then((response) => {
             dispatch(deletePhotoSuccess());
