@@ -8,14 +8,14 @@ export default function autocompleteHelper (result, callback) {
         formattedAddress = result.address_components[4].long_name + ' ' + result.address_components[6].long_name;
         callback(formattedName, formattedAddress);
     }
-    if (result.types.indexOf('premise') >= 0 || result.types.indexOf('stadium') >= 0 || result.types.indexOf('point_of_interest') >= 0){
+    else if (result.types.indexOf('premise') >= 0 || result.types.indexOf('stadium') >= 0 || result.types.indexOf('point_of_interest') >= 0){
         let postcodeObject = result.address_components.length - 1;
         let cityObject = result.address_components.length - 3;
         formattedName = result.name;
         formattedAddress = result.address_components[cityObject].long_name + ' ' + result.address_components[postcodeObject].long_name;
         callback(formattedName, formattedAddress);
     }
-    if (result.types.indexOf('locality') >= 0 || result.types.indexOf('political') >= 0){
+    else if (result.types.indexOf('locality') >= 0 || result.types.indexOf('political') >= 0){
         let CountryObject = result.address_components.length - 1;
         if ( result.address_components[CountryObject].long_name !== "United Kingdom") {
             formattedName = result.name;
@@ -27,9 +27,15 @@ export default function autocompleteHelper (result, callback) {
             callback(formattedName, formattedAddress);
         }
     }
-    if (result.types.indexOf('country') >= 0){
+    else if (result.types.indexOf('country') >= 0){
         formattedName = result.name;
         formattedAddress = '';
         callback(formattedName, formattedAddress);
-    } 
+    }
+    else {
+        let postcodeObject = result.address_components.length - 1;
+        formattedName = result.name;
+        formattedAddress = result.address_components[postcodeObject].long_name;
+        callback(formattedName, formattedAddress);
+    }
 }
