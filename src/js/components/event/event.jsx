@@ -104,7 +104,7 @@ class Event extends React.Component {
         return (
             <div>
                 {
-                    (this.props.isFetching || this.props.isPoll === undefined || this.props.userIsHost === undefined ) && <Spinner />
+                    this.props.isFetching && <Spinner />
                 }
 
                 {
