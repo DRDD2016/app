@@ -350,7 +350,6 @@ export function saveEditedEventFailure (error) {
 /********
 UPDATE NOTIFICATIONS ACTIONS
 ********/
-
 export function updateNotification (index) {
 
     return (dispatch) => {
@@ -371,21 +370,21 @@ export function updateNotification (index) {
 export function updateNotificationRequest () {
     return {
         type: UPDATE_NOTIFICATION_REQUEST,
-        isFetching: true
+        updateNotification: true
     };
 }
 
 export function updateNotificationSuccess (event) {
     return {
         type: UPDATE_NOTIFICATION_SUCCESS,
-        isFetching: false,
+        updateNotification: false,
     };
 }
 
 export function updateNotificationFailure (error) {
     return {
         type: UPDATE_NOTIFICATION_FAILURE,
-        isFetching: false,
+        updateNotification: false,
         error: error
     };
 }

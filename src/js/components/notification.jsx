@@ -14,9 +14,10 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
     let viewedNotification = classnames("row notification", {
         "viewed-notification": viewed === true
     });
+// ADD THE OnClick button to Link! --<
     return (
         <div className={ viewedNotification }>
-            <Link to={ 'event/' + eventID } >
+            <Link onClick={ () => handleUpdateNotification(index) } to={ 'event/' + eventID } >
                 <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
                 <div className="six columns">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>

@@ -15,18 +15,17 @@ const mapStateToProps = (state) => {
     let data = state.notifications.data;
     let isFilter = state.notifications.filter;
     let isShowHosting = state.notifications.showHosting;
-
     let notifications = filterNotifications(data, isFilter, isShowHosting);
-
+    
     return {
         user: state.user,
         notifications,
         isFetching: state.notifications.isFetching,
+        updateNotification: state.event.updateNotification,
         isFilter,
         isShowHosting
     };
 };
-
 const mapDispatchToProps = (dispatch) => {
 
     return {

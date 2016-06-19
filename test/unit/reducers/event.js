@@ -376,3 +376,68 @@ test('Reducer handles DELETE_EVENT_FAILURE as expected', (t) => {
     t.deepEqual(actual, expected);
     t.end();
 });
+
+
+/********
+UPDATE NOTIFICATIONS
+********/
+
+test('Reducer handles UPDATE_NOTIFICATION_REQUEST as expected', (t) => {
+
+    const action = {
+        type: "UPDATE_NOTIFICATION_REQUEST",
+        updateNotification: true
+    };
+    const initialState = state;
+    const actual = reducer(initialState, action);
+
+    let expected = initialState;
+    expected.updateNotification = true;
+
+    t.deepEqual(actual, expected, 'on UPDATE_NOTIFICATION_REQUEST, updateNotification is `true`');
+    t.end();
+});
+
+test('Reducer handles UPDATE_NOTIFICATION_SUCCESS as expected', (t) => {
+
+    const action = {
+        type: "UPDATE_NOTIFICATION_SUCCESS",
+        updateNotification: false
+    };
+    const initialState = state;
+    const actual = reducer(initialState, action);
+
+    let expected = initialState;
+    expected.updateNotification = false;
+
+    t.deepEqual(actual, expected, 'on UPDATE_NOTIFICATION_SUCCESS, updateNotification is `false`');
+    t.end();
+});
+
+
+
+
+
+test('Reducer handles UPDATE_NOTIFICATION_FAILURE as expected', (t) => {
+
+    let initialState = state;
+    initialState.isFetching = true;
+    const error = {
+        message: "There was an error..."
+    };
+
+    const action = {
+        type: "UPDATE_NOTIFICATION_FAILURE",
+        updateNotification: false,
+        error: error
+    };
+
+    const actual = reducer(initialState, action);
+
+    let expected = initialState;
+    expected.updateNotification = false;
+    expected.error = error;
+
+    t.deepEqual(actual, expected);
+    t.end();
+});

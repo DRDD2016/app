@@ -17,7 +17,8 @@ const initialState = {
     hostEventChoices: undefined,
     invitees: undefined,
     RSVPs: undefined,
-    hasVoted: undefined
+    hasVoted: undefined,
+    updateNotification: false
 };
 
 export default function event (state = initialState, action) {
@@ -30,7 +31,6 @@ export default function event (state = initialState, action) {
     case DELETE_EVENT_REQUEST:
     case SAVE_EDITED_EVENT_REQUEST:
     case UPDATE_RSVP_REQUEST:
-    case UPDATE_NOTIFICATION_REQUEST:
         return handleRequest(state, action);
 
     case GET_EVENT_SUCCESS:
@@ -40,7 +40,6 @@ export default function event (state = initialState, action) {
     case CONFIRM_EVENT_SUCCESS:
     case DELETE_EVENT_SUCCESS:
     case SAVE_EDITED_EVENT_SUCCESS:
-    case UPDATE_NOTIFICATION_SUCCESS:
         return handleRequest(state, action);
 
     case UPDATE_RSVP_SUCCESS:
@@ -52,8 +51,13 @@ export default function event (state = initialState, action) {
     case DELETE_EVENT_FAILURE:
     case SAVE_EDITED_EVENT_FAILURE:
     case UPDATE_RSVP_FAILURE:
-    case UPDATE_NOTIFICATION_FAILURE:
         return handleFailure(state, action);
+
+    case UPDATE_NOTIFICATION_REQUEST:
+    case UPDATE_NOTIFICATION_SUCCESS:
+        return handleUpdateNotification(state, action);
+    case UPDATE_NOTIFICATION_FAILURE:
+        return handleUpdateNotificationFailure(state, action);
 
     case UPDATE_POLL:
         return updatePoll(state, action);
@@ -135,6 +139,23 @@ function addHostEventChoice (state, action) {
 
     let newState = update(state, {
         hostEventChoices: { [action.eventType]: { $set: action.index } }
+    });
+    return newState;
+}
+
+function handleUpdateNotification (state, action) {
+
+    let newState = update(state, {
+        updateNotification: { $set: action.updateNotification }
+    });
+    return newState;
+}
+
+function handleUpdateNotificationFailure (state, action) {
+
+    let newState = update(state, {
+        updateNotification: { $set: action.updateNotification },
+        error: { $set: action.error }
     });
     return newState;
 }
