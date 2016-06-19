@@ -1,7 +1,7 @@
 import React from 'react';
 import PhotoModal from '../../general/photo-modal.jsx';
 
-const PhotoStream = ({ photos, deletedPhotos, selectPhotoToShare, handleDeletePhoto, handleSharePhoto, eventID }) => {
+const PhotoStream = ({ photos, deletedPhotos, getSelectedPhoto, handleDeletePhoto, handleSharePhoto, eventID }) => {
 
     const displayModal = () => {
 
@@ -10,17 +10,14 @@ const PhotoStream = ({ photos, deletedPhotos, selectPhotoToShare, handleDeletePh
 
     const handleMenuClick = (photoURL) => {
 
-        selectPhotoToShare(photoURL);
+        getSelectedPhoto(photoURL);
         displayModal();
     };
 
 
-    let deletedPhotosURL = deletedPhotos.map((photo, index) => {
-        return photo.photoURL;
-    });
-
     let filteredPhotos = photos.filter((individualPhoto, index) => {
-        return deletedPhotosURL.indexOf(individualPhoto.photoURL) === -1;
+        console.log(individualPhoto.photoURL);
+        return deletedPhotos.indexOf(individualPhoto.photoURL) === -1;
     });
 
     let stream = filteredPhotos.map((photo, i) => {

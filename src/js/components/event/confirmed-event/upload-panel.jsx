@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 
-const UploadPanel = ({ eventID, handleUploadPhoto, file, handleSetPhoto }) => {
+const UploadPanel = ({ eventID, handleUploadPhoto, file, handleSetFile }) => {
     console.log("file:", file);
     let hideUploadPhotoButton = classnames("row", {
         "display-none": file === undefined
@@ -14,7 +14,7 @@ const UploadPanel = ({ eventID, handleUploadPhoto, file, handleSetPhoto }) => {
            <div className="row">
                <label className="six columns file-button">
                    Choose a file
-                   <input className="twelve columns" onChange={ (e) => handleSetPhoto(e.target.files[0]) } type="file" accept="image/*;capture=camera" />
+                   <input className="twelve columns" onChange={ (e) => handleSetFile(e.target.files[0]) } type="file" accept="image/*;capture=camera" />
                </label>
                <p className="six columns">{ file ? file.name : '' }</p>
            </div>
