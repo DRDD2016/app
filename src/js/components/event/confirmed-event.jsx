@@ -8,7 +8,7 @@ import { eventNote } from '../../lib/confirmed-event-helpers.js';
 import formatDate from '../../lib/formatDate.js';
 
 
-const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetPhoto }) => {
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetPhoto, selectPhotoToShare }) => {
 
 
     let handleClick = !userIsHost ? RSVPToEvent : '';
@@ -96,6 +96,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                          deletedPhotos={ deletedPhotos }
                          handleDeletePhoto={ handleDeletePhoto }
                          handleSharePhoto={ handleSharePhoto }
+                         selectPhotoToShare={ selectPhotoToShare }
                          eventID={ eventID }/>
 
         </div>

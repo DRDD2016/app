@@ -1,11 +1,17 @@
 import React from 'react';
 import PhotoModal from '../../general/photo-modal.jsx';
 
-const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, eventID }) => {
+const PhotoStream = ({ photos, deletedPhotos, selectPhotoToShare, handleDeletePhoto, handleSharePhoto, eventID }) => {
 
     const displayModal = () => {
 
         document.getElementsByClassName('photo-modal-container')[0].style.display = 'flex';
+    };
+
+    const handleMenuClick = (photoURL) => {
+
+        selectPhotoToShare(photoURL);
+        displayModal();
     };
 
 
@@ -22,7 +28,7 @@ const PhotoStream = ({ photos, deletedPhotos, handleDeletePhoto, handleSharePhot
         return (
             <div className="row photo" key={ i }>
                 <img className="eleven columns" src={ photo.photoURL } />
-                <i className="one column fa fa-ellipsis-v" onClick={ displayModal } ariaHidden="true" />
+                <i className="one column fa fa-ellipsis-v" id={ photo.photoURL } onClick={ (e) => handleMenuClick(e.target.id) } ariaHidden="true" />
             </div>
         );
     });
