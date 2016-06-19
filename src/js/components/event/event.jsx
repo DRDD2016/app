@@ -6,6 +6,7 @@ import EventDetailsHeader from '../general/event-details-header.jsx';
 import ConfirmedEvent from './confirmed-event.jsx';
 import Modal from '../general/modal.jsx';
 import TopBar from './top-bar.jsx';
+import DeletedEvent from './deleted-event.jsx';
 import { Link, hashHistory } from 'react-router';
 
 
@@ -107,10 +108,7 @@ class Event extends React.Component {
                 }
 
                 {
-                    !this.props.isFetching && (this.props.event === false) &&
-                    <div>
-                        The Event has been deleted
-                    </div>
+                    !this.props.isFetching && (this.props.event === false) && <DeletedEvent />
                 }
                 {
                     !this.props.isFetching && this.props.event &&
