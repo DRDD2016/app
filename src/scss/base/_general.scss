@@ -1,3 +1,8 @@
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
 a {
     text-decoration: none;
 }
@@ -42,4 +47,10 @@ a {
 
 .edit-icon {
     @include icon("\f044");
+}
+
+.input-p-header {
+    margin-bottom: 0;
+    font-size: 1.4em;
+    font-weight: bolder;
 }

@@ -13,39 +13,46 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
     });
 
     return (
-        <div className="container">
-            <div className="row">
-                <h4 className="twelve columns">
-                    { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
-                </h4>
+        <div>
+            <div className="event-header row">
+                <div>
+                    <p className="three columns back-button" > </p>
+                    <h3 className=" six columns title">
+                        { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
+                    </h3>
+                    <p className="three columns cancel-event-button"></p>
+                </div>
             </div>
-            {
-                isFetching && <Spinner />
-            }
-            {
-                data.length === 0 && !isFetching &&
-                    <div className="no-events-message">
-                        You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
-                    </div>
-            }
-            {
-                !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
-                                                               displayAll={ displayAll }
-                                                               isFilter={ isFilter }
-                                                               isShowHosting={ isShowHosting } />
-            }
-            {
-                !isFetching && sortedData.map((item, i) => {
+            <div className="container">
 
-                    return <CalendarItem key={ i }
-                                         eventName={ item.eventName }
-                                         eventWhat={ item.eventWhat }
-                                         eventWhere={ item.eventWhere }
-                                         eventWhen={ item.eventWhen }
-                                         coverPhoto={ item.coverPhoto }
-                                         eventID={ item.eventID } />;
-                })
-            }
+                {
+                    isFetching && <Spinner />
+                }
+                {
+                    data.length === 0 && !isFetching &&
+                        <div className="no-events-message">
+                            You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
+                        </div>
+                }
+                {
+                    !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
+                                                                   displayAll={ displayAll }
+                                                                   isFilter={ isFilter }
+                                                                   isShowHosting={ isShowHosting } />
+                }
+                {
+                    !isFetching && sortedData.map((item, i) => {
+
+                        return <CalendarItem key={ i }
+                                             eventName={ item.eventName }
+                                             eventWhat={ item.eventWhat }
+                                             eventWhere={ item.eventWhere }
+                                             eventWhen={ item.eventWhen }
+                                             coverPhoto={ item.coverPhoto }
+                                             eventID={ item.eventID } />;
+                    })
+                }
+            </div>
         </div>
     );
 };

@@ -1,6 +1,5 @@
 
 export default function autocompleteHelper (result, callback) {
-    console.log(result);
     let formattedAddress;
     let formattedName;
     if (result.types.indexOf('street_address') >= 0){
