@@ -6,11 +6,8 @@ import classnames from 'classnames';
 import TopBar from './top-bar.jsx';
 
 
-
-
-
 const EditEvent = (props) => {
-    
+
     let eventWhat = props.eventWhat[0];
     let eventWhere = props.eventWhere[0];
     let eventWhen = props.eventWhen[0];
@@ -75,26 +72,26 @@ const EditEvent = (props) => {
                         placeholder="What would you like to do?"
                     />
 
-                <p className="confirm-event-title-where input-p-header"> Where </p>
-                    <AutocompleteInput
-                        handleChange={ props.handleEventWhere.bind(this, 0) }
-                        inputKey={ 0 }
-                        value={ fullAddress }
-                        placeholder="Where?"
-                        id='autocomplete-0'
-                        removeInput=''
-                    />
+                    <p className="confirm-event-title-where input-p-header"> Where </p>
+                        <AutocompleteInput
+                            handleChange={ props.handleEventWhere.bind(this, 0) }
+                            inputKey={ 0 }
+                            value={ fullAddress }
+                            placeholder="Where?"
+                            id='autocomplete-0'
+                            removeInput=''
+                        />
 
-                <p className="confirm-event-title-when input-p-header"> When </p>
-                    <DateTimeInput
-                        value={ eventWhen }
-                        inputKey={ 0 }
-                        handleTime={ props.handleTime }
-                        handleDate={ props.handleDate }
-                        removeInput=''
-                    />
+                    <p className="confirm-event-title-when input-p-header"> When </p>
+                        <DateTimeInput
+                            value={ eventWhen }
+                            inputKey={ 0 }
+                            handleTime={ props.handleTime }
+                            handleDate={ props.handleDate }
+                            removeInput=''
+                        />
 
-                <button className="twelve columns" onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
+                    <button className="twelve columns" onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
                         Save Edited Event
                     </button>
 

@@ -15,9 +15,8 @@ const mapStateToProps = (state) => {
     let data = state.notifications.data;
     let isFilter = state.notifications.filter;
     let isShowHosting = state.notifications.showHosting;
-
-    console.log(data, '---- notification for feed data-----');
     let notifications = filterNotifications(data, isFilter, isShowHosting);
+    
     return {
         user: state.user,
         notifications,

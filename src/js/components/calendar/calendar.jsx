@@ -24,7 +24,6 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                 </div>
             </div>
             <div className="container">
-
                 {
                     isFetching && <Spinner />
                 }
@@ -51,7 +50,7 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                                              coverPhoto={ item.coverPhoto }
                                              eventID={ item.eventID } />;
                     })
-                }
+            }
             </div>
         </div>
     );

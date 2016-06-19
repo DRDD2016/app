@@ -1,0 +1,74 @@
+.iu.blue.label, .iu.blue.labels .label {
+    background-color: #2185d0!important;
+    border-color: #2185d0!important;
+    color: #fff!important;
+}
+.iu.image.label {
+    width: auto!important;
+    margin-top: 0;
+    margin-bottom: 0;
+    max-width: 9999px;
+    vertical-align: baseline;
+    text-transform: none;
+    background: #e8e8e8;
+    padding: .5833em .833em .5833em .5em;
+    border-radius: .28571429rem;
+    box-shadow: none;
+}
+
+.iu.label:last-child {
+    margin-right: 0;
+}
+.iu.label:first-child {
+    margin-left: 0;
+}
+.iu.label, .iu.labels .label {
+    font-size: .85714286rem;
+}
+.iu.label {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: baseline;
+    margin: 0 .14285714em;
+    background-color: #e8e8e8;
+    background-image: none;
+    padding: .5833em .833em;
+    color: rgba(0,0,0,.6);
+    text-transform: none;
+    font-weight: 700;
+    border: 0 solid transparent;
+    border-radius: .28571429rem;
+    -webkit-transition: background .1s ease;
+    transition: background .1s ease;
+}
+
+.iu.image {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+    background-color: transparent;
+}
+
+.iu.image.label img {
+    display: inline-block;
+    vertical-align: top;
+    height: 2.1666em;
+    margin: -.5833em .5em -.5833em -.5em;
+    border-radius: .28571429rem 0 0 .28571429rem;
+}
+
+.iu.label>img {
+    width: auto!important;
+    vertical-align: middle;
+    height: 2.1666em!important;
+}
+.iu.image img, .iu.image svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+i.remove.icon {
+    @include icon("\f00d");
+}
