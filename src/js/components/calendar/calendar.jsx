@@ -24,36 +24,32 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                 </div>
             </div>
             <div className="container">
-            {
-                isFetching && <Spinner />
-            }
-            {
-                data.length === 0 && !isFetching &&
-                <div className="row">
+                {
+                    isFetching && <Spinner />
+                }
+                {
+                    data.length === 0 && !isFetching &&
+                        <div className="no-events-message">
+                            You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
+                        </div>
+                }
+                {
+                    !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
+                                                                   displayAll={ displayAll }
+                                                                   isFilter={ isFilter }
+                                                                   isShowHosting={ isShowHosting } />
+                }
+                {
+                    !isFetching && sortedData.map((item, i) => {
 
-                    <p className="twelve columns no-events-message">
-                        You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
-                    </p>
-                </div>
-            }
-            {
-                !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
-                                                               displayAll={ displayAll }
-                                                               isFilter={ isFilter }
-                                                               isShowHosting={ isShowHosting } />
-            }
-
-            {
-                !isFetching && sortedData.map((item, i) => {
-
-                    return <CalendarItem key={ i }
-                                         eventName={ item.eventName }
-                                         eventWhat={ item.eventWhat }
-                                         eventWhere={ item.eventWhere }
-                                         eventWhen={ item.eventWhen }
-                                         coverPhoto={ item.coverPhoto }
-                                         eventID={ item.eventID } />;
-                })
+                        return <CalendarItem key={ i }
+                                             eventName={ item.eventName }
+                                             eventWhat={ item.eventWhat }
+                                             eventWhere={ item.eventWhere }
+                                             eventWhen={ item.eventWhen }
+                                             coverPhoto={ item.coverPhoto }
+                                             eventID={ item.eventID } />;
+                    })
             }
             </div>
         </div>

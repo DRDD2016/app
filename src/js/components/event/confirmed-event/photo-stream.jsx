@@ -13,7 +13,6 @@ const PhotoStream = ({ photos, deletedPhotos, getSelectedPhoto, handleDeletePhot
         getSelectedPhoto(photoURL);
         displayModal();
     };
-    
     let filteredPhotos = photos.filter((individualPhoto, index) => {
 
         return deletedPhotos.indexOf(individualPhoto.photoURL) === -1;
