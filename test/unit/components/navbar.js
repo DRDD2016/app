@@ -5,17 +5,9 @@ import shallowRenderer from '../../utils/shallowRenderer.js';
 import Navbar from '../../../src/js/components/general/navbar.jsx';
 
 
-test.skip('Navbar shallow renders correctly', (t) => {
+test('Navbar shallow renders correctly', (t) => {
 
     const shallow = shallowRenderer(<Navbar />);
     t.equal(shallow.props.children.length, 5, 'Navbar has 5 children');
-    t.end();
-});
-
-
-test.skip('Navbar renders onto DOM correctly', (t) => {
-
-    const rendered = renderIntoDocument(<Navbar />);
-    const buttons = scryRenderedDOMComponentsWithClass('nav-button');
     t.end();
 });
