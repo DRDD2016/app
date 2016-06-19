@@ -32,10 +32,10 @@ class InviteFriends extends React.Component {
                 );
             } else {
                 return (
-                    <div onClick={ (e) => this.props.removeSelected(inviteeData, index) } key={inviteeData.id} className=" blue ui image label">
+                    <div onClick={ (e) => this.props.removeSelected(inviteeData, index) } key={inviteeData.id} className=" blue iu image label">
                           <img src={ inviteeData.photoURL} />
                           { inviteeData.firstName }
-                          <i className="delete icon"></i>
+                          <i className="remove icon"></i>
                     </div>
 
                 );
