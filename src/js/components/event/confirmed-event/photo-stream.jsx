@@ -34,7 +34,7 @@ const PhotoStream = ({ hasPhotoLoaded, photos, deletedPhotos, getSelectedPhoto, 
         <div>
             <PhotoModal handleDeletePhoto={ handleDeletePhoto } handleSharePhoto={ handleSharePhoto } eventID={ eventID } />
             { hasPhotoLoaded === false &&  <Loader /> }
-            { photos && hasPhotoLoaded && stream }
+            { photos && hasPhotoLoaded !== false && stream }
             <div className="row">
                 <hr className="twelve columns" />
             </div>

@@ -110,7 +110,8 @@ function handleSavePhotoURLSuccess ( state, action ) {
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
         photoURL: { $set: undefined },
-        hasPhotoLoaded: { $set: false }
+        hasPhotoLoaded: { $set: true },
+        file: { $set: undefined }
     });
     return newState;
 }
@@ -155,7 +156,7 @@ function handleS3URLRequest (state, action) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
-        hasPhotoLoaded: { $set: true }
+        hasPhotoLoaded: { $set: false }
     });
     return newState;
 }
