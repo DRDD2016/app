@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 
-const Input = ({ handleChange, value, placeholder, removeInput, inputKey }) => {
+const Input = ({ handleChange, value, placeholder, removeInput, inputKey, inputCount }) => {
 
     let removeInputClasses = classnames("one column", {
         "display-none": inputKey === 0
@@ -11,6 +11,11 @@ const Input = ({ handleChange, value, placeholder, removeInput, inputKey }) => {
     return (
         <div className="row">
             <input
+                ref={ (input) => {
+                    if (input !== null && inputKey === inputCount - 1 && inputKey > 0) {
+                        input.focus();
+                    }
+                }}
                 className="eleven columns"
                 value={ value }
                 onChange={ handleChange }

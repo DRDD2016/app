@@ -83,6 +83,7 @@ test('Reducer handles GET_S3_URL_REQUEST', (t) => {
 
     let expected = Object.assign({}, initialState);
     expected.isFetching = true;
+    expected.hasPhotoLoaded = false;
 
     t.deepEqual(actual, expected);
     t.end();
@@ -234,9 +235,10 @@ test('Reducer handles SAVE_PHOTO_URL_REQUEST as expected', (t) => {
 
 test('Reducer handles SAVE_PHOTO_URL_SUCCESS as expected', (t) => {
 
-    const state = initialState;
+    let state = Object.assign({}, initialState);
     state.isFetching = true;
     state.photoURL = "https://aws.com/photolocation.jpg";
+    state.hasPhotoLoaded = true;
 
     const action = {
         type: "SAVE_PHOTO_URL_SUCCESS",
@@ -248,6 +250,7 @@ test('Reducer handles SAVE_PHOTO_URL_SUCCESS as expected', (t) => {
     let expected = Object.assign({}, state);
     expected.isFetching = false;
     expected.photoURL = undefined;
+    expected.hasPhotoLoaded = true;
 
     t.deepEqual(actual, expected, 'isFetching is `false`, photoURL is unset');
     t.end();

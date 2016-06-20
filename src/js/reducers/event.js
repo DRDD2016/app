@@ -75,10 +75,6 @@ export default function event (state = initialState, action) {
 
 function handleRequest (state, action) {
 
-    if (action.type === GET_EVENT_REQUEST) {
-        console.log("GETTING EVENT REQUEST");
-    }
-
     let newState = update(state, {
         isFetching: { $set: action.isFetching }
     });
