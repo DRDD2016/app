@@ -140,10 +140,10 @@ function setEventWhen (state, action) {
 }
 
 function addInput (state, action) {
-
+    
     let initialEventWhen = {
-        date: '',
-        time: ''
+        date: state.eventWhen[action.nextInputKey - 1].date,
+        time: state.eventWhen[action.nextInputKey - 1].time
     };
     let initialValue = (action.eventType === "eventWhen") ? initialEventWhen : '';
 

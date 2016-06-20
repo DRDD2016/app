@@ -65,9 +65,10 @@ test('addInput creates the correct action', (t) => {
 
     const expected = {
         type: ADD_INPUT,
-        eventType: "theEventType"
+        eventType: "theEventType",
+        nextInputKey: 2
     };
-    const actual = addInput("theEventType");
+    const actual = addInput(2, "theEventType");
 
     t.deepEqual(actual, expected);
     t.end();

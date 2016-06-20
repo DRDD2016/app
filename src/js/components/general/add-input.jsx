@@ -9,7 +9,7 @@ const AddInput = ({ data, handler }) => {
 
     return (
         <div className="row">
-            <button className={ addInputClasses } onClick={ (e) => handler() }>
+            <button className={ addInputClasses } onClick={ (e) => handler(data.length) }>
                 Add an option
             </button>
         </div>

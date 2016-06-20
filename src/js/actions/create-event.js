@@ -84,7 +84,7 @@ export function newEvent (eventData) {
 
         return axios.post('/new-event', eventData)
             .then((response) => {
-    
+
                 dispatch(newEventSuccess());
                 hashHistory.push('/feed');
                 dispatch(clearCreateEvent());
@@ -178,9 +178,10 @@ export function getFBFriendsFailure (error) {
 INPUT ACTIONS
 ********/
 
-export function addInput (eventType) {
+export function addInput (nextInputKey, eventType) {
     return {
         type: ADD_INPUT,
+        nextInputKey,
         eventType
     };
 }

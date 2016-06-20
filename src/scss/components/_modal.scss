@@ -35,7 +35,6 @@
 
 .photo-modal-container {
     display: none;
-    // border: 1px solid $off-black;
     height: 35%;
     width: 90%;
     background-color: rgba(250, 244, 242, 0.9);
@@ -72,8 +71,8 @@
 
         &.share {
             position: relative;
-            border-color: $off-black;
-            color: $off-black;
+            border-color: $facebook-blue;
+            color: $facebook-blue;
         }
     }
 
