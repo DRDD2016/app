@@ -3,7 +3,7 @@ import classnames from 'classnames';
 
 const Profile = ({ user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
 
-    let hideEditButton = classnames({
+    let hideEditButton = classnames("twelve columns", {
         "display-none": firstName === ''
     });
 
@@ -16,40 +16,50 @@ const Profile = ({ user, firstName, lastName, handleLogOut, handleChangeName, ha
 
             <div className="container">
 
-                <div className="twelve columns">
-                <h2 className="user-name"> { firstName + ' ' + lastName } </h2>
+                <div className="row">
+                    <h2 className="twelve columns user-name"> { firstName + ' ' + lastName } </h2>
+                </div>
+
+                <div className="row">
                     <img className="ui profile-page-photo circular image" src={ user.photoURL  } alt="Host photo" />
                 </div>
 
-                <div className="twelve columns">
-                    <h4 className="edit-name-title"> Edit Name </h4>
+                <div className="row">
+                    <button className="twelve columns logout-button" onClick={ handleLogOut } >
+                        Log Out
+                    </button>
+                </div>
+
+                <div className="row">
+                    <h4 className="twelve columns edit-name-title"> Change Name </h4>
+                </div>
+
+                <div className="row">
                     <input
                         className="twelve columns"
                         value={ firstName }
                         onChange={ (e) => handleChangeName('firstName', e) }
                         type="text"
-                        placeholder="First Name" />
+                        placeholder="First name" />
+                </div>
+
+                <div className="row">
                     <input
                         className="twelve columns"
                         onChange={ (e) => handleChangeName('lastName', e) }
                         value={ lastName }
                         type="text"
-                        placeholder="Last Name" />
+                        placeholder="Surname" />
+                </div>
 
+                <div className="row">
                     <button className={ hideEditButton } onClick={ () => handleEditName(firstName, lastName) } >
                         Change Name
                     </button>
                 </div>
 
-
-
-                <button className="logout-button" onClick={ handleLogOut } >
-                    Log Out
-                </button>
             </div>
-
         </div>
-
     );
 };
 
