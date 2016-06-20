@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         handleEventWhere: (inputKey, placeName, placeAddress) => {
-            
+
             let address = {
                 placeName: placeName,
                 placeAddress: placeAddress || ""
@@ -21,8 +21,8 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(setEventWhere(address, inputKey));
         },
 
-        addInput: () => {
-            dispatch(addInput("eventWhere"));
+        addInput: (nextInputKey) => {
+            dispatch(addInput(nextInputKey, "eventWhere"));
         },
 
         removeInput: (lastInputKey) => {
