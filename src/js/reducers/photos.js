@@ -19,7 +19,8 @@ const initialState = {
     file: undefined,
     photos: [],
     selectedPhoto: undefined,
-    deletedPhotos: []
+    deletedPhotos: [],
+    hasPhotoLoaded: false
 };
 
 export default function photos (state = initialState, action) {
@@ -36,13 +37,15 @@ export default function photos (state = initialState, action) {
         return handleGetDeletedPhotos(state, action);
 
     case UPLOAD_PHOTO_REQUEST:
-    case GET_S3_URL_REQUEST:
     case SAVE_PHOTO_URL_REQUEST:
     case DELETE_PHOTO_REQUEST:
     case DELETE_PHOTO_SUCCESS:
     case SHARE_PHOTO_REQUEST:
     case SHARE_PHOTO_SUCCESS:
         return handleRequest(state, action);
+
+    case GET_S3_URL_REQUEST:
+        return handleS3URLRequest(state, action);
 
     case SAVE_PHOTO_URL_SUCCESS:
         return handleSavePhotoURLSuccess(state, action);
@@ -106,7 +109,8 @@ function handleSavePhotoURLSuccess ( state, action ) {
 
     let newState = update(state, {
         isFetching: { $set: action.isFetching },
-        photoURL: { $set: undefined }
+        photoURL: { $set: undefined },
+        hasPhotoLoaded: { $set: false }
     });
     return newState;
 }
@@ -143,6 +147,15 @@ function handleSelectPhoto (state, action) {
 
     let newState = update(state, {
         selectedPhoto: { $set: action.url }
+    });
+    return newState;
+}
+
+function handleS3URLRequest (state, action) {
+
+    let newState = update(state, {
+        isFetching: { $set: action.isFetching },
+        hasPhotoLoaded: { $set: true }
     });
     return newState;
 }
