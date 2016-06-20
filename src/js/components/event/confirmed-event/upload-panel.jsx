@@ -23,7 +23,7 @@ const UploadPanel = ({ hasPhotoLoaded, eventID, handleUploadPhoto, file, handleS
                 <p className="six columns">{ file && fileExistsInState ? file.name : '' }</p>
             </div>
             <div className={ hideUploadPhotoButton }>
-                <input id="file-upload" disabled={ hasPhotoLoaded === false } className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload a photo" />
+                <input id="file-upload" disabled className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload a photo" />
             </div>
 
        </div>
