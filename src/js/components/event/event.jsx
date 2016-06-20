@@ -35,7 +35,6 @@ class Event extends React.Component {
     }
 
     renderView () {
-        console.log(this.props.isFetching, 'isfetching');
 
         if (this.props.userIsHost && this.props.isPoll) {
             console.log('you are a host viewing poll', this.props.isPoll);
@@ -58,8 +57,6 @@ class Event extends React.Component {
 
             return (
                 <div>
-
-
                     <div className="container">
                         <InviteePoll event={ this.props.event }
                                   toggleSelection={ this.props.toggleSelection }
@@ -119,14 +116,15 @@ class Event extends React.Component {
                                closeModal={ this.handleCloseModal } />
 
                         <TopBar eventID={ this.props.event.eventID }
-                            userIsHost={ this.props.userIsHost }
-                            isPoll={ this.props.event.isPoll }
-                            handleEdit={ this.props.handleEdit }
-                            displayCancelModal={ this.cancelEventConfirmationModal }
-                            event={ this.props.event } />
+                                userIsHost={ this.props.userIsHost }
+                                isPoll={ this.props.event.isPoll }
+                                handleEdit={ this.props.handleEdit }
+                                displayCancelModal={ this.cancelEventConfirmationModal }
+                                event={ this.props.event } />
 
 
-                        <EventDetailsHeader location={ this.props.location.pathname.split('/').pop() }
+                        <EventDetailsHeader
+                            location={ this.props.location.pathname.split('/').pop() }
                             eventName={ this.props.event.eventName }
                             eventDescription={ this.props.event.eventDescription }
                             hostPhotoURL={ this.props.event.hostPhotoURL }

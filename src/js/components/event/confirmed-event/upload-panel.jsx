@@ -6,11 +6,10 @@ import { store } from '../../../init-store.js';
 const UploadPanel = ({ hasPhotoLoaded, eventID, handleUploadPhoto, file, handleSetFile }) => {
 
     let hideUploadPhotoButton = classnames("row", {
-        "display-none": file === undefined
+        "display-none": hasPhotoLoaded === false || file === undefined
     });
 
     let fileExistsInState = store.getState().photos.file;
-    console.log("fileExistsInState", fileExistsInState);
 
     return (
         <div className="upload-panel">
@@ -23,7 +22,7 @@ const UploadPanel = ({ hasPhotoLoaded, eventID, handleUploadPhoto, file, handleS
                 <p className="six columns">{ file && fileExistsInState ? file.name : '' }</p>
             </div>
             <div className={ hideUploadPhotoButton }>
-                <input id="file-upload" disabled className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload a photo" />
+                <input id="file-upload" className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload a photo" />
             </div>
 
        </div>

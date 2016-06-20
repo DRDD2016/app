@@ -6,8 +6,6 @@ import UploadPanel from './confirmed-event/upload-panel.jsx';
 import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 import formatDate from '../../lib/formatDate.js';
-// import Loader from '../general/loader.jsx';
-
 
 
 const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetFile, getSelectedPhoto, hasPhotoLoaded }) => {
@@ -91,6 +89,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                            RSVPs={ RSVPs } />
 
                 <UploadPanel eventID={ eventID }
+                             hasPhotoLoaded={ hasPhotoLoaded }
                              handleUploadPhoto={ handleUploadPhoto }
                              file={ file }
                              handleSetFile={ handleSetFile }/>
