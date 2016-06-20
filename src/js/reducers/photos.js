@@ -20,7 +20,7 @@ const initialState = {
     photos: [],
     selectedPhoto: undefined,
     deletedPhotos: [],
-    hasPhotoLoaded: false
+    hasPhotoLoaded: undefined
 };
 
 export default function photos (state = initialState, action) {

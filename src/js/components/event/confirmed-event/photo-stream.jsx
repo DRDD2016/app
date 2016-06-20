@@ -1,7 +1,8 @@
 import React from 'react';
 import PhotoModal from '../../general/photo-modal.jsx';
+import Loader from '../../general/loader.jsx';
 
-const PhotoStream = ({ photos, deletedPhotos, getSelectedPhoto, handleDeletePhoto, handleSharePhoto, eventID }) => {
+const PhotoStream = ({ hasPhotoLoaded, photos, deletedPhotos, getSelectedPhoto, handleDeletePhoto, handleSharePhoto, eventID }) => {
 
     const displayModal = () => {
 
@@ -28,11 +29,12 @@ const PhotoStream = ({ photos, deletedPhotos, getSelectedPhoto, handleDeletePhot
             </div>
         );
     });
-
+    console.log("HAS LOADED?", hasPhotoLoaded);
     return (
         <div>
             <PhotoModal handleDeletePhoto={ handleDeletePhoto } handleSharePhoto={ handleSharePhoto } eventID={ eventID } />
-            { photos && stream }
+            { hasPhotoLoaded === false &&  <Loader /> }
+            { photos && hasPhotoLoaded && stream }
             <div className="row">
                 <hr className="twelve columns" />
             </div>

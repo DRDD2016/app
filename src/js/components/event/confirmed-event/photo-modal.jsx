@@ -4,7 +4,7 @@ const PhotoModal = ({ closePhotoModal }) => {
     return (
         <div className="modal-container photoModal">
             <div onClick={ (e) => closePhotoModal } className="image">
-              <i className="warning circle icon"></i>
+                <i className="warning circle icon"></i>
             </div>
             <i className="fa fa-exclamation-circle" ariaHidden="true" />
             <div  className="delete" >Delete Photo</div>
