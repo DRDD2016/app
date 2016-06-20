@@ -53,5 +53,6 @@ export const photos = {
     file: undefined,
     photos: [],
     selectedPhoto: undefined,
-    deletedPhotos: []
+    deletedPhotos: [],
+    hasPhotoLoaded: false
 };

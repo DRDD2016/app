@@ -12,11 +12,6 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
 
         return (
             <Input
-                ref={ (input) => {
-                    if (input !== null && i === inputCount - 1) {
-                        input.focus();
-                    }
-                }}
                 handleChange={ handleEventWhat.bind(this, i) }
                 key={ i }
                 inputCount={ inputCount }

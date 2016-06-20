@@ -141,11 +141,17 @@ function setEventWhen (state, action) {
 
 function addInput (state, action) {
 
-    let initialEventWhen = {
-        date: '',
-        time: ''
-    };
-    let initialValue = (action.eventType === "eventWhen") ? initialEventWhen : '';
+    let initialValue;
+
+    if (action.eventType === 'eventWhen') {
+
+        initialValue = {
+            date: state.eventWhen[action.nextInputKey - 1].date,
+            time: state.eventWhen[action.nextInputKey - 1].time
+        };
+    } else {
+        initialValue = '';
+    }
 
     let newState = update(state, {
         [action.eventType]: { $push: [initialValue] }
