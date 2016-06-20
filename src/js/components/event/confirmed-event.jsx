@@ -6,9 +6,11 @@ import UploadPanel from './confirmed-event/upload-panel.jsx';
 import PhotoStream from './confirmed-event/photo-stream.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 import formatDate from '../../lib/formatDate.js';
+import Loader from '../general/loader.jsx';
 
 
-const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetFile, getSelectedPhoto }) => {
+
+const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEvent, handleUploadPhoto, photos, deletedPhotos, handleDeletePhoto, handleSharePhoto, file, handleSetFile, getSelectedPhoto, hasPhotoLoaded }) => {
 
 
     let handleClick = !userIsHost ? RSVPToEvent : '';
@@ -36,69 +38,77 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
     return (
         <div className="confirmed-event">
-            { eventNote(event) }
-            <div className="row">
-                <p className="three columns confirm-event-title what">
-                    What
-                </p>
-                <div className="nine columns confirm-event what">
-                    { event.eventWhat[0] || "TBC" }
-                </div>
-            </div>
-
-            <br />
-
-            <div className="row">
-                <p className="three columns confirm-event-title where">
-                    Where
-                </p>
-
-                <div className="nine columns confirm-event where">
-
-                    <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
-                    <span className="placeAddress">{ event.eventWhere[0].placeAddress }</span>
-                </div>
-            </div>
-
-            <br />
-
-            <div className="row">
-                <p className="three columns confirm-event-title when">
-                    When
-                </p>
-
-                <div className="nine columns confirm-event when">
-                    <div className="date">
-                        { formatDate(event.eventWhen[0].date, true) || "TBC" }
+            {
+                hasPhotoLoaded && <Loader />
+            }
+            {
+                !hasPhotoLoaded &&
+                <div>
+                    { eventNote(event) }
+                    <div className="row">
+                        <p className="three columns confirm-event-title what">
+                            What
+                        </p>
+                        <div className="nine columns confirm-event what">
+                            { event.eventWhat[0] || "TBC" }
+                        </div>
                     </div>
-                    <div className="time">
-                        { event.eventWhen[0].time || "TBC" }
+
+                    <br />
+
+                    <div className="row">
+                        <p className="three columns confirm-event-title where">
+                            Where
+                        </p>
+
+                        <div className="nine columns confirm-event where">
+
+                            <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
+                            <span className="placeAddress">{ event.eventWhere[0].placeAddress }</span>
+                        </div>
                     </div>
+
+                    <br />
+
+                    <div className="row">
+                        <p className="three columns confirm-event-title when">
+                            When
+                        </p>
+
+                        <div className="nine columns confirm-event when">
+                            <div className="date">
+                                { formatDate(event.eventWhen[0].date, true) || "TBC" }
+                            </div>
+                            <div className="time">
+                                { event.eventWhen[0].time || "TBC" }
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <hr />
+
+                    <RSVPsArea eventID={ eventID }
+                               respondedList={ respondedList }
+                               notRespondedList={ notRespondedList }
+                               invitees={ invitees }
+                               handleClick={ handleClick }
+                               RSVPs={ RSVPs } />
+
+                    <UploadPanel eventID={ eventID }
+                                 handleUploadPhoto={ handleUploadPhoto }
+                                 file={ file }
+                                 handleSetFile={ handleSetFile }/>
+
+                    <PhotoStream photos={ photos }
+                                 deletedPhotos={ deletedPhotos }
+                                 handleDeletePhoto={ handleDeletePhoto }
+                                 handleSharePhoto={ handleSharePhoto }
+                                 getSelectedPhoto={ getSelectedPhoto }
+                                 eventID={ eventID }/>
+
                 </div>
-            </div>
-
-            <br />
-            <hr />
-
-            <RSVPsArea eventID={ eventID }
-                       respondedList={ respondedList }
-                       notRespondedList={ notRespondedList }
-                       invitees={ invitees }
-                       handleClick={ handleClick }
-                       RSVPs={ RSVPs } />
-
-            <UploadPanel eventID={ eventID }
-                         handleUploadPhoto={ handleUploadPhoto }
-                         file={ file }
-                         handleSetFile={ handleSetFile }/>
-
-            <PhotoStream photos={ photos }
-                         deletedPhotos={ deletedPhotos }
-                         handleDeletePhoto={ handleDeletePhoto }
-                         handleSharePhoto={ handleSharePhoto }
-                         getSelectedPhoto={ getSelectedPhoto }
-                         eventID={ eventID }/>
-
+            }
         </div>
     );
 

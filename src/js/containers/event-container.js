@@ -27,7 +27,9 @@ const mapStateToProps = (state) => {
         userIsHost: state.event.data.hostID == getUserID(),
         photos: state.photos.photos,
         deletedPhotos: state.photos.deletedPhotos,
-        file: state.photos.file
+        file: state.photos.file,
+        hasPhotoLoaded: state.photos.hasPhotoLoaded
+
     };
 };
 
