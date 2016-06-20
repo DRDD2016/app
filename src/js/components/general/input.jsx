@@ -12,7 +12,7 @@ const Input = ({ handleChange, value, placeholder, removeInput, inputKey, inputC
         <div className="row">
             <input
                 ref={ (input) => {
-                    if (input !== null && inputKey === inputCount - 1) {
+                    if (input !== null && inputKey === inputCount - 1 && inputKey > 0) {
                         input.focus();
                     }
                 }}

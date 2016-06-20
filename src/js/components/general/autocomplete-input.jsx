@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import autocompleteHelper from '../../lib/autocomplete-helper.js';
 
+
 class AutocompleteInput extends React.Component {
 
     componentDidMount () {
 
         const inputDOMElement = document.getElementById(this.props.id);
-
 
         let autocomplete = new google.maps.places.Autocomplete(inputDOMElement);
 
@@ -16,9 +16,7 @@ class AutocompleteInput extends React.Component {
 
             let result = autocomplete.getPlace();
 
-
             autocompleteHelper(result, (formattedName, formattedAddress) => {
-
 
                 this.props.handleChange(formattedName, formattedAddress);
             });
@@ -26,7 +24,7 @@ class AutocompleteInput extends React.Component {
     }
 
     render () {
-        const { handleChange, value, placeholder, id, inputKey, removeInput } = this.props;
+        const { handleChange, value, placeholder, id, inputKey, inputCount, removeInput } = this.props;
 
         let removeInputClasses = classnames("one column", {
             "display-none": inputKey === 0
@@ -35,6 +33,11 @@ class AutocompleteInput extends React.Component {
         return (
             <div className="row">
                 <input
+                    ref={ (input) => {
+                        if (input !== null && inputKey === inputCount - 1 && inputKey > 0) {
+                            input.focus();
+                        }
+                    }}
                     className="eleven columns"
                     onChange={ (e) => handleChange(e.target.value, "") }
                     ref="searchField"

@@ -9,6 +9,7 @@ const EventWhen = ({ eventWhenData, addInput, removeInput, handleDate, handleTim
     let inputs = eventWhenData.map( (value, i) => {
         return (
             <DateTimeInput
+                inputCount={ eventWhenData.length }
                 value={ value }
                 key={ i }
                 inputKey={ i }

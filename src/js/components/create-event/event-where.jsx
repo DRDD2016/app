@@ -20,6 +20,7 @@ const EventWhere = ({ eventWhereData, addInput, removeInput, handleEventWhere })
                     handleChange={ handleEventWhere.bind(this, i) }
                     key={ i }
                     inputKey={ i }
+                    inputCount={ eventWhereData.length }
                     value={ fullAddress }
                     placeholder= "Where?"
                     id={ autocompleteID }

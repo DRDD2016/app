@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { store } from '../../init-store.js';
 
-const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput }) => {
+const DateTimeInput = ({ value, inputKey, inputCount, handleDate, handleTime, removeInput }) => {
 
     let removeInputClasses = classnames("one column", {
         "display-none": inputKey === 0
@@ -22,6 +22,11 @@ const DateTimeInput = ({ value, inputKey, handleDate, handleTime, removeInput })
             </div>
             <div className="row">
                 <input
+                    ref={ (input) => {
+                        if (input !== null && inputKey === inputCount - 1 && inputKey > 0) {
+                            input.focus();
+                        }
+                    }}
                     className="six columns date-input"
                     type="date"
                     value={ value.date }
