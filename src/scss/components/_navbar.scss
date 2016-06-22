@@ -6,7 +6,8 @@
     bottom: 0;
     left: 0;
     z-index: 0;
-    display: flex
+    display: flex;
+    border-top: 1px solid $grey;
 }
 
 @media only screen and (max-height: 400px) {
@@ -38,7 +39,7 @@ i.nav-icon {
 }
 
 .nav-button.selected {
-    background-color: $grey;
+    background-color: $white;
 
     i.nav-icon, .menu-label {
         color: $blue;
