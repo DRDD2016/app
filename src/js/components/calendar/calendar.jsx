@@ -1,4 +1,5 @@
 import React from 'react';
+import TopBar from '../event/top-bar.jsx';
 import CalendarItem from './calendar-item.jsx';
 import FilterPanel from '../general/filter-panel.jsx';
 import Spinner from '../general/spinner.jsx';
@@ -14,15 +15,8 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
 
     return (
         <div>
-            <div className="event-header row">
-                <div>
-                    <p className="three columns back-button" > </p>
-                    <h3 className=" six columns title">
-                        { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
-                    </h3>
-                    <p className="three columns cancel-event-button"></p>
-                </div>
-            </div>
+            <TopBar location={ location } />
+            
             <div className="container">
                 {
                     isFetching && <Spinner />
