@@ -12,11 +12,11 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
 
         return new Date(a).getTime() > new Date(b).getTime();
     });
-
+    
     return (
         <div>
             <TopBar location={ location } />
-            
+
             <div className="container">
                 {
                     isFetching && <Spinner />

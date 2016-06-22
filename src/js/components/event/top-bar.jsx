@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import { hashHistory } from 'react-router';
 
-const TopBar = (props) => {
+class TopBar extends React.Component {
 
-    const { location, eventID, event, isPoll, userIsHost,
-            handleEdit, displayCancelModal, discardEvent } = props;
+    constructor (props) {
+        super(props);
+    }
 
-    const eventType = (location) => {
+    eventType (location) {
 
         let pathname = location.pathname.split('/').pop();
 
@@ -16,103 +17,108 @@ const TopBar = (props) => {
         } else {
             return pathname.charAt(0).toUpperCase() + pathname.slice(1) + "?";
         }
-    };
+    }
 
-    const cancelEvent = () => {
+    cancelEvent () {
 
-        discardEvent();
+        this.props.discardEvent();
         hashHistory.push('/feed');
-    };
+    }
 
-    return (
-        <div className="event-header row">
-            {
-                /* /feed */
-                !event && location.pathname === '/' &&
-                <h3 className=" twelve columns title">Feed</h3>
-            }
-            {
-                /* /create-event */
-                !event && location.pathname === '/create-event' &&
-                <div>
-                    <p className="three columns back-button" onClick={ () => { hashHistory.goBack(); } }> Back </p>
-                    <h3 className=" six columns title"> { eventType(location) }</h3>
-                    <p className="three columns cancel-event-button" onClick={ () => { cancelEvent(); } }> Cancel </p>
-                </div>
-            }
-            {
-                /* /calendar */
-                !event && location.pathname === '/albums' &&
+    render () {
+        console.log(this.props);
+        let primaryPath = this.props.location.pathname.split('/')[1];
 
-                <div>
-                    <p className="three columns back-button" > </p>
-                    <h3 className=" six columns title">
-                        { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
-                    </h3>
-                    <p className="three columns cancel-event-button"></p>
-                </div>
-            }
-            {
-                /* /calendar */
-                !event && location.pathname === '/calendar' &&
+        return (
+            <div className="event-header row">
+                {
+                    /* feed */
+                    !this.props.eventID && primaryPath === '' &&
+                    <h3 className=" twelve columns title">Feed</h3>
+                }
+                {
+                    /* /create-event */
+                    !this.props.eventID && primaryPath === 'create-event' &&
+                    <div>
+                        <p className="three columns back-button" onClick={ () => { hashHistory.goBack(); } }> Back </p>
+                        <h3 className=" six columns title"> { this.eventType(this.props.location) }</h3>
+                        <p className="three columns cancel-event-button" onClick={ () => { this.cancelEvent(); } }> Cancel </p>
+                    </div>
+                }
+                {
+                    /* /calendar */
+                    !this.props.eventID && primaryPath === 'albums' &&
 
-                <div>
-                    <p className="three columns back-button" > </p>
-                    <h3 className=" six columns title">
-                        { location.pathname.charAt(1).toUpperCase() + location.pathname.slice(2) }
-                    </h3>
-                    <p className="three columns cancel-event-button"></p>
-                </div>
-            }
+                    <div>
+                        <p className="three columns back-button" > </p>
+                        <h3 className=" six columns title">
+                            { primaryPath.charAt(0).toUpperCase() + primaryPath.slice(1) }
+                        </h3>
+                        <p className="three columns cancel-event-button"></p>
+                    </div>
+                }
+                {
+                    /* /calendar */
+                    !this.props.eventID && primaryPath === 'calendar' &&
 
-            {
-                !event && location.pathname === "/profile" &&
-                <h3 className="twelve columns title">Profile</h3>
-            }
-            { /**** EVENT ****/ }
-            {
-                //User is Host and its a Poll
-                event && userIsHost && isPoll &&
-                <div>
-                    <p className="three columns back-button" > </p>
-                    <h3 className=" six columns title">Poll</h3>
-                    <p className="three columns cancel-event-button"></p>
-                </div>
-            }
-            {
-                //User is Invitee and its an Event
-                event && !userIsHost && !isPoll &&
-                <div>
-                    <p className="three columns back-button" > </p>
-                    <h3 className=" six columns title">Event</h3>
-                    <p className="three columns cancel-event-button"></p>
-                </div>
-            }
-            {
-                //User is Invitee and its a Poll
-                event && !userIsHost && isPoll &&
-                <div>
-                    <p className="three columns back-button" > </p>
-                    <h3 className=" six columns title">Poll</h3>
-                    <p className="three columns cancel-event-button"></p>
-                </div>
-            }
-            {
-                //User is Host and its an Event
-                event && userIsHost && !isPoll &&
-                <div>
-                    <Link onClick={ () => { handleEdit(event); } } to={ 'edit/' + eventID }>
-                        <p className="three columns back-button"> Edit </p>
-                    </Link>
-                    <h3 className=" six columns title">Event</h3>
-                    <p className="three columns cancel-event-button"
-                        onClick={ displayCancelModal }>
-                        Cancel
-                    </p>
-                </div>
-            }
-        </div>
-    );
-};
+                    <div>
+                        <p className="three columns back-button" > </p>
+                        <h3 className=" six columns title">
+                            { primaryPath.charAt(0).toUpperCase() + primaryPath.slice(1) }
+                        </h3>
+                        <p className="three columns cancel-event-button"></p>
+                    </div>
+                }
+
+                {
+                    !this.props.eventID && primaryPath === "profile" &&
+                    <h3 className="twelve columns title">Profile</h3>
+                }
+                { /**** EVENT ****/ }
+                {
+                    //User is Host and its a Poll
+                    this.props.eventID && this.props.userIsHost && this.props.isPoll &&
+                    <div>
+                        <p className="three columns back-button" > </p>
+                        <h3 className=" six columns title">Poll</h3>
+                        <p className="three columns cancel-event-button"></p>
+                    </div>
+                }
+                {
+                    //User is Invitee and its an Event
+                    this.props.eventID && !this.props.userIsHost && !this.props.isPoll &&
+                    <div>
+                        <p className="three columns back-button" > </p>
+                        <h3 className=" six columns title">Event</h3>
+                        <p className="three columns cancel-event-button"></p>
+                    </div>
+                }
+                {
+                    //User is Invitee and its a Poll
+                    this.props.eventID && !this.props.userIsHost && this.props.isPoll &&
+                    <div>
+                        <p className="three columns back-button" > </p>
+                        <h3 className=" six columns title">Poll</h3>
+                        <p className="three columns cancel-event-button"></p>
+                    </div>
+                }
+                {
+                    //User is Host and its an Event
+                    this.props.eventID && this.props.userIsHost && !this.props.isPoll &&
+                    <div>
+                        <Link onClick={ () => { handleEdit(this.props.event); } } to={ 'edit/' + this.props.eventID }>
+                            <p className="three columns back-button"> Edit </p>
+                        </Link>
+                        <h3 className=" six columns title">Event</h3>
+                        <p className="three columns cancel-event-button"
+                            onClick={ this.props.displayCancelModal }>
+                            Cancel
+                        </p>
+                    </div>
+                }
+            </div>
+        );
+    }
+}
 
 export default TopBar;
