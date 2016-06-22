@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
 
-    let hideEditButton = classnames("twelve columns", {
+    let hideEditButton = classnames("twelve columns button-primary", {
         "display-none": firstName === ''
     });
 
