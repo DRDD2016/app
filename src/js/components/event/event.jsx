@@ -119,6 +119,7 @@ class Event extends React.Component {
                                 userIsHost={ this.props.userIsHost }
                                 isPoll={ this.props.event.isPoll }
                                 handleEdit={ this.props.handleEdit }
+                                location={ this.props.location }
                                 displayCancelModal={ this.cancelEventConfirmationModal }
                                 event={ this.props.event } />
 

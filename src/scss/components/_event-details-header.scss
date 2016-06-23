@@ -1,0 +1,26 @@
+.event-details-header {
+    background-color: $blue;
+    margin-bottom: 2em;
+}
+
+.event-detail-photo {
+    width:70%;
+    margin: 1em auto;
+}
+
+.event-detail-text-container {
+    margin-top: 1.5em;
+}
+
+.event-detail-text {
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.4em 0;
+    color: $white;
+}
+
+.event-details-header > p:first-child {
+    font-size: 1.2em;
+    font-weight: bolder;
+    padding-bottom: 0;
+}
