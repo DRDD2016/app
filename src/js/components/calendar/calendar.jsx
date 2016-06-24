@@ -3,9 +3,9 @@ import CalendarItem from './calendar-item.jsx';
 import FilterPanel from '../general/filter-panel.jsx';
 import Spinner from '../general/spinner.jsx';
 
-const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, displayAll, isFilter, isShowHosting }) => {
+const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent, displaySome, displayAll, calendarIsFiltered, isShowHosting }) => {
 
-    let sortedData = data.sort((a, b) => {
+    let sortedData = filteredEvents.sort((a, b) => {
         a = a.eventWhen[0].date;
         b = b.eventWhen[0].date;
 
@@ -28,16 +28,16 @@ const Calendar = ({ location, data, isFetching, fetchEvent, displaySome, display
                     isFetching && <Spinner />
                 }
                 {
-                    data.length === 0 && !isFetching &&
+                    !isFetching && allEvents.length > 0 && <FilterPanel displaySome={ displaySome }
+                                                                        displayAll={ displayAll }
+                                                                        calendarIsFiltered={ calendarIsFiltered }
+                                                                        isShowHosting={ isShowHosting } />
+                }
+                {
+                    filteredEvents.length === 0 && !isFetching &&
                         <div className="no-events-message">
                             You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
                         </div>
-                }
-                {
-                    !isFetching && data.length > 0 && <FilterPanel displaySome={ displaySome }
-                                                                   displayAll={ displayAll }
-                                                                   isFilter={ isFilter }
-                                                                   isShowHosting={ isShowHosting } />
                 }
                 {
                     !isFetching && sortedData.map((item, i) => {

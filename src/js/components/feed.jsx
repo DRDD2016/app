@@ -7,7 +7,7 @@ import FilterPanel from './general/filter-panel.jsx';
 
 
 
-const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, isFilter, isShowHosting }) => {
+const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, calendarIsFiltered, isShowHosting }) => {
 
     let mappedNotifications = notifications.map((data, i) => {
         return (
@@ -56,7 +56,7 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
                 !isFetching && notifications.length > 0 &&
                     <FilterPanel displayAll={ displayAll }
                                  displaySome={ displaySome }
-                                 isFilter={ isFilter }
+                                 calendarIsFiltered={ calendarIsFiltered }
                                  isShowHosting={ isShowHosting } />
             }
             {

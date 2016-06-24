@@ -11,15 +11,16 @@ const mapStateToProps = (state) => {
 
     let futureEvents = state.calendar.data.filter(getFutureEvents);
     let data = state.calendar.data;
-    let isFilter = state.calendar.filter;
+    let calendarIsFiltered = state.calendar.filter;
     let isShowHosting = state.calendar.showHosting;
 
-    let filteredEvents = filterNotifications(futureEvents, isFilter, isShowHosting);
-    
+    let filteredEvents = filterNotifications(futureEvents, calendarIsFiltered, isShowHosting);
+
     return {
-        data: filteredEvents,
+        allEvents: data,
+        filteredEvents,
         isFetching: state.calendar.isFetching,
-        isFilter,
+        calendarIsFiltered,
         isShowHosting
     };
 };

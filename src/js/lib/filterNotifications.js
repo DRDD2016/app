@@ -1,10 +1,10 @@
 import getUserID from './getUserID.js';
 
-export default function filterNotifications (notifications, isFilter, isHosting) {
+export default function filterNotifications (notifications, calendarIsFiltered, isHosting) {
 
     let currentUserID = getUserID();
 
-    if (!isFilter) {
+    if (!calendarIsFiltered) {
         return notifications;
     } else {
 
