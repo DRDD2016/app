@@ -8,9 +8,10 @@
 @import 'base/lists.css';
 @import 'base/spacing.css';
 @import 'base/skeleton.css';
-@import 'base/general';
 @import 'base/colours';
+@import 'base/general';
 @import 'components/banner';
+@import 'components/event-details-header';
 @import 'components/event-note';
 @import 'components/filter-panel';
 @import 'components/invited-label';
@@ -21,11 +22,11 @@
 @import 'components/photo-stream';
 @import 'components/spinner';
 @import 'components/loader';
-@import 'components/special-buttons';
 @import 'components/profile-page';
 @import 'components/RSVP-area';
+@import 'components/special-buttons';
+@import 'components/top-bar';
 @import 'views/confirmed-event';
-@import 'views/create-event';
 @import 'views/feed';
 @import 'views/poll';
 @import 'views/poll-general';

@@ -39,8 +39,6 @@ const EventWhat = ({ eventWhatData, addInput, removeInput, handleEventWhat }) =>
                 You can add more than one option to create a poll.
             </p>
             { inputs }
-
-
             <AddInput data={ eventWhatData } handler={ addInput } />
 
             <div className="row">

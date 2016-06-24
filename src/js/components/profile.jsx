@@ -1,18 +1,17 @@
 import React from 'react';
+import TopBar from './event/top-bar.jsx';
 import classnames from 'classnames';
 
-const Profile = ({ user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
+const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
 
-    let hideEditButton = classnames("twelve columns", {
+    let hideEditButton = classnames("twelve columns button-primary", {
         "display-none": firstName === ''
     });
 
     return (
         <div className="profile-page">
 
-            <div className="event-header row">
-                <h3 className="twelve columns title">Profile</h3>
-            </div>
+            <TopBar location={ location } />
 
             <div className="container">
 

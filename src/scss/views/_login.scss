@@ -1,6 +1,12 @@
 .login {
-    margin: 3rem 0 0 0;
+    // margin: 3rem 0 0 0;
     color: rgb(94, 95, 97);
+    position: relative;
+    bottom: 5em;
+
+    h2 {
+        text-align: center;
+    }
 
     > .row {
         padding: 3% 0;
