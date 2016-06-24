@@ -1,6 +1,10 @@
 var getRSVPsForAttendanceStatus = require('../db/getRSVPsForAttendanceStatus.js');
 
-function getRSVPs (eventID, callback) {
+/*
+ Gets all RSVPs for a given event
+*/
+
+function getAllRSVPs (eventID, callback) {
 
     var RSVPs = {
         going: [],
@@ -16,7 +20,7 @@ function getRSVPs (eventID, callback) {
             return callback(error);
         }
         RSVPs[attendanceStatus] = data;
-        
+
         progressCount++;
 
         if (progressCount === statuses.length) {
@@ -31,4 +35,4 @@ function getRSVPs (eventID, callback) {
     });
 }
 
-module.exports = getRSVPs;
+module.exports = getAllRSVPs;
