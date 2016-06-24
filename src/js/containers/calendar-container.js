@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
     let isShowHosting = state.calendar.showHosting;
 
     let filteredEvents = filterNotifications(futureEvents, calendarIsFiltered, isShowHosting);
-
+    console.log(state.calendar.data);
     return {
         allEvents: data,
         filteredEvents,
@@ -30,11 +30,11 @@ const mapDispatchToProps = (dispatch) => {
     return {
 
         displaySome: (filterChoice) => {
-            console.log("filtering");
+
             dispatch(applyFilter(filterChoice));
         },
         displayAll: () => {
-            console.log("displaying all");
+
             dispatch(clearFilter());
         }
     };

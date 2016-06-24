@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 import formatDate from '../../lib/formatDate.js';
 
-const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto }) => {
+/*
+CalendarItem is used in calendar and album views.  Plays equivalent role to Notification.jsx for feed view
+ */
+
+const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto, RSVPstatus }) => {
 
     return (
         <div className="calendar-item">

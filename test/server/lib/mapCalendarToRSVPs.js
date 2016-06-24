@@ -6,10 +6,13 @@ import { eventConfirmedHarryCalendar as calendar } from '../../utils/fixtures';
 
 test('mapCalendarToRSVPs returns the correct attendance status', (t) => {
 
-    mapCalendarToRSVPs([calendar], userID, (error, result) => {
+    mapCalendarToRSVPs([calendar, calendar], userID, (error, result) => {
 
-        t.ok(result[0].hasOwnProperty('RSVP'), 'An RSVP key exists in calendar item');
-        t.equal(result[0].RSVP, 'going', 'Corrent attendance status returned');
+        result.forEach((item, i) => {
+
+            t.ok(item.hasOwnProperty('RSVP'), `An RSVP key exists in calendar item #${i}`);
+            t.equal(item.RSVP, 'going', `Correct attendance status returned`);
+        });
         t.end();
     });
 });

@@ -34,15 +34,16 @@ const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent,
                                                                         isShowHosting={ isShowHosting } />
                 }
                 {
-                    filteredEvents.length === 0 && !isFetching &&
+                    sortedData.length === 0 && !isFetching &&
                         <div className="no-events-message">
                             You have no { location.pathname.indexOf('album') !== -1 ? "past" : "upcoming" } events.
                         </div>
                 }
                 {
                     !isFetching && sortedData.map((item, i) => {
-
+                        let RSVPstatus = undefined;
                         return <CalendarItem key={ i }
+                                             RSVPstatus={ RSVPstatus }
                                              eventName={ item.eventName }
                                              eventWhat={ item.eventWhat }
                                              eventWhere={ item.eventWhere }
