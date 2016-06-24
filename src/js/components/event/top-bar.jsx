@@ -26,7 +26,7 @@ class TopBar extends React.Component {
     }
 
     render () {
-        console.log(this.props);
+        
         let primaryPath = this.props.location.pathname.split('/')[1];
 
         return (

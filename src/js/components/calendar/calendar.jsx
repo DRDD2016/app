@@ -12,7 +12,7 @@ const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent,
 
         return new Date(a).getTime() > new Date(b).getTime();
     });
-    
+
     return (
         <div>
             <TopBar location={ location } />
@@ -37,7 +37,7 @@ const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent,
                     !isFetching && sortedData.map((item, i) => {
                         let RSVPstatus = undefined;
                         return <CalendarItem key={ i }
-                                             RSVPstatus={ RSVPstatus }
+                                             RSVPstatus={ item.RSVP }
                                              eventName={ item.eventName }
                                              eventWhat={ item.eventWhat }
                                              eventWhere={ item.eventWhere }

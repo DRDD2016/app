@@ -7,8 +7,6 @@
     &.viewed-notification {
         border-right: 0.3em solid $grey;
     }
-
-
     .timestamp {
         font-size: 0.7em;
         color: $dark-grey;
@@ -16,7 +14,6 @@
         padding-left: 1em;
         margin-bottom: 0.5em;
     }
-
     .subject-name {
         font-weight: bolder;
         color: $black;
@@ -29,7 +26,6 @@
             font-weight: 100;
         }
     }
-
     .event-name {
         font-size: 0.9em;
         font-weight: 400;
@@ -37,11 +33,9 @@
         padding-left: 0.3em;
         margin-bottom: 0;
     }
-
     .date {
         margin-top: 2em;
     }
-
     .date, .placeName {
         width: 100%;
         text-align: center;
@@ -65,7 +59,6 @@
         color: $black;
         margin-bottom: 0.4em;
     }
-
     a {
         .date, .placeName {
             color: $black;
@@ -79,6 +72,15 @@
             border: 1px solid $grey;
             padding: 3px;
         }
+    }
+    .fa-question-circle {
+        color: $maybe;
+    }
+    .fa-check-circle {
+        color: $going;
+    }
+    .fa-exclamation-circle {
+        color: $not-going;
     }
 }
 
