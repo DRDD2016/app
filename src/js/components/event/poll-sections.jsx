@@ -1,9 +1,10 @@
 import React from 'react';
 import formatDate from '../../lib/formatDate.js';
 
-export const EventWhatSection = ({ text, tally, classOptions }) => {
+export const EventWhatSection = ({ text, tally, classOptions, labelClasses }) => {
     return (
-        <div>
+        <div className="poll-option-container row">
+            <div className={ labelClasses }>What</div>
             <div className={ classOptions }>
                 { text || "TBC" }
             </div>
@@ -12,9 +13,10 @@ export const EventWhatSection = ({ text, tally, classOptions }) => {
     );
 };
 
-export const EventWhereSection = ({ text, tally, classOptions }) => {
+export const EventWhereSection = ({ text, tally, classOptions, labelClasses }) => {
     return (
-        <div>
+        <div className="poll-option-container row">
+            <div className={ labelClasses }>Where</div>
             <div className={ classOptions }>
                 { text.placeName || "TBC" }
                 <br/>
@@ -27,16 +29,19 @@ export const EventWhereSection = ({ text, tally, classOptions }) => {
     );
 };
 
-export const EventWhenSection = ({ text, tally, classOptions }) => {
+export const EventWhenSection = ({ text, tally, classOptions, labelClasses }) => {
     return (
-        <div className={ classOptions }>
-            <span className="row">
-                <span className="date">{ formatDate(text.date, true) || "TBC" }</span>
-            </span>
-            <span className="row">
-                <span className="time">{ text.time }</span>
-            </span>
-            <span className="tally three columns">{ tally }</span>
+        <div className="poll-option-container row">
+            <div className={ labelClasses }>When</div>
+            <div className={ classOptions }>
+                <span className="row">
+                    <span className="date">{ formatDate(text.date, true) || "TBC" }</span>
+                </span>
+                <span className="row">
+                    <span className="time">{ text.time }</span>
+                </span>
+                <span className="tally two columns">{ tally }</span>
+            </div>
         </div>
     );
 };

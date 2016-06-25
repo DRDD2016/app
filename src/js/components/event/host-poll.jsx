@@ -22,46 +22,50 @@ const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, hand
     }
 
     return (
-            <div className="poll">
-                { eventNote(event) }
+        <div className="poll">
+            { eventNote(event) }
 
-                <label className="what">What</label>
+            <div className="eventWhat">
                 { eventWhat }
-
-                <label className="where">Where</label>
-                { eventWhere }
-
-                <label>When</label>
-                { eventWhen }
-
-                <HostCreateEventButton hostEventChoices={ hostEventChoices }
-                    handleConfirmEvent={ handleConfirmEvent }
-                    eventID={ eventID } />
-
             </div>
+            <div className="eventWhere">
+                { eventWhere }
+            </div>
+            <div className="eventWhen">
+                { eventWhen }
+            </div>
+
+            <HostCreateEventButton hostEventChoices={ hostEventChoices }
+                handleConfirmEvent={ handleConfirmEvent }
+                eventID={ eventID } />
+
+        </div>
     );
 };
 
 function createVoteSection (event, tally, eventType, EventTypeComponent, handleHostEventChoices, hostEventChoices) {
+
+
     return event[eventType].map((choice, i) => {
-        let options = {
-            "poll-eventWhat": eventType === "eventWhat" && tally[eventType],
-            "poll-eventWhere": eventType === "eventWhere" && tally[eventType],
-            "poll-eventWhen": eventType === "eventWhen" && tally[eventType],
+
+        let classes = classnames("poll-option eight columns", {
+            "first": i === 0,
             "selected": hostEventChoices[eventType] === i
-        };
-
-        let classes = classnames("poll-option seven columns offset-by-three", options);
-
-        var tallyCount = tally[eventType] ? tally[eventType][i] : '';
+        });
+        let labelClasses = classnames("two columns", {
+            'hide': i > 0
+        });
+        let tallyCount = tally[eventType] ? tally[eventType][i] : '';
 
         if (tally[eventType]) {
 
             return (
                 <div onClick={ () => handleHostEventChoices(eventType, choice, i) }
-                     className={ "" + eventType }
                      key={ eventType + '-' + i } >
-                    <EventTypeComponent text={ choice } tally={ tallyCount } classOptions={ classes } />
+                    <EventTypeComponent text={ choice }
+                                        tally={ tallyCount }
+                                        classOptions={ classes }
+                                        labelClasses={ labelClasses } />
                 </div>
             );
         } else {
@@ -71,7 +75,8 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
                     <EventTypeComponent
                         text={ choice }
                         tally={ tallyCount }
-                        classOptions={ classes } />
+                        classOptions={ classes }
+                        labelClasses={ labelClasses } />
                 </div>
             );
         }

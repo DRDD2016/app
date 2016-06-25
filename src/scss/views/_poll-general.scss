@@ -1,48 +1,69 @@
-.poll {
 
-    .date {
-        display: inline-block;
-        margin-right: 1em;
-    }
+.poll {
 
     label {
         text-align: left;
-        position: relative;
-        font-size: 1.3em;
-        display: inline-block;
-
+        // position: relative;
+        // right: 10px;
+        font-size: 1em;
+        display: block;
+        position: absolute;
         &.what {
-            top: 30px
+            top: 0px;
+            // position: absolute;
         }
         &.where {
             top: 30px
         }
+        &.when {
+            top: 30px
+        }
     }
 
-}
-.poll-option {
-    line-height: 1.5em;
-    border-radius: 30px;
-    margin-bottom: 10px;
-
-    &.poll-eventWhat, &.poll-eventWhere, &.poll-eventWhen {
-        padding: 4px 0.5em;
+    .tally {
+        color: $off-black;
+        font-size: 1.5em;
+        text-align: center;
     }
-    &.poll-eventWhat {
+
+    .eventWhat, .eventWhere, .eventWhen {
+        display: block;
+
+        .poll-option {
+            line-height: 1.5em;
+            border-radius: 30px;
+            margin-bottom: 10px;
+            padding: 4px 0.5em;
+            text-align: center;
+        }
+    }
+
+    .eventWhat .poll-option {
         color: $what;
         border: 1px solid $what;
-    }
-    &.poll-eventWhat.selected {
-        background-color: $what;
-        color: white;
+
+        .selected {
+            background-color: $what;
+            color: white;
+        }
+
+        // &.first:before {
+        //     content: "What";
+        //     position: relative;
+        //     right: 110px;
+        // }
     }
 
-    &.poll-eventWhere {
+    .eventWhere .poll-option {
         color: $where;
         border: 1px solid $where;
         line-height: 20px;
         text-align: center;
 
+        .selected {
+            background-color: $where;
+            color: white;
+        }
         span.placeAddress {
             color: $black;
             font-weight: normal;
@@ -50,23 +71,20 @@
             font-size: 0.75em;
         }
     }
-    &.poll-eventWhere.selected {
-        background-color: $where;
-        color: white;
-    }
 
-    &.poll-eventWhen {
+    .eventWhen .poll-option {
         color: $when;
         border: 1px solid $when;
-    }
-    &.poll-eventWhen.selected {
-        background-color: $when;
-        color: white;
-    }
-}
+        text-align: left;
 
-.tally {
-    color: $off-black;
-    font-size: 2.5em;
-    text-align: center;
+        .selected {
+            background-color: $when;
+            color: $white;
+        }
+        span.date {
+            display: inline-block;
+            margin-right: 1em;
+            font-size: 0.9em;
+        }
+    }
 }
