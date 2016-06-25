@@ -3,18 +3,18 @@ import formatDate from '../../lib/formatDate.js';
 
 export const EventWhatSection = ({ text, tally, classOptions }) => {
     return (
-        <div className="row">
+        <div>
             <div className={ classOptions }>
                 { text || "TBC" }
             </div>
-             <span className="tally three columns">{ tally }</span>
+             <span className="tally two columns">{ tally }</span>
         </div>
     );
 };
 
 export const EventWhereSection = ({ text, tally, classOptions }) => {
     return (
-        <div className="row">
+        <div>
             <div className={ classOptions }>
                 { text.placeName || "TBC" }
                 <br/>
@@ -22,7 +22,7 @@ export const EventWhereSection = ({ text, tally, classOptions }) => {
                     { text.placeAddress }
                 </span>
             </div>
-            <span className="tally three columns">{ tally }</span>
+            <span className="tally two columns">{ tally }</span>
         </div>
     );
 };

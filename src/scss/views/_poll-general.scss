@@ -4,6 +4,21 @@
         display: inline-block;
         margin-right: 1em;
     }
+
+    label {
+        text-align: left;
+        position: relative;
+        font-size: 1.3em;
+        display: inline-block;
+
+        &.what {
+            top: 30px
+        }
+        &.where {
+            top: 30px
+        }
+    }
+
 }
 .poll-option {
     line-height: 1.5em;
@@ -11,7 +26,7 @@
     margin-bottom: 10px;
 
     &.poll-eventWhat, &.poll-eventWhere, &.poll-eventWhen {
-        padding: 5px 2em;
+        padding: 4px 0.5em;
     }
     &.poll-eventWhat {
         color: $what;
@@ -21,16 +36,25 @@
         background-color: $what;
         color: white;
     }
+
     &.poll-eventWhere {
         color: $where;
         border: 1px solid $where;
         line-height: 20px;
         text-align: center;
+
+        span.placeAddress {
+            color: $black;
+            font-weight: normal;
+            font-style: italic;
+            font-size: 0.75em;
+        }
     }
     &.poll-eventWhere.selected {
         background-color: $where;
         color: white;
     }
+
     &.poll-eventWhen {
         color: $when;
         border: 1px solid $when;
@@ -45,10 +69,4 @@
     color: $off-black;
     font-size: 2.5em;
     text-align: center;
-}
-
-span.placeAddress {
-    color: $white;
-    font-weight: normal;
-    font-style: italic;
 }

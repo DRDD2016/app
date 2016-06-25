@@ -25,13 +25,13 @@ const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, hand
             <div className="poll">
                 { eventNote(event) }
 
-                <h4>What</h4>
+                <label className="what">What</label>
                 { eventWhat }
 
-                <h4>Where</h4>
+                <label className="where">Where</label>
                 { eventWhere }
 
-                <h4>When</h4>
+                <label>When</label>
                 { eventWhen }
 
                 <HostCreateEventButton hostEventChoices={ hostEventChoices }
@@ -51,7 +51,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
             "selected": hostEventChoices[eventType] === i
         };
 
-        let classes = classnames("poll-option nine columns", options);
+        let classes = classnames("poll-option seven columns offset-by-three", options);
 
         var tallyCount = tally[eventType] ? tally[eventType][i] : '';
 
