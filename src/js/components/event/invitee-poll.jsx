@@ -28,14 +28,15 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
             <div className="poll">
                 { eventNote(event) }
 
-                <h4>What</h4>
-                { eventWhat }
-
-                <h4>Where</h4>
-                { eventWhere }
-
-                <h4>When</h4>
-                { eventWhen }
+                <div className="eventWhat">
+                    { eventWhat }
+                </div>
+                <div className="eventWhere">
+                    { eventWhere }
+                </div>
+                <div className="eventWhen">
+                    { eventWhen }
+                </div>
 
                 <PollButton poll={ poll }
                             handlePollConfirmation={ handlePollConfirmation }
@@ -50,20 +51,22 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
 
     return event[eventType].map((choice, i) => {
 
-        let options = {
-            "poll-eventWhat": eventType === "eventWhat" && poll[eventType],
-            "poll-eventWhere": eventType === "eventWhere" && poll[eventType],
-            "poll-eventWhen": eventType === "eventWhen" && poll[eventType],
-            "selected": eventType === poll[eventType] && poll[eventType][i] === true
-        };
-
-        let classes = classnames("poll-option", options);
+        let classes = classnames("poll-option", "eight columns offset-by-one", {
+            "selected": poll[eventType][i] === true
+        });
+        let labelClasses = classnames("two columns", {
+            'hide': i > 0
+        });
 
         if (poll[eventType]) {
 
             return (
-                <div onClick={ () => toggleSelection(eventType, i) } className={ classes } key={eventType + '-' + i}>
-                    <EventTypeComponent text={ choice } />
+                <div onClick={ () => toggleSelection(eventType, i) }
+                     key={eventType + '-' + i}>
+
+                    <EventTypeComponent text={ choice }
+                                        choiceClasses={ classes }
+                                        labelClasses={ labelClasses }/>
                 </div>
             );
         } else {

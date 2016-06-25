@@ -47,10 +47,9 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
 
 
     return event[eventType].map((choice, i) => {
-
+        
         let classes = classnames("poll-option eight columns", {
-            "first": i === 0,
-            "selected": hostEventChoices[eventType] === i
+            "selected": hostEventChoices[eventType] === i || hostEventChoices[eventType] === undefined
         });
         let labelClasses = classnames("two columns", {
             'hide': i > 0
@@ -64,7 +63,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
                      key={ eventType + '-' + i } >
                     <EventTypeComponent text={ choice }
                                         tally={ tallyCount }
-                                        classOptions={ classes }
+                                        choiceClasses={ classes }
                                         labelClasses={ labelClasses } />
                 </div>
             );
@@ -75,7 +74,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
                     <EventTypeComponent
                         text={ choice }
                         tally={ tallyCount }
-                        classOptions={ classes }
+                        choiceClasses={ classes }
                         labelClasses={ labelClasses } />
                 </div>
             );
