@@ -9,13 +9,14 @@ const HostPoll = ({ event, tally, hostEventChoices, handleHostEventChoices, hand
     let eventWhat = createVoteSection(event, tally, 'eventWhat', EventWhatSection, handleHostEventChoices, hostEventChoices);
     let eventWhere = createVoteSection(event, tally, 'eventWhere', EventWhereSection, handleHostEventChoices, hostEventChoices);
     let eventWhen = createVoteSection(event, tally, 'eventWhen', EventWhenSection, handleHostEventChoices, hostEventChoices);
+
     function eventNote (event) {
 
         if (event.eventNote !== "") {
             return (
-                <div>
-                <h4 className="twelve columns">Note</h4>
-                { event.eventNote }
+                <div className="event-note">
+                    { event.eventNote }
+                    <hr />
                 </div>
             );
         }

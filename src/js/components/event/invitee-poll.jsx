@@ -16,9 +16,9 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
 
         if (event.eventNote !== "") {
             return (
-                <div>
-                <h4 className="twelve columns">Note</h4>
-                { event.eventNote }
+                <div className="event-note">
+                    { event.eventNote }
+                    <hr />
                 </div>
             );
         }
