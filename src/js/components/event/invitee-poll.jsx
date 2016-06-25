@@ -54,7 +54,7 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
         let classes = classnames("poll-option", "eight columns offset-by-one", {
             "selected": poll[eventType][i] === true
         });
-        let labelClasses = classnames("two columns", {
+        let labelClasses = classnames("two columns section-title", {
             'hide': i > 0
         });
 
