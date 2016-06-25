@@ -54,9 +54,7 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
             "poll-eventWhat": eventType === "eventWhat" && poll[eventType],
             "poll-eventWhere": eventType === "eventWhere" && poll[eventType],
             "poll-eventWhen": eventType === "eventWhen" && poll[eventType],
-            "poll-selected-eventWhat": eventType === "eventWhat" && poll[eventType] && poll[eventType][i] === true,
-            "poll-selected-eventWhere": eventType === "eventWhere" && poll[eventType] && poll[eventType][i] === true,
-            "poll-selected-eventWhen": eventType === "eventWhen" && poll[eventType] && poll[eventType][i] === true
+            "selected": eventType === poll[eventType] && poll[eventType][i] === true
         };
 
         let classes = classnames("poll-option", options);

@@ -1,4 +1,10 @@
+.poll {
 
+    .date {
+        display: inline-block;
+        margin-right: 1em;
+    }
+}
 .poll-option {
     line-height: 1.5em;
     border-radius: 30px;
@@ -7,40 +13,33 @@
     &.poll-eventWhat, &.poll-eventWhere, &.poll-eventWhen {
         padding: 5px 2em;
     }
-
     &.poll-eventWhat {
         color: $what;
         border: 1px solid $what;
     }
-
+    &.poll-eventWhat.selected {
+        background-color: $what;
+        color: white;
+    }
     &.poll-eventWhere {
         color: $where;
         border: 1px solid $where;
         line-height: 20px;
         text-align: center;
     }
-
+    &.poll-eventWhere.selected {
+        background-color: $where;
+        color: white;
+    }
     &.poll-eventWhen {
         color: $when;
         border: 1px solid $when;
     }
-
-    &.poll-selected-eventWhat {
-        background-color: $what;
-        color: white;
-    }
-
-    &.poll-selected-eventWhere {
-        background-color: $where;
-        color: white;
-    }
-
-    &.poll-selected-eventWhen {
+    &.poll-eventWhen.selected {
         background-color: $when;
         color: white;
     }
 }
-
 
 .tally {
     color: $off-black;
@@ -49,6 +48,7 @@
 }
 
 span.placeAddress {
-    color: $off-black;
+    color: $white;
     font-weight: normal;
+    font-style: italic;
 }

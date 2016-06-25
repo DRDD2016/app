@@ -48,9 +48,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
             "poll-eventWhat": eventType === "eventWhat" && tally[eventType],
             "poll-eventWhere": eventType === "eventWhere" && tally[eventType],
             "poll-eventWhen": eventType === "eventWhen" && tally[eventType],
-            "poll-selected-eventWhat": eventType === "eventWhat" && hostEventChoices[eventType] === i,
-            "poll-selected-eventWhere": eventType === "eventWhere" && hostEventChoices[eventType] === i,
-            "poll-selected-eventWhen": eventType === "eventWhen" && hostEventChoices[eventType] === i
+            "selected": hostEventChoices[eventType] === i
         };
 
         let classes = classnames("poll-option nine columns", options);
