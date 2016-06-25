@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 import PollButton from '../general/poll-button.jsx';
-import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
+import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 
 const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost, hasVoted }) => {
 

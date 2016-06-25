@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
+import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 import HostCreateEventButton from './host-create-event-button.jsx';
 
 
