@@ -4,6 +4,7 @@ import AutocompleteInput from '../general/autocomplete-input.jsx';
 import DateTimeInput from '../general/date-time-input.jsx';
 import classnames from 'classnames';
 import TopBar from './top-bar.jsx';
+import { hashHistory } from 'react-router';
 
 
 const EditEvent = (props) => {
@@ -91,7 +92,7 @@ const EditEvent = (props) => {
                             removeInput=''
                         />
 
-                    <button className="twelve columns" onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); } }>
+                    <button className="twelve columns" onClick={ () => { props.handleSaveEditedEvent(props.eventDetails.eventName, props.eventDetails.eventDescription, props.eventDetails.eventNote, eventWhat, eventWhere, eventWhen, props.params.eventID ); hashHistory.push("/feed"); } }>
                         Save Edited Event
                     </button>
 
