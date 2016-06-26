@@ -1,7 +1,7 @@
 var updateRSVP = require('../lib/updateRSVP.js');
 var getEvent = require('../db/getEvent.js');
 var notifyEveryone = require('../lib/notifyEveryone.js');
-var getRSVPs = require('../lib/getRSVPs.js');
+var getAllRSVPs = require('../lib/getAllRSVPs.js');
 var pub = require('../init-socket.js').pub;
 
 
@@ -42,7 +42,7 @@ exports.register = (server, options, next) => {
                                 if (!error) {
                                     pub.publish('notify', JSON.stringify(recipients));
                                 }
-                                getRSVPs(eventID, (error, RSVPs) => {
+                                getAllRSVPs(eventID, (error, RSVPs) => {
                                     var verdict = error || RSVPs;
 
                                     reply(verdict);

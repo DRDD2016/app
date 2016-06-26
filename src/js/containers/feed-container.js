@@ -13,16 +13,16 @@ listenForUserID(store);
 const mapStateToProps = (state) => {
 
     let data = state.notifications.data;
-    let isFilter = state.notifications.filter;
+    let calendarIsFiltered = state.notifications.filter;
     let isShowHosting = state.notifications.showHosting;
-    let notifications = filterNotifications(data, isFilter, isShowHosting);
+    let notifications = filterNotifications(data, calendarIsFiltered, isShowHosting);
     
     return {
         user: state.user,
         notifications,
         isFetching: state.notifications.isFetching,
         updateNotification: state.event.updateNotification,
-        isFilter,
+        calendarIsFiltered,
         isShowHosting
     };
 };

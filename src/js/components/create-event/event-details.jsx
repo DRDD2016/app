@@ -29,7 +29,7 @@ class EventDetails extends React.Component {
             <div className="justify">
 
                 <p>
-                    Enter the name of your event an a description.
+                    Enter the name of your event and a description.
                 </p>
 
 

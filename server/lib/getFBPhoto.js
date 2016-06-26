@@ -1,7 +1,7 @@
 var FB = require('fb');
 
 
-function getFBPhoto(id, token, callback) {
+function getFBPhoto (id, token, callback) {
     FB.setAccessToken(token);
 
     FB.api(

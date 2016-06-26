@@ -56,10 +56,14 @@ CLIENT_ID=*your facebook developer client id*
 CLIENT_SECRET=*your facebook developer client secret*
 ```
 
-### For Image Quality Control
-We are using ImageMagick for compression of the image before pushing to S3.
-`npm i gm`
-You also need to install ImageMagick on your computer using
-`brew install graphicsmagick` else the compression will not work.
+### Database structure
 
-Be sure not to conflate your redis environment variables!
+#### Events
+**event:[_num_]**
+* set of stringified objects
+* *num* increments automatically from 1
+
+#### RSVPs
+**RSVP:event:[_num_]|[_attendance status_]**
+* set of userIDs
+* Three possible attendance statuses: *going*, *notGoing*, *maybe*

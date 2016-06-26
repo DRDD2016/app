@@ -6,9 +6,12 @@ export default function formatDate (date, full) {
     if (date === "") {
         return date;
     }
+    if (full === 'half') {
+        return moment(date).format('Do MMM YY');
+    }
     if (full) {
 
-        return moment(date).format('dddd Do MMMM YYYY');
+        return moment(date).format('ddd Do MMMM YYYY');
     } else {
 
         return moment(date).format('Do MMM');
