@@ -24,12 +24,6 @@ const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChan
                 </div>
 
                 <div className="row">
-                    <button className="twelve columns logout-button" onClick={ handleLogOut } >
-                        Log Out
-                    </button>
-                </div>
-
-                <div className="row">
                     <h4 className="twelve columns edit-name-title"> Change Name </h4>
                 </div>
 
@@ -54,6 +48,12 @@ const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChan
                 <div className="row">
                     <button className={ hideEditButton } onClick={ () => handleEditName(firstName, lastName) } >
                         Change Name
+                    </button>
+                </div>
+                
+                <div className="row">
+                    <button className="offset-by-three six columns logout-button" onClick={ handleLogOut } >
+                        Log Out
                     </button>
                 </div>
 
