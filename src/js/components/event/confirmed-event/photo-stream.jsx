@@ -33,6 +33,7 @@ const PhotoStream = ({ hasPhotoLoaded, photos, deletedPhotos, getSelectedPhoto, 
 
     return (
         <div>
+            <Loader />
             <PhotoModal handleDeletePhoto={ handleDeletePhoto }
                         handleSharePhoto={ handleSharePhoto }
                         eventID={ eventID } />
