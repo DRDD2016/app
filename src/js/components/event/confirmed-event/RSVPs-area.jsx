@@ -11,10 +11,10 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
             });
 
             return (
-                <div className="twelve columns RSVP-user-list" key={ index }>
-                    <div className="ui image label" >
-                        <img src={ usersWithRSVP[0].photoURL } />
-                        { usersWithRSVP[0].firstName }
+                <div className="item" key={ index }>
+                    <img className="ui avatar image" src={ usersWithRSVP[0].photoURL } />
+                    <div className="content">
+                        <div className="header rsvp-list-items">{ usersWithRSVP[0].firstName }</div>
                     </div>
                 </div>
             );
@@ -23,43 +23,42 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
 
     return (
         <div>
-            <h5>RSVPs</h5>
+            <p className="rsvp-title">RSVPs</p>
             <div className="row">
+                <div className="offset-by-three six columns RSVP-button not-responded">
+                    <div> Not Responded </div>
+                </div>
                 <div className="twelve columns">
-                    <div>Not responded</div>
-                    { notRespondedList(respondedList, invitees) }
+                    <div className="ui big horizontal list">
+                        { notRespondedList(respondedList, invitees) }
+                    </div>
                 </div>
             </div>
             <br />
 
             <div className="row">
-                <div className="four columns RSVP-button going">
-                    <div onClick={ () => handleClick('going', eventID) }> Going </div>
+                <div className="four columns">
+                    <div className="RSVP-button going" onClick={ () => handleClick('going', eventID) }> Going </div>
+                    <div className="ui big horizontal list">
+                        { RSVPUserList(RSVPs, invitees, 'going') }
+                    </div>
                 </div>
 
-                <div className="four columns RSVP-button maybe">
-                    <div onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
+                <div className="four columns ">
+                    <div className="RSVP-button maybe " onClick={ () => handleClick('maybe', eventID) }> Maybe </div>
+                    <div className="ui big horizontal list">
+                        { RSVPUserList(RSVPs, invitees, 'maybe') }
+                    </div>
                 </div>
 
-                <div className="four columns RSVP-button not-going">
-                    <div onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
-                </div>
-            </div>
-
-            <div className="row RSVP-flex-container">
-                <div className="four columns ui middle aligned selection list verticalise going">
-
-                    { RSVPUserList(RSVPs, invitees, 'going') }
-                </div>
-
-                <div className="four columns ui middle aligned selection list verticalise maybe">
-                    { RSVPUserList(RSVPs, invitees, 'maybe') }
-                </div>
-
-                <div className="four columns ui middle aligned selection list verticalise not-going">
-                    { RSVPUserList(RSVPs, invitees, 'notGoing') }
+                <div className="four columns">
+                    <div className="RSVP-button not-going" onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
+                    <div className="ui big horizontal  list">
+                        { RSVPUserList(RSVPs, invitees, 'notGoing') }
+                    </div>
                 </div>
             </div>
+
 
             <div className="row">
                 <hr className="twelve columns" />

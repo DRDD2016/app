@@ -1,11 +1,20 @@
 .notification {
     margin: 0.7em 0;
-    padding:0.5em;
+    padding-left:0.5em;
 
-    border-right: 0.3em solid $going;
+    .notification-middle-column {
+        border-right: 0.19em solid #e1e4e7;
+    }
+
+    .notification-right-column {
+        margin-left:0.3em;
+    }
+
+    border-left: 0.2em solid $going;
+    border-bottom: 0.19em solid #e1e4e7;
 
     &.viewed-notification {
-        border-right: 0.3em solid $grey;
+        border-left: 0.2em solid white;
     }
     .timestamp {
         font-size: 0.7em;
@@ -16,8 +25,9 @@
     }
     .subject-name {
         font-weight: bolder;
-        color: $black;
-        padding-left: 0.3em;
+        color: $dark-grey;
+        padding-left: 0.2em;
+        padding-right: 0.1em;
         margin-bottom: 0;
         font-size: 0.9em;
         span {
@@ -28,44 +38,52 @@
     }
     .event-name {
         font-size: 0.9em;
-        font-weight: 400;
-        color: $black;
+        font-weight: 600;
+        color: $dark-grey;
         padding-left: 0.3em;
         margin-bottom: 0;
     }
     .date {
-        margin-top: 2em;
+        margin-top: 1em;
+        text-align: left;
     }
     .date, .placeName {
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 }
 
 .notification a, .calendar-item a {
 
-    .eventWhat, .placeName, .date, .time {
+    .eventWhat, .date, .time {
         line-height: 1.2em;
         position: relative;
         display: inline-block;
-        font-size: 1.2rem;
-        color: $black;
+        font-size: 1.1rem;
+        color: $dark-grey;
+    }
+    .placeName {
+        line-height: 1.2em;
+        position: relative;
+        display: inline-block;
+        font-size: 1.1rem;
+        font-weight: lighter;
+        color: $dark-grey;
     }
 }
 
 .calendar-item {
 
     h5 {
-        color: $black;
+        color: $dark-grey;
         margin-bottom: 0.4em;
     }
     a {
         .date, .placeName {
-            color: $black;
+            color: $dark-grey;
             text-align: left;
             margin: 0 8px 10px 0;
-            font-size: 1.4rem;
-            font-weight: normal;
+            font-size: 1.2rem;
         }
 
         img {

@@ -5,7 +5,7 @@ const ConfirmEventWhere = ({ eventWhere }) => {
     const layout = eventWhere.map((data, i) => {
 
         return (
-            <p className="option" key={ i }>
+            <p className="where-option" key={ i }>
                 <span className="eventWhere-placeName">
                     { data.placeName || "TBC" }
                 </span>

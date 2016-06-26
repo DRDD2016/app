@@ -16,6 +16,10 @@
     &.not-going {
         background-color: rgb(226, 33, 33);
     }
+
+    &.not-responded {
+        background-color: rgb(245, 130, 32);
+    }
 }
 
 .RSVP-flex-container {
@@ -29,7 +33,7 @@
 
 .confirm-event {
     text-align: center;
-    border-radius: 5px;
+    border-radius: 50px;
     color: white;
     padding: 0.7em;
     margin-bottom: 0.5em;
@@ -62,4 +66,12 @@
 
 .ui.list, ol.ui.list, ul.ui.list {
     margin: 0.1em 0 !important;
+}
+
+.rsvp-title {
+    margin: 0.2em 0;
+}
+
+.rsvp-list-items {
+    color: $dark-grey !important;
 }

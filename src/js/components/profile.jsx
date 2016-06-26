@@ -24,7 +24,7 @@ const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChan
                 </div>
 
                 <div className="row">
-                    <h4 className="twelve columns edit-name-title"> Change Name </h4>
+                    <p className="twelve columns edit-name-title"> Change Name </p>
                 </div>
 
                 <div className="row">
@@ -50,7 +50,7 @@ const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChan
                         Change Name
                     </button>
                 </div>
-                
+
                 <div className="row">
                     <button className="offset-by-three six columns logout-button" onClick={ handleLogOut } >
                         Log Out
