@@ -6,7 +6,7 @@ const ConfirmEventWhen = ({ eventWhen }) => {
     const layout = eventWhen.map((data, i) => {
 
         return (
-            <p className="option" key={ i }>
+            <p className="when-option" key={ i }>
                 <span className="eventWhen-date">
                     { ` Date: ${formatDate(data.date, true) || "TBC"}` }
                 </span>

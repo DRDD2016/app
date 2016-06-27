@@ -14,18 +14,16 @@ function getRSVPForEvent (eventID, userID, callback) {
             return callback(error);
         }
         index++;
-
         if (result) {
 
             return callback(null, result);
-        } else if (index === statuses.length) {
+        } else if (index === statuses.length && !result) {
 
             return callback(null, null);
         } else {
             getUserRSVP(eventID, userID, statuses[index], report);
         }
     }
-
     getUserRSVP(eventID, userID, statuses[index], report);
 }
 

@@ -6,15 +6,19 @@
     margin-bottom: 0.5em;
 
     &.going {
-        background-color: rgb(140, 198, 68);
+        background-color: $going;
     }
 
     &.maybe {
-        background-color: rgb(244, 176, 25);
+        background-color: $maybe;
     }
 
     &.not-going {
-        background-color: rgb(226, 33, 33);
+        background-color: $not-going;
+    }
+
+    &.not-responded {
+        background-color: $dark-grey;
     }
 }
 
@@ -29,7 +33,7 @@
 
 .confirm-event {
     text-align: center;
-    border-radius: 5px;
+    border-radius: 50px;
     color: white;
     padding: 0.7em;
     margin-bottom: 0.5em;
@@ -58,8 +62,21 @@
     }
 }
 
+.rsvp-title {
+    margin: 0.2em 0;
+}
+
 /* Semantic UI override */
 
 .ui.list, ol.ui.list, ul.ui.list {
     margin: 0.1em 0 !important;
+}
+
+.ui.horizontal.list > .item {
+    margin-left: 0 !important;
+}
+
+
+.rsvp-list-items {
+    color: $dark-grey !important;
 }

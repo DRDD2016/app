@@ -27,8 +27,7 @@ class Login extends React.Component {
                     <div className="row login-event-header">
                     </div>
                     <div className="container login">
-
-                        <h2 className="row">Welcome to Spark</h2>
+                        <img className="twelve columns" src="https://cloud.githubusercontent.com/assets/2305591/16362624/f05404f6-3bab-11e6-8b3a-0844c9b98589.png"/>
 
                         <div className="row">
                             <h4 className="text-snippet">

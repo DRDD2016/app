@@ -5,7 +5,7 @@ const ConfirmEventWhat = ({ eventWhat }) => {
     const layout = Object.keys(eventWhat).map((data, i) => {
 
         return (
-            <p className="option" key={ i }>
+            <p className="what-option" key={ i }>
                 { eventWhat[data] || "TBC" }
             </p>
         );

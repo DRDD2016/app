@@ -19,7 +19,7 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
         <div className={ viewedNotification }>
             <Link onClick={ () => handleUpdateNotification(index) } to={ 'event/' + eventID } >
                 <img className="three columns ui profile-photo circular image" src={ photoURL } alt="Host photo" />
-                <div className="six columns">
+                <div className="six columns notification-middle-column">
                     <p className="timestamp"> { moment(timestamp).startOf().fromNow() } </p>
                     <p className="subject-name">
                         { userIsSubject && " You"}
@@ -39,31 +39,30 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { eventName }
                     </p>
 
-                    <p className="subject-name">
+                    <p className="number-of-invites">
                         <span>
-                        { userIsSubject && userIsHost && " invitation sent to " + inviteesNumber + " friends" }
+                            { userIsSubject && userIsHost && " invitation sent to " + inviteesNumber + " friends" }
                         </span>
                     </p>
                 </div>
 
-                <div className="three columns">
+                <div className="three columns notification-right-column">
                     <label className="date">
                         {
-                            (eventWhen.length > 1 && "Vote") ||
+                            (eventWhen.length > 1 && "VOTE") ||
                             (eventWhen.length === 1 && eventWhen[0].date === "" && "TBC") ||
-                            formatDate(eventWhen[0].date)
+                            formatDate(eventWhen[0].date).toUpperCase()
                         }
                     </label>
                     <label className="placeName">
                         {
-                            (eventWhere.length > 1 && "Vote") ||
+                            (eventWhere.length > 1 && "VOTE") ||
                             (eventWhere.length === 1 && eventWhere[0].placeName === "" && "TBC") ||
                             eventWhere[0].placeName
                         }
                     </label>
                 </div>
             </Link>
-
         </div>
     );
 };

@@ -1,88 +1,68 @@
 .notification {
-    margin: 0.7em 0;
-    padding:0.5em;
-
-    border-right: 0.3em solid $going;
+    border-left: 0.2em solid $going;
+    border-bottom: 0.19em solid $light-grey;
+    padding-left:0.5em;
 
     &.viewed-notification {
-        border-right: 0.3em solid $grey;
+        border-left: 0.2em solid white;
+    }
+}
+
+.notification a {
+    color: $dark-grey;
+
+    .notification-middle-column {
+        border-right: 0.19em solid $light-grey;
+        padding-right: 0.3em;
+    }
+    .notification-right-column {
+        margin-left: 0.3em;
+        margin-top: 3%;
+    }
+    img {
+        margin-top: 1em;
     }
     .timestamp {
         font-size: 0.7em;
-        color: $dark-grey;
+
         font-weight: 100;
         padding-left: 1em;
-        margin-bottom: 0.5em;
+        margin: 0.5em 0;
     }
-    .subject-name {
-        font-weight: bolder;
+    .subject-name, .number-of-invites {
         color: $black;
-        padding-left: 0.3em;
+
+        font-weight: bolder;
+        padding-left: 0.2em;
+        padding-right: 0.1em;
         margin-bottom: 0;
         font-size: 0.9em;
         span {
             font-size: 0.8em;
-            color: $dark-grey;
             font-weight: 100;
         }
     }
     .event-name {
         font-size: 0.9em;
-        font-weight: 400;
-        color: $black;
         padding-left: 0.3em;
-        margin-bottom: 0;
+        margin-bottom: 0.2em;;
+    }
+    .number-of-invites {
+        color: $dark-grey;
     }
     .date {
-        margin-top: 2em;
+        margin-top: 1em;
+        margin-bottom: 0.7em;
     }
     .date, .placeName {
         width: 100%;
-        text-align: center;
+        text-align: left;
     }
 }
 
-.notification a, .calendar-item a {
-
-    .eventWhat, .placeName, .date, .time {
-        line-height: 1.2em;
-        position: relative;
-        display: inline-block;
-        font-size: 1.2rem;
-        color: $black;
-    }
-}
-
-.calendar-item {
-
-    h5 {
-        color: $black;
-        margin-bottom: 0.4em;
-    }
-    a {
-        .date, .placeName {
-            color: $black;
-            text-align: left;
-            margin: 0 8px 10px 0;
-            font-size: 1.4rem;
-            font-weight: normal;
-        }
-
-        img {
-            border: 1px solid $grey;
-            padding: 3px;
-        }
-    }
-    .fa-question-circle {
-        color: $maybe;
-    }
-    .fa-check-circle {
-        color: $going;
-    }
-    .fa-exclamation-circle {
-        color: $not-going;
-    }
-}
+/****
+Rules shared with CalendarItem
+***/
 
 .placeName {
     @include icon("\f041");
@@ -94,4 +74,18 @@
 
 .time {
     @include icon("\f017");
+}
+
+.notification a, .calendar-item a {
+
+    .eventWhat, .date, .time, .placeName {
+        line-height: 1.2em;
+        position: relative;
+        display: inline-block;
+        font-size: 1.1rem;
+        color: $black;
+    }
+    .placeName {
+        font-weight: lighter;
+    }
 }

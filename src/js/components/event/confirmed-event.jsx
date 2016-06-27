@@ -26,9 +26,11 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
         return notResponded.map((user, i) => {
             return (
-                <div className="ui image label" key={ user.id }>
-                    <img src={ user.photoURL } />
-                    { user.firstName }
+                <div className="item" key={ user.id }>
+                    <img className="ui avatar image" src={ user.photoURL } />
+                    <div className="content">
+                        <div className="header rsvp-list-items">{ user.firstName }</div>
+                    </div>
                 </div>
             );
         });
@@ -57,7 +59,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                     <div className="nine columns confirm-event where">
 
                         <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
-                        <span className="placeAddress">{ event.eventWhere[0].placeAddress }</span>
+                        <span>{ event.eventWhere[0].placeAddress }</span>
                     </div>
                 </div>
 

@@ -26,7 +26,7 @@ class TopBar extends React.Component {
     }
 
     render () {
-        
+
         let primaryPath = this.props.location.pathname.split('/')[1];
 
         return (
@@ -106,7 +106,7 @@ class TopBar extends React.Component {
                     //User is Host and its an Event
                     this.props.eventID && this.props.userIsHost && !this.props.isPoll &&
                     <div>
-                        <Link onClick={ () => { handleEdit(this.props.event); } } to={ 'edit/' + this.props.eventID }>
+                        <Link onClick={ () => { this.props.handleEdit(this.props.event); } } to={ 'edit/' + this.props.eventID }>
                             <p className="three columns back-button"> Edit </p>
                         </Link>
                         <h3 className=" six columns title">Event</h3>

@@ -19,7 +19,7 @@ const EventConfirm = ({ data, saveEvent }) => {
             <div key={ inviteeObject.id } className="item">
                 <img className="ui avatar image" src={ inviteeObject.photoURL } />
                 <div className="">
-                    <a className="header">{ inviteeObject.firstName }</a>
+                    <p className="header invited-friends">{ inviteeObject.firstName }</p>
                 </div>
             </div>
         );
@@ -36,28 +36,26 @@ const EventConfirm = ({ data, saveEvent }) => {
 
     return (
         <div className="create-event-confirm">
-            <h4>What?</h4>
-            <ConfirmEventWhat eventWhat={ data.eventWhat } />
+                <p className="confirm-what">What?</p>
+                <ConfirmEventWhat eventWhat={ data.eventWhat } />
 
-            <h4>Where?</h4>
-            <ConfirmEventWhere eventWhere={ data.eventWhere } />
+                <p className="confirm-where">Where?</p>
+                <ConfirmEventWhere eventWhere={ data.eventWhere } />
 
-            <h4>When?</h4>
+                <p className="confirm-when">When?</p>
+                <div className={ eventWhenInfo }>
 
-            <div className={ eventWhenInfo }>
-
-                You need to enter a date before saving this event.
-                <Link to='/create-event/when'>
-                <button className="twelve columns">
-                Add a Date
-                </button>
-                </Link>
-
-            </div>
+                    You need to enter a date before saving this event.
+                    <Link to='/create-event/when'>
+                    <button className="twelve columns">
+                    Add a Date
+                    </button>
+                    </Link>
+                </div>
 
             <ConfirmEventWhen eventWhen={ data.eventWhen } />
 
-            <h4>Invited</h4>
+            <p className="invited-title">Invited</p>
             <div className="ui very relaxed horizontal list">
                 { invitedFriends }
             </div>
