@@ -3,11 +3,6 @@
   "description": "Get your social life sorted. Don’t miss out.",
   "version": "1.0",
   "manifest_version": 2,
-  "icons": {
-    "src": "spark-128.png",
-    "sizes": "128x128",
-    "type": "image/png"
-  },
   "app": {
     "urls": [
       "http://drdd2016.herokuapp.com/"
