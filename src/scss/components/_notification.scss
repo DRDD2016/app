@@ -8,11 +8,12 @@
     }
 }
 
-
 .notification a {
+    color: $dark-grey;
     .notification-middle-column {
         border-right: 0.19em solid $light-grey;
         padding-right: 0.3em;
+        // margin: 10px;
     }
 
     .notification-right-column {
@@ -26,12 +27,12 @@
 
     .timestamp {
         font-size: 0.7em;
-        color: $dark-grey;
+
         font-weight: 100;
         padding-left: 1em;
         margin: 0.5em 0;
     }
-    .subject-name {
+    .subject-name, .number-of-invites {
         color: $black;
 
         font-weight: bolder;
@@ -46,9 +47,12 @@
     }
     .event-name {
         font-size: 0.9em;
-        color: $dark-grey;
+        // color: $dark-grey;
         padding-left: 0.3em;
-        margin-bottom: 0.5em;;
+        margin-bottom: 0.2em;;
+    }
+    .number-of-invites {
+        color: $dark-grey;
     }
     .date {
         margin-top: 1em;

@@ -39,9 +39,9 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { eventName }
                     </p>
 
-                    <p className="subject-name">
+                    <p className="number-of-invites">
                         <span>
-                        { userIsSubject && userIsHost && " invitation sent to " + inviteesNumber + " friends" }
+                            { userIsSubject && userIsHost && " invitation sent to " + inviteesNumber + " friends" }
                         </span>
                     </p>
                 </div>
@@ -63,7 +63,6 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                     </label>
                 </div>
             </Link>
-
         </div>
     );
 };

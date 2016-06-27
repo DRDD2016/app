@@ -5,6 +5,10 @@ See _notification.scss partial for shared rules.
 
 .calendar-item a {
 
+    label.date {
+        margin-right: 0.6em;
+    }
+
     .calendar-title {
         font-weight: bolder;
         color: $dark-grey;
