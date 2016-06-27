@@ -12,21 +12,20 @@
     color: $dark-grey;
 
     .notification-middle-column {
-        border-right: 0.19em solid $light-grey;
+        border-right: 0.1em solid $light-grey;
         padding-right: 0.3em;
     }
     .notification-right-column {
-        margin-left: 0.3em;
+        margin-left: 0.4em;
         margin-top: 3%;
     }
     img {
-        margin-top: 1em;
+        margin-top: 0.8em;
     }
     .timestamp {
         font-size: 0.7em;
-
         font-weight: 100;
-        padding-left: 1em;
+        padding-left: 0.3em;
         margin: 0.5em 0;
     }
     .subject-name, .number-of-invites {
@@ -43,7 +42,7 @@
         }
     }
     .event-name {
-        font-size: 0.9em;
+        font-size: 0.7em;
         padding-left: 0.3em;
         margin-bottom: 0.2em;;
     }
@@ -87,5 +86,6 @@ Rules shared with CalendarItem
     }
     .placeName {
         font-weight: lighter;
+        text-align: left;
     }
 }

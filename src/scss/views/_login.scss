@@ -1,6 +1,6 @@
 .login {
-    // margin: 3rem 0 0 0;
-    color: rgb(94, 95, 97);
+
+    color: $dark-grey;
     position: relative;
     bottom: 5em;
 
@@ -8,11 +8,11 @@
         text-align: center;
     }
 
-    > .row {
+    .row {
         padding: 3% 0;
     }
 
-    > .save-to-homescreen {
+    .save-to-homescreen {
         text-align: center;
         padding: 0;
     }

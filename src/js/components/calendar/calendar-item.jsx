@@ -8,7 +8,7 @@ CalendarItem is used in calendar and album views.  Plays equivalent role to Noti
 ***/
 
 const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto, RSVPstatus, userIsHost }) => {
-    
+
     let iconClasses = classnames('fa', {
         'fa-check-circle': userIsHost || RSVPstatus === 'going',
         'fa-question-circle': !userIsHost  && RSVPstatus === 'maybe',
@@ -22,10 +22,10 @@ const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, co
                 <div className="row">
 
                     <div className="seven columns">
-                        <p className="calendar-title">{ eventName }
                         <span>
                             <i className={ iconClasses } ariaHidden="true" />
                         </span>
+                        <p className="calendar-title">{ eventName }
                         </p>
                         <div>
                         </div>
