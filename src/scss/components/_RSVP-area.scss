@@ -26,40 +26,8 @@
     margin-left: 1em;
 }
 
-
 .RSVP-user-list {
     padding-left: 15px;
-}
-
-.confirm-event {
-    text-align: center;
-    border-radius: 50px;
-    color: white;
-    padding: 0.7em;
-    margin-bottom: 0.5em;
-
-    &.what {
-        background-color: $what;
-    }
-    &.where {
-        background-color: $where;
-    }
-    &.when {
-        background-color: $when;
-    }
-}
-
-.confirm-event-title {
-
-    &.what {
-        color: $what;
-    }
-    &.where {
-        color: $where;
-    }
-    &.when {
-        color: $when;
-    }
 }
 
 .rsvp-title {
@@ -74,8 +42,8 @@
 
 .ui.horizontal.list > .item {
     margin-left: 0 !important;
+    padding-right: 0.5em;
 }
-
 
 .rsvp-list-items {
     color: $dark-grey !important;

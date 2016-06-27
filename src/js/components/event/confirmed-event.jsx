@@ -41,10 +41,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
             <div>
                 { eventNote(event) }
                 <div className="row">
-                    <p className="three columns confirm-event-title what">
+                    <p className="three columns confirmed-event-title what">
                         What
                     </p>
-                    <div className="nine columns confirm-event what">
+                    <div className="nine columns confirmed-event what">
                         { event.eventWhat[0] || "TBC" }
                     </div>
                 </div>
@@ -52,11 +52,11 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 <br />
 
                 <div className="row">
-                    <p className="three columns confirm-event-title where">
+                    <p className="three columns confirmed-event-title where">
                         Where
                     </p>
 
-                    <div className="nine columns confirm-event where">
+                    <div className="nine columns confirmed-event where">
 
                         <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
                         <span>{ event.eventWhere[0].placeAddress }</span>
@@ -66,11 +66,11 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                 <br />
 
                 <div className="row">
-                    <p className="three columns confirm-event-title when">
+                    <p className="three columns confirmed-event-title when">
                         When
                     </p>
 
-                    <div className="nine columns confirm-event when">
+                    <div className="nine columns confirmed-event when">
                         <div className="date">
                             { formatDate(event.eventWhen[0].date, true) || "TBC" }
                         </div>

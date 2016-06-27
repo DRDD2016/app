@@ -23,7 +23,7 @@ import EventDetailsContainer from './containers/create-event/event-details-conta
 import EventWhatContainer from './containers/create-event/event-what-container.js';
 import EventWhereContainer from './containers/create-event/event-where-container.js';
 import EventWhenContainer from './containers/create-event/event-when-container.js';
-import EventConfirmContainer from './containers/create-event/event-confirm-container.js';
+import ConfirmNewEventContainer from './containers/create-event/confirm-new-event-container.js';
 import InviteFriendsContainer from './containers/create-event/invite-friends-container.js';
 import ProfileContainer from './containers/profile-container.js';
 
@@ -122,7 +122,7 @@ const routes = (
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />
             <Route path='when' component={ requireAuthentication(EventWhenContainer) } />
             <Route path='invitees' component={ requireAuthentication(InviteFriendsContainer) } />
-            <Route path='confirm' component={ requireAuthentication(EventConfirmContainer) } />
+            <Route path='confirm' component={ requireAuthentication(ConfirmNewEventContainer) } />
         </Route>
 
     </Route>
