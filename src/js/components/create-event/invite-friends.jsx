@@ -11,7 +11,7 @@ class InviteFriends extends React.Component {
     render () {
         var friends = this.props.friends.map((friendData, index) => {
             return (
-                  <div key={ index } className="item">
+                  <div key={ index } className="item invited-friends">
                         <div className="right floated content">
                             <div onClick={ (e) => this.props.handleSelected(friendData, index) } className="ui button">Invite</div>
                         </div>
@@ -48,7 +48,6 @@ class InviteFriends extends React.Component {
 
         return (
             <div>
-                <h3> Invite your Friends! </h3>
                 <div>
                     { invitees }
                 </div>

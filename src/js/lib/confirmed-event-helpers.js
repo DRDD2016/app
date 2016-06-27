@@ -24,7 +24,7 @@ export function eventNote (event) {
     if (event.eventNote !== "") {
         return (
             <div className="event-note">
-                <h5 className="twelve columns">Message from the host</h5>
+                <p className="twelve columns">Message from the host</p>
                 <span>{ event.eventNote }</span>
             </div>
         );

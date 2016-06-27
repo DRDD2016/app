@@ -1,18 +1,17 @@
 import React from 'react';
+import TopBar from './event/top-bar.jsx';
 import classnames from 'classnames';
 
-const Profile = ({ user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
+const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
 
-    let hideEditButton = classnames("twelve columns", {
+    let hideEditButton = classnames("twelve columns button-primary", {
         "display-none": firstName === ''
     });
 
     return (
         <div className="profile-page">
 
-            <div className="event-header row">
-                <h3 className="twelve columns title">Profile</h3>
-            </div>
+            <TopBar location={ location } />
 
             <div className="container">
 
@@ -25,13 +24,7 @@ const Profile = ({ user, firstName, lastName, handleLogOut, handleChangeName, ha
                 </div>
 
                 <div className="row">
-                    <button className="twelve columns logout-button" onClick={ handleLogOut } >
-                        Log Out
-                    </button>
-                </div>
-
-                <div className="row">
-                    <h4 className="twelve columns edit-name-title"> Change Name </h4>
+                    <p className="twelve columns edit-name-title"> Change Name </p>
                 </div>
 
                 <div className="row">
@@ -55,6 +48,12 @@ const Profile = ({ user, firstName, lastName, handleLogOut, handleChangeName, ha
                 <div className="row">
                     <button className={ hideEditButton } onClick={ () => handleEditName(firstName, lastName) } >
                         Change Name
+                    </button>
+                </div>
+
+                <div className="row">
+                    <button className="offset-by-three six columns logout-button" onClick={ handleLogOut } >
+                        Log Out
                     </button>
                 </div>
 

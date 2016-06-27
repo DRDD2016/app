@@ -1,7 +1,7 @@
 var getEvent = require('../db/getEvent.js');
 var getVotes = require('../lib/getVotes.js');
 var getPoll = require('../lib/getPoll.js');
-var getRSVPs = require('../lib/getRSVPs.js');
+var getAllRSVPs = require('../lib/getAllRSVPs.js');
 var getEventPhotos = require('../db/getEventPhotos.js');
 var getDeletedPhotos = require('../db/getDeletedPhotos.js');
 var hasVoted = require('../lib/hasVoted.js');
@@ -38,7 +38,7 @@ exports.register = (server, options, next) => {
                     }
                     if ((isHost && !event.isPoll) || (!isHost && !event.isPoll)) {
 
-                        getRSVPs(request.query.eventID, (error, RSVPs) => {
+                        getAllRSVPs(request.query.eventID, (error, RSVPs) => {
 
                             if (error) {
                                 reply(error);

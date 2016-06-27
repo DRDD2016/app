@@ -2,13 +2,13 @@
 
     text-align: center;
     line-height: 2.3em;
-    border: 1px solid $facebook-blue;
-    color: $facebook-blue;
-    background-color: $grey;
+    border: 1px solid $blue;
+    color: $blue;
+    background-color: $white;
 
     &.selected {
-        background-color: $facebook-blue;
-        color: $grey;
+        background-color: $blue;
+        color: $white;
     }
 
     &:nth-child(1) {

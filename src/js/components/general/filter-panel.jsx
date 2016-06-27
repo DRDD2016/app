@@ -2,16 +2,16 @@ import React from 'react';
 import classnames from 'classnames';
 
 
-const FilterPanel = ({ displaySome, displayAll, isFilter, isShowHosting }) => {
+const FilterPanel = ({ displaySome, displayAll, calendarIsFiltered, isShowHosting }) => {
     
     let allButtonClasses = classnames("four columns filter", {
-        "selected": !isFilter
+        "selected": !calendarIsFiltered
     });
     let receivedButtonClasses = classnames("four columns filter", {
-        "selected": isFilter && !isShowHosting
+        "selected": calendarIsFiltered && !isShowHosting
     });
     let hostingButtonClasses = classnames("four columns filter", {
-        "selected": isFilter && isShowHosting
+        "selected": calendarIsFiltered && isShowHosting
     });
 
 

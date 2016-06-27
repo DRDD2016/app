@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
 import PollButton from '../general/poll-button.jsx';
-import { EventWhatSection, EventWhereSection, EventWhenSection } from './invitee-poll-sections.jsx';
+import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 
 const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eventID, isHost, hasVoted }) => {
 
@@ -16,9 +16,9 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
 
         if (event.eventNote !== "") {
             return (
-                <div>
-                <h4 className="twelve columns">Note</h4>
-                { event.eventNote }
+                <div className="event-note">
+                    { event.eventNote }
+                    <hr />
                 </div>
             );
         }
@@ -28,14 +28,15 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
             <div className="poll">
                 { eventNote(event) }
 
-                <h4>What</h4>
-                { eventWhat }
-
-                <h4>Where</h4>
-                { eventWhere }
-
-                <h4>When</h4>
-                { eventWhen }
+                <div className="eventWhat">
+                    { eventWhat }
+                </div>
+                <div className="eventWhere">
+                    { eventWhere }
+                </div>
+                <div className="eventWhen">
+                    { eventWhen }
+                </div>
 
                 <PollButton poll={ poll }
                             handlePollConfirmation={ handlePollConfirmation }
@@ -50,22 +51,22 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
 
     return event[eventType].map((choice, i) => {
 
-        let options = {
-            "poll-eventWhat": eventType === "eventWhat" && poll[eventType],
-            "poll-eventWhere": eventType === "eventWhere" && poll[eventType],
-            "poll-eventWhen": eventType === "eventWhen" && poll[eventType],
-            "poll-selected-eventWhat": eventType === "eventWhat" && poll[eventType] && poll[eventType][i] === true,
-            "poll-selected-eventWhere": eventType === "eventWhere" && poll[eventType] && poll[eventType][i] === true,
-            "poll-selected-eventWhen": eventType === "eventWhen" && poll[eventType] && poll[eventType][i] === true
-        };
-
-        let classes = classnames("poll-option", options);
+        let classes = classnames("poll-option", "eight columns offset-by-one", {
+            "selected": poll[eventType][i] === true
+        });
+        let labelClasses = classnames("two columns section-title", {
+            'hide': i > 0
+        });
 
         if (poll[eventType]) {
 
             return (
-                <div onClick={ () => toggleSelection(eventType, i) } className={ classes } key={eventType + '-' + i}>
-                    <EventTypeComponent text={ choice } />
+                <div onClick={ () => toggleSelection(eventType, i) }
+                     key={eventType + '-' + i}>
+
+                    <EventTypeComponent text={ choice }
+                                        choiceClasses={ classes }
+                                        labelClasses={ labelClasses }/>
                 </div>
             );
         } else {

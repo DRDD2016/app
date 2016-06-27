@@ -67,6 +67,30 @@ export const eventConfirmedHarryPhotos = [
     }
 ];
 
+export const eventConfirmedHarryCalendar = {
+    eventName: "Harry's birthday",
+    eventDescription: "It's my birthday",
+    eventNote: '',
+    eventWhat: ["Eat"],
+    eventID: eventConfirmedHarryEventID,
+    eventWhere: [{
+        placeName: "Harrods",
+        placeAddress: "Knightsbridge, London, United Kingdom"
+    }],
+    eventWhen: [{
+        date: "2016-07-31",
+        time: "11:00"
+    }],
+    invitees: [
+        Sohil
+    ],
+    isPoll: false,
+    hostID: Harry.id,
+    hostPhotoURL: Harry.photoURL,
+    coverPhoto: eventConfirmedHarryPhotos[0]
+};
+
+
 export const photoToAdd = 'https://spark-app-demo.s3-eu-west-1.amazonaws.com/event%3A117/1465480858781Screen%20Shot%202016-05-17%20at%2011.17.48.png';
 
 /*

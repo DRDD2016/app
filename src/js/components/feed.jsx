@@ -2,12 +2,12 @@ import React from 'react';
 import Notification from './notification.jsx';
 import { Link } from 'react-router';
 import getUserID from '../lib/getUserID.js';
+import TopBar from './event/top-bar.jsx';
 import Spinner from './general/spinner.jsx';
 import FilterPanel from './general/filter-panel.jsx';
 
 
-
-const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, isFilter, isShowHosting }) => {
+const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, calendarIsFiltered, isShowHosting }) => {
 
     let mappedNotifications = notifications.map((data, i) => {
         return (
@@ -40,9 +40,7 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
         }
         {
             !isFetching &&
-            <div className="event-header row">
-                <h3 className=" twelve columns title">Feed</h3>
-            </div>
+            <TopBar location={ location } />
         }
         {
             notifications.length === 0 && !isFetching &&
@@ -56,7 +54,7 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
                 !isFetching && notifications.length > 0 &&
                     <FilterPanel displayAll={ displayAll }
                                  displaySome={ displaySome }
-                                 isFilter={ isFilter }
+                                 calendarIsFiltered={ calendarIsFiltered }
                                  isShowHosting={ isShowHosting } />
             }
             {
