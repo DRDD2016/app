@@ -8,7 +8,7 @@ import formatDate from '../../lib/formatDate.js';
 import { isPoll } from '../../lib/create-event-helpers.js';
 
 
-const EventConfirm = ({ data, saveEvent }) => {
+const ConfirmNewEvent = ({ data, saveEvent }) => {
 
     let SaveButtonIsHidden = data.eventWhen[0].date === "" && isPoll(data) === false;
 
@@ -18,7 +18,7 @@ const EventConfirm = ({ data, saveEvent }) => {
         return (
             <div key={ inviteeObject.id } className="item">
                 <img className="ui avatar image" src={ inviteeObject.photoURL } />
-                <div className="">
+                <div>
                     <p className="header invited-friends">{ inviteeObject.firstName }</p>
                 </div>
             </div>
@@ -35,7 +35,7 @@ const EventConfirm = ({ data, saveEvent }) => {
     });
 
     return (
-        <div className="create-event-confirm">
+        <div className="confirm-new-event">
                 <p className="confirm-what">What?</p>
                 <ConfirmEventWhat eventWhat={ data.eventWhat } />
 
@@ -67,4 +67,4 @@ const EventConfirm = ({ data, saveEvent }) => {
     );
 };
 
-export default EventConfirm;
+export default ConfirmNewEvent;

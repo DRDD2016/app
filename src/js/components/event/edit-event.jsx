@@ -64,7 +64,7 @@ const EditEvent = (props) => {
                             placeholder="Leave a note to your friends (optional)" />
                     </div>
 
-                    <p className="confirm-event-title-what input-p-header"> What </p>
+                    <p className="input-p-header"> What </p>
                     <Input
                         handleChange={ props.handleEventWhat.bind(this, 0) }
                         value={ eventWhat }
@@ -73,7 +73,7 @@ const EditEvent = (props) => {
                         placeholder="What would you like to do?"
                     />
 
-                    <p className="confirm-event-title-where input-p-header"> Where </p>
+                    <p className="input-p-header"> Where </p>
                         <AutocompleteInput
                             handleChange={ props.handleEventWhere.bind(this, 0) }
                             inputKey={ 0 }
@@ -83,7 +83,7 @@ const EditEvent = (props) => {
                             removeInput=''
                         />
 
-                    <p className="confirm-event-title-when input-p-header"> When </p>
+                    <p className="input-p-header"> When </p>
                         <DateTimeInput
                             value={ eventWhen }
                             inputKey={ 0 }

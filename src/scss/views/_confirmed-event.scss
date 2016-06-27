@@ -1,7 +1,7 @@
 .confirmed-event {
 
     span {
-        display: inline-block;
+        display: block;
         margin-right: 1em;
     }
 
@@ -13,8 +13,37 @@
         color: $grey;
     }
 
-    input[type="file"] {
-        display: none;
+
+    // margin-bottom: 0.5em;
+
+    &.what, &.where, &.when {
+        border-radius: 50px;
+        padding: 0.7em;
+        color: white;
+        text-align: center;
+    }
+
+    &.what {
+        background-color: $what;
+    }
+    &.where {
+        background-color: $where;
+    }
+    &.when {
+        background-color: $when;
+    }
+}
+
+.confirmed-event-title {
+
+    &.what {
+        color: $what;
+    }
+    &.where {
+        color: $where;
+    }
+    &.when {
+        color: $when;
     }
 }
 
@@ -26,4 +55,10 @@
         border-radius: 20px;
         font-size: 1.2rem;
     }
+}
+/***
+Hide default file upload button
+**/
+input[type="file"] {
+    display: none;
 }
