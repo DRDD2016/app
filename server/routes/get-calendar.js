@@ -30,9 +30,8 @@ exports.register = (server, options, next) => {
                             if (error) {
                                 return reply(error);
                             }
-                            // console.log(calendarWithPhoto);
                             mapCalendarToRSVPs(calendarWithPhoto, userID, (error, calendarWithRSVPs) => {
-                                // console.log(calendarWithRSVPs);
+                                
                                 var verdict = error || calendarWithRSVPs;
                                 reply(verdict);
                             });

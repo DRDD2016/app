@@ -6,19 +6,19 @@
     margin-bottom: 0.5em;
 
     &.going {
-        background-color: rgb(140, 198, 68);
+        background-color: $going;
     }
 
     &.maybe {
-        background-color: rgb(244, 176, 25);
+        background-color: $maybe;
     }
 
     &.not-going {
-        background-color: rgb(226, 33, 33);
+        background-color: $not-going;
     }
 
     &.not-responded {
-        background-color: rgb(245, 130, 32);
+        background-color: $dark-grey;
     }
 }
 
