@@ -3,6 +3,7 @@ import TopBar from '../event/top-bar.jsx';
 import CalendarItem from './calendar-item.jsx';
 import FilterPanel from '../general/filter-panel.jsx';
 import Spinner from '../general/spinner.jsx';
+import getUserID from '../../lib/getUserID.js';
 
 const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent, displaySome, displayAll, calendarIsFiltered, isShowHosting }) => {
 
@@ -35,8 +36,9 @@ const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent,
                 }
                 {
                     !isFetching && sortedData.map((item, i) => {
-                        let RSVPstatus = undefined;
+                        
                         return <CalendarItem key={ i }
+                                             userIsHost={ item.hostID === getUserID() }
                                              RSVPstatus={ item.RSVP }
                                              eventName={ item.eventName }
                                              eventWhat={ item.eventWhat }

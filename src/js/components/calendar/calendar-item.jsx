@@ -7,15 +7,13 @@ import classnames from 'classnames';
 CalendarItem is used in calendar and album views.  Plays equivalent role to Notification.jsx for feed view
 ***/
 
-const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto, RSVPstatus }) => {
-    if (eventID == 'event:15') {
-        console.log("RSVPstatus", RSVPstatus);
-    }
+const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto, RSVPstatus, userIsHost }) => {
+    
     let iconClasses = classnames('fa', {
-        'fa-check-circle': RSVPstatus === 'going',
-        'fa-question-circle': RSVPstatus === 'maybe',
-        'fa-times-circle': RSVPstatus === 'notGoing',
-        'fa-exclamation-circle': RSVPstatus === null
+        'fa-check-circle': userIsHost || RSVPstatus === 'going',
+        'fa-question-circle': !userIsHost  && RSVPstatus === 'maybe',
+        'fa-times-circle': !userIsHost  && RSVPstatus === 'notGoing',
+        'fa-exclamation-circle': !userIsHost  && RSVPstatus === null
     });
 
     return (
