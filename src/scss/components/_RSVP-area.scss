@@ -62,15 +62,20 @@
     }
 }
 
+.rsvp-title {
+    margin: 0.2em 0;
+}
+
 /* Semantic UI override */
 
 .ui.list, ol.ui.list, ul.ui.list {
     margin: 0.1em 0 !important;
 }
 
-.rsvp-title {
-    margin: 0.2em 0;
+.ui.horizontal.list > .item {
+    margin-left: 0 !important;
 }
+
 
 .rsvp-list-items {
     color: $dark-grey !important;
