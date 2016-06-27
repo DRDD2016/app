@@ -49,7 +49,7 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
                     (Why not create some?)
                 </div>
         }
-            <div className="container">
+            <div className="container feed">
             {
                 !isFetching && notifications.length > 0 &&
                     <FilterPanel displayAll={ displayAll }
