@@ -10,6 +10,7 @@ See _notification.scss partial for shared rules.
     }
 
     .calendar-title {
+        display: inline;
         font-weight: bolder;
         color: $dark-grey;
         padding-left: 0.3em;
