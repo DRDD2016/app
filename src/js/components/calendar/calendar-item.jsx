@@ -8,10 +8,13 @@ CalendarItem is used in calendar and album views.  Plays equivalent role to Noti
 ***/
 
 const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, coverPhoto, RSVPstatus }) => {
-
+    if (eventID == 'event:15') {
+        console.log("RSVPstatus", RSVPstatus);
+    }
     let iconClasses = classnames('fa', {
         'fa-check-circle': RSVPstatus === 'going',
         'fa-question-circle': RSVPstatus === 'maybe',
+        'fa-times-circle': RSVPstatus === 'notGoing',
         'fa-exclamation-circle': RSVPstatus === null
     });
 

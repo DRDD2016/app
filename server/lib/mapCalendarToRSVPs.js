@@ -15,13 +15,11 @@ function mapCalendarToRSVPs (calendarArray, userID, callback) {
         if (index === calendarArray.length) {
 
             return callback(null, calendarArray);
+        } else {
+            getRSVPForEvent(calendarArray[index].eventID, userID, report);
         }
     }
-
-    calendarArray.forEach((eventInfo) => {
-
-        getRSVPForEvent(eventInfo.eventID, userID, report);
-    });
+    getRSVPForEvent(calendarArray[index].eventID, userID, report);
 }
 
 module.exports = mapCalendarToRSVPs;

@@ -8,17 +8,6 @@
     }
 }
 
-.placeName {
-    @include icon("\f041");
-}
-
-.date {
-    @include icon("\f133");
-}
-
-.time {
-    @include icon("\f017");
-}
 
 .notification a {
     .notification-middle-column {
@@ -71,6 +60,23 @@
     }
 }
 
+/****
+Rules shared with CalendarItem
+***/
+
+
+.placeName {
+    @include icon("\f041");
+}
+
+.date {
+    @include icon("\f133");
+}
+
+.time {
+    @include icon("\f017");
+}
+
 
 .notification a, .calendar-item a {
 
@@ -88,35 +94,5 @@
         font-size: 1.1rem;
         font-weight: lighter;
         color: $black;
-    }
-}
-
-.calendar-item a {
-
-    h5 {
-        color: $dark-grey;
-        margin-bottom: 0.4em;
-    }
-    a {
-        .date, .placeName {
-            color: $dark-grey;
-            text-align: left;
-            margin: 0 8px 10px 0;
-            font-size: 1.2rem;
-        }
-
-        img {
-            border: 1px solid $grey;
-            padding: 3px;
-        }
-    }
-    .fa-question-circle {
-        color: $maybe;
-    }
-    .fa-check-circle {
-        color: $going;
-    }
-    .fa-exclamation-circle {
-        color: $not-going;
     }
 }
