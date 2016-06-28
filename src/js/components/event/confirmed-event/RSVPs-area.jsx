@@ -29,7 +29,7 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
                     <div> Not Responded </div>
                 </div>
                 <div className="twelve columns">
-                    <div className="ui big horizontal list">
+                    <div className="ui huge horizontal list">
                         { notRespondedList(respondedList, invitees) }
                     </div>
                 </div>
