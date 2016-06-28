@@ -18,8 +18,10 @@ const ConfirmNewEvent = ({ data, saveEvent }) => {
         return (
             <div key={ inviteeObject.id } className="item">
                 <img className="ui avatar image" src={ inviteeObject.photoURL } />
-                <div>
-                    <p className="header invited-friends">{ inviteeObject.firstName }</p>
+                <div className="content">
+                    <div className="header">
+                        { inviteeObject.firstName }
+                    </div>
                 </div>
             </div>
         );
@@ -55,8 +57,8 @@ const ConfirmNewEvent = ({ data, saveEvent }) => {
 
             <ConfirmEventWhen eventWhen={ data.eventWhen } />
 
-            <p className="invited-title">Invited</p>
-            <div className="ui very relaxed horizontal list">
+            <p className="invited-title">Invited friends</p>
+            <div className="ui big horizontal list">
                 { invitedFriends }
             </div>
 
