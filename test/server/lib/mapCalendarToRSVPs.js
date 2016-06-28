@@ -16,3 +16,13 @@ test('mapCalendarToRSVPs returns the correct attendance status', (t) => {
         t.end();
     });
 });
+
+test('mapCalendarToRSVPs handles an empty array', (t) => {
+
+    mapCalendarToRSVPs([], userID, (error, result) => {
+
+        t.ok(Array.isArray(result), 'Returns an array');
+        t.equal(result.length, 0, 'Returns an empty array');
+        t.end();
+    });
+});
