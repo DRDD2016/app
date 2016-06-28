@@ -2,6 +2,10 @@ var getRSVPForEvent = require('./getRSVPForEvent.js');
 
 function mapCalendarToRSVPs (calendarArray, userID, callback) {
 
+    if (calendarArray.length === 0) {
+        return callback(null, calendarArray);
+    }
+
     var index = 0;
 
     function report (error, RSVP) {
