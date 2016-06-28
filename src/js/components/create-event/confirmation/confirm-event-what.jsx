@@ -10,7 +10,7 @@ const ConfirmEventWhat = ({ eventWhat }) => {
         });
 
         return (
-            <div className="poll-option-container row">
+            <div className="poll-option-container row" key={ i }>
                 <div className={ classes }>What</div>
                 <div className="nine columns confirm-new-event what" key={ i }>
                     { eventWhat[data] || "TBC" }
