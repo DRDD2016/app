@@ -32,10 +32,12 @@ class InviteFriends extends React.Component {
                 );
             } else {
                 return (
-                    <div onClick={ (e) => this.props.removeSelected(inviteeData, index) } key={inviteeData.id} className=" blue iu image label">
-                          <img src={ inviteeData.photoURL} />
-                          { inviteeData.firstName }
-                          <i className="remove icon"></i>
+                    <div onClick={ (e) => this.props.removeSelected(inviteeData, index) }
+                         key={ inviteeData.id }
+                         className="ui big image label blue">
+                        <img src={ inviteeData.photoURL} />
+                            { inviteeData.firstName }
+                        <i className="fa fa-times" ariaHidden="true"></i>
                     </div>
 
                 );
@@ -49,8 +51,11 @@ class InviteFriends extends React.Component {
         return (
             <div>
                 <div>
+                    <h5>Invited friends</h5>
                     { invitees }
                 </div>
+
+                <hr />
 
                 <div className="ui middle aligned divided list">
                     { friends }

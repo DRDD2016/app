@@ -13,6 +13,17 @@ if (parsedURL.auth) {
 }
 sub.subscribe("notify");
 
+pub.on('error', (err) => {
+    console.trace('Redis pub');
+    console.error(err.stack);
+});
+
+sub.on('error', (err) => {
+    console.trace('Redis sub');
+    console.error(err.stack);
+});
+
+
 module.exports = {
     pub: pub,
     sub: sub

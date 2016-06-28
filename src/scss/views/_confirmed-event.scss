@@ -1,8 +1,8 @@
-.confirmed-event {
+.confirmed-event, .confirm-new-event {
 
     span {
         display: block;
-        margin-right: 1em;
+        // margin-right: 1em;
     }
 
     .placeName, .date {
@@ -34,7 +34,7 @@
     }
 }
 
-.confirmed-event-title {
+.confirmed-event-title, .confirm-new-event-title {
 
     &.what {
         color: $what;

@@ -1,20 +1,29 @@
 import React from 'react';
+import classnames from 'classnames';
 import formatDate from '../../../lib/formatDate.js';
 
 const ConfirmEventWhen = ({ eventWhen }) => {
 
     const layout = eventWhen.map((data, i) => {
 
+        let classes = classnames('three columns confirm-new-event-title when', {
+            'hide': i > 0
+        });
+
         return (
-            <p className="when-option" key={ i }>
-                <span className="eventWhen-date">
-                    { ` Date: ${formatDate(data.date, true) || "TBC"}` }
-                </span>
-                <br />
-                <span className="eventWhen-time">
-                    { ` Time: ${ data.time || "TBC"}` }
-                </span>
-            </p>
+            <div className="poll-option-container row" key={ i }>
+                <div className={ classes }>When</div>
+                <div className="nine columns confirm-new-event when">
+                    <span className="row">
+                        <span className="date">
+                            { ` Date: ${formatDate(data.date, true) || "TBC"}` }
+                        </span>
+                        <span className="time">
+                            { ` Time: ${ data.time || "TBC"}` }
+                        </span>
+                    </span>
+                </div>
+            </div>
         );
     });
 
