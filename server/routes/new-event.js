@@ -25,7 +25,8 @@ exports.register = (server, options, next) => {
                         }).concat([event.hostID]);
 
                         var subjectID = event.hostID;
-
+                        console.log(subjectID, 'subjectID inside save new event route');
+                        console.log(recipients, 'recepients inside save new event route');
                         notifyEveryone(recipients, subjectID, eventID, event, (error, success) => {
 
                             if (!error) {
@@ -33,7 +34,7 @@ exports.register = (server, options, next) => {
                             }
 
                             var verdict = error || success;
-                            reply(success);
+                            reply(verdict);
                         });
                     }
                 });
