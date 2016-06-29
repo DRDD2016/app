@@ -9,7 +9,7 @@ export default function autocompleteHelper (result, callback) {
     }
     else if (result.types.indexOf('premise') >= 0 || result.types.indexOf('stadium') >= 0 || result.types.indexOf('point_of_interest') >= 0){
         let postcodeObject = result.address_components.length - 1;
-        let cityObject = result.address_components.length - 3;
+        let cityObject = result.address_components.length - 4;
         formattedName = result.name;
         formattedAddress = result.address_components[cityObject].long_name + ' ' + result.address_components[postcodeObject].long_name;
         callback(formattedName, formattedAddress);
