@@ -23,7 +23,6 @@ export const EventWhereSection = ({ text, tally, choiceClasses, labelClasses }) 
                 { text.placeName || "TBC" }
                 <br/>
                 <span className="placeAddress">
-                    <i className="fa fa-map-marker hide" ariaHidden="true" />
                     { text.placeAddress }
                 </span>
             </div>
