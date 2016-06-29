@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
+import { hashHistory } from 'react-router';
 import PollButton from '../general/poll-button.jsx';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 
@@ -47,7 +48,13 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
     );
 };
 
+
 function createPollSelections (event, toggleSelection, poll, eventType, EventTypeComponent) {
+
+    function handleSelection (eventType, i) {
+        toggleSelection(eventType, i);
+        hashHistory.push('/feed');
+    }
 
     return event[eventType].map((choice, i) => {
 
@@ -61,7 +68,7 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
         if (poll[eventType]) {
 
             return (
-                <div onClick={ () => toggleSelection(eventType, i) }
+                <div onClick={ () => handleSelection(eventType, i) }
                      key={eventType + '-' + i}>
 
                     <EventTypeComponent text={ choice }

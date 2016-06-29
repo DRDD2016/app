@@ -48,7 +48,7 @@ function createVoteSection (event, tally, eventType, EventTypeComponent, handleH
 
 
     return event[eventType].map((choice, i) => {
-
+        console.log(hostEventChoices, 'in host poll');
         let classes = classnames("poll-option eight columns", {
             "selected": hostEventChoices[eventType] === i || hostEventChoices[eventType] === undefined
         });
