@@ -8,6 +8,7 @@ function socketRouter (io) {
     io.emit('connected');
 
     io.on('join', (userID) => {
+        console.log("joined!!!!", userID);
         var userIDArray = JSON.parse(userID);
         pub.publish("notify", JSON.stringify(userIDArray));
     });
