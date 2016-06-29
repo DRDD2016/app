@@ -3,7 +3,7 @@ var setNotifications = require('../db/setNotifications.js');
 var addEventToCalendar = require('../db/addEventToCalendar.js');
 
 function notifyEveryone (recipients, subjectID, eventID, event, callback) {
-
+    console.log(subjectID, '<<< subject id in notify everyone function >>>>');
     createNotification(subjectID, eventID, event, (error, notification) => {
 
         if (error) {
