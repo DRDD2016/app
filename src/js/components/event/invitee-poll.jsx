@@ -35,7 +35,7 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
                     { eventWhere }
                 </div>
                 <div className="eventWhen">
-                    { eventWhen }
+                    { eventWhen}
                 </div>
 
                 <PollButton poll={ poll }
@@ -52,7 +52,7 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
     return event[eventType].map((choice, i) => {
 
         let classes = classnames("poll-option", "eight columns offset-by-one", {
-            "selected": poll[eventType][i] === true
+            "selected": poll[eventType] === undefined || poll[eventType][i] === true
         });
         let labelClasses = classnames("two columns section-title", {
             'hide': i > 0
@@ -73,7 +73,9 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
 
             return (
                 <div key={eventType + '-' + i}>
-                    <EventTypeComponent text={ choice } />
+                    <EventTypeComponent text={ choice }
+                                        choiceClasses={ classes }
+                                        labelClasses={ labelClasses }/>
                 </div>
             );
         }
