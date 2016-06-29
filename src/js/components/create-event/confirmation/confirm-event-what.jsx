@@ -1,13 +1,21 @@
 import React from 'react';
+import classnames from 'classnames';
 
 const ConfirmEventWhat = ({ eventWhat }) => {
 
     const layout = Object.keys(eventWhat).map((data, i) => {
 
+        let classes = classnames('three columns confirm-new-event-title what', {
+            'hide': i > 0
+        });
+
         return (
-            <p className="what-option" key={ i }>
-                { eventWhat[data] || "TBC" }
-            </p>
+            <div className="poll-option-container row" key={ i }>
+                <div className={ classes }>What</div>
+                <div className="nine columns confirm-new-event what" key={ i }>
+                    { eventWhat[data] || "TBC" }
+                </div>
+            </div>
         );
     });
 

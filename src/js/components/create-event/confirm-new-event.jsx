@@ -8,7 +8,7 @@ import formatDate from '../../lib/formatDate.js';
 import { isPoll } from '../../lib/create-event-helpers.js';
 
 
-const EventConfirm = ({ data, saveEvent }) => {
+const ConfirmNewEvent = ({ data, saveEvent }) => {
 
     let SaveButtonIsHidden = data.eventWhen[0].date === "" && isPoll(data) === false;
 
@@ -18,8 +18,10 @@ const EventConfirm = ({ data, saveEvent }) => {
         return (
             <div key={ inviteeObject.id } className="item">
                 <img className="ui avatar image" src={ inviteeObject.photoURL } />
-                <div className="">
-                    <p className="header invited-friends">{ inviteeObject.firstName }</p>
+                <div className="content">
+                    <div className="header">
+                        { inviteeObject.firstName }
+                    </div>
                 </div>
             </div>
         );
@@ -35,28 +37,26 @@ const EventConfirm = ({ data, saveEvent }) => {
     });
 
     return (
-        <div className="create-event-confirm">
-                <p className="confirm-what">What?</p>
-                <ConfirmEventWhat eventWhat={ data.eventWhat } />
+        <div className="confirm-new-event">
+            <ConfirmEventWhat eventWhat={ data.eventWhat } />
+            <br/>
+            <ConfirmEventWhere eventWhere={ data.eventWhere } />
+            <br/>
+            <div className={ eventWhenInfo }>
 
-                <p className="confirm-where">Where?</p>
-                <ConfirmEventWhere eventWhere={ data.eventWhere } />
-
-                <p className="confirm-when">When?</p>
-                <div className={ eventWhenInfo }>
-
-                    You need to enter a date before saving this event.
-                    <Link to='/create-event/when'>
+                You need to enter a date before saving this event.
+                <Link to='/create-event/when'>
                     <button className="twelve columns">
-                    Add a Date
+                        Add a Date
                     </button>
-                    </Link>
-                </div>
+                </Link>
+                <br/>
+            </div>
 
             <ConfirmEventWhen eventWhen={ data.eventWhen } />
-
-            <p className="invited-title">Invited</p>
-            <div className="ui very relaxed horizontal list">
+            <br />
+            <p className="invited-title">Invited friends</p>
+            <div className="ui big horizontal list">
                 { invitedFriends }
             </div>
 
@@ -67,4 +67,4 @@ const EventConfirm = ({ data, saveEvent }) => {
     );
 };
 
-export default EventConfirm;
+export default ConfirmNewEvent;

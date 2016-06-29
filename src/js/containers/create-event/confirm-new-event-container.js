@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { newEvent, clearCreateEvent } from '../../actions/create-event.js';
-import EventConfirm from '../../components/create-event/event-confirm.jsx';
+import ConfirmNewEvent from '../../components/create-event/confirm-new-event.jsx';
 import { isPoll, cleanEventData } from '../../lib/create-event-helpers.js';
 import { store } from '../../init-store.js';
 
 const mapStateToProps = (state) => {
     const sortedDates = state.createEvent.eventWhen.sort((a, b) => {
-        
+
         return (a.date + a.time) > (b.date + b.time);
     });
     const data = {
@@ -39,9 +39,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-const EventConfirmContainer = connect(
+const ConfirmNewEventContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(EventConfirm);
+)(ConfirmNewEvent);
 
-export default EventConfirmContainer;
+export default ConfirmNewEventContainer;

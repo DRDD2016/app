@@ -23,6 +23,7 @@ if (parsedURL.auth) {
 }
 
 client.on('error', (err) => {
+    console.trace();
     console.error(err);
 });
 
