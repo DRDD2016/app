@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
+import { hashHistory } from 'react-router';
 
 const PollButton = ({ poll, handlePollConfirmation, eventID, voteButtonText }) => {
 
@@ -19,9 +20,14 @@ const PollButton = ({ poll, handlePollConfirmation, eventID, voteButtonText }) =
         'display-none': !userHasCompletedPoll,
     });
 
+    function handleSelection (poll, eventID) {
+        handlePollConfirmation(poll, eventID);
+        hashHistory.push('/feed');
+    }
+
     return (
 
-        <button onClick={ () => handlePollConfirmation(poll, eventID) } className={ classes }> { voteButtonText }</button>
+        <button onClick={ () => handleSelection(poll, eventID) } className={ classes }> { voteButtonText }</button>
     );
 };
 
