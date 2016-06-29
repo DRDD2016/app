@@ -2,10 +2,19 @@ import React from 'react';
 import classnames from 'classnames';
 import { Link } from 'react-router';
 import axios from 'axios';
+import { store } from '../../init-store.js';
+import { getFBFriends } from '../../actions/create-event.js';
+
 
 class InviteFriends extends React.Component {
     constructor (props){
         super(props);
+    }
+
+    componentWillMount () {
+        if (this.props.friends.length === 0) {
+            store.dispatch(getFBFriends());
+        }
     }
 
     render () {
