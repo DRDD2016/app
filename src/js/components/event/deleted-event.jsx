@@ -14,7 +14,7 @@ const DeletedEvent = () => {
             </div>
             <div className="container">
                 <h2 className="deleted-event">
-                Oops! This Event has been deleted.
+                This Event has been deleted.
                 </h2>
 
                 <div className="row">

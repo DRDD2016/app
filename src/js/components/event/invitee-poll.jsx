@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import classnames from 'classnames';
+import { hashHistory } from 'react-router';
 import PollButton from '../general/poll-button.jsx';
 import { EventWhatSection, EventWhereSection, EventWhenSection } from './poll-sections.jsx';
 
@@ -35,7 +36,7 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
                     { eventWhere }
                 </div>
                 <div className="eventWhen">
-                    { eventWhen }
+                    { eventWhen}
                 </div>
 
                 <PollButton poll={ poll }
@@ -47,12 +48,18 @@ const InviteePoll = ({ event, toggleSelection, poll, handlePollConfirmation, eve
     );
 };
 
+
 function createPollSelections (event, toggleSelection, poll, eventType, EventTypeComponent) {
+
+    function handleSelection (eventType, i) {
+        toggleSelection(eventType, i);
+        hashHistory.push('/feed');
+    }
 
     return event[eventType].map((choice, i) => {
 
         let classes = classnames("poll-option", "eight columns offset-by-one", {
-            "selected": poll[eventType][i] === true
+            "selected": poll[eventType] === undefined || poll[eventType][i] === true
         });
         let labelClasses = classnames("two columns section-title", {
             'hide': i > 0
@@ -61,7 +68,7 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
         if (poll[eventType]) {
 
             return (
-                <div onClick={ () => toggleSelection(eventType, i) }
+                <div onClick={ () => handleSelection(eventType, i) }
                      key={eventType + '-' + i}>
 
                     <EventTypeComponent text={ choice }
@@ -73,7 +80,9 @@ function createPollSelections (event, toggleSelection, poll, eventType, EventTyp
 
             return (
                 <div key={eventType + '-' + i}>
-                    <EventTypeComponent text={ choice } />
+                    <EventTypeComponent text={ choice }
+                                        choiceClasses={ classes }
+                                        labelClasses={ labelClasses }/>
                 </div>
             );
         }

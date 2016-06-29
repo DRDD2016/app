@@ -1,9 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addInvitee, removeInvitee } from '../../actions/create-event.js';
+import { addInvitee, removeInvitee, getFBFriends } from '../../actions/create-event.js';
 import InviteFriends from '../../components/create-event/invite-friends.jsx';
+import { store } from '../../init-store.js';
+
+if (store.getState().createEvent.friends.length === 0) {
+    store.dispatch(getFBFriends());
+}
 
 const mapStateToProps = (state) => {
+
     let friends = state.createEvent.friends;
     let invitees = state.createEvent.invitees;
 
