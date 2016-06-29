@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addInvitee, removeInvitee, getFBFriends } from '../../actions/create-event.js';
+import { hashHistory } from 'react-router';
+import { addInvitee, removeInvitee } from '../../actions/create-event.js';
+import validCookieExists from '../../lib/validCookieExists.js';
 import InviteFriends from '../../components/create-event/invite-friends.jsx';
-import { store } from '../../init-store.js';
-
-if (store.getState().createEvent.friends.length === 0) {
-    store.dispatch(getFBFriends());
-}
 
 const mapStateToProps = (state) => {
 
