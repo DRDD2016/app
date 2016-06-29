@@ -14,6 +14,13 @@ export default function autocompleteHelper (result, callback) {
         formattedAddress = result.address_components[cityObject].long_name + ' ' + result.address_components[postcodeObject].long_name;
         callback(formattedName, formattedAddress);
     }
+    else if (result.types.indexOf('neighborhood') >= 0){
+        let postcodeObject = result.address_components.length - 1;
+        let cityObject = result.address_components[1];
+        formattedName = result.name;
+        formattedAddress = cityObject.long_name + ' ' + result.address_components[postcodeObject].long_name;
+        callback(formattedName, formattedAddress);
+    }
     else if (result.types.indexOf('locality') >= 0 || result.types.indexOf('political') >= 0){
         let CountryObject = result.address_components.length - 1;
         if ( result.address_components[CountryObject].long_name !== "United Kingdom") {
