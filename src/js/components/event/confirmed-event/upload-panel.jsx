@@ -13,11 +13,11 @@ const UploadPanel = ({ hasPhotoLoaded, eventID, handleUploadPhoto, file, handleS
         <div className="upload-panel">
             <p>Event photo stream</p>
             <div className={ hideUploadPhotoButton }>
-                <input id="file-upload" className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload a photo" />
+                <input id="file-upload" className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload photo" />
             </div>
             <div className="row">
-                <label className="six columns file-button">
-                    Choose a file
+                <label className="offset-by-two eight columns file-button">
+                    Choose a photo to upload
                     <input className="twelve columns" onChange={ (e) => handleSetFile(e.target.files[0]) } type="file" accept="image/*;capture=camera" />
                 </label>
             </div>
