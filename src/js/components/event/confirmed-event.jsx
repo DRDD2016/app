@@ -36,6 +36,10 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
         });
     };
 
+    let placeNameClasses = classnames('placeName', {
+        'long': event.eventWhere[0] && event.eventWhere[0].placeName > 18
+    });
+
     return (
         <div className="confirmed-event">
             <div>
@@ -58,7 +62,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
 
                     <div className="nine columns confirmed-event where">
 
-                        <span className="placeName">{ event.eventWhere[0].placeName || "TBC" } </span>
+                        <span className={ placeNameClasses }>{ event.eventWhere[0].placeName || "TBC" } </span>
                         <span>{ event.eventWhere[0].placeAddress }</span>
                     </div>
                 </div>

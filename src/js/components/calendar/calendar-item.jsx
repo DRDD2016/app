@@ -29,16 +29,13 @@ const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, co
                         </p>
                         <div>
                         </div>
-                        <label className="date">{ ` ${formatDate(eventWhen[0].date)}` }</label>
+                        <label className="date">{ ` ${formatDate(eventWhen[0].date).toUpperCase()}` }</label>
                         <label className="placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
                     </div>
 
                     <img className="five columns image" src={ coverPhoto ? coverPhoto.photoURL : './placeholder.png' } alt="Latest photo" />
                 </div>
             </Link>
-            <div className="row">
-                <hr className="twelve columns" />
-            </div>
         </div>
     );
 };
