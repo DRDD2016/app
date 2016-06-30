@@ -5,7 +5,7 @@ const initialState = {
     data: [],
     isFetching: false,
     error: undefined,
-    showHosting: false,
+    showHosting: undefined,
     filter: false
 };
 
@@ -25,7 +25,7 @@ export default function notifications (state = initialState, action) {
     case APPLY_FILTER:
     case CLEAR_FILTER:
         return handleFilter(state, action);
-        
+
     default:
         return state;
     }

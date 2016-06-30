@@ -5,7 +5,7 @@ const initialState = {
     data: [],
     isFetching: false,
     error: undefined,
-    showHosting: false,
+    showHosting: undefined,
     filter: false
 };
 

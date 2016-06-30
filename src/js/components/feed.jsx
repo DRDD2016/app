@@ -7,7 +7,7 @@ import Spinner from './general/spinner.jsx';
 import FilterPanel from './general/filter-panel.jsx';
 
 
-const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome, displayAll, calendarIsFiltered, isShowHosting }) => {
+const Feed = ({ allEvents, notifications, isFetching, handleUpdateNotification, displaySome, displayAll, feedIsFiltered, isShowHosting }) => {
 
     let mappedNotifications = notifications.map((data, i) => {
         return (
@@ -42,20 +42,33 @@ const Feed = ({ notifications, isFetching, handleUpdateNotification, displaySome
             !isFetching &&
             <TopBar location={ location } />
         }
-        {
-            notifications.length === 0 && !isFetching &&
-                <div className="no-events-message">
-                    You have no events. <br />
-                    (Why not create some?)
-                </div>
-        }
             <div className="container feed">
             {
-                !isFetching && notifications.length > 0 &&
+                !isFetching && allEvents.length > 0 &&
                     <FilterPanel displayAll={ displayAll }
                                  displaySome={ displaySome }
-                                 calendarIsFiltered={ calendarIsFiltered }
+                                 dataIsFiltered={ feedIsFiltered }
                                  isShowHosting={ isShowHosting } />
+            }
+            {
+                allEvents.length === 0 && !isFetching &&
+                    <div className="no-events-message">
+                        You have no events. <br />
+                        (Why not create some?)
+                    </div>
+            }
+            {
+                notifications.length === 0 && isShowHosting &&
+                    <div className="no-events-message">
+                        You are not hosting any events. <br />
+                        (Why not create some?)
+                    </div>
+            }
+            {
+                notifications.length === 0 && isShowHosting === false &&
+                    <div className="no-events-message">
+                        You have not been invited to any events.
+                    </div>
             }
             {
                 !isFetching && mappedNotifications
