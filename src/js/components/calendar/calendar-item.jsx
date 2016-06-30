@@ -29,7 +29,7 @@ const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, co
                         </p>
                         <div>
                         </div>
-                        <label className="date">{ ` ${formatDate(eventWhen[0].date)}` }</label>
+                        <label className="date">{ ` ${formatDate(eventWhen[0].date).toUpperCase()}` }</label>
                         <label className="placeName">{ ` ${eventWhere[0].placeName} ${eventWhere[0].placeAddress}` }</label>
                     </div>
 
