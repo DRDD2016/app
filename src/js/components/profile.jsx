@@ -1,12 +1,18 @@
 import React from 'react';
 import TopBar from './event/top-bar.jsx';
 import classnames from 'classnames';
+import { hashHistory } from 'react-router';
 
 const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChangeName, handleEditName }) => {
 
     let hideEditButton = classnames("twelve columns button-primary", {
         "display-none": firstName === ''
     });
+
+    function changeName (firstName, lastName) {
+        handleEditName(firstName, lastName);
+        hashHistory.push('/feed');
+    }
 
     return (
         <div className="profile-page">
@@ -46,7 +52,7 @@ const Profile = ({ location, user, firstName, lastName, handleLogOut, handleChan
                 </div>
 
                 <div className="row">
-                    <button className={ hideEditButton } onClick={ () => handleEditName(firstName, lastName) } >
+                    <button className={ hideEditButton } onClick={ () => changeName(firstName, lastName) } >
                         Change Name
                     </button>
                 </div>
