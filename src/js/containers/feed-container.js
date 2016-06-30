@@ -11,16 +11,17 @@ import { store } from '../init-store.js';
 const mapStateToProps = (state) => {
 
     let data = state.notifications.data;
-    let calendarIsFiltered = state.notifications.filter;
+    let feedIsFiltered = state.notifications.filter;
     let isShowHosting = state.notifications.showHosting;
-    let notifications = filterNotifications(data, calendarIsFiltered, isShowHosting);
+    let notifications = filterNotifications(data, feedIsFiltered, isShowHosting);
 
     return {
+        allEvents: data,
         user: state.user,
         notifications,
         isFetching: state.notifications.isFetching,
         updateNotification: state.event.updateNotification,
-        calendarIsFiltered,
+        feedIsFiltered,
         isShowHosting
     };
 };
