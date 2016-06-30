@@ -36,9 +36,6 @@ const CalendarItem = ({ eventName, eventWhat, eventWhere, eventWhen, eventID, co
                     <img className="five columns image" src={ coverPhoto ? coverPhoto.photoURL : './placeholder.png' } alt="Latest photo" />
                 </div>
             </Link>
-            <div className="row">
-                <hr className="twelve columns" />
-            </div>
         </div>
     );
 };
