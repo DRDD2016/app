@@ -18,14 +18,14 @@ const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent,
         <div>
             <TopBar location={ location } />
 
-            <div className="container">
+            <div className="container calendar">
                 {
                     isFetching && <Spinner />
                 }
                 {
                     !isFetching && allEvents.length > 0 && <FilterPanel displaySome={ displaySome }
                                                                         displayAll={ displayAll }
-                                                                        calendarIsFiltered={ calendarIsFiltered }
+                                                                        dataIsFiltered={ calendarIsFiltered }
                                                                         isShowHosting={ isShowHosting } />
                 }
                 {
@@ -36,7 +36,7 @@ const Calendar = ({ location, allEvents, filteredEvents, isFetching, fetchEvent,
                 }
                 {
                     !isFetching && sortedData.map((item, i) => {
-                        
+
                         return <CalendarItem key={ i }
                                              userIsHost={ item.hostID === getUserID() }
                                              RSVPstatus={ item.RSVP }
