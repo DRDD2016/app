@@ -67,3 +67,10 @@ CLIENT_SECRET=*your facebook developer client secret*
 **RSVP:event:[_num_]|[_attendance status_]**
 * set of userIDs
 * Three possible attendance statuses: *going*, *notGoing*, *maybe*
+
+#### Photos
+**photos:event:[num]**
+Stringified object with:
+* photoURL {string}
+* userID {string}
+* timestamp {number}
