@@ -7,8 +7,6 @@ import { listenForUserID } from '../lib/action-listeners.js';
 import filterNotifications from '../lib/filterNotifications.js';
 import { store } from '../init-store.js';
 
-/* Wait for userID to be defined before dispatching getNotifications */
-listenForUserID(store);
 
 const mapStateToProps = (state) => {
 
@@ -16,7 +14,7 @@ const mapStateToProps = (state) => {
     let calendarIsFiltered = state.notifications.filter;
     let isShowHosting = state.notifications.showHosting;
     let notifications = filterNotifications(data, calendarIsFiltered, isShowHosting);
-    
+
     return {
         user: state.user,
         notifications,

@@ -1,5 +1,7 @@
 import io from 'socket.io-client';
 import getUserID from './lib/getUserID.js';
+import { store } from './init-store.js';
+import { getNotifications } from './actions/notifications.js';
 
 let port = process.env.PORT || 9000;
 let currentLocation = '';
@@ -17,5 +19,6 @@ feedSocket.on('connected', (thing) => {
     if (userID) {
 
         feedSocket.emit('join', JSON.stringify([userID]));
+        store.dispatch(getNotifications(userID));
     }
 });
