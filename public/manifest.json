@@ -5,7 +5,7 @@
   "manifest_version": 2,
   "icons": [
     {
-    "src": "spark-128.png",
+    "src": "spark-128-corner.png",
     "sizes": "128x128",
     "type": "image/png"
     },
