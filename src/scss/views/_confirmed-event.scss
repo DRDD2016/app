@@ -54,10 +54,13 @@
 .upload-panel {
 
     .file-button {
-        border: 1px solid #bbb;
-        line-height: 2.5em;
+        text-align: center;
+        background-color: $blue;
+        color: white;
+        padding: 0.4em;
         border-radius: 20px;
-        font-size: 1.2rem;
+        font-size: 1em;
+        font-weight: 100;
     }
 }
 /***

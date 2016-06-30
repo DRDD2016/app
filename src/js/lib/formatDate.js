@@ -7,13 +7,13 @@ export default function formatDate (date, full) {
         return date;
     }
     if (full === 'half') {
-        return moment(date).format('Do MMM YY');
+        return moment(date).format('DD MMM YY');
     }
     if (full) {
 
-        return moment(date).format('ddd Do MMMM YYYY');
+        return moment(date).format('ddd DD MMMM YYYY');
     } else {
 
-        return moment(date).format('Do MMM');
+        return moment(date).format('DD MMM');
     }
 }
