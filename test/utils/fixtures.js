@@ -43,7 +43,8 @@ export const eventConfirmedHarry = {
     ],
     isPoll: false,
     hostID: Harry.id,
-    hostPhotoURL: Harry.photoURL
+    hostPhotoURL: Harry.photoURL,
+    hasEdited: "undefined"
 };
 
 export const eventConfirmedHarryNotification = {
