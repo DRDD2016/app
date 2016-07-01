@@ -49,7 +49,7 @@ export const EventWhenSection = ({ text, tally, choiceClasses, labelClasses }) =
             <div className={ choiceClasses }>
                 <span className="row">
                     <span className="date">{ formatDate(text.date, 'half') || "TBC" }</span>
-                    <span className="time">{ text.time }</span>
+                    <span className="time">{ text.time || 'TBC' }</span>
                 </span>
             </div>
             <span className="tally two columns">{ tally }</span>

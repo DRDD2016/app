@@ -4,7 +4,7 @@ function deletePhoto (photo, eventID, userID, callback) {
 
     var listName = "photos:" + eventID + "|" + userID;
 
-    client.lpushAsync(listName, JSON.stringify(photo))
+    client.lpushAsync(listName, photo)
     .then((response) => {
         callback(null, response);
     })

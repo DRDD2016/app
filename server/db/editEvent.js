@@ -9,6 +9,7 @@ function editEvent (eventName, eventDescription, eventNote, eventWhat, eventWher
     editedEvent.eventName = eventName;
     editedEvent.eventDescription = eventDescription;
     editedEvent.eventNote = eventNote;
+    editedEvent.hasEdited = true;
 
 
     Object.keys(editedEvent).forEach((eventType, index) => {

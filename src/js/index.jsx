@@ -76,8 +76,18 @@ function fetchEvent (nextState, replace, callback) {
     callback();
 }
 
-function wipeCreateEvent (nextState, replace, callback) {
 
+function handleCreateEvent (nextState, replace, callback) {
+
+    if (!validCookieExists()) {
+        hashHistory.push('/');
+    } else {
+
+        if (!store.getState().user.id) {
+
+            store.dispatch(getUser());
+        }
+    }
     store.dispatch(clearCreateEvent());
     callback();
 }
@@ -116,7 +126,7 @@ const routes = (
 
         <Route path='/create-event' component={ requireAuthentication(CreateEventContainer) } >
             <IndexRoute component={ requireAuthentication(EventDetailsContainer) }
-                        onEnter={ wipeCreateEvent } />
+                        onEnter={ handleCreateEvent } />
 
             <Route path='what' component={ requireAuthentication(EventWhatContainer) } />
             <Route path='where' component={ requireAuthentication(EventWhereContainer) } />

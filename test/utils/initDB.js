@@ -42,7 +42,7 @@ client.hmsetAsync("event:100", "eventName", eventConfirmedDefault.eventName,
                  "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
                  "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
                  "hostID", eventConfirmedDefault.hostID,
-                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:100");
+                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:100", "hasEdited", "undefined");
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.sadd("calendar:" + fixtures.SOHIL_ID, fixtures.eventConfirmedHarryEventID);
@@ -111,7 +111,7 @@ client.hmset("event:600", "eventName", eventConfirmedDefault.eventName,
                  "eventWhat", eventConfirmedDefault.eventWhat, "eventWhere", eventConfirmedDefault.eventWhere, "eventWhen", eventConfirmedDefault.eventWhen,
                  "invitees", eventConfirmedDefault.invitees, "isPoll", eventConfirmedDefault.isPoll,
                  "hostID", eventConfirmedDefault.hostID,
-                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:600");
+                 "hostPhotoURL", eventConfirmedDefault.hostPhotoURL, "eventID", "event:600", "hasEdited", "undefined");
 
 client.lpush("notifications:12345678", JSON.stringify(fixtures.eventConfirmedHarryNotification));
 client.lpush("notifications:10154129575200996", JSON.stringify(fixtures.eventConfirmedHarryNotification));

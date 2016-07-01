@@ -11,7 +11,7 @@ const UploadPanel = ({ hasPhotoLoaded, eventID, handleUploadPhoto, file, handleS
 
     return (
         <div className="upload-panel">
-            <p>Event photo stream</p>
+            <p>Photos</p>
             <div className={ hideUploadPhotoButton }>
                 <input id="file-upload" className="twelve columns button-primary" type="button" onClick={ () => { handleUploadPhoto(file, eventID); } }  value="Upload photo" />
             </div>

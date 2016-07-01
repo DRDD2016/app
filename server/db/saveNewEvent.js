@@ -14,7 +14,8 @@ function saveNewEvent (event, callback) {
                                    "invitees", stringifiedObject.invitees, "isPoll", stringifiedObject.isPoll,
                                    "hostID", stringifiedObject.hostID,
                                    "hostPhotoURL", stringifiedObject.hostPhotoURL,
-                                   "eventID", eventID)
+                                   "eventID", eventID,
+                                   "hasEdited", "undefined")
          .then(() => {
 
              callback(null, eventID);
