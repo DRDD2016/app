@@ -1,6 +1,9 @@
 var getLatestEventPhoto = require('../db/getLatestEventPhoto.js');
+var getEventPhotos = require('../db/getEventPhotos.js');
+var getDeletedPhotos = require('../db/getDeletedPhotos.js');
+var getPersonalPhotos = require('./getPersonalPhotos.js');
 
-function mapCalendarToPhoto (eventIDArray, callback, index) {
+function mapCalendarToPhoto (eventIDArray, userID, callback, index) {
 
     if (!index) {
         index = 0;
@@ -11,14 +14,20 @@ function mapCalendarToPhoto (eventIDArray, callback, index) {
     }
 
     // do something
-    getLatestEventPhoto(eventIDArray[index].eventID, (error, photo) => {
+    getEventPhotos(eventIDArray[index].eventID, (error, allPhotos) => {
 
         if (error) {
             return callback(error);
         } else {
 
-            eventIDArray[index].coverPhoto = photo;
-            mapCalendarToPhoto(eventIDArray, callback, ++index);
+            getDeletedPhotos(eventIDArray[index].eventID, userID, (error, deletedPhotos) => {
+
+                getPersonalPhotos(allPhotos, deletedPhotos, [], (error, personalPhotos) => {
+                    
+                    eventIDArray[index].coverPhoto = personalPhotos[0];
+                    mapCalendarToPhoto(eventIDArray, userID, callback, ++index);
+                });
+            });
         }
     });
 }

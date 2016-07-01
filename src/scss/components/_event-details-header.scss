@@ -4,12 +4,11 @@
 }
 
 .event-detail-photo {
-    width:70%;
-    margin: 1em auto;
+    height:4.3em;
+    margin: 0.5em auto;
 }
 
 .event-detail-text-container {
-    margin-top: 1.5em;
 }
 
 .event-detail-text {
@@ -19,8 +18,12 @@
     color: $white;
 }
 
-.event-details-header > p:first-child {
+.event-detail-text-title {
     font-size: 1.2em;
     font-weight: bolder;
-    padding-bottom: 0;
+    color: $white;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0.4em 0;
+
 }

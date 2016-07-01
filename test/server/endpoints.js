@@ -70,12 +70,12 @@ test('`get-calendar` works', (t) => {
     server.inject(options, (response) => {
 
         const result = response.result;
+        console.log(result);
 
         const expectedKeys = Object.keys(fixtures.eventConfirmedHarry);
 
         t.ok(Array.isArray(result), 'An array is returned');
         t.equal(typeof result[0], 'object', 'An array of calendar objects is returned');
-
         expectedKeys.forEach((expectedKey) => {
 
             t.ok(result[0].hasOwnProperty(expectedKey), `The '${expectedKey}' key exists`);

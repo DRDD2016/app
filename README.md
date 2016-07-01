@@ -74,3 +74,6 @@ Stringified object with:
 * photoURL {string}
 * userID {string}
 * timestamp {number}
+
+#### User's deleted photos
+**photos:event:16|[_userID_]**

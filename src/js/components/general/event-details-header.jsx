@@ -8,12 +8,12 @@ const EventDetailsHeader = ({ location, eventName, eventDescription, hostPhotoUR
     let classes = classnames("row event-details-header", {
         "display-none": hideEventDetails
     });
-    
+
     if (!hostPhotoURL) {
 
         return (
             <div className={ classes } >
-                <p className="event-detail-text"> { eventName } </p>
+                <p className="event-detail-text-title"> { eventName } </p>
                 <p className="event-detail-text"> { eventDescription } </p>
             </div>
         );
@@ -25,8 +25,8 @@ const EventDetailsHeader = ({ location, eventName, eventDescription, hostPhotoUR
                     <img className=" ui event-detail-photo circular image" src={ hostPhotoURL } alt="Host photo" />
                 </div>
                 <div className="eight columns event-detail-text-container">
-                    <p className="event-detail-text"> { eventName } </p>
-                    <p className="event-detail-text"> { eventDescription } </p>
+                        <p className="event-detail-text-title"> { eventName } </p>
+                        <p className="event-detail-text"> { eventDescription } </p>
                 </div>
             </div>
         );
