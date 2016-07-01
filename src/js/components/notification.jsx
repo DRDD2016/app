@@ -7,7 +7,7 @@ import moment from 'moment';
 
 moment.locale('en-gb');
 
-const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed, inviteesNumber, eventName }) => {
+const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, eventWhat, eventWhere, eventWhen, userIsHost, isPoll, subjectID, hostID, index, handleUpdateNotification, viewed, inviteesNumber, eventName, hasEdited }) => {
 
     let userIsSubject = subjectID === getUserID();
 
@@ -28,13 +28,16 @@ const Notification = ({ eventID, timestamp, firstName, lastName, photoURL, event
                         { !userIsSubject && firstName + " " + lastName }
                     <span>
                         { userIsSubject && isPoll && " have created a poll " }
-                        { userIsSubject && !isPoll && " have created an event " }
+                        { userIsSubject && !isPoll && !hasEdited && " have created an event " }
+                        { userIsSubject && !isPoll && hasEdited && " have edited an event" }
 
                         { !userIsSubject && userIsHost && isPoll && " has voted on your poll" }
                         { !userIsSubject && userIsHost && !isPoll && " has responded to your event" }
 
                         { !userIsSubject && !userIsHost && isPoll && " wants you to vote on their poll" }
-                        { !userIsSubject && !userIsHost && !isPoll && " has invited you to their event" }
+                        { !userIsSubject && !userIsHost && !isPoll && !hasEdited && " has invited you to their event" }
+                        { !userIsSubject && !userIsHost && !isPoll && hasEdited && " has edited an event" }
+
                     </span>
                     </p>
                     <p className="event-name" >

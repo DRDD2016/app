@@ -25,7 +25,8 @@ function createNotification (subjectID, eventID, eventInfo, callback) {
             subjectID: undefined,
             viewed: false,
             inviteesNumber: eventInfo.invitees.length,
-            eventName: eventInfo.eventName
+            eventName: eventInfo.eventName,
+            hasEdited: eventInfo.hasEdited
 
         };
 

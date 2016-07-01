@@ -29,7 +29,8 @@ const Feed = ({ allEvents, notifications, isFetching, handleUpdateNotification, 
                 subjectID={ data.subjectID }
                 handleUpdateNotification={ handleUpdateNotification }
                 inviteesNumber={ data.inviteesNumber }
-                eventName={ data.eventName } />
+                eventName={ data.eventName }
+                hasEdited={ data.hasEdited } />
         );
     });
 
