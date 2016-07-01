@@ -25,7 +25,7 @@ exports.register = (server, options, next) => {
                         if (error) {
                             return reply(error);
                         }
-                        mapCalendarToPhoto(mappedCalendar, (error, calendarWithPhoto) => {
+                        mapCalendarToPhoto(mappedCalendar, userID, (error, calendarWithPhoto) => {
 
                             if (error) {
                                 return reply(error);

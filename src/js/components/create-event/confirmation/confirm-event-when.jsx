@@ -16,10 +16,10 @@ const ConfirmEventWhen = ({ eventWhen }) => {
                 <div className="nine columns confirm-new-event when">
                     <span className="row">
                         <span className="date">
-                            { ` Date: ${formatDate(data.date, true) || "TBC"}` }
+                            { formatDate(data.date, true) || "TBC" }
                         </span>
                         <span className="time">
-                            { ` Time: ${ data.time || "TBC"}` }
+                            { data.time || "TBC" }
                         </span>
                     </span>
                 </div>

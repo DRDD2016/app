@@ -13,7 +13,7 @@ exports.register = (server, options, next) => {
                 var photo = request.payload.photo;
                 var eventID = request.payload.eventID;
                 var userID = request.payload.userID;
-
+            
                 deletePhoto(photo, eventID, userID, (error, response) => {
 
                     if (error) {
