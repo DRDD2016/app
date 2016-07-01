@@ -6,15 +6,10 @@ function getDeletedPhotos (eventID, userID, callback) {
     client.lrangeAsync(listName, 0, -1)
         .then((response) => {
 
-            return response.map((object, index) => {
-                return JSON.parse(object);
-            });
-        })
-        .then((parsedObject) => {
-
-            callback(null, parsedObject);
+            callback(null, response);
         })
         .catch((error) => {
+            console.error('getDeletedPhotos', error);
             callback(error);
         });
 }
