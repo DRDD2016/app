@@ -24,17 +24,6 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
     return (
         <div>
             <p className="rsvp-title">RSVPs</p>
-            <div className="row">
-                <div className="offset-by-three six columns RSVP-button not-responded">
-                    <div> Not Responded </div>
-                </div>
-                <div className="twelve columns">
-                    <div className="ui huge horizontal list">
-                        { notRespondedList(respondedList, invitees) }
-                    </div>
-                </div>
-            </div>
-            <br />
 
             <div className="row">
                 <div className="four columns">
@@ -55,6 +44,19 @@ const RSVPsArea = ({ eventID, invitees, RSVPs, respondedList, notRespondedList, 
                     <div className="RSVP-button not-going" onClick={ () => handleClick('notGoing', eventID) }> Not Going </div>
                     <div className="ui big horizontal  list">
                         { RSVPUserList(RSVPs, invitees, 'notGoing') }
+                    </div>
+                </div>
+            </div>
+
+            <br />
+
+            <div className="row">
+                <div className="offset-by-three six columns RSVP-button not-responded">
+                    <div> Not Responded </div>
+                </div>
+                <div className="twelve columns">
+                    <div className="ui huge horizontal list">
+                        { notRespondedList(respondedList, invitees) }
                     </div>
                 </div>
             </div>
