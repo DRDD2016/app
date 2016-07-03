@@ -60,7 +60,7 @@ test.skip('`/get-notifications` works', (t) => {
     });
 });
 
-test.skip('`get-calendar` works', (t) => {
+test('`get-calendar` works', (t) => {
 
     const options = {
         method: 'GET',
