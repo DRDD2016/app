@@ -1,11 +1,15 @@
 import React from 'react';
+import classnames from 'classnames';
 
-const Message = ({ text }) => {
+const Message = ({ text, extraClass }) => {
+
+    let classes = classnames(`message ten columns offset-by-one ${extraClass}`);
+
     return  (
 
         <div className="row">
-            <div className="message offline ten columns offset-by-one">
-                Oops! No internet connection
+            <div className={ classes }>
+                { text }
             </div>
         </div>
     );

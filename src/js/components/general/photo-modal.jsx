@@ -8,6 +8,13 @@ const PhotoModal = ({ handleDeletePhoto, handleSharePhoto, eventID }) => {
 
     const handleShareClick = () => {
         handleSharePhoto();
+        let messageElement = document.getElementsByClassName('message shared-to-fb')[0];
+        let classes = document.getElementsByClassName('message shared-to-fb')[0].className.replace("display-none", '');
+        messageElement.className = classes;
+        setTimeout(() => {
+
+            messageElement.className += " display-none";
+        }, 2000);
         closeModal();
     };
 
