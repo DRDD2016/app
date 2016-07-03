@@ -4,6 +4,7 @@ import EventDetailsHeader from '../general/event-details-header.jsx';
 import RSVPsArea from './confirmed-event/RSVPs-area.jsx';
 import UploadPanel from './confirmed-event/upload-panel.jsx';
 import PhotoStream from './confirmed-event/photo-stream.jsx';
+import Message from '../general/message.jsx';
 import { eventNote } from '../../lib/confirmed-event-helpers.js';
 import formatDate from '../../lib/formatDate.js';
 
@@ -52,9 +53,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                         { event.eventWhat[0] || "TBC" }
                     </div>
                 </div>
-
                 <br />
-
                 <div className="row">
                     <p className="three columns confirmed-event-title where">
                         Where
@@ -66,9 +65,7 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                         <span>{ event.eventWhere[0].placeAddress }</span>
                     </div>
                 </div>
-
                 <br />
-
                 <div className="row">
                     <p className="three columns confirmed-event-title when">
                         When
@@ -83,10 +80,9 @@ const ConfirmedEvent = ({ event, eventID, RSVPs, invitees, userIsHost, RSVPToEve
                         </div>
                     </div>
                 </div>
-
                 <br />
                 <hr />
-
+                <Message extraClass="shared-to-fb display-none activate" text="Successfully shared to Facebook" />
                 <RSVPsArea eventID={ eventID }
                            respondedList={ respondedList }
                            notRespondedList={ notRespondedList }

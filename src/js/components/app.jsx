@@ -16,7 +16,7 @@ const App = ({ location, children, error }) => {
         <div>
             {
                 !online &&
-                <Message text="Oops! No internet connection..." />
+                <Message extraClass="offline" text="Oops! No internet connection..." />
             }
             {
                 error &&
